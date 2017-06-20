@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use PaypalIPN;
+use App\PaypalIPN;
 
 use App\paymentsystem;
 use Illuminate\Support\Facades\Input;
