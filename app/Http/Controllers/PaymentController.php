@@ -304,8 +304,9 @@ class PaymentController extends Controller
 
     public function test(){
 
-        $description = "[10$ Balance Top Up] [User: abdelilahsbaai@gmail.com]";
-        return $this->getDescriptionVariables("userEmail",$description);
+        //$description = "[10$ Balance Top Up] [User: abdelilahsbaai@gmail.com]";
+        //return $this->getDescriptionVariables("userEmail",$description);
+        return "this is a test";
 
 
     }
