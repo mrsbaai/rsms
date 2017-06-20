@@ -223,7 +223,30 @@ class PaymentController extends Controller
                 $ipn->useSandbox();
                 $verified = $ipn->verifyIPN();
                 if ($verified) {
-                    Log::info("im verified");
+                    $paymentSystem = "PayPal";
+                    $description = $_POST["custom"];
+
+                    $originalAmount = $this->getDescriptionVariables("originalAmount",$description);
+                    $userEmail = $this->getDescriptionVariables("userEmail",$description);
+                    $code = $this->getDescriptionVariables("code",$description);
+                    
+                    $payedAmount = $_POST["mc_gross"];
+                    $transactionType = $_POST["txn_type"];
+                    $transactionStatus = $_POST["payment_status"];
+                    $buyerEmail = $_POST["payer_email"];
+
+                    $accountId = $_POST["business"];
+
+
+
+                    // loging the event
+
+                    $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
+
+                    if (($_POST["payment_status"] == 'Completed') || ($_POST["payment_status"] == 'Pending' && $_POST["payment_type"] == 'instant' && $_POST["pending_reason"] == 'paymentreview')){
+                        // successful payment -> top up
+                        $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
+                    }
                 }
                 header("HTTP/1.1 200 OK");
 
