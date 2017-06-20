@@ -105,9 +105,9 @@ class PaypalIPN extends Controller
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
         // This is often required if the server is missing a global cert bundle, or is using an outdated one.
-        if ($this->use_local_certs) {
-            curl_setopt($ch, CURLOPT_CAINFO, __DIR__ . "/cert/cacert.pem");
-        }
+        //if ($this->use_local_certs) {
+            //curl_setopt($ch, CURLOPT_CAINFO, __DIR__ . "/cert/cacert.pem");
+        //}
         curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Connection: Close'));
