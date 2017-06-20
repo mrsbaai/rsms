@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\PaypalIPN;
-
 use App\paymentsystem;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
