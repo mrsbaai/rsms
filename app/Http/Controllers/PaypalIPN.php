@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Log;
+use App\Exceptions\Handler;
 
 class PaypalIPN extends Controller
 {
