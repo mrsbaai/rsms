@@ -15,8 +15,6 @@ use DB;
 use Log;
 use Mail;
 use App\Mail\topupReceipt;
-include(dirname(dirname(__FILE__)).'/src/IpnListener.php');
-use dezlov\PayPal\IpnListener;
 
 class PaymentController extends Controller
 {
@@ -220,70 +218,6 @@ class PaymentController extends Controller
 
         switch ($type){
             case "paypal":
-<<<<<<< HEAD
-
-
-                $listener = new IpnListener();
-                $listener->use_sandbox = true;
-                $error = null;
-                $verified = $listener->tryProcessIpn(null, $error);
-                if ($verified)
-                    Log::info('IPN verified successfully.'.PHP_EOL);
-                else
-                Log::info('IPN error: '.$error.PHP_EOL);
-=======
-                $payment_status = $_POST['payment_status'];
-                Log::info($payment_status);
-                
-                header("HTTP/1.1 200 OK");
->>>>>>> parent of 7a18348... paypal ipn test
-
-            case "payeer":
-
-
-                if (isset($_POST['m_operation_id']) && isset($_POST['m_sign']))
-                {
-                    $m_key = 'nirvana';
-                    $arHash = array($_POST['m_operation_id'],
-                        $_POST['m_operation_ps'],
-                        $_POST['m_operation_date'],
-                        $_POST['m_operation_pay_date'],
-                        $_POST['m_shop'],
-                        $_POST['m_orderid'],
-                        $_POST['m_amount'],
-                        $_POST['m_curr'],
-                        $_POST['m_desc'],
-                        $_POST['m_status'],
-                        $m_key);
-
-                    $sign_hash = strtoupper(hash('sha256', implode(':', $arHash)));
-                    $description = base64_decode($_POST['m_desc']);
-                    $paymentSystem="Payeer";
-
-                    $originalAmount = $this->getDescriptionVariables("originalAmount",$description);
-                    $userEmail = $this->getDescriptionVariables("userEmail",$description);
-                    $code = $this->getDescriptionVariables("code",$description);
-
-                    $payedAmount = $_POST['m_amount'];
-
-                    $transactionType = $_POST['m_operation_ps'];
-                    $transactionStatus = $_POST['m_status'];
-
-                    $buyerEmail = $_POST['m_amount'];
-                    $accountId = $_POST['m_shop'];
-
-
-                    $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
-
-                    if ($_POST['m_sign'] == $sign_hash && $_POST['m_status'] == 'success'){
-                        // successful payment -> top up
-
-                        $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
-                    }else{
-                        echo $_POST['m_orderid']."|".$_POST['m_status'];
-                        exit;
-                    }
-                }
 
 
 
