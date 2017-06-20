@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Log;
 
 class PaypalIPN extends Controller
 {
@@ -30,6 +31,7 @@ class PaypalIPN extends Controller
     public function useSandbox()
     {
         $this->use_sandbox = true;
+        Log::info("im using sandbox");
     }
     /**
      * Sets curl to use php curl's built in certs (may be required in some
