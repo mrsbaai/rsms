@@ -346,7 +346,8 @@ class PaymentController extends Controller
         $paymentSystem = "PayPal";
 
         $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
-        
+        return "ok";
+
     }
 
     Private function log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem){
