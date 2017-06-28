@@ -339,7 +339,7 @@ class PaymentController extends Controller
 
     public function test(){
 
-        $userEmail = "abdelilah.sbaai@gmail.com";
+        $userEmail = "abdelilahsbaai@gmail.com";
         $payedAmount = "10";
         $originalAmount = "10";
         $code = "";
