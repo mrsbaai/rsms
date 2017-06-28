@@ -229,7 +229,7 @@ class PaymentController extends Controller
                     $originalAmount = $this->getDescriptionVariables("originalAmount",$description);
                     $userEmail = $this->getDescriptionVariables("userEmail",$description);
                     $code = $this->getDescriptionVariables("code",$description);
-                    
+
                     $payedAmount = $_POST["mc_gross"];
                     $transactionType = $_POST["txn_type"];
                     $transactionStatus = $_POST["payment_status"];
@@ -327,17 +327,26 @@ class PaymentController extends Controller
 
         // send receipt
 
-        Mail::to($email)->send(new topupReceipt($email));
+        $name = $user['name'];
+        $date = Carbon::now();
+        $amount = $originalAmount;
+        $finalBalance = $topup;
+        $type = $paymentSystem;
+
+        Mail::to($email)->send(new topupReceipt($email,$name,$date,$amount,$finalBalance,$type));
 
     }
 
     public function test(){
 
-        //$description = "[10$ Balance Top Up] [User: abdelilahsbaai@gmail.com]";
-        //return $this->getDescriptionVariables("userEmail",$description);
-        return "this is a test";
+        $userEmail = "abdelilah.sbaai@gmail.com";
+        $payedAmount = "10";
+        $originalAmount = "10";
+        $code = "";
+        $paymentSystem = "PayPal";
 
-
+        $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
+        
     }
 
     Private function log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem){
