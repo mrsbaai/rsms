@@ -6,9 +6,9 @@ Here's your receipt.
 
 # Summary for {{$name}}
 @component('mail::table')
-    $type payment received on $date        |   ${{$amount}}
+    {{$type}} payment received on {{$date}}        |   <b>${{$amount}}</b>
     :-------------------------------------------    |   -----:
-    Account credit balance                          |   ${{$finalBalance}}
+    Account credit balance                          |   <b>${{$finalBalance}}</b>
 
 @endcomponent
 

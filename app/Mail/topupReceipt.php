@@ -18,13 +18,13 @@ class topupReceipt extends Mailable
 
 
 
-    public function __construct($name, $date, $amount, $finalBalance, $type)
+    public function __construct($data)
     {
-        $this->name = $name;
-        $this->date = $date;
-        $this->amount = $amount;
-        $this->finalBalance = $finalBalance;
-        $this->type = $type;
+        $this->name = $data['name'];
+        $this->date = $data['date'];
+        $this->amount = $data['amount'];
+        $this->finalBalance = $data['finalBalance'];
+        $this->type = $data['type'];
     }
 
 

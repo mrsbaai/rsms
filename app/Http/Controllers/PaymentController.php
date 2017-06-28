@@ -327,13 +327,13 @@ class PaymentController extends Controller
 
         // send receipt
 
-        $name = $user['name'];
-        $date = Carbon::now();
-        $amount = $originalAmount;
-        $finalBalance = $topup;
-        $type = $paymentSystem;
+        $data['name'] = $user['name'];
+        $data['date'] = Carbon::now();
+        $data['amount'] = $originalAmount;
+        $data['finalBalance'] = $topup;
+        $data['type'] = $paymentSystem;
 
-        Mail::to($email)->send(new topupReceipt($email,$name,$date,$amount,$finalBalance,$type));
+        Mail::to($email)->send(new topupReceipt($data));
 
     }
 
