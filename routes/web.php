@@ -24,7 +24,7 @@ Route::pattern('number', '[0-9]{8,13}');
 Auth::routes();
 
 Route::get('/', 'pagesController@home');
-Route::get('/emailtest', 'paymentController@emailtest');
+Route::get('/emailtest', 'PaymentController@emailtest');
 
 Route::post('/troppo','messagesController@troppo');
 Route::get('/troppo','messagesController@troppo');
