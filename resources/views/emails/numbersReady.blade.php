@@ -2,9 +2,11 @@
 
 Hello {{$name}},
 
-The following number
+The following
 @if  (count($numbers) > 1)
-s
+numbers
+@esle
+number
 @endif
  has been successfully added to your account:
 
@@ -16,9 +18,11 @@ s
     @endforeach
 @endcomponent
 
-You can login to your account and start using you new number
+You can login to your account and start using you new
 @if  (count($numbers) > 1)
-s
+numbers
+@esle
+number
 @endif
  now! 🙂
 
