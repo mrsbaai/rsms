@@ -4,7 +4,7 @@ Hello {{$name}},
 
 The following number
 @if  (count($numbers) > 1)
-    s
+s
 @endif
  has been successfully added to your account:
 
@@ -18,9 +18,9 @@ The following number
 
 You can login to your account and start using you new number
 @if  (count($numbers) > 1)
-    s
+s
 @endif
- now 🙂
+ now! 🙂
 
 @component('mail::button', ['url' => config('app.url') . '/numbers'])
 View Account
