@@ -347,7 +347,7 @@ class PaymentController extends Controller
 
     public function test(){
 
-        $email = "abdelilahs.sbaai@gmail.com";
+        $email = "abdelilah.sbaai@gmail.com";
         $data['name'] = "Abdelilah";
         $data['numbers'] = array(array("111111111111111", "US", "International", Carbon::now()), array("222222222222222", "US", "International", Carbon::now()));
         Mail::to($email)->send(new numbersReady($data));
