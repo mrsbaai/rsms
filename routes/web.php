@@ -18,13 +18,13 @@ Route::get('mailtest', function () {
     return $markdown->render('emails.numbersReady');
 });
 
+Route::get('/test','PaymentController@test');
 
 Route::pattern('number', '[0-9]{8,13}');
 
 Auth::routes();
 
 Route::get('/', 'pagesController@home');
-Route::get('/emailtest', 'PaymentController@emailtest');
 
 Route::post('/troppo','messagesController@troppo');
 Route::get('/troppo','messagesController@troppo');
@@ -34,7 +34,7 @@ Route::get('/support', 'userController@support');
 Route::post('contact','contactController@send');
 Route::post('support', 'contactController@send');
 
-Route::get('/test','PaymentController@test');
+
 Route::get('/hash/{days}','pagesController@test');
 
 Route::get('/tester','pagesController@tester');
