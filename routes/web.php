@@ -15,22 +15,16 @@ use Illuminate\Mail\Markdown;
 use Carbon\Carbon;
 Route::get('mailtest', function () {
     $markdown = new Markdown(view(), config('mail.markdown'));
-
-    $email = "abdelilah.sbaai@gmail.com";
-    $name = "Abdelilah";
-    $date = Carbon::now();
-    $amount = "10";
-    $finalBalance = "60";
-    $type = "PayPal";
-
-    return $markdown->render('emails.topupReceipt');
+    return $markdown->render('emails.numbersReady');
 });
+
 
 Route::pattern('number', '[0-9]{8,13}');
 
 Auth::routes();
 
 Route::get('/', 'pagesController@home');
+Route::get('/emailtest', 'paymentcontroller@emailtest');
 
 Route::post('/troppo','messagesController@troppo');
 Route::get('/troppo','messagesController@troppo');

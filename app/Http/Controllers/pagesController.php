@@ -13,7 +13,7 @@ use App\user;
 use App\paymentlog;
 use App\message;
 use Mail;
-use App\Mail\newdemonumbers;
+
 
 class pagesController extends Controller
 {
@@ -93,23 +93,7 @@ class pagesController extends Controller
         return view('admin');
     }
 
-    public function emailtest (){
-        $email = "abdelilah.sbaai@gmail.com";
-        $name = "Abdelilah";
-        $date = Carbon::now();
-        $amount = "10";
-        $finalBalance = "60";
-        $type = "PayPal";
 
-        return $this->markdown('emails.topupReceipt')
-        ->with([
-            'name' => $name,
-            'date' => $date,
-            'amount' => $amount,
-            'finalBalance' => $finalBalance,
-            'type' => $type,
-        ]);
-    }
     public function api(){
         return view('api');
     }
