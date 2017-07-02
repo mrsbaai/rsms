@@ -2,9 +2,11 @@
 
 Hello {{$name}},
 
-
-
-The following number@if  (count($numbers) > 1)s@endif has been successfully added to your account:
+The following number
+@if  (count($numbers) > 1)
+    s
+@endif
+ has been successfully added to your account:
 
 @component('mail::table')
     |   Number  |   Country     |   Reach   |   Expiration  |
@@ -14,7 +16,11 @@ The following number@if  (count($numbers) > 1)s@endif has been successfully adde
     @endforeach
 @endcomponent
 
-You can login to your account and start using you new number@if  (count($numbers) > 1)s@endif now 🙂
+You can login to your account and start using you new number
+@if  (count($numbers) > 1)
+    s
+@endif
+ now 🙂
 
 @component('mail::button', ['url' => config('app.url') . '/numbers'])
 View Account
