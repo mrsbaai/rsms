@@ -20,12 +20,6 @@ use App\Mail\numbersReady;
 class PaymentController extends Controller
 {
 
-    public function emailtest (){
-        $email = "abdelilahs.sbaai@gmail.com";
-        $data['name'] = "Abdelilah";
-        $data['numbers'] = array(array("111111111111111", "US", "International", Carbon::now()), array("222222222222222", "US", "International", Carbon::now()));
-        Mail::to($email)->send(new numbersReady($data));
-    }
 
     Public function getProductName($quantity, $days, $country){
         switch ($days) {
@@ -346,14 +340,11 @@ class PaymentController extends Controller
     }
 
     public function test(){
+        $email = "abdelilahs.sbaai@gmail.com";
+        $data['name'] = "Abdelilah";
+        $data['numbers'] = array(array("111111111111111", "US", "International", Carbon::now()), array("222222222222222", "US", "International", Carbon::now()));
+        Mail::to($email)->send(new numbersReady($data));
 
-        $userEmail = "abdelilahsbaai@gmail.com";
-        $payedAmount = "10";
-        $originalAmount = "10";
-        $code = "";
-        $paymentSystem = "PayPal";
-
-        $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
         return "ok";
 
     }
