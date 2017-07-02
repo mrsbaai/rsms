@@ -5,7 +5,7 @@ Hello {{$name}},
 The following
 @if  (count($numbers) > 1)
 numbers
-@esle
+@else
 number
 @endif
  has been successfully added to your account:
@@ -21,7 +21,7 @@ number
 You can login to your account and start using you new
 @if  (count($numbers) > 1)
 numbers
-@esle
+@else
 number
 @endif
  now! 🙂
