@@ -143,7 +143,6 @@ class userController extends Controller
             user::where('email', '=', $email)->update(['balance' => $balance]);
 
             $data['name'] = $name;
-            $data['numbers'] = array(array("111111111111111", "US", "International", Carbon::now()), array("222222222222222", "US", "International", Carbon::now()));
             Mail::to($email)->send(new numbersReady($data));
 
 
