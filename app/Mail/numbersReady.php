@@ -25,9 +25,9 @@ class numbersReady extends Mailable
     {
 
         if  (count($this->numbers) > 1){
-            $subject = "<<Receive-SMS>> Your new numbers are all set to go! 🚀";
+            $subject = "<<Receive-SMS>> Your new numbers are all set to go 🚀";
         }else{
-            $subject = "<<Receive-SMS>> Your new number is all set to go! 🚀";
+            $subject = "<<Receive-SMS>> Your new is ready to use 🚀";
         }
 
 

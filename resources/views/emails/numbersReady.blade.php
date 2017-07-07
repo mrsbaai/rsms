@@ -18,13 +18,13 @@ number
     @endforeach
 @endcomponent
 
-You can login to your account and start using you new
+Login to your account to start using you new
 @if  (count($numbers) > 1)
 numbers
 @else
 number
 @endif
- now! 🙂
+ 🙂
 
 @component('mail::button', ['url' => config('app.url') . '/numbers'])
 View Account
