@@ -10,6 +10,8 @@ use App\user;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\paymentsystem;
+use Mail;
+use App\Mail\numbersReady;
 
 class userController extends Controller
 {
