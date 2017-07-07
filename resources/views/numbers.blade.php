@@ -82,7 +82,7 @@
                 var url = "../price/" + document.getElementById("amount").value + "/1";
                 try{
                     $.get( url , function( data ) {
-alert(data.isPossible);
+alert(data);
                                 if (data.isPossible === false){
                                     document.getElementById("add").disabled = true;
                                 }else{
