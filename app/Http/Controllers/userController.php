@@ -121,22 +121,29 @@ class userController extends Controller
         $PaymentController = new PaymentController();
         $price = $PaymentController->getPrice($amount,1);
         $balance = Auth::user()->balance;
+        $name = Auth::user()->name;
         if ($price <= $balance){
             $email = Auth::user()->email;
             $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->shuffle()->take($amount);
 
             $expiration = Carbon::now()->addMonth(1)->addDays(10);
 
+            $data['numbers'] = array();
             foreach ($numbers as $number) {
                 $number = number::where('id', '=', $number['id'])->first();
                 number::where('id', '=', $number['id'])->update(['email' => $email]);
                 number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+                $addedNumber = array($number['number'],$number['country'],"International",$expiration);
+                array_push(data['numbers'],$addedNumber);
             }
 
             $balance = $balance - $price;
             user::where('email', '=', $email)->update(['balance' => $balance]);
 
-            // send a confirmation email here.
+            $data['name'] = $name;
+            $data['numbers'] = array(array("111111111111111", "US", "International", Carbon::now()), array("222222222222222", "US", "International", Carbon::now()));
+            Mail::to($email)->send(new numbersReady($data));
+
 
             $account_form_color= "text-success";
             $title= "Thank you!";
