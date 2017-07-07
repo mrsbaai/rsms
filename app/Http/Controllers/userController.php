@@ -134,7 +134,7 @@ class userController extends Controller
                 number::where('id', '=', $number['id'])->update(['email' => $email]);
                 number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
                 $addedNumber = array($number['number'],$number['country'],"International",$expiration);
-                array_push(data['numbers'],$addedNumber);
+                array_push($data['numbers'],$addedNumber);
             }
 
             $balance = $balance - $price;
