@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Mail;
 use App\Mail\confirmEmail;
+use Flash;
 
 class RegisterController extends Controller
 {
@@ -68,7 +69,7 @@ class RegisterController extends Controller
         $confirmation_code = str_random(30);
         Mail::to($data['email'])->send(new confirmEmail($confirmation_code));
 
-        return User::create([
+        User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
@@ -76,6 +77,8 @@ class RegisterController extends Controller
             'confirmation_code' => $confirmation_code,
         ]);
 
+        Flash::message('Thanks for signing up! Please check your email.');
+        return redirect('/inbox');
 
 
     }
