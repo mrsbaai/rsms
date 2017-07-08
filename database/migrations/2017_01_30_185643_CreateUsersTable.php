@@ -25,6 +25,8 @@ class CreateUsersTable extends Migration
             $table->string('callback_url')->nullable()->default(null);
             $table->integer('balance')->default(0);
             $table->string('source')->nullable()->default(null);
+            $table->boolean('confirmed')->default(0);
+            $table->string('confirmation_code')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

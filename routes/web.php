@@ -18,6 +18,11 @@ Route::get('mailtest', function () {
     return $markdown->render('emails.numbersReady');
 });
 
+Route::get('register/verify/{confirmationCode}', [
+    'as' => 'confirmation_path',
+    'uses' => 'RegisterController@confirm'
+]);
+
 Route::get('/test','PaymentController@test');
 
 Route::pattern('number', '[0-9]{8,13}');

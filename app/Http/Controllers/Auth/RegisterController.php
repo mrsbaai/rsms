@@ -62,11 +62,39 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        $confirmation_code = str_random(30);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'flat_password' => $data['password'],
+            'confirmation_code' => $confirmation_code,
         ]);
     }
+
+    public function confirm($confirmation_code)
+    {
+        if( ! $confirmation_code)
+        {
+            throw new InvalidConfirmationCodeException;
+        }
+
+        $user = User::whereConfirmationCode($confirmation_code)->first();
+
+        if ( ! $user)
+        {
+            throw new InvalidConfirmationCodeException;
+        }
+
+        $user->confirmed = 1;
+        $user->confirmation_code = null;
+        $user->save();
+
+        Flash::message('You have successfully verified your account.');
+
+        return redirect('/inbox');
+    }
+
 }

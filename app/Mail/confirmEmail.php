@@ -7,18 +7,20 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class contactReceived extends Mailable
+class confirmEmail extends Mailable
 {
     use Queueable, SerializesModels;
+    protected $confirmation_code;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($confirmation_code)
     {
         //
+        $this->confirmation_code = $confirmation_code;
     }
 
     /**
@@ -28,7 +30,10 @@ class contactReceived extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contactReceived')
-            ->subject('[Request received]');
+        return $this->markdown('email.confirmEmail')
+            ->subject('Verify your email address')
+            ->with([
+                'name' => $this->confirmation_code,
+            ]);
     }
 }
