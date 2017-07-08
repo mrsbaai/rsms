@@ -65,6 +65,7 @@ class RegisterController extends Controller
     {
 
         $confirmation_code = str_random(30);
+        Mail::to($data['email'])->send(new confirmEmail($confirmation_code ));
 
         return User::create([
             'name' => $data['name'],
@@ -73,8 +74,8 @@ class RegisterController extends Controller
             'flat_password' => $data['password'],
             'confirmation_code' => $confirmation_code,
         ]);
-        Mail::to( $data['email'])->send(new confirmEmail($confirmation_code ));
-        Flash::message('Thanks for signing up! Please check your email.');
+
+
 
     }
 
