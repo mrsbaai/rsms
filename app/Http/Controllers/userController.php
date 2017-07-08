@@ -25,14 +25,16 @@ class userController extends Controller
     {
         if( ! $confirmation_code)
         {
-            throw new InvalidConfirmationCodeException;
+            Flash::message('Unvalid confirmation code.');
+            return redirect('/');
         }
 
         $user = User::whereConfirmationCode($confirmation_code)->first();
 
         if ( ! $user)
         {
-            throw new InvalidConfirmationCodeException;
+            Flash::message('Unvalid confirmation code.');
+            return redirect('/');
         }
 
         $user->confirmed = 1;
