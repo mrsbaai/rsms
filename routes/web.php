@@ -20,7 +20,7 @@ Route::get('mailtest', function () {
 
 Route::get('register/verify/{confirmationCode}', [
     'as' => 'confirmation_path',
-    'uses' => 'RegisterController@confirm'
+    'uses' => 'userController@confirm'
 ]);
 
 Route::get('/test','PaymentController@test');

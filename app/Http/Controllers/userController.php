@@ -21,6 +21,29 @@ class userController extends Controller
         DB::table('users')->insert($user);
     }
 
+    public function confirm($confirmation_code)
+    {
+        if( ! $confirmation_code)
+        {
+            throw new InvalidConfirmationCodeException;
+        }
+
+        $user = User::whereConfirmationCode($confirmation_code)->first();
+
+        if ( ! $user)
+        {
+            throw new InvalidConfirmationCodeException;
+        }
+
+        $user->confirmed = 1;
+        $user->confirmation_code = null;
+        $user->save();
+
+        Flash::message('You have successfully verified your account.');
+
+        return redirect('/inbox');
+    }
+
     public function userNumbers(){
         $user_numbers = array();
         $email = Auth::user()->email;
