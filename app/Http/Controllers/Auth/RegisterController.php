@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Mail\confirmEmail;
 
 class RegisterController extends Controller
 {
@@ -72,6 +73,8 @@ class RegisterController extends Controller
             'flat_password' => $data['password'],
             'confirmation_code' => $confirmation_code,
         ]);
+        Mail::to( $data['email'])->send(new confirmEmail($confirmation_code ));
+
     }
 
     public function confirm($confirmation_code)

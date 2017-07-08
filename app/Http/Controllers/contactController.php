@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Mail;
 use Illuminate\Http\Request;
 use App\contact;
+use App\Mail\contactReceived;
 
 class contactController extends Controller
 {
