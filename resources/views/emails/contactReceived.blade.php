@@ -1,12 +1,7 @@
 @component('mail::message')
-# Introduction
 
-The body of your message.
+    Your request has been received and is being reviewed by our support staff.
 
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
-
-Thanks,<br>
-{{ config('app.name') }}
+Regards,<br>
+{{ config('app.name') }} Team
 @endcomponent

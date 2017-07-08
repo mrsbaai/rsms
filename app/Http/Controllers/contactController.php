@@ -43,6 +43,9 @@ class contactController extends Controller
             //    $message->subject($subject);
             //    $message->to($to);
             //});
+
+            Mail::to($email)->send(new contactReceived());
+
             return view('contact')->with('result', '- Sent!');
 
         }else{
@@ -63,6 +66,8 @@ class contactController extends Controller
             $contact->name = $name;
             $contact->is_responded = false;
             $contact->save();
+
+            Mail::to($email)->send(new contactReceived());
 
             //$to = 'support@receive-sms.com';
             //Mail::send('emails.contact', ['content' => $content], function ($message) use($subject,$email,$name,$to){
