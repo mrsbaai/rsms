@@ -66,7 +66,7 @@ class RegisterController extends Controller
     {
 
         $confirmation_code = str_random(30);
-        Mail::to($data['email'])->send(new confirmEmail($confirmation_code ));
+        Mail::to($data['email'])->send(new confirmEmail($confirmation_code));
 
         return User::create([
             'name' => $data['name'],

@@ -33,7 +33,7 @@ class confirmEmail extends Mailable
         return $this->markdown('email.confirmEmail')
             ->subject('Verify your email address')
             ->with([
-                'name' => $this->confirmation_code,
+                'confirmation_code' => $this->confirmation_code,
             ]);
     }
 }
