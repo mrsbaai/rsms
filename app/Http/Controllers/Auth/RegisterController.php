@@ -77,7 +77,7 @@ class RegisterController extends Controller
             'confirmation_code' => $confirmation_code,
         ]);
 
-        Flash::message('Thanks for signing up! Please check your email.');
+        flash('Thanks for signing up! Please check your email.')->success();
         return redirect('/inbox');
 
 
