@@ -61,9 +61,8 @@ class pagesController extends Controller
     public function tester(){
 
 
-        $paymentlog = paymentlog::all();
-        print_r($paymentlog);
-        return;
+        $users = User::all();
+        return response()->json($users);
 
     }
     public function test($days){
