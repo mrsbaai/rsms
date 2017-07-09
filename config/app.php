@@ -179,6 +179,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /* I added this */
+        Laracasts\Flash\FlashServiceProvider::class,
+
     ],
 
     /*

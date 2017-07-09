@@ -72,6 +72,11 @@
 </div>
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<div class="container width-fix col-sm-12">
+            @include('flash::message')
+</div>
+
+
 @yield('content')
 
 
@@ -96,7 +101,9 @@
     Here are the <a href="http://www.enable-javascript.com/" target="_blank">
         instructions how to enable JavaScript in your web browser</a>.
 </noscript>
-
+<script>
+    $('#flash-overlay-modal').modal();
+</script>
 @yield('bottom')
 
 </body>

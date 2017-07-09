@@ -28,7 +28,6 @@ class pagesController extends Controller
             $lastMessage =  $messages[0]['id'];
             $numbers = number::all()->where('is_private',false);
 
-
             return view('home')->with('numbers', $numbers)->with('messages', $messages)->with('lastMessage', $lastMessage);
         }
     }

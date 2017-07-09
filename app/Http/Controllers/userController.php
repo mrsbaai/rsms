@@ -26,7 +26,7 @@ class userController extends Controller
     {
         if( ! $confirmation_code)
         {
-            Flash::message('Unvalid confirmation code.');
+            flash()->overlay('Unvalid confirmation code.', 'E-mail Confirmation');
             return redirect('/');
         }
 
@@ -34,7 +34,7 @@ class userController extends Controller
 
         if ( ! $user)
         {
-            Flash::message('Unvalid confirmation code.');
+            flash()->overlay('Unvalid confirmation code.', 'E-mail Confirmation');
             return redirect('/');
         }
 
@@ -42,7 +42,7 @@ class userController extends Controller
         $user->confirmation_code = null;
         $user->save();
 
-        Flash::message('You have successfully verified your account.');
+        flash()->overlay('You have successfully verified your account.', 'Welcome Aboard!');
 
         return redirect('/inbox');
     }

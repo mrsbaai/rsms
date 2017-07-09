@@ -411,6 +411,12 @@ h4{
 
 @media only screen and (max-width: 800px) {
 
+    .alert {
+        padding: 15px !important;
+
+    }
+
+
     /* Force table to not be like tables anymore */
     #no-more-tables table,
     #no-more-tables thead,
@@ -485,8 +491,29 @@ h4{
     //color: #90c6c5;
 }
 
-.alert-success {
-    background-color: #374040;
-    border: none;
-    color: #64ba65;
+
+
+.alert {
+    text-shadow: 2px 2px 3px black;
+    font: 28px 'TitilliumText22LRegular', Helvetica, Arial, sans-serif;
+    background: #1A1D1F url(../img/texture.png) repeat;
+
+
+
+    margin: 15px auto 20px;
+    padding: 20px 20px 20px 60px;
+    border: 1px solid #111;
+    position: relative;
+
+    border-radius: 4px;
+
+    -webkit-box-shadow: 0px 0px 7px 0px rgba(50, 50, 50, 1);
+    -moz-box-shadow:    0px 0px 7px 0px rgba(50, 50, 50, 1);
+    box-shadow:         0px 0px 7px 0px rgba(50, 50, 50, 1);
+}
+
+.modal-content{
+
+    background: #355858;
+
 }
