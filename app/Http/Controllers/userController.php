@@ -27,7 +27,7 @@ class userController extends Controller
         if( ! $confirmation_code)
         {
             flash()->overlay('Unvalid confirmation code.', 'E-mail Confirmation');
-            return redirect('/');
+            return redirect('/inbox');
         }
 
         $user = User::whereConfirmationCode($confirmation_code)->first();
@@ -35,7 +35,7 @@ class userController extends Controller
         if ( ! $user)
         {
             flash()->overlay('Unvalid confirmation code.', 'E-mail Confirmation');
-            return redirect('/');
+            return redirect('/inbox');
         }
 
         $user->confirmed = 1;
