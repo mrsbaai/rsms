@@ -16,7 +16,7 @@ class SubscribersController extends Controller
         if( ! $email)
         {
             flash()->overlay('Invalid or nonexistent e-mail.', 'Subscribe Confirmation');
-            return redirect('/');
+            return redirect('/home');
         }
 
         $subscriber = subscriber::whereemail($email)->first();
@@ -32,7 +32,7 @@ class SubscribersController extends Controller
 
         flash()->overlay('Subscription verified successfully', 'Thank you!');
 
-        return redirect('/');
+        return redirect('/home');
     }
 
     public function unsubscribe(Request $request){
@@ -49,7 +49,7 @@ class SubscribersController extends Controller
 
 
         flash()->overlay(' You have successfully unsubscribed from ' . config('app.name') . ' Newsletter. You will no longer receive new demo numbers notifications and special offers.', 'You have been successfully unsubscribed');
-        return redirect('/');
+        return redirect('/home');
 
 
     }
@@ -64,7 +64,7 @@ class SubscribersController extends Controller
 
        if(!is_null($subscribed)) {
            flash()->overlay('Your e-mail already exists in our database.', 'Already subscribed!');
-           return redirect('/inbox');
+           return redirect('/home');
 
         }else{
            $subscribed = subscriber::where('email', $request->email)->first();
@@ -80,7 +80,7 @@ class SubscribersController extends Controller
            Mail::to($request->email)->send(new subscribeConfirmation($request->email));
            flash()->overlay('You have been subscribed successfully. Please check your e-mail for confirmation.', 'Thank you for your subscription!');
 
-           return redirect('/');
+           return redirect('/home');
 
 
        }

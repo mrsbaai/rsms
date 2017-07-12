@@ -42,7 +42,7 @@ Route::pattern('number', '[0-9]{8,13}');
 Auth::routes();
 
 Route::get('/', 'pagesController@home');
-
+Route::get('/home', 'pagesController@home');
 Route::post('/troppo','messagesController@troppo');
 Route::get('/troppo','messagesController@troppo');
 Route::get('/contact','pagesController@contact');
