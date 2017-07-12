@@ -7,20 +7,20 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class confirmEmail extends Mailable
+class subscribeConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
-    protected $confirmation_code;
+    protected $email;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($confirmation_code)
+    public function __construct($email)
     {
         //
-        $this->confirmation_code = $confirmation_code;
+        $this->email = $email;
     }
 
     /**
@@ -30,10 +30,10 @@ class confirmEmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.confirmEmail')
-            ->subject('Verify your email address')
+        return $this->markdown('emails.subscribeConfirmation')
+            ->subject('Receive-SMS loves you because you\'re awesome!')
             ->with([
-                'confirmation_code' => $this->confirmation_code,
+                'email' => $this->email,
             ]);
     }
 }

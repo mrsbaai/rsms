@@ -9,6 +9,6 @@ class subscriber extends Model
     //
     protected $table = "subscribers";
     protected $fillable = [
-        'email', 'subscribed'
+        'email', 'subscribed', 'confirmed'
     ];
 }

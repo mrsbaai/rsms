@@ -5,10 +5,33 @@ namespace App\Http\Controllers;
 use App\subscriber;
 use Illuminate\Http\Request;
 
-
 class SubscribersController extends Controller
 {
-    //
+
+    public function confirm($email)
+    {
+        if( ! $email)
+        {
+            flash()->overlay('Invalid or nonexistent e-mail.', 'Subscribe Confirmation');
+            return redirect('/');
+        }
+
+        $subscriber = subscriber::whereemail($email)->first();
+
+        if ( ! $subscriber)
+        {
+            flash()->overlay('Invalid or nonexistent e-mail.', 'Subscribe Confirmation');
+            return redirect('/');
+        }
+
+        $subscriber->confirmed = 1;
+        $subscriber->save();
+
+        flash()->overlay('Subscription verified successfully', 'Thank you!');
+
+        return redirect('/');
+    }
+
     Public function subscribe(Request $request){
 
         $subscribed = subscriber::where('email', $request->email)->where('subscribed', true)->first();
@@ -28,11 +51,12 @@ class SubscribersController extends Controller
                $subscriber->save();
            }
 
+           flash()->overlay('You have been subscribed successfully. Please check your email for confirmation', 'Thank you for your subscription!');
 
-            $message = "Thank you for your subscription.";
-            return view('message')->with('title', 'Subscribed Successfully!')->with('content',$message)->with('titleClass','text-success');
+           return redirect('/');
 
-        }
+
+       }
 
 
         }

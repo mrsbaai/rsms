@@ -18,6 +18,7 @@ class CreateSubscribersTable extends Migration
             $table->increments('id');
             $table->string('email')->unique();
             $table->boolean('subscribed')->default(true);
+            $table->boolean('confirmed')->default(false);
             $table->timestamps();
         });
 

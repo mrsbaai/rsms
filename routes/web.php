@@ -23,6 +23,11 @@ Route::get('register/verify/{confirmationCode}', [
     'uses' => 'userController@confirm'
 ]);
 
+Route::get('subscribe/verify/{email}', [
+    'as' => 'subscription',
+    'uses' => 'subscribersController@confirm'
+]);
+
 Route::get('/test','PaymentController@test');
 
 Route::pattern('number', '[0-9]{8,13}');
