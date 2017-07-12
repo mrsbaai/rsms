@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\subscriber;
+use App\suppression;
 use Illuminate\Http\Request;
 use Mail;
 use App\Mail\subscribeConfirmation;
@@ -34,12 +35,28 @@ class SubscribersController extends Controller
         return redirect('/');
     }
 
+    public function unsubscribe(Request $request){
+
+        $suppression = new suppression();
+        $suppression->email = $request->email;
+        $suppression->save();
+
+        flash()->overlay(' You have successfully unsubscribed from ' . config('app.name') . ' newsletter. You will no longer receive new demo numbers notifications and special offers.', 'You have been successfully unsubscribed');
+        return redirect('/');
+
+
+    }
     Public function subscribe(Request $request){
+        $suppression = suppression::where('email', $request->email)->first();
+        
+        if(!is_null($suppression)) {
+            $suppression->delete();
+        }
 
         $subscribed = subscriber::where('email', $request->email)->where('subscribed', true)->first();
 
        if(!is_null($subscribed)) {
-           flash()->overlay('Your E-mail already exists in our database.', 'Already subscribed!');
+           flash()->overlay('Your e-mail already exists in our database.', 'Already subscribed!');
            return redirect('/');
 
         }else{
@@ -54,7 +71,7 @@ class SubscribersController extends Controller
            }
 
            Mail::to($request->email)->send(new subscribeConfirmation($request->email));
-           flash()->overlay('You have been subscribed successfully. Please check your email for confirmation', 'Thank you for your subscription!');
+           flash()->overlay('You have been subscribed successfully. Please check your e-mail for confirmation.', 'Thank you for your subscription!');
 
            return redirect('/');
 
