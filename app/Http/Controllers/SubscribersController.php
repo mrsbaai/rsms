@@ -51,6 +51,7 @@ class SubscribersController extends Controller
                $subscriber->save();
            }
 
+           Mail::to($request->email)->send(new subscribeConfirmation($request->email));
            flash()->overlay('You have been subscribed successfully. Please check your email for confirmation', 'Thank you for your subscription!');
 
            return redirect('/');
