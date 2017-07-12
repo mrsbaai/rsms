@@ -25,14 +25,14 @@ Route::get('register/verify/{confirmationCode}', [
 
 Route::get('unsubscribe/{email}', [
     'as' => 'unsubscribe_path',
-    'uses' => 'subscribersController@unsubscribe'
+    'uses' => 'SubscribersController@unsubscribe'
 ]);
 
 
 
 Route::get('subscribe/verify/{email}', [
     'as' => 'subscription',
-    'uses' => 'subscribersController@confirm'
+    'uses' => 'SubscribersController@confirm'
 ]);
 
 Route::get('/test','PaymentController@test');

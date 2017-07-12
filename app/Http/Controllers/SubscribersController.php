@@ -48,7 +48,7 @@ class SubscribersController extends Controller
     }
     Public function subscribe(Request $request){
         $suppression = suppression::where('email', $request->email)->first();
-        
+
         if(!is_null($suppression)) {
             $suppression->delete();
         }
