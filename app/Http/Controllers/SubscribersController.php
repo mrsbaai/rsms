@@ -37,11 +37,18 @@ class SubscribersController extends Controller
 
     public function unsubscribe(Request $request){
 
-        $suppression = new suppression();
-        $suppression->email = $request->email;
-        $suppression->save();
+        $suppressed = suppression::where('email', $request->email)->first();
 
-        flash()->overlay(' You have successfully unsubscribed from ' . config('app.name') . ' newsletter. You will no longer receive new demo numbers notifications and special offers.', 'You have been successfully unsubscribed');
+        if(is_null($suppressed)) {
+            $suppression = new suppression();
+            $suppression->email = $request->email;
+            $suppression->save();
+        }
+
+
+
+
+        flash()->overlay(' You have successfully unsubscribed from ' . config('app.name') . ' Newsletter. You will no longer receive new demo numbers notifications and special offers.', 'You have been successfully unsubscribed');
         return redirect('/');
 
 
