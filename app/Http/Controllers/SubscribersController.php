@@ -64,7 +64,7 @@ class SubscribersController extends Controller
 
        if(!is_null($subscribed)) {
            flash()->overlay('Your e-mail already exists in our database.', 'Already subscribed!');
-           return redirect('/');
+           return redirect('/inbox');
 
         }else{
            $subscribed = subscriber::where('email', $request->email)->first();
