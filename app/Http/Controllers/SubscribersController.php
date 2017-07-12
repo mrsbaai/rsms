@@ -38,8 +38,8 @@ class SubscribersController extends Controller
         $subscribed = subscriber::where('email', $request->email)->where('subscribed', true)->first();
 
        if(!is_null($subscribed)) {
-            $message = "You are already subscribed.";
-            return view('message')->with('title', 'Error!')->with('content',$message)->with('titleClass','text-danger');
+           flash()->overlay('Your E-mail already exists in our database.', 'Already subscribed!');
+
 
         }else{
            $subscribed = subscriber::where('email', $request->email)->first();
