@@ -1,9 +1,7 @@
 @component('mail::message')
-# Verify Your Email Address
+    Hi there,
 
-Hi there,
-
-Welcome aboard and thanks for subscribing to the {{ config('app.name') }} mailing list!
+Thanks for subscribing to the {{ config('app.name') }} newsletter!
 
 We will let you know when ever we update our numbers. We will also email out special offers and coupons.
 
