@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\subscriber;
 use Illuminate\Http\Request;
 use Mail;
+use App\Mail\subscribeConfirmation;
 
 class SubscribersController extends Controller
 {
