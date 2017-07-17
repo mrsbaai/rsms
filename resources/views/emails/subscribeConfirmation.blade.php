@@ -3,12 +3,12 @@
 
 Thanks for subscribing to the {{ config('app.name') }} Newsletter!
 
-We will let you know when ever we update our numbers. We will also email out special offers and coupons.
-
 To confirm your email address, please follow the link:
 {{ URL::to('subscribe/verify/' . $email) }}.
 
-If you have not subscribed for {{ config('app.name') }} Newsletter, please follow this link:
-    {{ URL::to('unsubscribe/' . $email) }}.
+    If you received this email by mistake, simply delete it. You won't be subscribed if you don't click the confirmation link above.
+
     This message was sent automatically. Please, do not reply.
+
+    For questions about this list: <a href="http://receive-sms.com/contact">Receive-SMS Contact</a>
 @endcomponent

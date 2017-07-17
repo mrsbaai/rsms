@@ -7,9 +7,16 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class numbersReady extends Mailable
+class numberRemovalNotification extends Mailable
 {
     use Queueable, SerializesModels;
+
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+
     protected $name;
     protected $numbers;
 
@@ -17,21 +24,23 @@ class numbersReady extends Mailable
     {
         $this->name = $data['name'];
         $this->numbers = $data['numbers'];
-
     }
 
-
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
     public function build()
     {
 
         if  (count($this->numbers) > 1){
-            $subject = "<<Receive-SMS>> Your new numbers are all set to go 🚀";
+            $subject = "Numbers will be removed withing 72 Hours";
         }else{
-            $subject = "<<Receive-SMS>> Your new number is ready to use 🚀";
+            $subject = "Your numbers will be removed withing 72 Hours";
         }
 
-
-        return $this->markdown('emails.numbersReady')
+        return $this->markdown('emails.numberRemovalNotification')
             ->subject($subject)
             ->with([
                 'name' => $this->name,
