@@ -53,7 +53,7 @@ class userController extends Controller
                     if ($amount < $balance){
                         $date = Carbon::parse($date);
                         $diff = $now->diffInDays($date);
-                        echo "---" . $diff . "---";
+                        $diff = (int) $diff;
                         switch ($diff) {
                             case 14:
                                 echo "---" . $diff . "(14)---";
