@@ -57,23 +57,23 @@ class userController extends Controller
                         switch ($diff) {
                             case 14:
                                 echo "---" . $diff . "(14)---";
-                                Mail::to($user["email"])->send(new topupNeeded());
+                                //Mail::to($user["email"])->send(new topupNeeded());
                             case 10:
                                 echo "---" . $diff . "(10)---";
-                                Mail::to($user["email"])->send(new topupNeeded());
+                                //Mail::to($user["email"])->send(new topupNeeded());
                             case 7:
                                 echo "---" . $diff . "(7)---";
-                                Mail::to($user["email"])->send(new topupNeeded());
+                                //Mail::to($user["email"])->send(new topupNeeded());
                             case 4:
                                 echo "---" . $diff . "(4)---";
-                                Mail::to($user["email"])->send(new topupNeeded());
+                                //Mail::to($user["email"])->send(new topupNeeded());
                             case 1:
                                 echo "---" . $diff . "(1)---";
-                                Mail::to($user["email"])->send(new topupNeeded());
+                                //Mail::to($user["email"])->send(new topupNeeded());
                             case 3:
                                 echo "---" . $diff . "(3)---";
                                 $data['name'] = $user['name'];
-                                Mail::to($user["email"])->send(new numberRemovalNotification($data));
+                                //Mail::to($user["email"])->send(new numberRemovalNotification($data));
                             case 5:
                                 echo "---" . $diff . "(5)---";
                                 $expiration = Carbon::now()->addDays(2);
@@ -81,7 +81,7 @@ class userController extends Controller
                                 $data['header'] = "Get a 30% Off All Your Top Ups!";
                                 $data['coupon'] = $this->RandomCoupon(30,$expiration);
                                 $data['date'] = $expiration;
-                                Mail::to($user["email"])->send(new newCoupon($data));
+                                //Mail::to($user["email"])->send(new newCoupon($data));
                             case 2:
                                 echo "---" . $diff . "(2)---";
                                 $expiration = Carbon::now()->addDays(2);
@@ -89,7 +89,7 @@ class userController extends Controller
                                 $data['header'] = "Get a 50% Off All Your Top Ups!";
                                 $data['coupon'] = $this->RandomCoupon(50,Carbon::now()->addDays(2));
                                 $data['date'] = $expiration;
-                                Mail::to($user["email"])->send(new newCoupon($data));
+                                //Mail::to($user["email"])->send(new newCoupon($data));
                         }
                     }
 
