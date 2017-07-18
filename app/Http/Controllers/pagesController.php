@@ -63,9 +63,10 @@ class pagesController extends Controller
         $users = User::all();
 
         foreach($users as $user){
-            echo $user['id'];
+            $userController = new \App\Http\Controllers\userController;
+            $userController->SendTopupEmail($user['id']);
         }
-        return;
+
         //$userController = new userController;
         //return $userController->CouponTwoDays(30);
         //$coupon = coupon::all();
