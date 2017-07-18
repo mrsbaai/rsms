@@ -17,14 +17,14 @@ class newCoupon extends Mailable
      * @return void
      */
 
-    protected $subject;
+    protected $subj;
     protected $header;
     protected $coupon;
     protected $date;
 
     public function __construct($data)
     {
-        $this->subject = $data['subject'];
+        $this->subj = $data['subj'];
         $this->header = $data['header'];
         $this->coupon = $data['coupon'];
         $this->date = $data['date'];
@@ -38,7 +38,7 @@ class newCoupon extends Mailable
     public function build()
     {
         return $this->markdown('emails.newCoupon')
-            ->subject($this->subject)
+            ->subject($this->subj)
             ->with([
                 'header' => $this->header,
                 'coupon' => $this->coupon,
