@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Mail\topupNeeded;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use DB;
@@ -14,6 +13,9 @@ use Carbon\Carbon;
 use App\paymentsystem;
 use Mail;
 use App\Mail\numbersReady;
+use App\Mail\numberRemovalNotification;
+use App\Mail\topupNeeded;
+use App\Mail\newCoupon;
 use Flash;
 
 class userController extends Controller
