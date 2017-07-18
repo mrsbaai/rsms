@@ -53,27 +53,34 @@ class userController extends Controller
                     if ($amount < $balance){
                         $date = Carbon::parse($date);
                         $diff = $now->diffInDays($date);
-                        $diff = (int) $diff;
+
                         switch ($diff) {
                             case 14:
                                 echo "---" . $diff . "(14)---";
                                 //Mail::to($user["email"])->send(new topupNeeded());
+                                break;
+
                             case 10:
-                                echo "---" . $diff . "(10)---";
+                                echo "---" . $diff . "(14)---";
                                 //Mail::to($user["email"])->send(new topupNeeded());
+                                break;
                             case 7:
-                                echo "---" . $diff . "(7)---";
+                                echo "---" . $diff . "(14)---";
                                 //Mail::to($user["email"])->send(new topupNeeded());
+                                break;
                             case 4:
-                                echo "---" . $diff . "(4)---";
+                                echo "---" . $diff . "(14)---";
                                 //Mail::to($user["email"])->send(new topupNeeded());
+                                break;
                             case 1:
-                                echo "---" . $diff . "(1)---";
+                                echo "---" . $diff . "(14)---";
                                 //Mail::to($user["email"])->send(new topupNeeded());
+                                break;
                             case 3:
                                 echo "---" . $diff . "(3)---";
                                 $data['name'] = $user['name'];
                                 //Mail::to($user["email"])->send(new numberRemovalNotification($data));
+                                break;
                             case 5:
                                 echo "---" . $diff . "(5)---";
                                 $expiration = Carbon::now()->addDays(2);
@@ -82,6 +89,7 @@ class userController extends Controller
                                 $data['coupon'] = $this->RandomCoupon(30,$expiration);
                                 $data['date'] = $expiration;
                                 //Mail::to($user["email"])->send(new newCoupon($data));
+                                break;
                             case 2:
                                 echo "---" . $diff . "(2)---";
                                 $expiration = Carbon::now()->addDays(2);
@@ -90,6 +98,7 @@ class userController extends Controller
                                 $data['coupon'] = $this->RandomCoupon(50,Carbon::now()->addDays(2));
                                 $data['date'] = $expiration;
                                 //Mail::to($user["email"])->send(new newCoupon($data));
+                                break;
                         }
                     }
 
