@@ -20,6 +20,7 @@ use App\Mail\numbersReady;
 class PaymentController extends Controller
 {
 
+
     public function emailtest (){
         $email = "abdelilahs.sbaai@gmail.com";
         $data['name'] = "Abdelilah";

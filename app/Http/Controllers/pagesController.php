@@ -60,9 +60,18 @@ class pagesController extends Controller
 
     public function tester(){
 
-
         $users = User::all();
-        return response()->json($users);
+
+        foreach($users as $user){
+            echo $user['id'];
+        }
+        return;
+        //$userController = new userController;
+        //return $userController->CouponTwoDays(30);
+        //$coupon = coupon::all();
+        //return response()->json($coupon);
+
+
 
     }
     public function test($days){
