@@ -1,4 +1,5 @@
 @component('mail::message')
+
 # Your credit balance won't cover this month
 
 Your usage costs this month have exceeded the credit balance on your account.

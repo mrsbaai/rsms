@@ -54,21 +54,28 @@ class userController extends Controller
                         $date = Carbon::parse($date);
                         $diff = $now->diffInDays($date);
 
-                        switch (true) {
-                            case ($diff == 14 || $diff == 10 || $diff == 7 || $diff == 4 || $diff == 1):
-                                echo "sending topup needed email";
+                        switch ($diff) {
+                            case 14:
                                 Mail::to($user["email"])->send(new topupNeeded());
-                            case ($diff == 3):
+                            case 10:
+                                Mail::to($user["email"])->send(new topupNeeded());
+                            case 7:
+                                Mail::to($user["email"])->send(new topupNeeded());
+                            case 4:
+                                Mail::to($user["email"])->send(new topupNeeded());
+                            case 1:
+                                Mail::to($user["email"])->send(new topupNeeded());
+                            case 3:
                                 $data['name'] = $user['name'];
                                 Mail::to($user["email"])->send(new numberRemovalNotification($data));
-                            case ($diff == 5):
+                            case 5:
                                 $expiration = Carbon::now()->addDays(2);
                                 $data['subj'] = "<<Receive-SMS>> Get 30% Off Coupon!";
                                 $data['header'] = "Get a 30% Off All Your Top Ups!";
                                 $data['coupon'] = $this->RandomCoupon(30,$expiration);
                                 $data['date'] = $expiration;
                                 Mail::to($user["email"])->send(new newCoupon($data));
-                            case ($diff == 2):
+                            case 2:
                                 $expiration = Carbon::now()->addDays(2);
                                 $data['subj'] = "<<Receive-SMS>> Biggest Sell Out 50% Discount!";
                                 $data['header'] = "Get a 50% Off All Your Top Ups!";
