@@ -63,14 +63,14 @@ class userController extends Controller
                                 $expiration = Carbon::now()->addDays(2);
                                 $data['subject'] = "<<Receive-SMS>> Get 30% Off Coupon!";
                                 $data['header'] = "Get a 30% Off All Your Top Ups!";
-                                $data['coupon'] = RandomCoupon(30,$expiration);
+                                $data['coupon'] = $this->RandomCoupon(30,$expiration);
                                 $data['date'] = $expiration;
                                 Mail::to($user["email"])->send(new newCoupon($data));
                             case ($diff == 2):
                                 $expiration = Carbon::now()->addDays(2);
                                 $data['subject'] = "<<Receive-SMS>> Biggest Sell Out 50% Discount!";
                                 $data['header'] = "Get a 50% Off All Your Top Ups!";
-                                $data['coupon'] = RandomCoupon(50,Carbon::now()->addDays(2));
+                                $data['coupon'] = $this->RandomCoupon(50,Carbon::now()->addDays(2));
                                 $data['date'] = $expiration;
                                 Mail::to($user["email"])->send(new newCoupon($data));
                         }
