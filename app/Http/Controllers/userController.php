@@ -6,125 +6,17 @@ use Illuminate\Http\Request;
 use DB;
 use App\Quotation;
 use App\number;
-use App\coupon;
 use App\user;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\paymentsystem;
 use Mail;
 use App\Mail\numbersReady;
-use App\Mail\numberRemovalNotification;
-use App\Mail\topupNeeded;
-use App\Mail\newCoupon;
 use Flash;
 
 class userController extends Controller
 {
     //
-
-    public function NextBills($user_id){
-        $user = User::whereid($user_id)->first();
-        $numbers = Number::all()->where('is_private',true)->where('email', $user['email']);
-        $expirations = array();
-        foreach($numbers as $number){
-            array_push($expirations, $number->expiration);
-        }
-        $expirationCounts = array_count_values($expirations);
-
-        $paymentcontroller = new PaymentController();
-        $NextBills = array();
-
-        foreach($expirationCounts as $date => $count){
-
-            $bill = array($date => $paymentcontroller->getPrice($count,'1'));
-            array_push($NextBills, $bill);
-        }
-        return $NextBills;
-    }
-
-    public function SendTopupEmail($user_id){
-        $user = User::whereid($user_id)->first();
-        $balance = $user["balance"];
-        $now = Carbon::now();
-        $nextBills = $this->NextBills($user_id);
-        if ($nextBills){
-            foreach($nextBills as $nextBill){
-                foreach($nextBill as $date => $amount){
-                    if ($amount < $balance){
-                        $date = Carbon::parse($date);
-                        $diff = $now->diffInDays($date);
-                        switch ($diff) {
-                            case 14:
-                                echo "---" . $diff . "(14)---";
-                                Mail::to($user["email"])->send(new topupNeeded());
-                                break;
-                            case 10:
-                                echo "---" . $diff . "(10)---";
-                                Mail::to($user["email"])->send(new topupNeeded());
-                                break;
-                            case 7:
-                                echo "---" . $diff . "(7)---";
-                                Mail::to($user["email"])->send(new topupNeeded());
-                                break;
-                            case 4:
-                                echo "---" . $diff . "(4)---";
-                                Mail::to($user["email"])->send(new topupNeeded());
-                                break;
-                            case 1:
-                                echo "---" . $diff . "(1)---";
-                                Mail::to($user["email"])->send(new topupNeeded());
-                                break;
-                            case 3:
-                                echo "---" . $diff . "(3)---";
-                                $data['name'] = $user['name'];
-                                Mail::to($user["email"])->send(new numberRemovalNotification($data));
-                                break;
-                            case 5:
-                                echo "---" . $diff . "(5)---";
-                                $expiration = Carbon::now()->addDays(2);
-                                $data['subj'] = "<<Receive-SMS>> Get 30% Off Coupon!";
-                                $data['header'] = "Get a 30% Off All Your Top Ups!";
-                                $data['coupon'] = $this->RandomCoupon(30,$expiration);
-                                $data['date'] = $expiration;
-                                Mail::to($user["email"])->send(new newCoupon($data));
-                                break;
-                            case 2:
-                                echo "---" . $diff . "(2)---";
-                                $expiration = Carbon::now()->addDays(2);
-                                $data['subj'] = "<<Receive-SMS>> Biggest Sell Out 50% Discount!";
-                                $data['header'] = "Get a 50% Off All Your Top Ups!";
-                                $data['coupon'] = $this->RandomCoupon(50,Carbon::now()->addDays(2));
-                                $data['date'] = $expiration;
-                                Mail::to($user["email"])->send(new newCoupon($data));
-                                break;
-                        }
-                    }
-
-                }
-            }
-        }else{
-            return;
-        }
-    }
-    public function RandomCoupon($value,$expiration){
-        $code = substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(5/strlen($x)) )),1,6);
-        $paymentsystems = paymentsystem::all();
-        foreach ($paymentsystems as $paymentsystem){
-            $newCoupon = new coupon();
-            $newCoupon->code = $code;
-            $newCoupon->value = $value;
-            $newCoupon->paymentsystem_id = $paymentsystem['id'];
-            $newCoupon->expiration = $expiration;
-            $newCoupon->save();
-        }
-
-        return $code;
-    }
-
-
-
-
-
 
     public function add(array $user){
         DB::table('users')->insert($user);

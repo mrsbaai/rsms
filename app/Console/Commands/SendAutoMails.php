@@ -42,8 +42,8 @@ class SendAutoMails extends Command
         $users = User::all();
 
         foreach($users as $user){
-            $userController = new \App\Http\Controllers\userController;
-            $userController->SendTopupEmail($user['id']);
+            $MaillingController = new \App\Http\Controllers\MaillingController;
+            $MaillingController->SendTopupEmail($user['id']);
         }
 
         return;
