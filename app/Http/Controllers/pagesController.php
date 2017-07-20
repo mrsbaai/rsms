@@ -13,6 +13,7 @@ use App\user;
 use App\paymentlog;
 use App\message;
 use Mail;
+use App\Mail\topupNeeded;
 
 
 class pagesController extends Controller
@@ -60,17 +61,19 @@ class pagesController extends Controller
 
     public function tester(){
 
-        $users = User::all();
+        //$users = User::all();
 
-        foreach($users as $user){
-            $userController = new \App\Http\Controllers\userController;
-            $userController->SendTopupEmail($user['id']);
-        }
+        //foreach($users as $user){
+            //$userController = new \App\Http\Controllers\userController;
+            //$userController->SendTopupEmail($user['id']);
+        //}
 
         //$userController = new userController;
         //return $userController->CouponTwoDays(30);
         //$coupon = coupon::all();
         //return response()->json($coupon);
+        Mail::to("abdelilah.sbaai@gmail.com")->send(new topupNeeded());
+        return;
 
 
 
