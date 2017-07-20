@@ -42,7 +42,7 @@ class MaillingController extends Controller
         $now = Carbon::now();
         $nextBills = $this->NextBills($user_id);
         if ($nextBills){
-            $count = 0;
+            $count = 3;
             foreach($nextBills as $nextBill){
                 foreach($nextBill as $date => $amount){
                     if ($amount < $balance){
