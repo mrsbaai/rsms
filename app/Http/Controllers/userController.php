@@ -169,7 +169,7 @@ class userController extends Controller
             user::where('email', '=', $email)->update(['balance' => $balance]);
 
             $data['name'] = $name;
-            Mail::to($email)->send(new numbersReady($data));
+            Mail::to($email)->queue(new numbersReady($data));
 
 
             $account_form_color= "text-success";
