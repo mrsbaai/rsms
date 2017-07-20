@@ -49,7 +49,7 @@ class MaillingController extends Controller
                         $date = Carbon::parse($date);
                         $diff = $now->diffInDays($date);
                         $count = $count + 1;
-                        $when = Carbon::now()->addMinutes($count);
+                        $when = Carbon::now()->addMinutes(10);
                         switch ($diff) {
                             case 14:
                                 echo "---" . $diff . "(14)---";
