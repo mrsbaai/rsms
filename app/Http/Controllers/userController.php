@@ -53,27 +53,25 @@ class userController extends Controller
                     if ($amount < $balance){
                         $date = Carbon::parse($date);
                         $diff = $now->diffInDays($date);
-
                         switch ($diff) {
                             case 14:
                                 echo "---" . $diff . "(14)---";
                                 //Mail::to($user["email"])->send(new topupNeeded());
                                 break;
-
                             case 10:
-                                echo "---" . $diff . "(14)---";
+                                echo "---" . $diff . "(10)---";
                                 //Mail::to($user["email"])->send(new topupNeeded());
                                 break;
                             case 7:
-                                echo "---" . $diff . "(14)---";
+                                echo "---" . $diff . "(7)---";
                                 //Mail::to($user["email"])->send(new topupNeeded());
                                 break;
                             case 4:
-                                echo "---" . $diff . "(14)---";
+                                echo "---" . $diff . "(4)---";
                                 //Mail::to($user["email"])->send(new topupNeeded());
                                 break;
                             case 1:
-                                echo "---" . $diff . "(14)---";
+                                echo "---" . $diff . "(1)---";
                                 //Mail::to($user["email"])->send(new topupNeeded());
                                 break;
                             case 3:
