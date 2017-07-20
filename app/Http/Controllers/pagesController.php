@@ -72,8 +72,12 @@ class pagesController extends Controller
         //return $userController->CouponTwoDays(30);
         //$coupon = coupon::all();
         //return response()->json($coupon);
-        Mail::to("abdelilah.sbaai@gmail.com")->send(new topupNeeded());
-        return;
+        $users = User::all();
+
+        foreach($users as $user){
+            $MaillingController = new \App\Http\Controllers\MaillingController;
+            $MaillingController->SendTopupEmail($user['id']);
+        }
 
 
 
