@@ -1,13 +1,14 @@
 @component('mail::message')
+    Hello {{$name}},
 
-Hello {{$name}},
+    Some numbers will be removed permanently from your account within 72 hours. You wont be able to receive any SMS messages from your registered online services.
 
-This is a test email for automatic mailing system.
+    Please Login to your account, top up if necessary and renew your numbers:
 
-@component('mail::button', ['url' => config('app.url') . '/login'])
-login
-@endcomponent
+    @component('mail::button', ['url' => config('app.url') . '/login'])
+        Login
+    @endcomponent
 
-Regards,<br>
-{{ config('app.name') }} Team
+    Regards,<br>
+    {{ config('app.name') }} Team
 @endcomponent
