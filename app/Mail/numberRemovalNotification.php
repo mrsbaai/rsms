@@ -10,25 +10,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class numberRemovalNotification extends Mailable
 {
     use Queueable, SerializesModels;
-
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-
     protected $name;
+
 
     public function __construct($data)
     {
         $this->name = $data['name'];
+
     }
 
 
     public function build()
     {
         return $this->markdown('emails.numberRemovalNotification')
-            ->subject("Numbers will be removed withing 72 Hours")
+            ->subject("number Removal Notification")
             ->with([
                 'name' => $this->name,
             ]);
