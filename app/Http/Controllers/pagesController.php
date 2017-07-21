@@ -14,7 +14,7 @@ use App\paymentlog;
 use App\message;
 use Mail;
 use App\Mail\topupNeeded;
-use App\Mail\numberRemovalNotification;
+use App\Mail\topupReceipt;
 
 use carbon\carbon;
 
