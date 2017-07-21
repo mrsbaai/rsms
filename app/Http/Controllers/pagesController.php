@@ -14,7 +14,7 @@ use App\paymentlog;
 use App\message;
 use Mail;
 use App\Mail\newCoupon;
-use App\Mail\test;
+use App\Mail\numberRemovalNotification;
 
 use carbon\carbon;
 
@@ -78,11 +78,8 @@ class pagesController extends Controller
 
 
 
-        $data['header'] = "this is a test";
-        $data['coupon'] = "CMDLKGLRP";
-        $data['subj'] = "ths is a new coupon";
-        $data['date'] = Carbon::now()->addDays(2);;
-        Mail::to("abdelilah.sbaai@gmail.com")->send(new newCoupon($data));
+        $data['name'] = "master";
+        Mail::to("abdelilah.sbaai@gmail.com")->send(new numberRemovalNotification($data));
 
 
 

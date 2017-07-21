@@ -23,7 +23,7 @@ class numberRemovalNotification extends Mailable
     public function build()
     {
         return $this->markdown('emails.numberRemovalNotification')
-            ->subject("number Removal Notification")
+            ->subject("Numbers will be permanently removed withing 72 hours")
             ->with([
                 'name' => $this->name,
             ]);
