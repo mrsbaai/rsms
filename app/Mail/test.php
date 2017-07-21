@@ -29,8 +29,8 @@ class test extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.test')
-            ->subject("This is a test email")
+        return $this->markdown('emails.numberRemovalNotification')
+            ->subject("This is a test email 2")
             ->with([
                 'name' => $this->name,
             ]);
