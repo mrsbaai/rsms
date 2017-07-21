@@ -1,15 +1,14 @@
 @component('mail::message')
-    # Thanks for topping up your account 🙂
+    Hello {{$name}},
 
-    Here's your receipt.
+    Some numbers will be removed permanently from your account within 72 hours. You wont be able to receive any SMS messages from your registered online services.
 
+    Please Login to your account, top up if necessary and renew your numbers:
 
-    # Summary for {{$name}}
-
-
-    @component('mail::button', ['url' => 'http://receive-sms.com/login'])
-        View Account
+    @component('mail::button', ['url' => config('app.url') . '/login'])
+        Login
     @endcomponent
 
-    Got questions about your bill? <a href="http://receive-sms.com/support">Contact Receive-SMS Support</a>
+    Regards,<br>
+    {{ config('app.name') }} Team
 @endcomponent

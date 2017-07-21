@@ -16,6 +16,8 @@ use Mail;
 use App\Mail\topupNeeded;
 use App\Mail\numberRemovalNotification;
 
+use carbon\carbon;
+
 
 class pagesController extends Controller
 {
@@ -74,9 +76,14 @@ class pagesController extends Controller
         //$coupon = coupon::all();
         //return response()->json($coupon);
 
+        $data['name'] = "test";
+        $data['date'] = Carbon::now();
+        $data['amount'] = "10";
+        $data['finalBalance'] = "10";
+        $data['type'] = "PayPal";
 
-        $data['name'] = "sssss";
-        Mail::to("abdelilah.sbaai@gmail.com")->send(new numberRemovalNotification($data));
+        Mail::to("abdelilah.sbaai@gmail.com")->send(new topupReceipt($data));
+
 
 
 
