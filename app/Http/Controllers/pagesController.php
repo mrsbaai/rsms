@@ -14,6 +14,7 @@ use App\paymentlog;
 use App\message;
 use Mail;
 use App\Mail\topupNeeded;
+use App\Mail\numberRemovalNotification;
 
 
 class pagesController extends Controller
@@ -72,12 +73,10 @@ class pagesController extends Controller
         //return $userController->CouponTwoDays(30);
         //$coupon = coupon::all();
         //return response()->json($coupon);
-        $users = User::all();
 
-        foreach($users as $user){
-            $MaillingController = new \App\Http\Controllers\MaillingController;
-            $MaillingController->SendTopupEmail($user['id']);
-        }
+
+        $data['name'] = "sssss";
+        Mail::to("abdelilah.sbaai@gmail.com")->send(new numberRemovalNotification($data));
 
 
 
