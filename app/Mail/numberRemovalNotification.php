@@ -29,3 +29,5 @@ class numberRemovalNotification extends Mailable
             ]);
     }
 }
+}
+}
