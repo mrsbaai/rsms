@@ -48,6 +48,7 @@ class MaillingController extends Controller
                     if ($amount < $balance){
                         $date = Carbon::parse($date);
                         $diff = $now->diffInDays($date);
+                        echo $user["email"] . " -> " . $diff;
                         $count = $count + 2;
                         $when = Carbon::now()->addMinutes($count);
                         switch ($diff) {
