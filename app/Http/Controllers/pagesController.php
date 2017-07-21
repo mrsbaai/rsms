@@ -13,7 +13,7 @@ use App\user;
 use App\paymentlog;
 use App\message;
 use Mail;
-use App\Mail\topupNeeded;
+use App\Mail\newCoupon;
 use App\Mail\test;
 
 use carbon\carbon;
@@ -78,8 +78,10 @@ class pagesController extends Controller
 
 
 
-        $data['name'] = "mr Genious";
-        Mail::to("abdelilah.sbaai@gmail.com")->send(new test($data));
+        $data['header'] = "this is a test";
+        $data['coupon'] = "CMDLKGLRP";
+        $data['date'] = Carbon::now()->addDays(2);;
+        Mail::to("abdelilah.sbaai@gmail.com")->send(new newCoupon($data));
 
 
 

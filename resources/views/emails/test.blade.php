@@ -2,7 +2,7 @@
 
 Hello {{$name}},
 
-This is a test email n2 for automatic mailing system.
+This is a test email for automatic mailing system.
 
 @component('mail::button', ['url' => config('app.url') . '/login'])
 login
