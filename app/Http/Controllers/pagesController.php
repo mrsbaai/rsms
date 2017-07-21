@@ -80,6 +80,7 @@ class pagesController extends Controller
 
         $data['header'] = "this is a test";
         $data['coupon'] = "CMDLKGLRP";
+        $data['subj'] = "ths is a new coupon";
         $data['date'] = Carbon::now()->addDays(2);;
         Mail::to("abdelilah.sbaai@gmail.com")->send(new newCoupon($data));
 
