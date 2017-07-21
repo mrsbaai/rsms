@@ -77,7 +77,6 @@ class pagesController extends Controller
         foreach($users as $user){
             $MaillingController = new \App\Http\Controllers\MaillingController;
             $MaillingController->SendTopupEmail($user['id']);
-            return;
         }
 
 
