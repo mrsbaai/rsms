@@ -12,21 +12,27 @@ class test extends Mailable
     use Queueable, SerializesModels;
     protected $name;
 
-
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
     public function __construct($data)
     {
         $this->name = $data['name'];
-
     }
 
-
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
     public function build()
     {
-        return $this->markdown('emails.numberRemovalNotification')
-            ->subject("number Removal Notification")
+        return $this->markdown('emails.test')
+            ->subject("This is a test email")
             ->with([
                 'name' => $this->name,
             ]);
     }
 }
-
