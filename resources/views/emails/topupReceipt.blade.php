@@ -12,7 +12,7 @@ Here's your receipt.
 
 @endcomponent
 
-@component('mail::button', ['url' => 'http://receive-sms.com/inbox'])
+@component('mail::button', ['url' => 'http://receive-sms.com/login'])
     View Account
 @endcomponent
 

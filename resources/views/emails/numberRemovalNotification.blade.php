@@ -5,7 +5,7 @@
 
     Please Login to your account, top up if necessary and renew your numbers:
 
-    @component('mail::button', ['url' => config('app.url') . '/inbox'])
+    @component('mail::button', ['url' => 'http://receive-sms.com/login'])
         Login
     @endcomponent
 
