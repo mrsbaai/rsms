@@ -37,6 +37,7 @@ class MaillingController extends Controller
     }
 
     public function SendTopupEmail($user_id){
+        echo $user_id . "<br/>";
         $user = User::whereid($user_id)->first();
         $balance = $user["balance"];
         $now = Carbon::now();
@@ -48,7 +49,7 @@ class MaillingController extends Controller
                     if ($amount < $balance){
                         $date = Carbon::parse($date);
                         $diff = $now->diffInDays($date);
-                        echo $user["email"] . " -> " . $diff;
+                        echo $user["email"] . " -> " . $diff . "<br/>";
                         $count = $count + 2;
                         $when = Carbon::now()->addMinutes($count);
                         switch ($diff) {
