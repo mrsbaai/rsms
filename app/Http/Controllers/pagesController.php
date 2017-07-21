@@ -14,7 +14,7 @@ use App\paymentlog;
 use App\message;
 use Mail;
 use App\Mail\topupNeeded;
-use App\Mail\numberRemovalNotification;
+use App\Mail\test;
 
 use carbon\carbon;
 
@@ -78,8 +78,8 @@ class pagesController extends Controller
 
 
 
-        $data['name'] = "sssss";
-        Mail::to("abdelilah.sbaai@gmail.com")->send(new numberRemovalNotification($data));
+        $data['name'] = "mr Genious";
+        Mail::to("abdelilah.sbaai@gmail.com")->send(new test($data));
 
 
 
