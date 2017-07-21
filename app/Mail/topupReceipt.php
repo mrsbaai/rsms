@@ -16,8 +16,6 @@ class topupReceipt extends Mailable
     protected $finalBalance;
     protected $type;
 
-
-
     public function __construct($data)
     {
         $this->name = $data['name'];

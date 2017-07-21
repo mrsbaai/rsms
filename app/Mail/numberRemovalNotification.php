@@ -24,11 +24,7 @@ class numberRemovalNotification extends Mailable
         $this->name = $data['name'];
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
+
     public function build()
     {
         return $this->markdown('emails.numberRemovalNotification')
