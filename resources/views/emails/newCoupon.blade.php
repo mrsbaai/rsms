@@ -1,5 +1,5 @@
 @component('mail::message')
-#{{$header}}Use coupon code #{{$coupon}}
+# {{$header}}Use coupon code #{{$coupon}}
 
 @component('mail::button', ['url' => 'http://receive-sms.com/login'])
 Login to your account
