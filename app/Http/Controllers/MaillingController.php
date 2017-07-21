@@ -42,14 +42,14 @@ class MaillingController extends Controller
         $now = Carbon::now();
         $nextBills = $this->NextBills($user_id);
         if ($nextBills){
-            $count = 3;
+            $count = 0;
             foreach($nextBills as $nextBill){
                 foreach($nextBill as $date => $amount){
                     if ($amount < $balance){
                         $date = Carbon::parse($date);
                         $diff = $now->diffInDays($date);
-                        $count = $count + 1;
-                        $when = Carbon::now()->addMinutes(10);
+                        $count = $count + 2;
+                        $when = Carbon::now()->addMinutes($count);
                         switch ($diff) {
                             case 14:
                                 echo "---" . $diff . "(14)---";
