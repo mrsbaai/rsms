@@ -30,6 +30,7 @@ class contactController extends Controller
             $contact->is_support = false;
             $contact->message = $content;
             $contact->subject = $subject;
+            $contact->user_id = null;
             $contact->email = $email;
             $contact->name = $name;
             $contact->is_responded = false;

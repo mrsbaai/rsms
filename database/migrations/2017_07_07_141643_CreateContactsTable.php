@@ -21,7 +21,7 @@ class CreateContactsTable extends Migration
             $table->boolean('is_support');
             $table->text('message');
             $table->string('subject');
-            $table->integer('user_id')->nullble();
+            $table->integer('user_id')->nullable();
             $table->string('email');
             $table->string('name');
             $table->boolean('is_responded');
