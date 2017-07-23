@@ -49,7 +49,7 @@ Route::get('/contact','pagesController@contact');
 Route::get('/support', 'userController@support');
 
 Route::post('contact','contactController@send');
-Route::post('support', 'contactController@send');
+Route::post('support', 'supportController@send');
 
 
 Route::get('/hash/{days}','pagesController@test');
