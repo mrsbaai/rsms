@@ -39,9 +39,9 @@
                     document.getElementById("renew").disabled = true;
                     document.getElementById("renew").innerHTML = "...";
                     var url = "../price/" + totalNumbers + "/" + document.getElementById("period").value;
-
                     try{
                         $.get( url , function( data ) {
+                            try {data = JSON.parse(data);}catch(err) {}
 
                                     if (data.isPossible === false){
                                         document.getElementById("renew").disabled = true;
