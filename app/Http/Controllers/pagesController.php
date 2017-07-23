@@ -79,9 +79,11 @@ class pagesController extends Controller
         //return response()->json($coupon);
 
 
-            $markdown = new Markdown(view(), config('mail.markdown'));
+            //$markdown = new Markdown(view(), config('mail.markdown'));
+            //return $markdown->render('emails.topupNeeded');
 
-            return $markdown->render('emails.topupNeeded');
+        flash('Please check your email and verify your address')->warning();
+        return view('contact');
 
 
         //$data['name'] = "master";
