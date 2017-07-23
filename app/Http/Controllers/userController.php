@@ -74,11 +74,12 @@ class userController extends Controller
 
             if ($number == null){$number = "All";}
             $confirmed = Auth::user()->confirmed;
-            echo "------------------->" . $confirmed;
-            return;
+
 
             if (!$confirmed){
                 flash('Please check your email and click the activation link to verify your account!')->warning()->important();
+                echo "Please check your email and click the activa------------------->" . $confirmed;
+                return;
             }
             return view('inbox')->with('numbers', $numbers)->with('current', $number)->with('messages', $messages)->with('lastMessage', $lastMessage)->with('noNumbers', $noNumbers);
         }else{
