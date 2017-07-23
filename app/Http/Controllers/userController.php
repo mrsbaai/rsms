@@ -74,6 +74,9 @@ class userController extends Controller
 
             if ($number == null){$number = "All";}
             $confirmed = Auth::user()->confirmed;
+            echo "------------------->" . $confirmed;
+            return;
+
             if (!$confirmed){
                 flash('Please check your email and click the activation link to verify your account!')->warning()->important();
             }
