@@ -18,6 +18,8 @@ use App\Mail\numberRemovalNotification;
 
 use carbon\carbon;
 
+use Illuminate\Mail\Markdown;
+
 
 class pagesController extends Controller
 {
@@ -77,9 +79,13 @@ class pagesController extends Controller
         //return response()->json($coupon);
 
 
+            $markdown = new Markdown(view(), config('mail.markdown'));
 
-        $data['name'] = "master";
-        Mail::to("abdelilah.sbaai@gmail.com")->send(new numberRemovalNotification($data));
+            return $markdown->render('emails.topupNeeded');
+
+
+        //$data['name'] = "master";
+       // Mail::to("abdelilah.sbaai@gmail.com")->send(new numberRemovalNotification($data));
 
 
 
