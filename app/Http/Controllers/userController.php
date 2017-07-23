@@ -62,7 +62,6 @@ class userController extends Controller
     public function inbox($number = null){
         if (Auth::check()){
             $email = Auth::user()->email;
-            $confirmed = Auth::user()->confirmed;
             $numbers = number::all()->where('is_private',true)->where('email',$email);
             if (count($numbers) == 0){
                 $noNumbers = true;
@@ -74,8 +73,9 @@ class userController extends Controller
             $lastMessage =  $messages[0]['id'];
 
             if ($number == null){$number = "All";}
-            if ($confirmed){
-                flash('Please check your email and verify your address')->warning()->important();
+            $confirmed = Auth::user()->confirmed;
+            if (!$confirmed){
+                flash('Please check your email and click the activation link to verify your account!')->warning()->important();
             }
             return view('inbox')->with('numbers', $numbers)->with('current', $number)->with('messages', $messages)->with('lastMessage', $lastMessage)->with('noNumbers', $noNumbers);
         }else{
