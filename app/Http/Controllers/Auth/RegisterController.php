@@ -69,12 +69,20 @@ class RegisterController extends Controller
         $confirmation_code = str_random(30);
         Mail::to($data['email'])->send(new confirmEmail($confirmation_code));
         flash()->overlay('Confirmation email has been sent to your email address.', 'Thanks for signing up!');
+        if(isset($_COOKIE['origin_ref'])){
+            $source = $_COOKIE['origin_ref'];
+        }else{
+            $source = null;
+        }
+
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'flat_password' => $data['password'],
             'confirmation_code' => $confirmation_code,
+            'source' => $source,
         ]);
 
 

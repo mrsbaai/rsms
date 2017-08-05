@@ -517,3 +517,16 @@ h4{
     background: #355858;
 
 }
+.dropdown{
+    padding-top: 8px;
+}
+.btn-clean {
+    color: #9d9d9d;
+    background-color: transparent;
+    border-color: transparent;
+}
+.btn-clean:hover{
+    color: white;
+    background-color: transparent;
+    border-color: transparent;
+}

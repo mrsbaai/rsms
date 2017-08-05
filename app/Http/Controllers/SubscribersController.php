@@ -69,13 +69,21 @@ class SubscribersController extends Controller
            return redirect('/home');
 
         }else{
+           if(isset($_COOKIE['origin_ref'])){
+               $source = $_COOKIE['origin_ref'];
+           }else{
+               $source = null;
+           }
+
            $subscribed = subscriber::where('email', $request->email)->first();
+
            if ($subscribed ){
                $subscribed->subscribed = true;
                $subscribed->save();
            }else{
                $subscriber = new subscriber();
                $subscriber->email = $request->email;
+               $subscriber->source = $source;
                $subscriber->save();
            }
 

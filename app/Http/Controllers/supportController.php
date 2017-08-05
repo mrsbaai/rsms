@@ -22,7 +22,7 @@ class supportController extends Controller
             $user_id = Auth::user()->id;
 
             $subject =  Input::get('subject');
-            $content = "From: " . $email . "<br/><br/>" . Input::get('message');
+            $content = Input::get('message');
             // save support message here
 
             $contact = new contact();

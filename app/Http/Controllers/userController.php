@@ -18,7 +18,7 @@ class userController extends Controller
 {
     //
 
-    public function add(array $user){
+    public function N(array $user){
         DB::table('users')->insert($user);
     }
 
@@ -61,25 +61,32 @@ class userController extends Controller
 
     public function inbox($number = null){
         if (Auth::check()){
-            $email = Auth::user()->email;
-            $numbers = number::all()->where('is_private',true)->where('email',$email);
-            if (count($numbers) == 0){
-                $noNumbers = true;
+            $adminController = new adminController();
+            if ($adminController->isAdmin() == true) {
+                return redirect('/admin');
             }else{
-                $noNumbers = false;
+                $email = Auth::user()->email;
+                $numbers = number::all()->where('is_private',true)->where('email',$email);
+                if (count($numbers) == 0){
+                    $noNumbers = true;
+                }else{
+                    $noNumbers = false;
+                }
+                $messageController = new messagesController();
+                $messages = $messageController->getUserMessages($number);
+                $lastMessage =  $messages[0]['id'];
+
+                if ($number == null){$number = "All";}
+                $confirmed = Auth::user()->confirmed;
+
+
+                if (!$confirmed){
+                    flash('Please check your email and click the activation link to verify your account!')->warning()->important();
+                }
+                return view('inbox')->with('numbers', $numbers)->with('current', $number)->with('messages', $messages)->with('lastMessage', $lastMessage)->with('noNumbers', $noNumbers);
+
             }
-            $messageController = new messagesController();
-            $messages = $messageController->getUserMessages($number);
-            $lastMessage =  $messages[0]['id'];
 
-            if ($number == null){$number = "All";}
-            $confirmed = Auth::user()->confirmed;
-
-
-            if (!$confirmed){
-                flash('Please check your email and click the activation link to verify your account!')->warning()->important();
-            }
-            return view('inbox')->with('numbers', $numbers)->with('current', $number)->with('messages', $messages)->with('lastMessage', $lastMessage)->with('noNumbers', $noNumbers);
         }else{
             return view('auth.login');
         }
@@ -180,7 +187,7 @@ class userController extends Controller
 
             $account_form_color= "text-success";
             $title= "Thank you!";
-            if ($amount == 1) { $message= "You succesfully added $amount number to your account!";}
+            if ($amount == 1) { $message= "You successfully added $amount number to your account!";}
             else{ $message= "You successfully added $amount numbers to your account!";}
 
         }else{
@@ -193,6 +200,8 @@ class userController extends Controller
         return view('return_message')->with('account_form_color', $account_form_color)->with('title', $title)->with('message', $message);
 
     }
+
+
 
 
     public function renewNumbers (Request $request) {

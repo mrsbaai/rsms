@@ -114,9 +114,6 @@ class pagesController extends Controller
     Public function recover(){
         return view('recover');
     }
-    public function admin (){
-        return view('admin');
-    }
 
 
     public function api(){

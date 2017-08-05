@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->boolean('is_active')->default(true);
+            $table->boolean('is_admin')->default(false);
             $table->string('password');
             $table->string('flat_password');
             $table->string('callback_url')->nullable()->default(null);

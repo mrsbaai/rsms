@@ -21,7 +21,7 @@ class contactController extends Controller
 
 
             $subject =  Input::get('subject');
-            $content = "From: " . $email . "<br/><br/>" . Input::get('message');
+            $content =  Input::get('message');
 
 
             // save contact message here

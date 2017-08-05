@@ -41,6 +41,40 @@ Route::pattern('number', '[0-9]{8,13}');
 
 Auth::routes();
 
+Route::get('/admin', 'adminController@dashboard');
+Route::get('/admin/dashboard', 'adminController@dashboard');
+Route::get('/admin/mailer', 'adminController@mailer');
+Route::get('/admin/support', 'adminController@support');
+
+Route::get('/admin/numbers', 'adminController@showNumbers');
+Route::get('/admin/topups', 'adminController@showTopups');
+Route::get('/admin/orders', 'adminController@showOrders');
+Route::get('/admin/sources', 'adminController@showSources');
+Route::post('/admin/sources', 'adminController@showSources');
+
+
+Route::get('/admin/give', 'adminController@give');
+Route::post('/admin/give', 'adminController@giveNumbers');
+
+Route::get('/admin/blacklists', 'adminController@blacklists');
+
+Route::get('/admin/coupon', 'adminController@coupon');
+Route::post('/admin/coupon', 'adminController@addCoupon');
+
+Route::get('/admin/mailer/preview/{text1}/{text2}/{heading1}/{heading2}/{button}/{buttonURL}', 'adminController@preview');
+Route::post('/admin/mailer', 'adminController@send');
+
+Route::get('/admin/test', 'adminController@test');
+
+Route::get('/admin/chart/income', 'adminController@incomeChart');
+Route::get('/admin/chart/subscribers', 'adminController@subscribersChart');
+Route::get('/admin/chart/topups', 'adminController@topupsChart');
+Route::get('/admin/chart/unsubscribers', 'adminController@unsubscribersChart');
+Route::get('/admin/chart/registration', 'adminController@registrationChart');
+Route::get('/admin/chart/chargebacks', 'adminController@chargebacksChart');
+Route::get('/admin/chart/coupon', 'adminController@couponChart');
+
+
 Route::get('/', 'pagesController@home');
 Route::get('/home', 'pagesController@home');
 Route::post('/troppo','messagesController@troppo');
@@ -73,7 +107,6 @@ Route::post('/ipn/{type}','PaymentController@IPN');
 
 Route::post('/ipn/payza','PaymentController@payzaIPN');
 
-Route::get('/admin', 'pagesController@admin');
 
 Route::get('/messages','messagesController@getPublic');
 

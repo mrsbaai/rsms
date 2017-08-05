@@ -17,13 +17,13 @@ class CreatePaymentlogTable extends Migration
             $table->increments('id');
             $table->integer('payedAmount');
             $table->integer('originalAmount');
-            $table->string('code');
+            $table->string('code')->default('');
             $table->string('type')->nullable();
             $table->string('status')->nullable();
             $table->string('userEmail');
             $table->string('buyerEmail');
             $table->string('accountId');
-            $table->string('paymentSystemId')->default(0);
+            $table->string('paymentSystemId')->default('PayPal');
             $table->timestamps();
         });
     }
