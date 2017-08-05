@@ -6,7 +6,7 @@
 
 @section('head')
 
-    <title>Receive-SMS :: Administration</title>
+    <title>ReResponseS :: Administration</title>
 
 @stop
 
@@ -32,9 +32,14 @@
                                     @foreach($array as $content)
                                         <td>{{ $content }}</td>
                                     @endforeach
-                                    <td style="width: 300px;"> <textarea id="response" type="text" name="response" class="form-control"></textarea>
+                                    <td style="width: 300px;">
+                                        {{ Form::open(array('action' => 'adminController@sendResponse', 'id' => 'mailer-form'))}}
+                                        <textarea id="response" type="text" name="response" class="form-control"></textarea>
                                         <br/>
-                                            <input type="submit" class="btn btn-primary btn-send " value="Send">
+                                        <input type="submit" class="btn btn-primary btn-send " value="Send">
+
+                                        {{ Form::close() }}
+
 
                                     </td>
 

@@ -52,6 +52,7 @@ Route::get('/admin/orders', 'adminController@showOrders');
 Route::get('/admin/sources', 'adminController@showSources');
 Route::post('/admin/sources', 'adminController@showSources');
 
+Route::post('/admin/support', 'adminController@sendResponse');
 
 Route::get('/admin/give', 'adminController@give');
 Route::post('/admin/give', 'adminController@giveNumbers');

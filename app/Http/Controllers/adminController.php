@@ -293,4 +293,9 @@ class adminController extends Controller
         return view('return_message')->with('account_form_color', $account_form_color)->with('title', $title)->with('message', $message);
 
     }
+
+
+    public function sendResponse(){
+        return "sending";
+    }
 }
