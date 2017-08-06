@@ -12,6 +12,7 @@ class response extends Mailable
     use Queueable, SerializesModels;
     protected $subj;
     protected $message;
+    protected $name;
 
     /**
      * Create a new message instance.
@@ -22,6 +23,7 @@ class response extends Mailable
     {
         $this->message = $data['message'];
         $this->subj = $data['subject'];
+        $this->name = $data['name'];
     }
 
     /**
@@ -35,6 +37,7 @@ class response extends Mailable
             ->subject($this->subj)
             ->with([
                 'message' => $this->message,
+                'name' => $this->name,
             ]);
 
 
