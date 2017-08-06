@@ -34,7 +34,8 @@ class response extends Mailable
     public function build()
     {
         return $this->markdown('emails.response')
-            ->from('support@receive-sms.com')
+
+            ->from('support@receive-sms.com','Receive-SMS')
             ->subject($this->subj)
             ->with([
                 'message' => $this->message,
