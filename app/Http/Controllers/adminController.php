@@ -16,6 +16,7 @@ use Charts;
 
 use Mail;
 use App\Mail\numbersReady;
+use App\Mail\response;
 
 use Illuminate\Mail\Markdown;
 
@@ -185,7 +186,7 @@ class adminController extends Controller
 
 
         $records = contact::all()->where('is_responded',false)->sortByDesc('id');
-        $columns =  array("is_support", "created_at", "subject", "name", "email","message");
+        $columns =  array("id", "is_support", "created_at", "subject", "name", "email","message");
 
         $data = $this->formatData($records,$columns);
         return view('admin.support')->with('rows', $data['rows'])->with('columns', $data['columns']);
@@ -297,13 +298,20 @@ class adminController extends Controller
     public function sendResponse(){
 
 
+        $id = Input::get('id');
         $email = Input::get('email');
         $data['subject'] = "Re: " . Input::get('subject');
         $data['message']= Input::get('response');
         $data['name']= Input::get('name');
 
-        Mail::to($email)->queue(new numbersReady($data));
+        Mail::to($email)->queue(new response($data));
 
+        $record = contact::all()->where('id',$id)->first();
+        $record->is_responded = true;
+        $record->save();
+
+
+        
         return $this->support();
     }
 }
