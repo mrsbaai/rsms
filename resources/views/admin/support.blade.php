@@ -6,7 +6,7 @@
 
 @section('head')
 
-    <title>ReResponseS :: Administration</title>
+    <title>Support</title>
 
 @stop
 
@@ -34,6 +34,9 @@
                                     @endforeach
                                     <td style="width: 300px;">
                                         {{ Form::open(array('action' => 'adminController@sendResponse', 'id' => 'mailer-form'))}}
+                                        <input type="hidden" name="email" value="{{$array['4']}}">
+                                        <input type="hidden" name="name" value="{{$array['3']}}">
+                                        <input type="hidden" name="subject" value="{{$array['2']}}">
                                         <textarea id="response" type="text" name="response" class="form-control"></textarea>
                                         <br/>
                                         <input type="submit" class="btn btn-primary btn-send " value="Send">

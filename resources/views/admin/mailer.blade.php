@@ -33,13 +33,13 @@
             <h1>Promo mail</h1>
             {{ Form::open(array('action' => 'adminController@send', 'id' => 'mailer-form'))}}
                 <input type="text" name="subject" class="form-control" placeholder="Subject" required="required"><br>
-                <input type="text" id="heading1" name="heading1" class="form-control" placeholder="Heading 1" required="required" onchange="showPreview()"><br>
-                <textarea id="text1" name="text1" class="form-control" placeholder="Text 1" required="required" onchange="showPreview()"></textarea><br>
-                <input type="text" id="heading2"  name="heading2" class="form-control" placeholder="Heading 2" required="required" onchange="showPreview()"><br>
+                <input type="text" id="heading1" name="heading1" class="form-control" placeholder="Heading 1" onchange="showPreview()"><br>
+                <textarea id="text1" name="text1" class="form-control" placeholder="Text 1" onchange="showPreview()"></textarea><br>
+                <input type="text" id="heading2"  name="heading2" class="form-control" placeholder="Heading 2" onchange="showPreview()"><br>
 
-                <input type="text" id="button"  name="button" class="form-control" placeholder="Button" required="required" onchange="showPreview()"><br>
-                <input type="text" id="buttonURL" name="buttonURL" class="form-control" placeholder="Button URL" required="required" onchange="showPreview()"><br>
-                <textarea id="text2" name="text2" class="form-control" placeholder="Text2" required="required" onchange="showPreview()"></textarea><br>
+                <input type="text" id="button"  name="button" class="form-control" placeholder="Button" onchange="showPreview()"><br>
+                <input type="text" id="buttonURL" name="buttonURL" class="form-control" placeholder="Button URL" onchange="showPreview()"><br>
+                <textarea id="text2" name="text2" class="form-control" placeholder="Text2" onchange="showPreview()"></textarea><br>
             <br/>
             <div class="col-sm-6">
                 <div class="form-check">
@@ -53,6 +53,13 @@
                     <label class="form-check-label">
                         <input class="form-check-input" type="checkbox" value="subscribers">
                         All Subscribers
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" value="subscribersNotRegistered">
+                        Subscribers Didn't register
                     </label>
                 </div>
 

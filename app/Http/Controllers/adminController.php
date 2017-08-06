@@ -180,23 +180,16 @@ class adminController extends Controller
         $data = $this->formatData($records,$columns);
         return view('admin.show')->with('rows', $data['rows'])->with('columns', $data['columns']);
     }
+
     Public function support(){
 
 
         $records = contact::all()->where('is_responded',false)->sortByDesc('id');
-        $columns =  array("id", "created_at", "name", "subject", "message", "is_support");
+        $columns =  array("is_support", "created_at", "subject", "name", "email","message");
 
+        $data = $this->formatData($records,$columns);
+        return view('admin.support')->with('rows', $data['rows'])->with('columns', $data['columns']);
 
-        $rows = [];
-        foreach($records as $index => $record) {
-            $row = [];
-            foreach($columns as $column){
-                array_push($row, $record[$column]);
-            }
-            array_push($rows, $row);
-        }
-
-        Return view('admin.support')->with('rows', $rows)->with('columns', $columns);
     }
 
 
@@ -243,6 +236,12 @@ class adminController extends Controller
     public function send(){
         return "sending";
     }
+
+
+    private function GenerateEmailList($type){
+
+    }
+
     public function addCoupon(){
 
         $coupon = new coupon();
@@ -296,6 +295,15 @@ class adminController extends Controller
 
 
     public function sendResponse(){
-        return "sending";
+
+
+        $email = Input::get('email');
+        $data['subject'] = "Re: " . Input::get('subject');
+        $data['message']= Input::get('response');
+        $data['name']= Input::get('name');
+
+        Mail::to($email)->queue(new numbersReady($data));
+
+        return $this->support();
     }
 }
