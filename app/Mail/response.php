@@ -34,12 +34,12 @@ class response extends Mailable
     public function build()
     {
         return $this->markdown('emails.response')
+            ->from('support@receive-sms.com')
             ->subject($this->subj)
             ->with([
                 'message' => $this->message,
                 'name' => $this->name,
             ]);
-
 
     }
 }
