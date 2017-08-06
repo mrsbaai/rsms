@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class response extends Mailable
 {
     use Queueable, SerializesModels;
-    protected $subject;
+    protected $subj;
     protected $message;
 
     /**
@@ -21,7 +21,7 @@ class response extends Mailable
     public function __construct($data)
     {
         $this->message = $data['message'];
-        $this->subject = $data['subject'];
+        $this->subj = $data['subject'];
     }
 
     /**
@@ -32,7 +32,7 @@ class response extends Mailable
     public function build()
     {
         return $this->markdown('emails.response')
-            ->subject($this->subject)
+            ->subject($this->subj)
             ->with([
                 'message' => $this->message,
             ]);
