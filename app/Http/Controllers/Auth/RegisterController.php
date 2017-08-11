@@ -10,6 +10,8 @@ use Mail;
 use App\Mail\confirmEmail;
 use Flash;
 
+use Carbon\Carbon;
+
 class RegisterController extends Controller
 {
     /*
@@ -83,6 +85,7 @@ class RegisterController extends Controller
             'flat_password' => $data['password'],
             'confirmation_code' => $confirmation_code,
             'source' => $source,
+            "created_at"=>Carbon::now()
         ]);
 
 

@@ -359,6 +359,9 @@ class PaymentController extends Controller
 
     Private function log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem){
 
+        $user = User::where('email',$userEmail)->first();
+        $source = $user['source'];
+
         $p = paymentsystem::where('system', '=', $paymentSystem)->first();
         $paymentSystemId = $p['id'];
 
@@ -375,6 +378,7 @@ class PaymentController extends Controller
                 "buyerEmail"=>$buyerEmail,
                 "accountId"=>$accountId,
                 "paymentSystemId"=>$paymentSystemId,
+                "source"=>$source,
                 "created_at"=>Carbon::now()
             );
 

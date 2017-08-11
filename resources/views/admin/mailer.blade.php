@@ -40,66 +40,22 @@
                 <input type="text" id="button"  name="button" class="form-control" placeholder="Button" onchange="showPreview()"><br>
                 <input type="text" id="buttonURL" name="buttonURL" class="form-control" placeholder="Button URL" onchange="showPreview()"><br>
                 <textarea id="text2" name="text2" class="form-control" placeholder="Text2" onchange="showPreview()"></textarea><br>
+
+            <div class="form-group">
+                <label for="list">Select Email List:</label>
+                <select class="form-control" id="list" name="list">
+                    <option>All Subscribers and Users</option>
+                    <option>All Subscribers</option>
+                    <option>All Users</option>
+                    <option>Subscribers Didn't register</option>
+                    <option>Users Topped Up</option>
+                    <option>Users Didn't Top Up</option>
+                    <option>Users With Numbers</option>
+                    <option>Users Without Numbers</option>
+                </select>
+            </div>
+
             <br/>
-            <div class="col-sm-6">
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" value="all">
-                        All
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" value="subscribers">
-                        All Subscribers
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" value="subscribersNotRegistered">
-                        Subscribers Didn't register
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" value="users">
-                        ALL Users
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" value="topup">
-                        Users Topped Up
-                    </label>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" value="notopup">
-                        Users Didn't Top Up
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" value="withnumbers">
-                        Users With Numbers
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" value="withoutnumbers">
-                        Users Without Numbers
-                    </label>
-                </div>
-            </div>
-
 
 
                 <div class="text-right">

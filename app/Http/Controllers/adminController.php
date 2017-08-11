@@ -132,13 +132,19 @@ class adminController extends Controller
         foreach($records as $index => $record) {
             $row = [];
             foreach($columns as $column){
-                array_push($row, $record[$column]);
+                $newRow = $record[$column];
+                if($column == "created_at"){
+                    $newRow = $this->nicetime($record[$column]);
+                }
+                array_push($row, $newRow);
             }
             array_push($rows, $row);
         }
 
        return array('rows' => $rows, 'columns' => $columns);
     }
+
+
 
     public function showNumbers(){
         $records = number::all();
@@ -161,15 +167,64 @@ class adminController extends Controller
             $type = Input::get('type');
             $period = Input::get('period');
         }else{
-            $type = "Topups";
-            $period = "24h";
+            return view('admin.sources');
+
         }
 
-        $records = paymentlog::all()->where('status',"Completed")->sortByDesc('id');
-        $columns =  array("id", "created_at", "payedAmount", "originalAmount", "code", "userEmail", "buyerEmail", "paymentSystemId");
-        $data = $this->formatData($records,$columns);
+        switch ($period){
+            case "24h":
+                $startDate = Carbon::now()->subDay();
+                break;
+            case "7 Days":
+                $startDate = Carbon::now()->subDays(7);
+                break;
+            case "1 Month":
+                $startDate = Carbon::now()->subMonth();
+                break;
+            case "3 Months":
+                $startDate = Carbon::now()->subMonths(3);
+                break;
+            case "All":
+                $startDate = Carbon::now()->subYears(20);
+                break;
+        }
 
-        return view('admin.sources')->with('rows', $data['rows'])->with('columns', $data['columns'])->with('type', $type)->with('period', $period);
+
+        switch ($type){
+            case "Topups":
+                $chart = Charts::database(paymentlog::all()->where('status',"Completed")->where('created_at', '>', $startDate)->sortByDesc('id'), 'pie', 'highcharts')
+                    ->title("Topup Sources: " . $period)
+                    ->elementLabel("Total")
+                    ->aggregateColumn('source','sum')
+                    ->dimensions(0, 400)
+                    ->groupBy('source');
+
+                break;
+            case "Subscribes":
+                $chart = Charts::database(subscriber::all()->where('created_at', '>', $startDate)->sortByDesc('id'), 'pie', 'highcharts')
+                    ->title("Subscribe Sources: " . $period)
+                    ->elementLabel("Total")
+                    ->aggregateColumn('source','sum')
+                    ->dimensions(0, 400)
+                    ->groupBy('source');
+                break;
+            case "Registrations":
+                $chart = Charts::database(user::all()->where('created_at', '>', $startDate)->sortByDesc('id'), 'pie', 'highcharts')
+                    ->title("Registration Sources: " . $period)
+                    ->elementLabel("Total")
+                    ->aggregateColumn('source','sum')
+                    ->dimensions(0, 400)
+                    ->groupBy('source');
+                break;
+            case "Renews":
+                break;
+            case "Spending":
+                break;
+        }
+
+
+
+        return view('admin.chart')->with('chart',$chart);
     }
 
 
@@ -226,21 +281,9 @@ class adminController extends Controller
         return View('admin.coupon')->with('rows', $data['rows'])->with('columns', $data['columns']);
     }
 
-    public function blacklists(){
-        return "test";
-    }
 
     public function give(){
         return view('admin.give');
-    }
-
-    public function send(){
-        return "sending";
-    }
-
-
-    private function GenerateEmailList($type){
-
     }
 
     public function addCoupon(){
@@ -261,7 +304,8 @@ class adminController extends Controller
     }
 
     public function test(){
-        echo '$_SERVER[\'HTTP_REFERER\'] = '.$_SERVER['HTTP_REFERER'].'<br>';
+        $user = User::where('email','test1@gmail.com')->first();
+        $source = $user['source'];
     }
 
     public function giveNumbers(){
@@ -290,7 +334,7 @@ class adminController extends Controller
 
         flash()->overlay("You successfully added $amount numbers to " . $name .  "'s account! (" . $email . ").", 'Good');
 
-        return view('return_message')->with('account_form_color', $account_form_color)->with('title', $title)->with('message', $message);
+        return $this->give();
 
     }
 
@@ -314,4 +358,62 @@ class adminController extends Controller
 
         return $this->support();
     }
+
+    public function send(){
+        return  Input::get('list');
+    }
+
+
+    private function generateEmailList($type){
+        switch ($type){
+            case "All Subscribers and Users":
+            case "All Subscribers":
+            case "All Users":
+            case "Subscribers Didn't register":
+            case "Users Topped Up":
+            case "Users Didn't Top Up":
+            case "Users With Numbers":
+            case "Users Without Numbers":
+    }
+    return "";
+    }
+
+    private function nicetime($date)
+{
+    if(empty($date)) {
+        return "No date provided";
+    }
+
+    $periods         = array("second", "minute", "hour", "day", "week", "month", "year", "decade");
+    $lengths         = array("60","60","24","7","4.35","12","10");
+    date_default_timezone_set("UTC");
+    $now             = time();
+    $unix_date         = strtotime($date);
+
+    if(empty($unix_date)) {
+        return "Bad date";
+    }
+    if($now > $unix_date) {
+        $difference     = $now - $unix_date;
+        $tense         = "ago";
+
+    } else {
+        $difference     = $unix_date - $now;
+        $tense         = "from now";
+    }
+
+    for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) {
+        $difference /= $lengths[$j];
+    }
+
+    $difference = round($difference);
+
+    if($difference != 1) {
+        $periods[$j].= "s";
+    }
+
+    return "$difference $periods[$j] {$tense}";
+}
+
+
 }

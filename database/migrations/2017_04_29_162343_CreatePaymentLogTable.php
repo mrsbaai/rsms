@@ -20,6 +20,7 @@ class CreatePaymentlogTable extends Migration
             $table->string('code')->default('');
             $table->string('type')->nullable();
             $table->string('status')->nullable();
+            $table->string('source')->nullable()->default(null);
             $table->string('userEmail');
             $table->string('buyerEmail');
             $table->string('accountId');
