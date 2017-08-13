@@ -134,8 +134,8 @@ Route::get('/inbox/{number}', 'userController@inbox');
 Route::get('/api/{email}/{password}/{number}', 'apiController@show');
 Route::get('/api/{email}/{password}', 'apiController@show');
 
-Route::post('/log/tropo','messagesController@troppo');
-Route::get('/log/tropo','messagesController@troppo');
+Route::post('/log/tropo','messagesController@tropo');
+Route::get('/log/tropo','messagesController@tropo');
 
 Route::get('/success', function () {
     return view('message')->with('content', 'Thanks for topping up your account. Your receipt has been emailed to you.')->with('titleClass', 'text-success')->with('title', 'Thank you!');
