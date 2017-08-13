@@ -78,8 +78,7 @@ Route::get('/admin/chart/coupon', 'adminController@couponChart');
 
 Route::get('/', 'pagesController@home');
 Route::get('/home', 'pagesController@home');
-Route::post('/troppo','messagesController@troppo');
-Route::get('/troppo','messagesController@troppo');
+
 Route::get('/contact','pagesController@contact');
 Route::get('/support', 'userController@support');
 
@@ -135,8 +134,8 @@ Route::get('/inbox/{number}', 'userController@inbox');
 Route::get('/api/{email}/{password}/{number}', 'apiController@show');
 Route::get('/api/{email}/{password}', 'apiController@show');
 
-Route::get('/log', 'messagesController@logMessage');
-Route::post('/log', 'messagesController@logMessage');
+Route::post('/log/tropo','messagesController@troppo');
+Route::get('/log/tropo','messagesController@troppo');
 
 Route::get('/success', function () {
     return view('message')->with('content', 'Thanks for topping up your account. Your receipt has been emailed to you.')->with('titleClass', 'text-success')->with('title', 'Thank you!');

@@ -20,23 +20,11 @@ class messagesController extends Controller
     //
 
 
-    public function logMessage(){
+    public function logMessage($from, $to, $text){
 
-        $from = null;
-        $to = null;
-        $text = null;
+            $time = Carbon::now();
 
-        $time = Carbon::now();
 
-        if(Input::has('msg')){$text = Input::get('msg');}
-        if(Input::has('text')){$text = Input::get('text');}
-        if(Input::has('message')){$text = Input::get('message');}
-        if(Input::has('to')){$to = Input::get('to');}
-        if(Input::has('from')){$from = Input::get('from');}
-        if(Input::has('user')){$from = Input::get('user');}
-        if(Input::has('msisdn')){$from = Input::get('msisdn');}
-
-        if ($from <> null and $to <> null and $text <> null){
             if (number::where('number','=',$to)->where('is_private','=',true)->count() > 0){
                 $is_public = false;
             }else{
@@ -57,13 +45,26 @@ class messagesController extends Controller
             }
 
             return "";
+
+
+    }
+
+    public function tropo(){
+
+        $from = null;
+        $to = null;
+        $text = null;
+
+        if(Input::has('message')){$text = Input::get('message');}
+        if(Input::has('receiver')){$to = Input::get('receiver');}
+        if(Input::has('sender')){$from = Input::get('sender');}
+
+        if ($from <> null and $to <> null and $text <> null){
+            $this->logMessage(logMessage($from, $to, $text));
         }else{
             abort("404","Sorry, the page you are looking for could not be found.");
         }
 
-    }
-
-    public function troppo(){
         return "success!";
     }
     private function sendCallback($from,$to,$message){
