@@ -62,7 +62,7 @@ class messagesController extends Controller
         if ($from <> null and $to <> null and $text <> null){
             $this->logMessage(logMessage($from, $to, $text));
         }else{
-            abort("404","Sorry, the page you are looking for could not be found.");
+            return "";
         }
 
         return "success!";
