@@ -182,6 +182,7 @@ return [
         /* I added this */
         Laracasts\Flash\FlashServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 
     ],
 

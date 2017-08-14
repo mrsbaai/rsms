@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Input;
 use Carbon\Carbon;
 use App\SendersBlacklist;
 use App\StringsBlacklist;
+use Illuminate\Support\Facades\Log;
+
 
 
 class messagesController extends Controller
@@ -49,7 +51,10 @@ class messagesController extends Controller
 
     }
 
+
     public function tropo(){
+
+        Log::info('tropo test');
 
         $from = null;
         $to = null;
