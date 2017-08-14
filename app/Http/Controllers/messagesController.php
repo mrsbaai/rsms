@@ -54,7 +54,7 @@ class messagesController extends Controller
 
     public function tropo(){
 
-        Log::info("Tropo: " . $_REQUEST);
+        Log::info($_REQUEST);
 
         $from = null;
         $to = null;
@@ -75,7 +75,7 @@ class messagesController extends Controller
 
     public function bandwidth(){
 
-        Log::info("bandwidth: " . $_REQUEST);
+        Log::info($_REQUEST);
 
         $from = null;
         $to = null;
