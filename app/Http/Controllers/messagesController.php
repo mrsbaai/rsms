@@ -54,7 +54,28 @@ class messagesController extends Controller
 
     public function tropo(){
 
-        Log::info($_REQUEST);
+        Log::info("Tropo: " . $_REQUEST);
+
+        $from = null;
+        $to = null;
+        $text = null;
+
+        if(Input::has('message')){$text = Input::get('message');}
+        if(Input::has('receiver')){$to = Input::get('receiver');}
+        if(Input::has('sender')){$from = Input::get('sender');}
+
+        if ($from <> null and $to <> null and $text <> null){
+            $this->logMessage(logMessage($from, $to, $text));
+        }else{
+            return "";
+        }
+
+        return "success!";
+    }
+
+    public function bandwidth(){
+
+        Log::info("bandwidth: " . $_REQUEST);
 
         $from = null;
         $to = null;

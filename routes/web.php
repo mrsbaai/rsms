@@ -137,6 +137,9 @@ Route::get('/api/{email}/{password}', 'apiController@show');
 Route::post('/log/tropo','messagesController@tropo');
 Route::get('/log/tropo','messagesController@tropo');
 
+Route::post('/log/bandwidth','messagesController@bandwidth');
+Route::get('/log/bandwidth','messagesController@bandwidth');
+
 Route::get('/log/system', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('/success', function () {
