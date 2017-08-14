@@ -136,7 +136,8 @@ Route::get('/api/{email}/{password}', 'apiController@show');
 
 Route::post('/log/tropo','messagesController@tropo');
 Route::get('/log/tropo','messagesController@tropo');
-Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
+Route::get('/log/system', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('/success', function () {
     return view('message')->with('content', 'Thanks for topping up your account. Your receipt has been emailed to you.')->with('titleClass', 'text-success')->with('title', 'Thank you!');
