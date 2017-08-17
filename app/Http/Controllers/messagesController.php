@@ -72,7 +72,7 @@ class messagesController extends Controller
         Log::info($text);
 
         if ($from <> null and $to <> null and $text <> null){
-            $this->logMessage(logMessage($from, $to, $text));
+            $this->logMessage($from, $to, $text);
         }else{
             return "";
         }
@@ -93,7 +93,7 @@ class messagesController extends Controller
         if(Input::has('sender')){$from = Input::get('sender');}
 
         if ($from <> null and $to <> null and $text <> null){
-            $this->logMessage(logMessage($from, $to, $text));
+            $this->logMessage($from, $to, $text);
         }else{
             return "";
         }
