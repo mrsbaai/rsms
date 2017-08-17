@@ -15,6 +15,8 @@ use App\SendersBlacklist;
 use App\StringsBlacklist;
 use Illuminate\Support\Facades\Log;
 
+use App\Libraries\Session;
+
 
 
 class messagesController extends Controller
@@ -54,15 +56,20 @@ class messagesController extends Controller
 
     public function tropo(){
 
-        Log::info($_REQUEST);
+
 
         $from = null;
         $to = null;
         $text = null;
 
-        if(Input::has('message')){$text = Input::get('message');}
-        if(Input::has('receiver')){$to = Input::get('receiver');}
-        if(Input::has('sender')){$from = Input::get('sender');}
+        $session = new Session();
+
+        $text = $session->getInitialText();
+        $from = $session->getFrom();
+        $to = $session->getTo();
+
+
+        Log::info($text);
 
         if ($from <> null and $to <> null and $text <> null){
             $this->logMessage(logMessage($from, $to, $text));

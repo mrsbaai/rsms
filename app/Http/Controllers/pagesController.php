@@ -21,6 +21,9 @@ use carbon\carbon;
 use Illuminate\Mail\Markdown;
 
 
+use App\Libraries\Session;
+
+
 class pagesController extends Controller
 {
     Public function home(){
@@ -82,12 +85,19 @@ class pagesController extends Controller
             //$markdown = new Markdown(view(), config('mail.markdown'));
             //return $markdown->render('emails.topupNeeded');
 
-        flash('Please check your email and verify your address')->warning();
-        return view('contact');
+        //flash('Please check your email and verify your address')->warning();
+        //return view('contact');
 
 
         //$data['name'] = "master";
        // Mail::to("abdelilah.sbaai@gmail.com")->send(new numberRemovalNotification($data));
+
+
+        $session = new Session();
+
+        $message = $session->getInitialText();
+
+        echo "m: " . $message;
 
 
 
