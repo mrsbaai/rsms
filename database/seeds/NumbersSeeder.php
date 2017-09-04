@@ -15,9 +15,9 @@ class NumbersSeeder extends Seeder
     {
 
         $numbers = array(
-            array("number"=>"12067932511","country"=>"US","expiration"=>"2018-01-29 11:38:50","is_private"=>"1","is_active"=>"1","network"=>"voxe","network_login"=>"desew","network_password"=>"maedar.yeti39","email"=>null),
-            array("number"=>"12067932522","country"=>"US","expiration"=>"2018-01-29 11:38:50","is_private"=>"1","is_active"=>"1","network"=>"voxe","network_login"=>"desew","network_password"=>"maedar.yeti39","email"=>null),
-            array("number"=>"12067932533","country"=>"US","expiration"=>"2018-01-29 10:38:50","is_private"=>"1","is_active"=>"1","network"=>"voxe","network_login"=>"desew","network_password"=>"maedar.yeti39","email"=>null),
+            array("number"=>"12067932511","country"=>"US","expiration"=>"2018-01-29 11:38:50","is_private"=>"1","is_active"=>"1","network"=>"voxe","network_login"=>"desew","network_password"=>"maedar.yeti39","email"=>null,"last_checked"=>"2017-01-15 11:38:50"),
+            array("number"=>"12067932522","country"=>"US","expiration"=>"2018-01-29 11:38:50","is_private"=>"1","is_active"=>"1","network"=>"voxe","network_login"=>"desew","network_password"=>"maedar.yeti39","email"=>null,"last_checked"=>"2017-01-20 11:38:50"),
+            array("number"=>"12067932533","country"=>"US","expiration"=>"2018-01-29 10:38:50","is_private"=>"1","is_active"=>"1","network"=>"voxe","network_login"=>"desew","network_password"=>"maedar.yeti39","email"=>null,"last_checked"=>"2017-01-25 11:38:50"),
             array("number"=>"12067932544","country"=>"US","expiration"=>"2018-01-29 11:38:50","is_private"=>"1","is_active"=>"1","network"=>"voxe","network_login"=>"desew","network_password"=>"maedar.yeti39","email"=>null),
             array("number"=>"12067932555","country"=>"US","expiration"=>"2018-01-29 11:38:50","is_private"=>"1","is_active"=>"1","network"=>"voxe","network_login"=>"desew","network_password"=>"maedar.yeti39","email"=>null),
 

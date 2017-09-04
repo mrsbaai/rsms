@@ -27,7 +27,7 @@ class messagesController extends Controller
     public function logMessage($from, $to, $text){
 
             $time = Carbon::now();
-
+            number::where('number', '=', $to)->update(['last_checked' => $time]);
 
             if (number::where('number','=',$to)->where('is_private','=',true)->count() > 0){
                 $is_public = false;
@@ -35,16 +35,20 @@ class messagesController extends Controller
                 $is_public = true;
             }
 
-            if ($this->isSpam($from,$to,$text) == false){
-                $message = new message();
-                $message->message = $text;
-                $message->sender = $from;
-                $message->receiver = $to;
-                $message->date = $time;
-                $message->is_public = $is_public;
-                $message->save();
+            // check if number verification
+            if (strpos($text,"RSMSCODE-") === false){
+                // check if not spam
+                if ($this->isSpam($from,$to,$text) == false){
+                    $message = new message();
+                    $message->message = $text;
+                    $message->sender = $from;
+                    $message->receiver = $to;
+                    $message->date = $time;
+                    $message->is_public = $is_public;
+                    $message->save();
 
-                $this->sendCallback($from,$to,$text);
+                    $this->sendCallback($from,$to,$text);
+                }
 
             }
 
@@ -157,12 +161,17 @@ class messagesController extends Controller
 
 
 
-    public function getPublicMessages($number){
+    public function getPublicMessages($number=null,$tag=null){
 
         if ($number <> null){
             $messages = message::where('is_public',true)->where('receiver', "=", $number)->orderBy('id', 'desc')->simplePaginate(15);
         }else{
-            $messages = message::where('is_public',true)->orderBy('id', 'desc')->simplePaginate(15);
+            if ($tag <> null){
+                $messages = message::where('is_public',true)->where('message', 'LIKE', "%$tag%")->orderBy('id', 'desc')->simplePaginate(15);
+            }else{
+                $messages = message::where('is_public',true)->orderBy('id', 'desc')->simplePaginate(15);
+            }
+
         }
 
 
@@ -173,6 +182,10 @@ class messagesController extends Controller
         return $messages;
 
     }
+
+
+
+
 
 
     public function getUserMessages($number){

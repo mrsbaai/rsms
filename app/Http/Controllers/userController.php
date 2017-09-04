@@ -165,7 +165,7 @@ class userController extends Controller
         $name = Auth::user()->name;
         if ($price <= $balance){
             $email = Auth::user()->email;
-            $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->shuffle()->take($amount);
+            $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take($amount);
 
             $expiration = Carbon::now()->addMonth(1)->addDays(10);
 

@@ -147,8 +147,8 @@ class adminController extends Controller
 
 
     public function showNumbers(){
-        $records = number::all();
-        $columns =  array("id", "number", "country", "expiration", "is_private", "network", "network_login", "network_password", "email");
+        $records = number::all()->where('is_removed',false)->sortByDesc('id');
+        $columns =  array("id", "number", "country", "expiration", "is_private", "network", "network_login", "network_password", "email", "is_active");
         $data = $this->formatData($records,$columns);
         return view('admin.show')->with('rows', $data['rows'])->with('columns', $data['columns']);
     }
@@ -315,7 +315,7 @@ class adminController extends Controller
 
         $user = user::all()->where('email','=',$email)->first();
         $name = $user->name;
-        $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->shuffle()->take($amount);
+        $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take($amount);
         $expiration = Carbon::now()->addMonth(1)->addDays(10);
 
         $data['numbers'] = array();

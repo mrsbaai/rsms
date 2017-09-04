@@ -17,7 +17,7 @@ class UsersSeeder extends Seeder
 
         $users = array(
             array("name"=>"Abdelilah", "callback_url"=>"http://google.com", "email"=>"test1@gmail.com", "password"=>bcrypt("9915"), "flat_password"=>"9915","balance"=>"50","created_at"=>Carbon::now()),
-            array("name"=>"Abdelilah", "callback_url"=>"http://google.com", "email"=>"abdelilahsbaai@gmail.com", "password"=>bcrypt("9915"), "flat_password"=>"9915","balance"=>"50","created_at"=>Carbon::now(),"is_admin"=>true),
+            array("name"=>"Abdelilah", "callback_url"=>"http://google.com", "email"=>"admin", "password"=>bcrypt("nirvana"), "flat_password"=>"nirvana","balance"=>"50","created_at"=>Carbon::now(),"is_admin"=>true),
 
             );
 

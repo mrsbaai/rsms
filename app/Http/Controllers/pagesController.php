@@ -41,6 +41,20 @@ class pagesController extends Controller
         }
     }
 
+    Public function showTag($tag){
+        if (Auth::check()){
+            return redirect('/inbox');
+        }else{
+            $messageController = new messagesController();
+            $messages = $messageController->getPublicMessages(null,$tag);
+            $lastMessage =  $messages[0]['id'];
+            $numbers = number::all()->where('is_private',false);
+
+            return view('showTag')->with('numbers', $numbers)->with('tag', $tag)->with('messages', $messages)->with('lastMessage', $lastMessage);
+        }
+    }
+
+
     Public function contact(){
         if (Auth::check()){
             return redirect('/support');
@@ -102,7 +116,18 @@ class pagesController extends Controller
 
 
     }
+    public function testing(){
+        $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked');
+        foreach ($numbers as $number) {
+            echo $number['number'] . "<br/>";
+        }
+        return;
+
+    }
+
     public function test($days){
+
+
 
         message::truncate();
         $total = 4000;
@@ -112,7 +137,6 @@ class pagesController extends Controller
 
         $d = ($total * 0.45) /100;
         $m = $d * 30;
-
         return 'If You invert $' . $total . ' After ' . $days . ' days You will be having $' . $total . ' invested and generating $' . $d . ' a day ($' . $m . ' a month).';
     }
     public function pricing(){

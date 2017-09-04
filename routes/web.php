@@ -13,6 +13,9 @@
 
 use Illuminate\Mail\Markdown;
 use Carbon\Carbon;
+
+use Illuminate\Support\Facades\Input;
+
 Route::get('mailtest', function () {
     $markdown = new Markdown(view(), config('mail.markdown'));
     return $markdown->render('emails.numbersReady');
@@ -36,6 +39,7 @@ Route::get('subscribe/verify/{email}', [
 ]);
 
 Route::get('/test','PaymentController@test');
+Route::get('/testing','PagesController@testing');
 
 Route::pattern('number', '[0-9]{8,13}');
 
@@ -76,7 +80,16 @@ Route::get('/admin/chart/chargebacks', 'adminController@chargebacksChart');
 Route::get('/admin/chart/coupon', 'adminController@couponChart');
 
 
-Route::get('/', 'pagesController@home');
+Route::get('/', function(){
+    if (Input::get('tag')){
+        $tag = urlencode(Input::get('tag'));
+        return Redirect::to('/sms/' . $tag, 301);
+    }else{
+        $ret = new \App\Http\Controllers\pagesController();
+        return $ret->home();
+    }
+});
+
 Route::get('/home', 'pagesController@home');
 
 Route::get('/contact','pagesController@contact');
@@ -149,3 +162,56 @@ Route::get('/success', function () {
 Route::get('/fail', function () {
     return view('message')->with('content', 'Your payment didn\'t complete successfully. Please try again later.')->with('titleClass', 'text-danger')->with('title', 'Payment Failed!');
 });
+
+Route::get('/sms/{tag?}', 'pagesController@showTag')->where('tag', '(.*)');
+
+// redirections
+
+Route::get('/receive-sms.com', function(){
+    return Redirect::to('/', 301);
+});
+
+Route::get('/index.php', function(){
+    return Redirect::to('/', 301);
+});
+
+Route::get('/us_reach_list.php', function(){
+    return Redirect::to('/', 301);
+});
+
+Route::get('/contact.php', function(){
+    return Redirect::to('/contact', 301);
+});
+
+Route::get('/forgot.php', function(){
+    return Redirect::to('/password/reset', 301);
+});
+
+Route::get('/faq.php', function(){
+    return Redirect::to('/faqs', 301);
+});
+
+Route::get('/inbox.php', function(){
+    return Redirect::to('/login', 301);
+});
+
+Route::get('/messages.php', function(){
+    if (Input::get('number')){
+        $number = Input::get('number');
+        return Redirect::to('/' . $number, 301);
+
+    }else{
+        if (Input::get('tag')){
+            $tag = Input::get('tag');
+            return Redirect::to('/sms/' . $tag, 301);
+        }else{
+            return Redirect::to('/', 301);
+        }
+
+    }
+});
+
+
+
+
+
