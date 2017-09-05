@@ -17,11 +17,10 @@ class CreateMessagesTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
             $table->longText('message');
-            $table->double('sender',14);
-            $table->double('receiver',14);
+            $table->string('sender',14);
+            $table->string('receiver',14);
             $table->dateTime('date');
             $table->boolean('is_public');
-            $table->timestamps();
         });
     }
 
