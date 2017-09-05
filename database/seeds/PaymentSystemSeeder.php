@@ -15,7 +15,7 @@ class PaymentSystemSeeder extends Seeder
 
         $paymentsystems = array(
             array("system"=>"PayPal"),
-            array("system"=>"Payza"),
+            //array("system"=>"Payza"),
             array("system"=>"Payeer")
         );
 

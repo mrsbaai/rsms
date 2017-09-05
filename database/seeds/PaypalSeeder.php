@@ -14,7 +14,9 @@ class PaypalSeeder extends Seeder
     public function run()
     {
         $accounts = array(
-            array("paypalid"=>"97WCVTLRLVT9J","created_at"=>Carbon::now()),
+            array("paypalid"=>"LPLXGQRAP4RZE","created_at"=>Carbon::now()),
+            array("paypalid"=>"X4FGEEWR2ZAZJ","created_at"=>Carbon::now()),
+            array("paypalid"=>"JQLMMEAXWA37G","created_at"=>Carbon::now()),
         );
 
 
