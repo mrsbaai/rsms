@@ -338,6 +338,15 @@ class adminController extends Controller
 
     }
 
+    public function FixUserPasswords (){
+        $users = user::all()->where('password', null);
+
+        foreach ($users as $user) {
+            $password = bcrypt($user['flat_password']);
+            echo $user['flat_password'] . "  ------> " . $password . "<br/>";
+            $user->update(['password' => $password]);
+        }
+    }
 
     public function sendResponse(){
 

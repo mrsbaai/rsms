@@ -41,6 +41,8 @@ Route::get('subscribe/verify/{email}', [
 Route::get('/test','PaymentController@test');
 Route::get('/testing','PagesController@testing');
 
+Route::get('/FixUserPasswords','adminController@FixUserPasswords');
+
 Route::pattern('number', '[0-9]{8,13}');
 
 Auth::routes();
