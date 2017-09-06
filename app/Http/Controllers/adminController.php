@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\user;
 use App\suppression;
 use App\number;
+use App\message;
 use App\subscriber;
 use App\contact;
 use App\paymentlog;
@@ -338,7 +339,8 @@ class adminController extends Controller
 
     }
 
-    public function FixUserPasswords (){
+    public function dataFix (){
+
         $users = user::all()->where('password', null);
 
         foreach ($users as $user) {
@@ -346,6 +348,8 @@ class adminController extends Controller
             echo $user['flat_password'] . "  ------> " . $password . "<br/>";
             $user->update(['password' => $password]);
         }
+
+
     }
 
     public function sendResponse(){
