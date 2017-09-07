@@ -344,9 +344,20 @@ class adminController extends Controller
         $users = user::all()->where('password', null);
 
         foreach ($users as $user) {
-            $password = bcrypt($user['flat_password']);
-            echo $user['flat_password'] . "  ------> " . $password . "<br/>";
-            $user->update(['password' => $password]);
+
+            if (user['flat_password'] == null or user['flat_password'] == "" or user['flat_password'] == "1"){
+                $user->update(['flat_password' => "ef5f5zz5x"]);
+            }
+
+            if (user['password'] == null or user['password'] == ""){
+
+                $password = bcrypt($user['flat_password']);
+                $user->update(['password' => $password]);
+            }
+
+
+
+
         }
 
 
