@@ -153,6 +153,9 @@ Route::get('/api/{email}/{password}', 'apiController@show');
 Route::post('/log/tropo','messagesController@tropo');
 Route::get('/log/tropo','messagesController@tropo');
 
+Route::get('/log/generic/{from}/{to}/{text}','messagesController@genericLogSMS');
+
+
 Route::post('/log/bandwidth','messagesController@bandwidth');
 Route::get('/log/bandwidth','messagesController@bandwidth');
 

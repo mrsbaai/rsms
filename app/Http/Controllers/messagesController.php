@@ -58,6 +58,19 @@ class messagesController extends Controller
     }
 
 
+    public function genericLogSMS($from = null,$to = null,$text = null){
+
+
+        if ($from <> null and $to <> null and $text <> null){
+            $text = urldecode($text);
+            $this->logMessage($from, $to, $text);
+        }else{
+            return "Nice Try ;)";
+        }
+
+        return "success!";
+    }
+
     public function tropo(){
 
 
