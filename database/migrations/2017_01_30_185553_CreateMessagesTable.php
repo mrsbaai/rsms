@@ -21,6 +21,7 @@ class CreateMessagesTable extends Migration
             $table->string('receiver',14);
             $table->dateTime('date');
             $table->boolean('is_private');
+            $table->timestamps();
         });
     }
 
