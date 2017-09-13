@@ -11,8 +11,8 @@
                     <table id="messages-table" class="col-md-12 table messages-table table-condensed cf">
                         <thead class="cf">
                         <tr>
-                            <th>[Time]</th>
-                            <th>[From]</th>
+                            <th class="th-time">[Time]</th>
+                            <th class="td-from">[From]</th>
                             <th>[To]</th>
                             <th>[Message]</th>
 
@@ -56,7 +56,7 @@
 
 
                 $(document).ready(function(){
-                    refreshTable();
+                    //refreshTable();
                 });
 
                 function refreshTable(){

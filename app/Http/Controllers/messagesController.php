@@ -164,12 +164,12 @@ class messagesController extends Controller
     public function getPublicMessages($number=null,$tag=null){
 
         if ($number <> null){
-            $messages = message::where('is_private',false)->where('receiver', "=", $number)->orderBy('id', 'desc')->simplePaginate(15);
+            $messages = message::where('is_private',false)->where('receiver', "=", $number)->orderBy('date', 'desc')->simplePaginate(15);
         }else{
             if ($tag <> null){
-                $messages = message::where('is_private',false)->where('message', 'LIKE', "%$tag%")->orderBy('id', 'desc')->simplePaginate(15);
+                $messages = message::where('is_private',false)->where('message', 'LIKE', "%$tag%")->orderBy('date', 'desc')->simplePaginate(15);
             }else{
-                $messages = message::where('is_private',false)->orderBy('id', 'desc')->simplePaginate(15);
+                $messages = message::where('is_private',false)->orderBy('date', 'desc')->simplePaginate(15);
             }
 
         }
@@ -194,12 +194,12 @@ class messagesController extends Controller
 
         if ($number == null){
 
-            $messages = message::wherein('receiver', $user_numbers)->orderBy('id', 'desc')->simplePaginate(15);
+            $messages = message::wherein('receiver', $user_numbers)->orderBy('date', 'desc')->simplePaginate(15);
         }else{
 
             if (in_array($number, $user_numbers)){
 
-                $messages = message::where('receiver', $number)->orderBy('id', 'desc')->simplePaginate(15);
+                $messages = message::where('receiver', $number)->orderBy('date', 'desc')->simplePaginate(15);
             }else{
                 abort(403, 'Unauthorized action.');
             }
@@ -216,6 +216,12 @@ class messagesController extends Controller
     }
 
 
+    public function lastMessage(){
+
+        $message = message::where('is_private',false)->orderBy('date', 'desc')->first();
+
+        return response()->json($message);
+    }
 
     public function newMessages($id,$num){
 
@@ -227,16 +233,16 @@ class messagesController extends Controller
             $user_numbers = $userController->userNumbers();
 
             if (is_numeric($num) == true){
-                $messages = message::all()->where('is_private',true)->where('receiver',$num)->whereIn('receiver', $user_numbers)->where('id' , '>', $id)->sortByDesc('id');
+                $messages = message::all()->where('is_private',true)->where('receiver',$num)->whereIn('receiver', $user_numbers)->where('id' , '>', $id)->sortByDesc('date');
             }else{
-                $messages = message::all()->where('is_private',true)->whereIn('receiver', $user_numbers)->where('id' , '>', $id)->sortByDesc('id');
+                $messages = message::all()->where('is_private',true)->whereIn('receiver', $user_numbers)->where('id' , '>', $id)->sortByDesc('date');
             }
 
         }else{
             if (is_numeric($num) == true){
-                $messages = message::all()->where('is_private',false)->where('receiver',$num)->where('id' , '>', $id)->sortByDesc('id');
+                $messages = message::all()->where('is_private',false)->where('receiver',$num)->where('id' , '>', $id)->sortByDesc('date');
             }else{
-                $messages = message::all()->where('is_private',false)->where('id' , '>', $id)->sortByDesc('id');
+                $messages = message::all()->where('is_private',false)->where('id' , '>', $id)->sortByDesc('date');
             }
 
             foreach($messages as $message){

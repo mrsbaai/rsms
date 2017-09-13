@@ -345,11 +345,11 @@ class adminController extends Controller
 
         foreach ($users as $user) {
 
-            if (user['flat_password'] == null or user['flat_password'] == "" or user['flat_password'] == "1"){
+            if ($user['flat_password'] == null or $user['flat_password'] == "" or $user['flat_password'] == "1"){
                 $user->update(['flat_password' => "ef5f5zz5x"]);
             }
 
-            if (user['password'] == null or user['password'] == ""){
+            if ($user['password'] == null or $user['password'] == ""){
 
                 $password = bcrypt($user['flat_password']);
                 $user->update(['password' => $password]);
