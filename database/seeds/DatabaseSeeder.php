@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PaypalSeeder::class);
         $this->call(SendersBlacklistSeeder::class);
         $this->call(StringsBlacklistSeeder::class);
+        $this->call(UsersSeeder::class);
     }
 }

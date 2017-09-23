@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('source')->nullable()->default(null);
             $table->boolean('confirmed')->default(0);
             $table->string('confirmation_code')->nullable();
-            $table->ipAddress('ip');
+            $table->ipAddress('ip')->nullable()->default(null);
             $table->rememberToken();
             $table->timestamps();
         });
