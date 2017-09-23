@@ -294,16 +294,13 @@ class PaymentController extends Controller
 
         $unit_price = 9;
 
-        if ($amount == 1){
+
+        if ($amount < 10){
             $unit_price = 9;
         }
 
-        if ($amount > 1 and $amount < 6){
+        if ($amount >= 10){
             $unit_price = 5;
-        }
-
-        if ($amount >= 6){
-            $unit_price = 4.5;
         }
 
         $price = $amount * $unit_price * $period;
