@@ -237,7 +237,8 @@ class messagesController extends Controller
     }
 
     public function newMessages($id,$num){
-
+        $message = message::where('id',$id)->first();
+        $lastDate = $message['date'];
 
 
         if (Auth::check()){
@@ -245,17 +246,19 @@ class messagesController extends Controller
             $userController = new userController();
             $user_numbers = $userController->userNumbers();
 
+
+
             if (is_numeric($num) == true){
-                $messages = message::all()->where('is_private',true)->where('receiver',$num)->whereIn('receiver', $user_numbers)->where('id' , '>', $id)->sortByDesc('date');
+                $messages = message::all()->where('is_private',true)->where('receiver',$num)->whereIn('receiver', $user_numbers)->where('date' , '>', $lastDate)->sortByDesc('date');
             }else{
-                $messages = message::all()->where('is_private',true)->whereIn('receiver', $user_numbers)->where('id' , '>', $id)->sortByDesc('date');
+                $messages = message::all()->where('is_private',true)->whereIn('receiver', $user_numbers)->where('date' , '>', $lastDate)->sortByDesc('date');
             }
 
         }else{
             if (is_numeric($num) == true){
-                $messages = message::all()->where('is_private',false)->where('receiver',$num)->where('id' , '>', $id)->sortByDesc('date');
+                $messages = message::all()->where('is_private',false)->where('receiver',$num)->where('date' , '>', $lastDate)->sortByDesc('date');
             }else{
-                $messages = message::all()->where('is_private',false)->where('id' , '>', $id)->sortByDesc('date');
+                $messages = message::all()->where('is_private',false)->where('date' , '>', $lastDate)->sortByDesc('date');
             }
 
             foreach($messages as $message){
