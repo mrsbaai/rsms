@@ -88,13 +88,13 @@
                 var n = parseInt(clone.val() + c);
                 if ((min && n < min)) {
                     setText(min);
-                    if (max && n > max){
-                        if (self.attr('id') == "amount"){getPrice();}
-                    }
+                    if (self.attr('id') == "amount"){getPrice();}
                     if (self.attr('id') == "period"){getRenewPrice();}
                 }
                 else if (max && n > max) {
                     setText(max);
+                    if (self.attr('id') == "amount"){getPrice();}
+                    if (self.attr('id') == "period"){getRenewPrice();}
                 }
             });
 
