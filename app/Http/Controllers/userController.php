@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Quotation;
 use App\number;
+use App\message;
 use App\user;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -177,6 +178,7 @@ class userController extends Controller
                 number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
                 $addedNumber = array($number['number'],$number['country'],"International",$expiration);
                 array_push($data['numbers'],$addedNumber);
+                $deletedRows = message::where('receiver', $number['number'])->delete();
             }
 
             $balance = $balance - $price;

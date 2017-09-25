@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         '\App\Console\Commands\SendAutoMails',
-        '\App\Console\Commands\SendNumberVerification',
+        //'\App\Console\Commands\SendNumberVerification',
     ];
 
     /**
@@ -27,8 +27,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('SendAutoMails:SendMails')
             ->daily();
-        $schedule->command('Verification:Send')
-            ->daily();
+        //$schedule->command('Verification:Send')->daily();
     }
 
     /**
