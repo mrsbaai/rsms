@@ -100,13 +100,14 @@ class userController extends Controller
         if (Auth::check()){
             $email = Auth::user()->email;
             $numbers = number::all()->where('is_private',true)->where('email',$email);
-
+            $avalableNumbers = number::all()->where('is_private',true)->where('email', null);
+            $max = count($avalableNumbers);
             if (count($numbers) == 0){
                 $noNumbers = true;
             }else{
                 $noNumbers = false;
             }
-            return view('numbers')->with('numbers', $numbers)->with('noNumbers', $noNumbers);
+            return view('numbers')->with('numbers', $numbers)->with('noNumbers', $noNumbers)->with('max', $max);
         }else{
             return view('auth.login');
         }
