@@ -76,7 +76,7 @@
             if (document.getElementById("amount").value === "NaN"){document.getElementById("amount").value = "1";}
             document.getElementById("add").disabled = true;
             document.getElementById("add").innerHTML = "...";
-
+            document.getElementById("pleasetopup").style.display = 'none';
 
             if (document.getElementById("amount").value >= 1){
                 var url = "../price/" + document.getElementById("amount").value + "/1";
@@ -88,6 +88,7 @@
 
                         if (data.isPossible === false){
                                     document.getElementById("add").disabled = true;
+                                    document.getElementById("pleasetopup").style.display = 'block';
                                 }else{
 
                                     document.getElementById("add").disabled = false;
@@ -96,17 +97,17 @@
                                 document.getElementById("add").innerHTML = "Add ($" + data.price + ")";
 
 
-
                             })
                             .fail(function() {
-
                                 document.getElementById("add").disabled = true;
+                                document.getElementById("pleasetopup").style.display = 'none';
                             });
                 }
 
                 catch(err){
                     document.getElementById("add").innerHTML = "...";
                     document.getElementById("add").disabled = true;
+                    document.getElementById("pleasetopup").style.display = 'none';
                 }
 
             }
@@ -138,6 +139,9 @@
                         <p class="text-center"><button class="btn btn-lg btn-success" type="submit" id="add">Add</button></p>
                     </div>
 
+                    <div class="form-group">
+                        <p id="pleasetopup" class="text-center">Please <a href="/topup">Top Up</a> your balance to get more numbers.</p>
+                    </div>
                 </div>
 
                 <div class=" col-lg-3 col-md-3 ">
