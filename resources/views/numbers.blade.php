@@ -149,6 +149,10 @@
 
             </div>
             {{ Form::close() }}
+            @if(count($numbers) < 10)
+                <p>You have less then 10 numbers in your account, the price now is $9/m per number. Once you have more then 10 numbers in your account the price will change to $5/m per number.
+                </p>
+            @endif
 
 
         </div>

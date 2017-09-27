@@ -52,7 +52,7 @@ class userController extends Controller
         $user_numbers = array();
         $email = Auth::user()->email;
 
-        $numbers = number::all()->where('is_private',true)->where('email',$email);
+        $numbers = number::where('is_private',true)->where('email',$email)->get();
         foreach($numbers as $number){
             array_push($user_numbers, $number->number);
         }
@@ -67,7 +67,7 @@ class userController extends Controller
                 return redirect('/admin');
             }else{
                 $email = Auth::user()->email;
-                $numbers = number::all()->where('is_private',true)->where('email',$email);
+                $numbers = number::where('is_private',true)->where('email',$email)->get();
                 if (count($numbers) == 0){
                     $noNumbers = true;
                 }else{

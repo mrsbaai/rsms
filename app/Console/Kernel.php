@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         '\App\Console\Commands\SendAutoMails',
+        '\App\Console\Commands\removeExpired'
         //'\App\Console\Commands\SendNumberVerification',
     ];
 
@@ -25,8 +26,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('SendAutoMails:SendMails')
-            ->daily();
+        $schedule->command('SendAutoMails:SendMails')->daily();
+        $schedule->command('expired:remove')->hourly();
+
         //$schedule->command('Verification:Send')->daily();
     }
 

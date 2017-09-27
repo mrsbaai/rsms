@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Carbon\Carbon;
+
 
 use Mail;
 use App\number;
@@ -48,7 +48,7 @@ class MaillingController extends Controller
                 foreach($nextBill as $date => $amount){
                     if ($amount < $balance){
                         $date = Carbon::parse($date);
-                        $diff = $now->diffInDays($date);
+                        $diff = $now->diffInDays($date, false);
                         echo $user["email"] . " -> " . $diff . "<br/>";
                         $count = $count + 2;
                         $when = Carbon::now()->addMinutes($count);
