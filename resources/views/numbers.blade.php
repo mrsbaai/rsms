@@ -140,7 +140,7 @@
                     </div>
 
                     <div class="form-group">
-                        <p id="pleasetopup" class="text-center">Please <a href="/topup">Top Up</a> your balance to get more numbers.</p>
+                        <p id="pleasetopup" class="text-center" hidden>Please <a href="/topup">Top Up</a> your balance to get more numbers.</p>
                     </div>
                 </div>
 
