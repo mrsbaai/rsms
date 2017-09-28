@@ -202,6 +202,9 @@ Route::get('/inbox.php', function(){
     return Redirect::to('/login', 301);
 });
 
+
+Route::get('locations.php', 'redirectsController@locations');
+
 Route::get('/messages.php', function(){
     if (Input::get('number')){
         $number = Input::get('number');
