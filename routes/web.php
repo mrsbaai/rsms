@@ -186,7 +186,8 @@ Route::get('/us_reach_list.php', function(){
 });
 
 Route::get('/contact.php', function(){
-    return Redirect::to('/contact', 301);
+    return "ddddddd";
+    //return Redirect::to('/contact', 301);
 });
 
 Route::get('/forgot.php', function(){
