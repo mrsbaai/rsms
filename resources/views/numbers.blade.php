@@ -122,8 +122,6 @@
     <div class="container width-fix col-sm-12">
         <div class="jumbotron welcome-texture">
             <h3>Add Numbers</h3>
-
-            <p>Numbers will be valid for <b>1 Month</b> (+10 days). You will be able to renew later as desired. </p>
             {{ Form::open(array('action' => 'userController@addNumbers', 'id' => 'add-form'))}}
             <div class="container-fluid no-padding ">
                 <div class=" col-lg-3 col-md-3 ">
@@ -149,9 +147,14 @@
 
             </div>
             {{ Form::close() }}
-            @if(count($numbers) < 10)
-                <p>You have less then 10 numbers in your account, the price now is $9/m per number. Once you have more then 10 numbers in your account the price will change to $5/m per number.
-                </p>
+            <p><small>
+            Numbers will be valid for <b>1 Month</b> (+10 days). You will be able to renew later as desired.
+                </small></p>
+        @if(count($numbers) < 10)
+                <p><small>
+                        You have less then 10 numbers in your account, the price now is $9/M per number. Once you have more then 10 numbers in your account the price will change to $5/M per number.
+
+                    </small></p>
             @endif
 
 
