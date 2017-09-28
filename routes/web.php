@@ -123,7 +123,7 @@ Route::post('/ipn/{type}','PaymentController@IPN');
 Route::post('/ipn/payza','PaymentController@payzaIPN');
 
 
-Route::get('/messages','messagesController@getPublic');
+//Route::get('/messages','messagesController@getPublic');
 Route::get('/lm','messagesController@lastMessage');
 
 Route::get('/newmessages/{id}/{num}','messagesController@newMessages');
