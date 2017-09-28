@@ -186,8 +186,7 @@ Route::get('/us_reach_list.php', function(){
 });
 
 Route::get('/contact.php', function(){
-    return "ddddddd";
-    //return Redirect::to('/contact', 301);
+    return Redirect::to('/contact', 301);
 });
 
 Route::get('/forgot.php', function(){
@@ -202,8 +201,6 @@ Route::get('/inbox.php', function(){
     return Redirect::to('/login', 301);
 });
 
-
-Route::get('locations.php', 'redirectsController@locations');
 
 Route::get('/messages.php', function(){
     if (Input::get('number')){
