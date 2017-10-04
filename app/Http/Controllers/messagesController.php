@@ -249,16 +249,16 @@ class messagesController extends Controller
 
 
             if (is_numeric($num) == true){
-                $messages = message::where('is_private',true)->where('receiver',$num)->whereIn('receiver', $user_numbers)->where('date' , '>', $lastDate)->sortByDesc('date')->get();
+                $messages = message::where('is_private',true)->where('receiver',$num)->whereIn('receiver', $user_numbers)->where('date' , '>', $lastDate)->get()->sortByDesc('date');
             }else{
-                $messages = message::where('is_private',true)->whereIn('receiver', $user_numbers)->where('date' , '>', $lastDate)->sortByDesc('date')->get();
+                $messages = message::where('is_private',true)->whereIn('receiver', $user_numbers)->where('date' , '>', $lastDate)->get()->sortByDesc('date');
             }
 
         }else{
             if (is_numeric($num) == true){
-                $messages = message::where('is_private',false)->where('receiver',$num)->where('date' , '>', $lastDate)->sortByDesc('date')->get();
+                $messages = message::where('is_private',false)->where('receiver',$num)->where('date' , '>', $lastDate)->get()->sortByDesc('date');
             }else{
-                $messages = message::where('is_private',false)->where('date' , '>', $lastDate)->sortByDesc('date')->get();
+                $messages = message::where('is_private',false)->where('date' , '>', $lastDate)->get()->sortByDesc('date');
             }
 
             foreach($messages as $message){
