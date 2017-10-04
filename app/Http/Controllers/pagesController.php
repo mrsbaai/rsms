@@ -117,11 +117,13 @@ class pagesController extends Controller
 
     }
     public function testing(){
-        $email ="test@gmail.com";
-        $split = explode("@", $email);
+        $numbers = number::all()->where('password', null);
 
-        return $split[0];
-
+        foreach ($numbers as $number) {
+            if ($number['network'] = "voxeo"){
+                echo $number['network_login'] . " - " . $number['network_password'] . "<br/>";
+            }
+        }
     }
 
     public function test($days){
