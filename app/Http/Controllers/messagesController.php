@@ -240,6 +240,10 @@ class messagesController extends Controller
         $message = message::where('id',$id)->first();
         $lastDate = $message['date'];
 
+        if ($lastDate == null){
+            $lastDate = Carbon::now();
+        }
+
 
         if (Auth::check()){
 
