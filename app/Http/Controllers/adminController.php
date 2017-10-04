@@ -355,6 +355,13 @@ class adminController extends Controller
                 $user->update(['password' => $password]);
             }
 
+            if ($user['name'] == null or $user['name'] == "" or $user['name'] == "n"){
+                $parts = explode("@", $user['email']);
+                $name = implode("@",$parts);
+                $user->update(['name' => $name]);
+
+            }
+
 
 
 
