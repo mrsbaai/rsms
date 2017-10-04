@@ -117,11 +117,10 @@ class pagesController extends Controller
 
     }
     public function testing(){
-        $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked');
-        foreach ($numbers as $number) {
-            echo $number['number'] . "<br/>";
-        }
-        return;
+        $email ="test@gmail.com";
+        $split = explode("@", $email);
+
+        return $split[0];
 
     }
 
