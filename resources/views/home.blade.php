@@ -52,7 +52,7 @@
                         <div class="col-lg-8 col-md-10">
                             <div class="input-group text-center">
                                 <input
-                                        type="text"
+                                        type="email"
                                         class="form-control input-lg"
                                         data-toggle="tooltip"
                                         name="email"
@@ -60,6 +60,8 @@
                                         title="Enter your email here"
                                         onfocus="this.select();"
                                         onmouseup="return false;"
+                                        required
+
                                 >
 
                         <span class="input-group-btn">
