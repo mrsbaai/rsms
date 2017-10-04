@@ -56,7 +56,7 @@
 
 
                 $(document).ready(function(){
-                    refreshTable();
+                    //refreshTable();
                 });
 
                 function refreshTable(){
