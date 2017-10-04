@@ -241,7 +241,7 @@ class messagesController extends Controller
         $lastDate = $message['date'];
 
         if ($lastDate == null){
-            $lastDate = Carbon::now();
+            return;
         }
 
 
