@@ -263,10 +263,24 @@ class PaymentController extends Controller
 
             $sign_hash = strtoupper(hash('sha256', implode(':', $arHash)));
 
+            $originalAmount = $this->getDescriptionVariables("originalAmount",$m_desc);
+            $userEmail = $this->getDescriptionVariables("userEmail",$m_desc);
+            $code = $this->getDescriptionVariables("code",$m_desc);
+
+            $payedAmount = $m_amount;
+
+            $transactionType = $m_operation_ps;
+            $transactionStatus = $m_status;
+
+            $buyerEmail = $userEmail;
+            $accountId = $m_shop;
+            $paymentSystem = "Payeer";
+
+            $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
+
+
             if ($m_sign == $sign_hash && $m_status == 'success'){
-                $successful_payment = true;
-
-
+                $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
             }
 
             return $m_orderid . "|" . $m_status;
@@ -354,7 +368,7 @@ class PaymentController extends Controller
         Log::info("topup = $topup // email = $email");
         // topup
         $user = User::where('email', $email)->first();
-        
+
         $topup  = $topup + $user['balance'];
         Log::info("new balance = $topup");
         User::where('email', "=", $email)->update(['balance' => $topup]);
