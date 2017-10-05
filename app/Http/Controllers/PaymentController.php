@@ -282,7 +282,7 @@ class PaymentController extends Controller
         $ipn->useSandbox();
         $verified = $ipn->verifyIPN();
         if ($verified) {
-            Log::info("im a paypal notification");
+            Log::info("im a verified paypal notification");
             $paymentSystem = "PayPal";
             $description = $_POST["custom"];
 
