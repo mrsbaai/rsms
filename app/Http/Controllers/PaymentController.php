@@ -233,7 +233,7 @@ class PaymentController extends Controller
      */
     public function payeerIPN(){
         Log::info("im a payeer notification");
-        if (isset(Input::get('m_operation_id')) && isset(Input::get('m_sign')))
+        if (Input::get('m_operation_id') !== null && Input::get('m_sign') !== null)
         {
                 $m_key = 'nirvana';
                 $m_operation_id = Input::get('m_operation_id');
