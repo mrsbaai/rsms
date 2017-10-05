@@ -347,18 +347,18 @@ class PaymentController extends Controller
     private function doTopup($email,$payedAmount,$originalAmount,$code,$paymentSystem){
 
         // check coupon
-
+        Log::info("check coupon");
         $topup  = $originalAmount;
         $couponApplied = $this->CouponToPrice($originalAmount,$paymentSystem,$code);
         if ($couponApplied <> $payedAmount) {$topup = $payedAmount ;}
-
+        Log::info("topup = $topup");
         // topup
         $user = user::where('email', "=", $email)->firstorfail();
 
         $topup  = $topup + $user['balance'];
-
+        Log::info("new balance = $topup");
         user::where('email', "=", $email)->update(['balance' => $topup]);
-
+        Log::info("updated");
         // send receipt
 
         $data['name'] = $user['name'];
@@ -368,6 +368,7 @@ class PaymentController extends Controller
         $data['type'] = $paymentSystem;
 
         Mail::to($email)->send(new topupReceipt($data));
+        Log::info("email set");
 
     }
 
