@@ -117,11 +117,10 @@ Route::post('renew','userController@renewNumbers');
 
 Route::get('/delete/{number}','userController@deleteNumber');
 
-//Route::get('/ipn/{type}','PaymentController@IPN');
-Route::post('/ipn/{type}','PaymentController@IPN');
 
 Route::post('/ipn/payza','PaymentController@payzaIPN');
-
+Route::post('/ipn/paypal','PaymentController@paypalIPN');
+Route::post('/ipn/payeer','PaymentController@payeerIPN');
 
 //Route::get('/messages','messagesController@getPublic');
 Route::get('/lm','messagesController@lastMessage');

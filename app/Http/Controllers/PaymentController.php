@@ -29,28 +29,6 @@ class PaymentController extends Controller
         Mail::to($email)->send(new numbersReady($data));
     }
 
-    Public function getProductName($quantity, $days, $country){
-        switch ($days) {
-            case 3:
-                $period = "3 Days";
-                break;
-            case 30:
-                $period = "1 Month";
-                break;
-            case 180:
-                $period = "6 Months";
-                break;
-            case 360:
-                $period = "1 Year";
-                break;
-        }
-
-        if ($quantity == 1){$str = "Number";}else{$str = "Numbers";}
-
-        $name = $quantity . " " . strtoupper($country) . " " . "Phone " . $str . " (" . $period . ")";
-        return $name;
-
-    }
 
     public function applyCoupon($amount,$paymentsystem,$code){
         header('Content-type: application/json');
@@ -87,7 +65,6 @@ class PaymentController extends Controller
 
     }
     public function RedirectToPayment(){
-
 
         $email = Auth::user()->email;
         $amountOriginal = Input::get('amount');
@@ -224,71 +201,115 @@ class PaymentController extends Controller
 
     }
 
-    public function IPN($type, Request $request){
 
-        switch ($type){
-            case "paypal":
-                Log::info("im a paypal notification");
-                $ipn = new PaypalIPN();
-                $ipn->useSandbox();
-                $verified = $ipn->verifyIPN();
-                if ($verified) {
-                    $paymentSystem = "PayPal";
-                    $description = $_POST["custom"];
+    public function payzaIPN(){
 
-                    $originalAmount = $this->getDescriptionVariables("originalAmount",$description);
-                    $userEmail = $this->getDescriptionVariables("userEmail",$description);
-                    $code = $this->getDescriptionVariables("code",$description);
+        if (isset($_POST['ap_securitycode'])){
+            if ($_POST['ap_securitycode'] == "MuzNfecPcABJZfqu"){
+                $description = $_POST['ap_description'];
+                $paymentSystem="Payza";
+                $originalAmount = $this->getDescriptionVariables("originalAmount",$description);
+                $userEmail = $this->getDescriptionVariables("userEmail",$description);
+                $code = $this->getDescriptionVariables("code",$description);
+                $payedAmount = $_POST['ap_amount'];
 
-                    $payedAmount = $_POST["mc_gross"];
-                    $transactionType = $_POST["txn_type"];
-                    $transactionStatus = $_POST["payment_status"];
-                    $buyerEmail = $_POST["payer_email"];
+                $transactionType = $_POST['ap_notificationtype'];
+                $transactionStatus = $_POST['ap_transactionstate'];
 
-                    $accountId = $_POST["business"];
+                $buyerEmail = $_POST['ap_custemailaddress'];
+                $accountId = $_POST['ap_merchant'];
 
-
-
-                    // loging the event
-
-                    $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
-
-                    if (($_POST["payment_status"] == 'Completed') || ($_POST["payment_status"] == 'Pending' && $_POST["payment_type"] == 'instant' && $_POST["pending_reason"] == 'paymentreview')){
-                        // successful payment -> top up
-                        $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
-                    }
+                $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
+                if ("Completed" == $transactionStatus){
+                    $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
                 }
-                header("HTTP/1.1 200 OK");
-
-            case "payza":
-
-                if (isset($_POST['ap_securitycode'])){
-                    if ($_POST['ap_securitycode'] == "MuzNfecPcABJZfqu"){
-                        $description = $_POST['ap_description'];
-                        $paymentSystem="Payza";
-                        $originalAmount = $this->getDescriptionVariables("originalAmount",$description);
-                        $userEmail = $this->getDescriptionVariables("userEmail",$description);
-                        $code = $this->getDescriptionVariables("code",$description);
-                        $payedAmount = $_POST['ap_amount'];
-
-                        $transactionType = $_POST['ap_notificationtype'];
-                        $transactionStatus = $_POST['ap_transactionstate'];
-
-                        $buyerEmail = $_POST['ap_custemailaddress'];
-                        $accountId = $_POST['ap_merchant'];
-
-                        $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
-                        if ("Completed" == $transactionStatus){
-                            $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
-                        }
-                    }
-                }
-
+            }
         }
-
 
     }
 
+    /**
+     * @return string
+     */
+    public function payeerIPN(){
+        Log::info("im a payeer notification");
+        if (isset(Input::get('m_operation_id')) && isset(Input::get('m_sign')))
+        {
+                $m_key = 'nirvana';
+                $m_operation_id = Input::get('m_operation_id');
+                $m_operation_ps = Input::get('m_operation_ps');
+                $m_operation_date = Input::get('m_operation_date');
+                $m_operation_pay_date = Input::get('m_operation_pay_date');
+                $m_shop = Input::get('m_shop');
+                $m_orderid = Input::get('m_orderid');
+                $m_amount = Input::get('m_amount');
+                $m_curr = Input::get('m_curr');
+                $m_desc = Input::get('m_desc');
+                $m_status = Input::get('m_status');
+                $m_sign = Input::get('m_sign');
+
+            $arHash = array(
+                $m_operation_id,
+                $m_operation_ps,
+                $m_operation_date,
+                $m_operation_pay_date,
+                $m_shop,
+                $m_orderid,
+                $m_amount,
+                $m_curr,
+                $m_desc,
+                $m_status,
+                $m_key);
+
+            $sign_hash = strtoupper(hash('sha256', implode(':', $arHash)));
+
+            if ($m_sign == $sign_hash && $m_status == 'success'){
+                $successful_payment = true;
+
+
+            }
+
+            return $m_orderid . "|" . $m_status;
+
+        }
+
+    }
+
+
+    public function paypalIPN(){
+        Log::info("im a paypal notification");
+        $ipn = new PaypalIPN();
+        $ipn->useSandbox();
+        $verified = $ipn->verifyIPN();
+        if ($verified) {
+            Log::info("im a paypal notification");
+            $paymentSystem = "PayPal";
+            $description = $_POST["custom"];
+
+            $originalAmount = $this->getDescriptionVariables("originalAmount",$description);
+            $userEmail = $this->getDescriptionVariables("userEmail",$description);
+            $code = $this->getDescriptionVariables("code",$description);
+
+            $payedAmount = $_POST["mc_gross"];
+            $transactionType = $_POST["txn_type"];
+            $transactionStatus = $_POST["payment_status"];
+            $buyerEmail = $_POST["payer_email"];
+
+            $accountId = $_POST["business"];
+
+
+
+            // loging the event
+
+            $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
+
+            if (($_POST["payment_status"] == 'Completed') || ($_POST["payment_status"] == 'Pending' && $_POST["payment_type"] == 'instant' && $_POST["pending_reason"] == 'paymentreview')){
+                // successful payment -> top up
+                $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
+            }
+        }
+        header("HTTP/1.1 200 OK");
+    }
 
 
     public function getPrice($amount=1,$period=1){
