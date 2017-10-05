@@ -351,9 +351,9 @@ class PaymentController extends Controller
         $topup  = $originalAmount;
         $couponApplied = $this->CouponToPrice($originalAmount,$paymentSystem,$code);
         if ($couponApplied <> $payedAmount) {$topup = $payedAmount ;}
-        Log::info("topup = $topup");
+        Log::info("topup = $topup // email = $email");
         // topup
-        $user = user::where('email', "=", $email)->firstorfail();
+        $user = user::where('email', $email)->firstorfail();
 
         $topup  = $topup + $user['balance'];
         Log::info("new balance = $topup");
