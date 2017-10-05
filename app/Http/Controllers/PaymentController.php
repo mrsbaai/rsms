@@ -306,7 +306,7 @@ class PaymentController extends Controller
             if (($_POST["payment_status"] == 'Completed') || ($_POST["payment_status"] == 'Pending' && $_POST["payment_type"] == 'instant' && $_POST["pending_reason"] == 'paymentreview')){
                 // successful payment -> top up
 
-                Log::info("i will top top -> paypal");
+                Log::info("i will top top -> paypal $userEmail,$payedAmount,$originalAmount,$code,$paymentSystem");
                 $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
             }
         }
