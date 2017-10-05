@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\coupon;
 use App\paypalids;
-use App\user;
+use App\User;
 use App\number;
 use App\paymentlog;
 use Illuminate\Support\Facades\Auth;
