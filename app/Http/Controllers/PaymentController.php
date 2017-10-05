@@ -353,7 +353,7 @@ class PaymentController extends Controller
         if ($couponApplied <> $payedAmount) {$topup = $payedAmount ;}
         Log::info("topup = $topup // email = $email");
         // topup
-        $user = user::where('email', $email)->firstorfail();
+        $user = User::where('email', $email)->firstorfail();
 
         $topup  = $topup + $user['balance'];
         Log::info("new balance = $topup");
