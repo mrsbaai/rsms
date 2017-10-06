@@ -385,9 +385,11 @@ class PaymentController extends Controller
     }
 
     public function test(){
-        $m_desc = "WxhbmNlIFRvcCBVcF0gW1VzZXI6IGMudXN0bS5lcnNlcnZAZ21haWwuY29tXQ==";
+        $m_desc = "WzIwJCBCYWxhbmNlIFRvcCBVcF0gW1VzZXI6IGMudXN0bS5lcnNlcnZAZ21haWwuY29tXQ==";
 
         $m_desc = base64_decode($m_desc);
+
+
         $originalAmount = $this->getDescriptionVariables("originalAmount",$m_desc);
         $userEmail = $this->getDescriptionVariables("userEmail",$m_desc);
         $code = $this->getDescriptionVariables("code",$m_desc);
