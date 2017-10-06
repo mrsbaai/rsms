@@ -56,6 +56,7 @@ class SubscribersController extends Controller
 
     }
     Public function subscribe(Request $request){
+        if ($request->email == null){return redirect('/home');}
         $suppression = suppression::where('email', $request->email)->first();
 
         if(!is_null($suppression)) {
