@@ -41,14 +41,8 @@
                                         <textarea id="response" type="text" name="response" class="form-control"></textarea>
                                         <br/>
                                         <input type="submit" class="btn btn-primary btn-send " value="Send">
-
+                                        <span class="float:right;"><a href="/delete/{{$array['0']}}"</span>
                                         {{ Form::close() }}
-
-                                        {{ Form::open(array('action' => 'adminController@deleteEmail', 'id' => 'delete-form'))}}
-                                        <input type="hidden" name="id" value="{{$array['0']}}">
-                                        <input type="Delete" class="btn btn-primary btn-send " value="Send">
-                                        {{ Form::close() }}
-
 
                                     </td>
 
