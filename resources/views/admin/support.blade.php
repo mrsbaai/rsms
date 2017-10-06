@@ -44,6 +44,11 @@
 
                                         {{ Form::close() }}
 
+                                        {{ Form::open(array('action' => 'adminController@deleteEmail', 'id' => 'delete-form'))}}
+                                        <input type="hidden" name="id" value="{{$array['0']}}">
+                                        <input type="Delete" class="btn btn-primary btn-send " value="Send">
+                                        {{ Form::close() }}
+
 
                                     </td>
 

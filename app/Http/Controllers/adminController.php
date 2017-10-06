@@ -371,6 +371,13 @@ class adminController extends Controller
 
     }
 
+    public function deleteEmail(){
+        $id = Input::get('id');
+        $record = contact::all()->where('id',$id)->first();
+        $record->delete();
+        return $this->support();
+
+    }
     public function sendResponse(){
 
 
