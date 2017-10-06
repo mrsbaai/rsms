@@ -41,7 +41,7 @@
                                         <textarea id="response" type="text" name="response" class="form-control"></textarea>
                                         <br/>
                                         <input type="submit" class="btn btn-primary btn-send " value="Send">
-                                        <a class="float:right;"><a href="/delete/{{$array['0']}}">Delete</a></span>
+                                        <a class="float:right;"><a href="/admin/support/delete/{{$array['0']}}">Delete</a></span>
                                         {{ Form::close() }}
 
                                     </td>
