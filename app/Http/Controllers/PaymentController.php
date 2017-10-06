@@ -293,7 +293,6 @@ class PaymentController extends Controller
     public function paypalIPN(){
         Log::info("im a paypal notification");
         $ipn = new PaypalIPN();
-        $ipn->useSandbox();
         $verified = $ipn->verifyIPN();
         if ($verified) {
             Log::info("im a verified paypal notification");
@@ -406,8 +405,6 @@ class PaymentController extends Controller
         $paymentSystemId = $p['id'];
 
         {
-
-
             $log = array(
                 "payedAmount"=>$payedAmount,
                 "originalAmount"=>$originalAmount,
