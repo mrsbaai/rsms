@@ -247,7 +247,7 @@ class PaymentController extends Controller
                 $m_desc = Input::get('m_desc');
                 $m_status = Input::get('m_status');
                 $m_sign = Input::get('m_sign');
-
+            Log::info("$m_operation_id | $m_operation_ps | $m_operation_date | $m_operation_pay_date | $m_shop | $m_orderid | $m_amount | $m_curr | $m_desc | $m_status | $m_sign");
             $arHash = array(
                 $m_operation_id,
                 $m_operation_ps,
@@ -309,8 +309,6 @@ class PaymentController extends Controller
             $buyerEmail = $_POST["payer_email"];
 
             $accountId = $_POST["business"];
-
-
 
             // loging the event
 
@@ -386,13 +384,13 @@ class PaymentController extends Controller
     }
 
     public function test(){
+        $m_desc = "[20$ Balance Top Up] [User: c.ustm.erserv@gmail.com]";
+        $originalAmount = $this->getDescriptionVariables("originalAmount",$m_desc);
+        $userEmail = $this->getDescriptionVariables("userEmail",$m_desc);
+        $code = $this->getDescriptionVariables("code",$m_desc);
 
-        $email = "abdelilah.sbaai@gmail.com";
-        $data['name'] = "Abdelilah";
-        $data['numbers'] = array(array("111111111111111", "US", "International", Carbon::now()), array("222222222222222", "US", "International", Carbon::now()));
-        Mail::to($email)->send(new numbersReady($data));
 
-        return "ok";
+        return "$originalAmount | $userEmail | $code";
 
     }
 
