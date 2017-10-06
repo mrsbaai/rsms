@@ -59,7 +59,7 @@ Route::get('/admin/sources', 'adminController@showSources');
 Route::post('/admin/sources', 'adminController@showSources');
 
 Route::post('/admin/support', 'adminController@sendResponse');
-Route::post('/admin/support/delete/{id}', 'adminController@deleteEmail');
+Route::get('/admin/support/delete/{id}', 'adminController@deleteEmail');
 
 Route::get('/admin/give', 'adminController@give');
 Route::post('/admin/give', 'adminController@giveNumbers');
