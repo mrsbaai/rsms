@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddPaidToUsers' => $baseDir . '/database/migrations/2017_10_07_064407_add_paid_to_users.php',
     'CouponsSeeder' => $baseDir . '/database/seeds/CouponsSeeder.php',
     'CreateContactsTable' => $baseDir . '/database/migrations/2017_07_07_141643_CreateContactsTable.php',
     'CreateCouponsTable' => $baseDir . '/database/migrations/2017_04_29_162712_CreateCouponsTable.php',
@@ -92,7 +93,6 @@ return array(
     'Hamcrest\\Type\\IsString' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
     'Hamcrest\\Util' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
     'Hamcrest\\Xml\\HasXPath' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
-    'MessagesSeeder' => $baseDir . '/database/seeds/MessagesSeeder.php',
     'NumbersSeeder' => $baseDir . '/database/seeds/NumbersSeeder.php',
     'PHPUnit\\Framework\\Assert' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
     'PHPUnit\\Framework\\BaseTestListener' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',
