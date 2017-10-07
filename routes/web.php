@@ -95,6 +95,8 @@ Route::get('/', function(){
 
 Route::get('/home', 'pagesController@home');
 
+Route::get('/subscribed', 'pagesController@home');
+
 Route::get('/contact','pagesController@contact');
 Route::get('/support', 'userController@support');
 
@@ -134,6 +136,7 @@ Route::get('/price/{amount}/{period}','PaymentController@showPrice');
 Route::post('subscribe','SubscribersController@subscribe');
 
 Route::get('/inbox', 'userController@inbox');
+Route::get('/inbox/welcome', 'userController@inbox');
 Route::get('/numbers', 'userController@numbers');
 
 Route::get('/account', 'userController@account');
@@ -162,7 +165,7 @@ Route::get('/log/bandwidth','messagesController@bandwidth');
 Route::get('/log/system', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('/success', function () {
-    return view('message')->with('content', 'Thanks for topping up your account. Your receipt has been emailed to you.')->with('titleClass', 'text-success')->with('title', 'Thank you!');
+    return view('message')->with('content', 'Thanks for topping up your account. Your receipt will be emailed to you.')->with('titleClass', 'text-success')->with('title', 'Thank you!');
 });
 
 Route::get('/fail', function () {
