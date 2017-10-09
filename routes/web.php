@@ -150,6 +150,8 @@ Route::post('/delete', 'userController@doDeleteNumber');
 Route::get('/{number}', 'pagesController@showMessages');
 Route::get('/inbox/{number}', 'userController@inbox');
 
+Route::get('/inbox/b/{code}', 'userController@inbox');
+
 Route::get('/api/{email}/{password}/{number}', 'apiController@show');
 Route::get('/api/{email}/{password}', 'apiController@show');
 

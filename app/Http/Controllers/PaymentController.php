@@ -232,7 +232,6 @@ class PaymentController extends Controller
      * @return string
      */
     public function payeerIPN(){
-        Log::info("im a payeer notification");
         if (Input::get('m_operation_id') !== null && Input::get('m_sign') !== null)
         {
                 $m_key = 'nirvana';
@@ -247,8 +246,7 @@ class PaymentController extends Controller
                 $m_desc = Input::get('m_desc');
                 $m_status = Input::get('m_status');
                 $m_sign = Input::get('m_sign');
-            Log::info("$m_operation_id | $m_operation_ps | $m_operation_date | $m_operation_pay_date | $m_shop | $m_orderid | $m_amount | $m_curr | $m_desc | $m_status | $m_sign");
-            $arHash = array(
+           $arHash = array(
                 $m_operation_id,
                 $m_operation_ps,
                 $m_operation_date,
@@ -292,11 +290,9 @@ class PaymentController extends Controller
 
 
     public function paypalIPN(){
-        Log::info("im a paypal notification");
         $ipn = new PaypalIPN();
         $verified = $ipn->verifyIPN();
         if ($verified) {
-            Log::info("im a verified paypal notification");
             $paymentSystem = "PayPal";
             $description = $_POST["custom"];
 
@@ -318,7 +314,6 @@ class PaymentController extends Controller
             if (($_POST["payment_status"] == 'Completed') || ($_POST["payment_status"] == 'Pending' && $_POST["payment_type"] == 'instant' && $_POST["pending_reason"] == 'paymentreview')){
                 // successful payment -> top up
 
-                Log::info("i will top top -> paypal $userEmail,$payedAmount,$originalAmount,$code,$paymentSystem");
                 $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
             }
         }
@@ -359,18 +354,16 @@ class PaymentController extends Controller
     private function doTopup($email,$payedAmount,$originalAmount,$code,$paymentSystem){
 
         // check coupon
-        Log::info("check coupon");
         $topup  = $originalAmount;
         $couponApplied = $this->CouponToPrice($originalAmount,$paymentSystem,$code);
         if ($couponApplied <> $payedAmount) {$topup = $payedAmount ;}
         Log::info("topup = $topup // email = $email");
         // topup
         $user = User::where('email', $email)->first();
+        User::where('email', "=", $email)->update(['paid' => $topup]);
 
         $topup  = $topup + $user['balance'];
-        Log::info("new balance = $topup");
         User::where('email', "=", $email)->update(['balance' => $topup]);
-        Log::info("updated");
         // send receipt
 
         $data['name'] = $user['name'];
@@ -380,7 +373,6 @@ class PaymentController extends Controller
         $data['type'] = $paymentSystem;
 
         Mail::to($email)->send(new topupReceipt($data));
-        Log::info("email set");
 
     }
 
