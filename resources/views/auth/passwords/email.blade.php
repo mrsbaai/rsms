@@ -6,15 +6,20 @@
 @section('content')
 <div class="container width-fix small-box">
     <div class="jumbotron welcome-texture">
-        <div class="container">
-            <div class="row">
+
+        @if (session('status'))
+            <div class="container">
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            </div>
+
+        @else
+            <div class="container">
+                <div class="row">
 
 
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+
 
                     <form role="form" method="POST" action="{{ url('/password/email') }}" id="reset-form">
                         {{ csrf_field() }}
@@ -51,8 +56,12 @@
 
                     </form>
 
+                </div>
             </div>
-        </div>
+
+        @endif
+
+
     </div>
 </div>
 @endsection
