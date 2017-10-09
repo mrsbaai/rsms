@@ -8,7 +8,8 @@
     <div class="jumbotron welcome-texture">
 
         @if (session('status'))
-            <div class="container alert-success">
+            <div class="alert alert-success">
+
                     {{ session('status') }}
             </div>
 
