@@ -7,11 +7,14 @@
 <div class="container width-fix small-box">
     <div class="jumbotron welcome-texture">
 
-        @if (session('status'))
-            <div class="alert">
 
-                    {{ session('status') }}
+        @if (session('status'))
+            <div class="container">
+                <div class="row message">
+                    <h2>{{ session('status') }}</h2>
+                </div>
             </div>
+
 
         @else
             <div class="container">
