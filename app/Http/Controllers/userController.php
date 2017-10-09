@@ -60,7 +60,12 @@ class userController extends Controller
 
     }
 
+
+
     public function inbox($number = null){
+        if (!is_numeric($number)){
+            $number = null;
+        }
         if (Auth::check()){
             $adminController = new adminController();
             if ($adminController->isAdmin() == true) {

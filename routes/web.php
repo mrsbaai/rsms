@@ -148,6 +148,7 @@ Route::post('/add', 'userController@addNumbers');
 Route::post('/delete', 'userController@doDeleteNumber');
 
 Route::get('/{number}', 'pagesController@showMessages');
+
 Route::get('/inbox/{number}', 'userController@inbox');
 
 Route::get('/inbox/b/{code}', 'userController@inbox');
