@@ -199,10 +199,7 @@ class userController extends Controller
             Mail::to($email)->queue(new numbersReady($data));
 
 
-            $account_form_color= "text-success";
-            $title= "Thank you!";
-            if ($amount == 1) { $message= "You successfully added $amount number to your account!";}
-            else{ $message= "You successfully added $amount numbers to your account!";}
+            return redirect('/add/success');
 
         }else{
             $account_form_color= "text-danger";
@@ -239,11 +236,12 @@ class userController extends Controller
                 }
 
 
-                if (count($numbers) > 1 ){$pluralNumbers = "s";}else{$pluralNumbers = "";}
-                if ($period > 1 ){$pluralMonths = "s";}else{$pluralMonths = "";}
-                $account_form_color= "text-success";
-                $title= "Renewal Successful!";
-                $message = count($numbers) . " number$pluralNumbers has been renewed for an extra $period month$pluralMonths.";
+                //if (count($numbers) > 1 ){$pluralNumbers = "s";}else{$pluralNumbers = "";}
+                //if ($period > 1 ){$pluralMonths = "s";}else{$pluralMonths = "";}
+                //$account_form_color= "text-success";
+                //$title= "Renewal Successful!";
+                //$message = count($numbers) . " number$pluralNumbers has been renewed for an extra $period month$pluralMonths.";
+                return redirect('/renew/success');
 
             }else{
                 $account_form_color= "text-danger";

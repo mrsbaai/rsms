@@ -171,6 +171,16 @@ Route::get('/success', function () {
     return view('message')->with('content', 'Thanks for topping up your account. Your receipt will be emailed to you.')->with('titleClass', 'text-success')->with('title', 'Thank you!');
 });
 
+Route::get('/renew/success', function () {
+    return view('message')->with('content', 'Your renewal was successful.')->with('titleClass', 'text-success')->with('title', 'Thank you!');
+});
+
+Route::get('/add/success', function () {
+    return view('message')->with('content', 'Your number(s) has been successfully added to your account.')->with('titleClass', 'text-success')->with('title', 'Thank you!');
+});
+
+
+
 Route::get('/fail', function () {
     return view('message')->with('content', 'Your payment didn\'t complete successfully. Please try again later.')->with('titleClass', 'text-danger')->with('title', 'Payment Failed!');
 });
