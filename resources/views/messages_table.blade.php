@@ -47,16 +47,16 @@
         <script>
             moment.lang('precise-en', {
                 relativeTime : {
-                    future : "in %s",
+                    future : "In %s",
                     past : "%s ago",
                     s : "%d seconds", //see https://github.com/timrwood/moment/pull/232#issuecomment-4699806
-                    m : "a minute",
+                    m : "A minute",
                     mm : "%d minutes",
-                    h : "an hour",
+                    h : "An hour",
                     hh : "%d hours",
-                    d : "a day",
+                    d : "A day",
                     dd : "%d days",
-                    M : "a month",
+                    M : "A month",
                     MM : "%d months",
                     y : "a year",
                     yy : "%d years"
