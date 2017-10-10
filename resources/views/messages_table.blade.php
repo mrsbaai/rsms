@@ -21,7 +21,7 @@
                         <tbody>
                         @foreach ($messages as $message)
                             <tr>
-                                <td data-title="[Date]" class="td-date" title="{{$message->date}}">[....]</td>
+                                <td data-title="[Date]" class="td-date" title="{{$message->date}}">[{{$message->date}}]</td>
                                 <td data-title="[From]" class="td-from">[{{$message->sender}}]</td>
                                 @if(Auth::check())
                                     <td data-title="[To]" class="td-to">[<a title="Click to see SMS received on {{$message->receiver}}" href="/inbox/{{$message->receiver}}" style="color:white;">{{$message->receiver}}</a>]</td>
