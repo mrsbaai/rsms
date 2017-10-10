@@ -117,7 +117,7 @@
                                 $('#messages-table tr:last').remove();
                             }
 
-                            dateCell.innerHTML = "[" + moment(moment.utc(val.date).fromNow()) + "]";
+                            dateCell.innerHTML =  "[" + moment(moment.utc(val.date)).fromNow() + "]";
                             senderCell.innerHTML = "[" + val.sender + "]";
                             receiverCell.innerHTML = "[" + val.receiver + "]";
                             messageCell.innerHTML = "[" + val.message + "]";
