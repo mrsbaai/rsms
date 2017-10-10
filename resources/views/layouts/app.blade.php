@@ -91,7 +91,7 @@
 
 
 <div class="spacer"></div>
-<footer class="navbar navbar-inverse navbar-fixed-bottom nav-texture">
+<footer class="navbar-inverse navbar-bottom nav-texture">
 
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
@@ -102,8 +102,6 @@
     </div>
 
 </footer>
-
-
 
 
 <noscript>

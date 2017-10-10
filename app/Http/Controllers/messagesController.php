@@ -271,10 +271,6 @@ class messagesController extends Controller
 
         }
 
-        foreach($messages as $message){
-            $message['date'] = $this->nicetime($message['date']);
-        }
-
         return response()->json($messages);
 
 

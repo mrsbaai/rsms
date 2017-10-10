@@ -56,7 +56,7 @@
                                         class="form-control input-lg"
                                         data-toggle="tooltip"
                                         name="email"
-                                        placeholder="nickname@example.com"
+                                        placeholder="[E-MAIL]"
                                         title="Enter your email here"
                                         onfocus="this.select();"
                                         onmouseup="return false;"

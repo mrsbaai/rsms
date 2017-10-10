@@ -10,9 +10,13 @@
 body {
     background: #677 url(../img/texture.png) repeat;
     color: white;
-    padding-bottom: 60px;
+    padding-bottom: 0px;
     padding-top:  80px;
 
+}
+
+footer {
+   padding: 0px;
 }
 
 .thumb-texture

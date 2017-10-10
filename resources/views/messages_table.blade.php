@@ -21,7 +21,7 @@
                         <tbody>
                         @foreach ($messages as $message)
                             <tr>
-                                <td data-title="[Date]" class="td-date">[{{$message->date}} UTC]</td>
+                                <td data-title="[Date]" class="td-date" title="{{$message->date}}">[....]</td>
                                 <td data-title="[From]" class="td-from">[{{$message->sender}}]</td>
                                 @if(Auth::check())
                                     <td data-title="[To]" class="td-to">[<a title="Click to see SMS received on {{$message->receiver}}" href="/inbox/{{$message->receiver}}" style="color:white;">{{$message->receiver}}</a>]</td>
@@ -43,7 +43,28 @@
             </div>
             <center>{{ $messages->links() }}</center>
         </div>
+        <script src="js/moment.js"></script>
+        <script>
+            moment.lang('precise-en', {
+                relativeTime : {
+                    future : "in %s",
+                    past : "%s ago",
+                    s : "%d seconds", //see https://github.com/timrwood/moment/pull/232#issuecomment-4699806
+                    m : "a minute",
+                    mm : "%d minutes",
+                    h : "an hour",
+                    hh : "%d hours",
+                    d : "a day",
+                    dd : "%d days",
+                    M : "a month",
+                    MM : "%d months",
+                    y : "a year",
+                    yy : "%d years"
+                }
+            });
 
+            moment.lang('precise-en');
+        </script>
         <script type="text/javascript">
             if ({{$messages->currentPage()}} == 1){
                 var table = document.getElementById("messages-table");
@@ -60,6 +81,11 @@
                 });
 
                 function refreshTable(){
+
+                    var table = document.getElementById('messages-table');
+                    for (var r = 1, n = table.rows.length; r < n; r++) {
+                        table.rows[r].cells[0].innerHTML = "[" + moment(moment.utc(table.rows[r].cells[0].title)).fromNow() + "]";
+                    }
 
                     var url = "../newmessages/" + lastId + @if(isset($current)) "/{{$current}}" @else "/all" @endif;
 
@@ -79,6 +105,7 @@
                             messageCell.className = "td-message";
 
                             dateCell.setAttribute('data-title','[Date]');
+                            dateCell.setAttribute('title', val.date);
                             senderCell.setAttribute('data-title','[Sender]');
                             receiverCell.setAttribute('data-title','[To]');
                             messageCell.setAttribute('data-title','[Message]');
@@ -90,7 +117,7 @@
                                 $('#messages-table tr:last').remove();
                             }
 
-                            dateCell.innerHTML = "[" + val.date + "]";
+                            dateCell.innerHTML = "[]";
                             senderCell.innerHTML = "[" + val.sender + "]";
                             receiverCell.innerHTML = "[" + val.receiver + "]";
                             messageCell.innerHTML = "[" + val.message + "]";
@@ -104,12 +131,17 @@
                         });
 
 
+
                     });
 
                     setTimeout(refreshTable,{{Config::get('settings.refreshWait')}});
 
                 }
             }
+
+
+
+
 
         </script>
 
