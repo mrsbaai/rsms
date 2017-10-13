@@ -84,7 +84,7 @@ class SubscribersController extends Controller
            }else{
                $subscriber = new subscriber();
                $subscriber->email = $request->email;
-               $subscriber->source = $source;
+               $subscriber->source = mb_strimwidth($source, 0, 190);
                $subscriber->save();
            }
 

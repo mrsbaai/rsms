@@ -103,18 +103,6 @@
 @yield('content')
 
 
-<div class="spacer"></div>
-<footer class="navbar navbar-inverse navbar-fixed-bottom nav-texture">
-
-    <div class="container">
-        <ul class="nav navbar-nav navbar-right">
-            <li><a>{{Config::get('settings.name')}} &copy;</a></li>
-        </ul>
-
-
-    </div>
-
-</footer>
 
 <noscript>
     To enjoy full functionality of Receive-SMS it is necessary to enable JavaScript.

@@ -52,6 +52,10 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $user = User::where('email', '=', Input::get('email'))->first();
+        if ($user != null) {
+            return 'Email Already Registered. <a href="/password/reset">Reset Password</a>.';
+        }
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
@@ -84,7 +88,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
             'flat_password' => $data['password'],
             'confirmation_code' => $confirmation_code,
-            'source' => $source,
+            'source' => mb_strimwidth($source, 0, 190),
             "created_at"=>Carbon::now()
         ]);
 

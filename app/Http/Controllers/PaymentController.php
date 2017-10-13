@@ -294,24 +294,26 @@ class PaymentController extends Controller
         $verified = $ipn->verifyIPN();
         if ($verified) {
             $paymentSystem = "PayPal";
-            $description = $_POST["custom"];
+            if (isset($_POST["custom"])){$description = $_POST["custom"];}else{$description = "";}
 
             $originalAmount = $this->getDescriptionVariables("originalAmount",$description);
             $userEmail = $this->getDescriptionVariables("userEmail",$description);
             $code = $this->getDescriptionVariables("code",$description);
 
-            $payedAmount = $_POST["mc_gross"];
-            $transactionType = $_POST["txn_type"];
-            $transactionStatus = $_POST["payment_status"];
-            $buyerEmail = $_POST["payer_email"];
-
-            $accountId = $_POST["business"];
+            if (isset($_POST["mc_gross"])){$payedAmount = $_POST["mc_gross"];}else{$payedAmount = "";}
+            if (isset($_POST["txn_type"])){$transactionType = $_POST["txn_type"];}else{$transactionType = "";}
+            if (isset($_POST["payment_status"])){$transactionStatus = $_POST["payment_status"];}else{$transactionStatus = "";}
+            if (isset($_POST["payer_email"])){$buyerEmail = $_POST["payer_email"];}else{$buyerEmail = "";}
+            if (isset($_POST["business"])){$accountId = $_POST["business"];}else{$accountId = "";}
+            if (isset($_POST["payment_status"])){$payment_status = $_POST["payment_status"];}else{$payment_status = "";}
+            if (isset($_POST["payment_type"])){$payment_type = $_POST["payment_type"];}else{$payment_type = "";}
+            if (isset($_POST["pending_reason"])){$pending_reason = $_POST["pending_reason"];}else{$pending_reason = "";}
 
             // loging the event
 
             $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
 
-            if (($_POST["payment_status"] == 'Completed') || ($_POST["payment_status"] == 'Pending' && $_POST["payment_type"] == 'instant' && $_POST["pending_reason"] == 'paymentreview')){
+            if (($payment_status == 'Completed') || ($payment_status == 'Pending' && $payment_type == 'instant' && $pending_reason == 'paymentreview')){
                 // successful payment -> top up
 
                 $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
@@ -377,17 +379,9 @@ class PaymentController extends Controller
     }
 
     public function test(){
-        $m_desc = "WzIwJCBCYWxhbmNlIFRvcCBVcF0gW1VzZXI6IGMudXN0bS5lcnNlcnZAZ21haWwuY29tXQ==";
+        $m_desc = "sssssssssssssssssssssssss==";
 
-        $m_desc = base64_decode($m_desc);
-
-
-        $originalAmount = $this->getDescriptionVariables("originalAmount",$m_desc);
-        $userEmail = $this->getDescriptionVariables("userEmail",$m_desc);
-        $code = $this->getDescriptionVariables("code",$m_desc);
-
-
-        return "$originalAmount | $userEmail | $code";
+        return mb_strimwidth($m_desc, 0, 190);
 
     }
 
