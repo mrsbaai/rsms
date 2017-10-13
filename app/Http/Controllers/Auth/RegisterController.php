@@ -52,7 +52,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $user = User::where('email', '=', Input::get('email'))->first();
+        $user = User::where('email', '=', $data['email'])->first();
         if ($user != null) {
             return 'Email Already Registered. <a href="/password/reset">Reset Password</a>.';
         }
