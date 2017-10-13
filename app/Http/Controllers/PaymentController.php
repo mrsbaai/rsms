@@ -387,6 +387,7 @@ class PaymentController extends Controller
 
     Private function log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem){
 
+        if ($payedAmount == ''){$payedAmount = 0;}
         $user = User::where('email',$userEmail)->first();
         $source = $user['source'];
 
