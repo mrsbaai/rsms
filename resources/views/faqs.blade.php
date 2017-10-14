@@ -16,7 +16,7 @@
                     <p><b>What is this?</b></p>
                     <p>You will find on this website phone numbers. You can use these numbers to anonymously receive SMS messages.</p>
                     <p><b>Can I use this with online registrations?</b></p>
-                    <p>Yes you can. (Gmail, Yahoo, PayPal...).</p>
+                    <p>Yes you can.</p>
                     <p><b>What number should I use?</b></p>
                     <p>You can use one of the demo numbers from the home page, or register a free account and buy private numbers. </p>
                     <p><b>Where can I read inbound messages?</b></p>

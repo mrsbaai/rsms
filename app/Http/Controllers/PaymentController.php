@@ -161,8 +161,8 @@ class PaymentController extends Controller
                     "ap_cancelurl"=>$ap_cancelurl
                 );
 
-                //return redirect()->away($url . "?" . http_build_query($properties));
-                return $url . "?" . http_build_query($properties);
+                return redirect()->away($url . "?" . http_build_query($properties));
+                //return $url . "?" . http_build_query($properties);
 
         }
 
