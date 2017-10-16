@@ -6,7 +6,7 @@
 @section('head')
 
     <meta name="keywords" content="receive, sms, online">
-    <meta name="description" content="Receive SMS Online. Use our online numbers with your online registrations. Avoid any unwanted messages on your personal cellphone.">
+    <meta name="description" content="Received SMS Messages containing '{{$tag}}'">
     <title>SMS Messages Containing [{{$tag}}]</title>
 
 @stop

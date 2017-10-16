@@ -1,4 +1,4 @@
-@extends('layouts.app')
+
 @section('pricing_table')
     <link rel="stylesheet" type="text/css" href="../css/pricing.css">
     <link rel="stylesheet" media="screen" href="../fonts/font-awesome/font-awesome.min.css" />

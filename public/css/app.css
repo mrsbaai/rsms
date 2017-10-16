@@ -371,9 +371,9 @@ a.thumb span{
     background-color: white;
 }
 
-.jumbotron h1{
+.jumbotron h1, h2 {
     color : #90c6c5;
-    font-size: 36px;
+    font-size: 25px;
 }
 h2{
     color : #90c6c5;
@@ -534,4 +534,42 @@ h4{
     color: white;
     background-color: transparent;
     border-color: transparent;
+}
+
+
+.share-table{
+    width: 190px;
+    height: 20px;
+    margin: auto;
+    border: none;
+    text-align: center;
+    margin-top: 7px;
+}
+
+.footer-c{
+    margin-bottom: 25px;
+}
+
+
+.share-table > tbody > tr > td,
+.share-table > tbody > tr > th,
+.share-table > tfoot > tr > td,
+.share-table > tfoot > tr > th,
+.share-table > thead > tr > td,
+.share-table > thead > tr > th {
+    height: 40px;
+    border: none;
+
+}
+
+.small-logo {
+    font: 12px Helvetica, Arial, sans-serif;
+    color: white !important;
+    text-shadow: 1px 0px 0px #1A1D1F ;
+}
+.jumbotron p{
+    font-size: 19px;
+}
+.messages-table {
+    font-size: 12px;
 }

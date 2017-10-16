@@ -18,13 +18,6 @@
     <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
     <link rel="icon" type="image/png" href="{{ URL::asset('img/favicon.png') }}">
 
-    <!-- Open Graph data -->
-    <meta property="og:title" content="Receive SMS Online" />
-    <meta property="og:type" content="WebSite" />
-    <meta property="og:image" content="<? echo Config::get('settings.thumbnail');?>" />
-    <meta property="og:description" content="Receive SMS Online. Use our online numbers with your online registrations. Avoid any unwanted messages on your personal cellphone." />
-    <meta property="og:site_name" content="Receive-SMS" />
-
     @yield('head')
 </head>
 <body>
@@ -40,6 +33,10 @@
             </button>
             <a class="navbar-brand logo" href="/"> <span> «</span>Receive-SMS<span>» </span></a>
         </div>
+        <div class="navbar-header">
+            @yield('share_buttons')
+        </div>
+
 
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right text-uppercase">
@@ -88,6 +85,18 @@
 
 
 @yield('content')
+
+<div class="spacer"></div>
+
+
+    <div class="container width-fix col-sm-12 text-center footer-c no-padding no-margin">
+
+        <div class="container col-sm-12 text-center small-logo">
+            {{Config::get('settings.name')}} &copy; {{ Carbon\Carbon::now()->format('Y') }}
+        </div>
+
+    </div>
+
 
 
 
