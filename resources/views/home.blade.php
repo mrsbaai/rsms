@@ -47,7 +47,7 @@
     <!-- Open Graph data -->
     <meta property="og:title" content="Receive SMS Online" />
     <meta property="og:type" content="WebSite" />
-    <meta property="og:image" content="<? echo Config::get('settings.thumbnail');?>" />
+    <meta property="og:image" content="{{config::get('settings.thumbnail')}}" />
     <meta property="og:description" content="Receive SMS Online. Use our online numbers with your online registrations. Avoid any unwanted messages on your personal cellphone." />
     <meta property="og:site_name" content="Receive-SMS" />
 
