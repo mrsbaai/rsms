@@ -86,7 +86,6 @@ Route::get('/admin/chart/coupon', 'adminController@couponChart');
 Route::get('/', function(){
     if (Input::get('tag')){
         $tag = urlencode(Input::get('tag'));
-        return $tag;
         if (strpos($tag, "%") !== false) {
             $ret = new \App\Http\Controllers\pagesController();
             return $ret->home();
