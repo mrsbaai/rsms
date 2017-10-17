@@ -90,8 +90,10 @@ Route::get('/', function(){
         if (strpos($tag, "%") !== false) {
             $ret = new \App\Http\Controllers\pagesController();
             return $ret->home();
+        }else{
+            return Redirect::to('/sms/' . $tag, 301);
         }
-        return Redirect::to('/sms/' . $tag, 301);
+
     }else{
         $ret = new \App\Http\Controllers\pagesController();
         return $ret->home();
@@ -234,8 +236,10 @@ Route::get('/messages.php', function(){
             if (strpos($tag, "%") !== false) {
                 $ret = new \App\Http\Controllers\pagesController();
                 return $ret->home();
+            }else{
+                return Redirect::to('/sms/' . $tag, 301);
             }
-            return Redirect::to('/sms/' . $tag, 301);
+
         }else{
             return Redirect::to('/', 301);
         }

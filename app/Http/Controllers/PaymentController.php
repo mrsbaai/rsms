@@ -379,9 +379,10 @@ class PaymentController extends Controller
     }
 
     public function test(){
-        $m_desc = "sssssssssssssssssssssssss==";
-
-        return mb_strimwidth($m_desc, 0, 190);
+        $url = "https://receive-sms.com/sms/%D4%80%CD%B6%CC%83%00k";
+        if (filter_var($url, FILTER_VALIDATE_URL) === FALSE) {
+            die('Not a valid URL');
+        }
 
     }
 
