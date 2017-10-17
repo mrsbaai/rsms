@@ -86,6 +86,11 @@ Route::get('/admin/chart/coupon', 'adminController@couponChart');
 Route::get('/', function(){
     if (Input::get('tag')){
         $tag = urlencode(Input::get('tag'));
+
+        if (instr($tag, "%")) {
+            $ret = new \App\Http\Controllers\pagesController();
+            return $ret->home();
+        }
         return Redirect::to('/sms/' . $tag, 301);
     }else{
         $ret = new \App\Http\Controllers\pagesController();
@@ -226,6 +231,10 @@ Route::get('/messages.php', function(){
     }else{
         if (Input::get('tag')){
             $tag = Input::get('tag');
+            if (instr($tag, "%")) {
+                $ret = new \App\Http\Controllers\pagesController();
+                return $ret->home();
+            }
             return Redirect::to('/sms/' . $tag, 301);
         }else{
             return Redirect::to('/', 301);
