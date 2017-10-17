@@ -87,7 +87,7 @@ Route::get('/', function(){
     if (Input::get('tag')){
         $tag = urlencode(Input::get('tag'));
 
-        if (instr($tag, "%")) {
+        if (strpos($tag, "%") !== false) {
             $ret = new \App\Http\Controllers\pagesController();
             return $ret->home();
         }
@@ -231,7 +231,7 @@ Route::get('/messages.php', function(){
     }else{
         if (Input::get('tag')){
             $tag = Input::get('tag');
-            if (instr($tag, "%")) {
+            if (strpos($tag, "%") !== false) {
                 $ret = new \App\Http\Controllers\pagesController();
                 return $ret->home();
             }
