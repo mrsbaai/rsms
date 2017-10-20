@@ -65,16 +65,16 @@ class PaymentController extends Controller
 
     }
     public function RedirectToPayment(){
+        if (Auth::check()){
+            $email = Auth::user()->email;
+            $amountOriginal = Input::get('amount');
+            $type = Input::get('type');
+            $code = Input::get('coupon');
+            $amountToPay = $this->CouponToPrice($amountOriginal,$type,$code);
+            $description = "[" . $amountOriginal  . "$ Balance Top Up] [User: " . $email  . "]";
+            if ($code <> "" and $code <> null){$description = $description . " [Coupon: " . $code  . "]";}
 
-        $email = Auth::user()->email;
-        $amountOriginal = Input::get('amount');
-        $type = Input::get('type');
-        $code = Input::get('coupon');
-        $amountToPay = $this->CouponToPrice($amountOriginal,$type,$code);
-        $description = "[" . $amountOriginal  . "$ Balance Top Up] [User: " . $email  . "]";
-        if ($code <> "" and $code <> null){$description = $description . " [Coupon: " . $code  . "]";}
-
-        switch ($type) {
+            switch ($type) {
                 case "PayPal":
                     $cmd = '_xclick';
                     $business = $this->GetPayPal();
@@ -99,72 +99,77 @@ class PaymentController extends Controller
                     $url = "https://www.paypal.com/cgi-bin/webscr";
                     return redirect()->away($url . "?" . http_build_query($properties));
 
-            case "Payeer":
-                $m_shop = '88704496';
-                $m_orderid = rand(1111111, 9999999);
-                $m_amount = number_format($amountToPay, 2, '.', '');
-                $m_curr = 'USD';
-                $desc = $description;
-                $m_desc = base64_encode($desc);
-                $m_key = 'nirvana';
+                case "Payeer":
+                    $m_shop = '88704496';
+                    $m_orderid = rand(1111111, 9999999);
+                    $m_amount = number_format($amountToPay, 2, '.', '');
+                    $m_curr = 'USD';
+                    $desc = $description;
+                    $m_desc = base64_encode($desc);
+                    $m_key = 'nirvana';
 
-                $arHash = array(
-                    $m_shop,
-                    $m_orderid,
-                    $m_amount,
-                    $m_curr,
-                    $m_desc,
-                    $m_key
-                );
-                $sign = strtoupper(hash('sha256', implode(':', $arHash)));
+                    $arHash = array(
+                        $m_shop,
+                        $m_orderid,
+                        $m_amount,
+                        $m_curr,
+                        $m_desc,
+                        $m_key
+                    );
+                    $sign = strtoupper(hash('sha256', implode(':', $arHash)));
 
-                $url = "https://payeer.com/merchant/";
-                $properties = array(
-                    "m_email"=>$email,
-                    "m_shop"=>$m_shop,
-                    "m_orderid"=>$m_orderid,
-                    "m_amount"=>$m_amount,
-                    "m_curr"=>$m_curr,
-                    "m_desc"=>$m_desc,
-                    "m_sign"=>$sign
-
-
-                );
-                return redirect()->away($url . "?" . http_build_query($properties));
-            case "Payza":
-
-                $url = "https://secure.payza.com/checkout";
-
-                $ap_merchant = "abdelilahsbaai@gmail.com";
-                $ap_purchasetype = "service";
-                $ap_itemname = "$" . $amountOriginal . " Balance Top-up";
-                $ap_amount = $amountToPay;
-                $ap_currency = "USD";
-                $ap_description = $description;
-                $ap_ipnversion = "2";
-
-                $ap_alerturl = "https://receive-sms.com/ipn/payza";
-                $ap_returnurl = "https://receive-sms.com/succsess";
-                $ap_cancelurl = "https://receive-sms.com/fail";
+                    $url = "https://payeer.com/merchant/";
+                    $properties = array(
+                        "m_email"=>$email,
+                        "m_shop"=>$m_shop,
+                        "m_orderid"=>$m_orderid,
+                        "m_amount"=>$m_amount,
+                        "m_curr"=>$m_curr,
+                        "m_desc"=>$m_desc,
+                        "m_sign"=>$sign
 
 
-                $properties = array(
-                    "ap_merchant"=>$ap_merchant,
-                    "ap_purchasetype"=>$ap_purchasetype,
-                    "ap_itemname"=>$ap_itemname,
-                    "ap_amount"=>$ap_amount,
-                    "ap_currency"=>$ap_currency,
-                    "ap_description"=>$ap_description,
-                    "ap_ipnversion"=>$ap_ipnversion,
-                    "ap_alerturl"=>$ap_alerturl,
-                    "ap_returnurl"=>$ap_returnurl,
-                    "ap_cancelurl"=>$ap_cancelurl
-                );
+                    );
+                    return redirect()->away($url . "?" . http_build_query($properties));
+                case "Payza":
 
-                return redirect()->away($url . "?" . http_build_query($properties));
+                    $url = "https://secure.payza.com/checkout";
+
+                    $ap_merchant = "abdelilahsbaai@gmail.com";
+                    $ap_purchasetype = "service";
+                    $ap_itemname = "$" . $amountOriginal . " Balance Top-up";
+                    $ap_amount = $amountToPay;
+                    $ap_currency = "USD";
+                    $ap_description = $description;
+                    $ap_ipnversion = "2";
+
+                    $ap_alerturl = "https://receive-sms.com/ipn/payza";
+                    $ap_returnurl = "https://receive-sms.com/succsess";
+                    $ap_cancelurl = "https://receive-sms.com/fail";
+
+
+                    $properties = array(
+                        "ap_merchant"=>$ap_merchant,
+                        "ap_purchasetype"=>$ap_purchasetype,
+                        "ap_itemname"=>$ap_itemname,
+                        "ap_amount"=>$ap_amount,
+                        "ap_currency"=>$ap_currency,
+                        "ap_description"=>$ap_description,
+                        "ap_ipnversion"=>$ap_ipnversion,
+                        "ap_alerturl"=>$ap_alerturl,
+                        "ap_returnurl"=>$ap_returnurl,
+                        "ap_cancelurl"=>$ap_cancelurl
+                    );
+
+                    return redirect()->away($url . "?" . http_build_query($properties));
                 //return $url . "?" . http_build_query($properties);
 
+            }
+
+        }else{
+            return redirect('/login');
         }
+
 
 
 
