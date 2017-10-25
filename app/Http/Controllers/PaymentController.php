@@ -268,18 +268,20 @@ class PaymentController extends Controller
         {
             if(urldecode($response) == "INVALID TOKEN")
             {
-                Log::error("Payza: the token is not valid");
+                Log::info("the token is not valid");
 
             }
             else
             {
+                Log::info("urldecode the received response from Payza's IPN V2");
                 $response = urldecode($response);
                 Log::info($response);
+
             }
         }
         else
         {
-            Log::error("something is wrong, no response is received from Payza");
+            Log::info("something is wrong, no response is received from Payza");
         }
 
     }
