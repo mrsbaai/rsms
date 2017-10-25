@@ -228,7 +228,7 @@ class PaymentController extends Controller
                 $accountId = $_POST['ap_merchant'];
                 Log::info("Payza: $originalAmount | $transactionType | $transactionStatus");
                 $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
-                if ("Completed" == $transactionStatus){
+                if ("Completed" == $transactionStatus or "On Hold" == $transactionStatus){
                     $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
                 }
             }
@@ -291,6 +291,11 @@ class PaymentController extends Controller
 
                 Log::info("Payza: $description <br> $paymentSystem <br> $originalAmount <br> $userEmail <br> $code <br> $payedAmount <br> $transactionType <br> $transactionStatus <br> $buyerEmail <br> $accountId ");
 
+                $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
+                if ("Completed" == $transactionStatus or "On Hold" == $transactionStatus){
+                    Log::info("TOPUP: $userEmail,$payedAmount,$originalAmount,$code,$paymentSystem");
+                    //$this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
+                }
 
             }
         }
