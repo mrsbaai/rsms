@@ -237,8 +237,7 @@ class PaymentController extends Controller
     }
 
     public function payzaIPN2(){
-        Log::info("Payza:");
-
+        Log::info("Payza:" . implode(" | ",$_REQUEST));
         $description = Input::get('ap_description');
         $paymentSystem="Payza";
         $originalAmount = $this->getDescriptionVariables("originalAmount",$description);
