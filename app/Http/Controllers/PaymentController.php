@@ -275,7 +275,22 @@ class PaymentController extends Controller
             {
                 $response = urldecode($response);
                 parse_str($response, $responseArray);
-                Log::info($responseArray['ap_description']);
+
+
+                $description = $responseArray['ap_description'];
+                $paymentSystem="Payza";
+                $originalAmount = $this->getDescriptionVariables("originalAmount",$description);
+                $userEmail = $this->getDescriptionVariables("userEmail",$description);
+                $code = $this->getDescriptionVariables("code",$description);
+                $payedAmount = $responseArray['ap_amount'];
+
+                $transactionType = $responseArray['ap_notificationtype'];
+                $transactionStatus = $responseArray['ap_transactionstate'];
+                $buyerEmail = $responseArray['ap_custemailaddress'];
+                $accountId = $responseArray['ap_merchant'];
+
+                Log::info("Payza: $description <br> $paymentSystem <br> $originalAmount <br> $userEmail <br> $code <br> $payedAmount <br> $transactionType <br> $transactionStatus <br> $buyerEmail <br> $accountId ");
+
 
             }
         }
