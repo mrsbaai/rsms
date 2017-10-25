@@ -237,20 +237,54 @@ class PaymentController extends Controller
     }
 
     public function payzaIPN2(){
-        Log::info("Payza:" . implode(" | ",$_REQUEST));
-        $description = Input::get('ap_description');
-        $paymentSystem="Payza";
-        $originalAmount = $this->getDescriptionVariables("originalAmount",$description);
-        $userEmail = $this->getDescriptionVariables("userEmail",$description);
-        $code = $this->getDescriptionVariables("code",$description);
-        $payedAmount = Input::get('ap_amount');
 
-        $transactionType = Input::get('ap_notificationtype');
-        $transactionStatus = Input::get('ap_transactionstate');
-        $buyerEmail = Input::get('ap_custemailaddress');
-        $accountId = Input::get('ap_merchant');
+        // Url address of IPN V2 handler and the identifier of the token string
+        define("IPN_V2_HANDLER", "https://secure.payza.com/ipn2.ashx");
+        define("TOKEN_IDENTIFIER", "token=");
 
-        Log::info("Payza: $description <br> $paymentSystem <br> $originalAmount <br> $userEmail <br> $code <br> $payedAmount <br> $transactionType <br> $transactionStatus <br> $buyerEmail <br> $accountId ");
+        // get the token from Payza
+        $token = urlencode($_POST['token']);
+
+        // preappend the identifier string "token="
+        $token = TOKEN_IDENTIFIER.$token;
+
+        $response = '';
+
+        // send the URL encoded TOKEN string to the Payza's IPN handler
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, IPN_V2_HANDLER);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $token);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        // $response holds the response string from the Payza's IPN.
+        $response = curl_exec($ch);
+
+        curl_close($ch);
+
+        if($response != FALSE)
+        {
+            if(urldecode($response) == "INVALID TOKEN")
+            {
+                Log::info("the token is not valid");
+
+            }
+            else
+            {
+                Log::info("urldecode the received response from Payza's IPN V2");
+                $response = urldecode($response);
+                Log::info($response);
+
+            }
+        }
+        else
+        {
+            Log::info("something is wrong, no response is received from Payza");
+        }
+
     }
 
     /**
