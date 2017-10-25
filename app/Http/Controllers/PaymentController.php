@@ -237,7 +237,7 @@ class PaymentController extends Controller
     }
 
     public function payzaIPN2(){
-
+        Log::info("Payza:" . implode(" | ",$_REQUEST));
         // Url address of IPN V2 handler and the identifier of the token string
         define("IPN_V2_HANDLER", "https://secure.payza.com/ipn2.ashx");
         define("TOKEN_IDENTIFIER", "token=");
