@@ -236,6 +236,35 @@ class PaymentController extends Controller
 
     }
 
+    public function payzaIPN2(){
+        Log::info("Payza:");
+        if (isset($_POST['ap_securitycode'])){
+            Log::info("Payza: 1");
+            if ($_POST['ap_securitycode'] == "MuzNfecPcABJZfqu"){
+                Log::info("Payza: 2");
+                $description = $_POST['ap_description'];
+                Log::info("Payza: $description");
+                $paymentSystem="Payza";
+                $originalAmount = $this->getDescriptionVariables("originalAmount",$description);
+                $userEmail = $this->getDescriptionVariables("userEmail",$description);
+                $code = $this->getDescriptionVariables("code",$description);
+                $payedAmount = $_POST['ap_amount'];
+
+                $transactionType = $_POST['ap_notificationtype'];
+                $transactionStatus = $_POST['ap_transactionstate'];
+
+                $buyerEmail = $_POST['ap_custemailaddress'];
+                $accountId = $_POST['ap_merchant'];
+                Log::info("Payza: $originalAmount | $transactionType | $transactionStatus");
+                $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
+                if ("Completed" == $transactionStatus){
+                    //$this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
+                }
+            }
+        }
+
+    }
+
     /**
      * @return string
      */
