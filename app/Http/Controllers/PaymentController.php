@@ -274,7 +274,7 @@ class PaymentController extends Controller
             else
             {
                 $response = urldecode($response);
-                Log::info($response);
+                Log::info($response['ap_merchant']);
 
             }
         }
