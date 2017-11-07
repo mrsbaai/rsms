@@ -369,19 +369,23 @@ class PaymentController extends Controller
 
 
     public function getPrice($amount=1,$period=1){
+        if (Auth::check()){
+            $email = Auth::user()->email;
+            $numbers = number::where('is_private',true)->where('email',$email)->get();
+            $totalAmount = $amount + count($numbers);
+        }else{
+            $totalAmount = $amount;
+        }
 
-        $email = Auth::user()->email;
-        $numbers = number::where('is_private',true)->where('email',$email)->get();
-        $userAmount = $amount + count($numbers);
 
         $unit_price = 9;
 
 
-        if ($userAmount < 10){
+        if ($totalAmount < 10){
             $unit_price = 9;
         }
 
-        if ($userAmount >= 10){
+        if ($totalAmount >= 10){
             $unit_price = 5;
         }
 
