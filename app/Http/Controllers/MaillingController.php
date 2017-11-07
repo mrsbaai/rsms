@@ -55,23 +55,23 @@ class MaillingController extends Controller
                         $when = Carbon::now()->addMinutes($count);
                         switch ($diff) {
                             case 14:
-                                //Mail::to($user["email"])->later($when, new topupNeeded());
+                                Mail::to($user["email"])->later($when, new topupNeeded());
                                 break;
                             case 10:
-                                //Mail::to($user["email"])->later($when, new topupNeeded());
+                                Mail::to($user["email"])->later($when, new topupNeeded());
                                 break;
                             case 7:
-                                //Mail::to($user["email"])->later($when, new topupNeeded());
+                                Mail::to($user["email"])->later($when, new topupNeeded());
                                 break;
                             case 4:
-                                //Mail::to($user["email"])->later($when, new topupNeeded());
+                                Mail::to($user["email"])->later($when, new topupNeeded());
                                 break;
                             case 1:
-                                //Mail::to($user["email"])->later($when, new topupNeeded());
+                                Mail::to($user["email"])->later($when, new topupNeeded());
                                 break;
                             case 3:
                                 $data['name'] = $user['name'];
-                                //Mail::to($user["email"])->later($when, new numberRemovalNotification($data));
+                                Mail::to($user["email"])->later($when, new numberRemovalNotification($data));
                                 break;
                             case 5:
                                 $expiration = Carbon::now()->addDays(2);
@@ -87,7 +87,7 @@ class MaillingController extends Controller
                                 $data['header'] = "Get a 50% Off All Your Top Ups!";
                                 $data['coupon'] = $this->RandomCoupon(50,Carbon::now()->addDays(2));
                                 $data['date'] = $expiration;
-                                //Mail::to($user["email"])->later($when, new newCoupon($data));
+                                Mail::to($user["email"])->later($when, new newCoupon($data));
                                 break;
                         }
                     }
