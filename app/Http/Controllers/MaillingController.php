@@ -50,28 +50,49 @@ class MaillingController extends Controller
                     if ($amount < $balance){
                         $date = Carbon::parse($date);
                         $diff = $now->diffInDays($date, false);
-                        echo $user["email"] . " -> " . $diff . "<br/>";
+
+                        $logAction = "[Auto Mail] " . $user["email"] . " | ";
+                        Log::info($logAction);
+
                         $count = $count + 2;
                         $when = Carbon::now()->addMinutes($count);
                         switch ($diff) {
                             case 14:
                                 //Mail::to($user["email"])->later($when, new topupNeeded());
+
+                                $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
+                                Log::info($logAction);
                                 break;
                             case 10:
                                 //Mail::to($user["email"])->later($when, new topupNeeded());
+
+                                $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
+                                Log::info($logAction);
                                 break;
                             case 7:
                                 //Mail::to($user["email"])->later($when, new topupNeeded());
+
+                                $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
+                                Log::info($logAction);
                                 break;
                             case 4:
                                 //Mail::to($user["email"])->later($when, new topupNeeded());
+
+                                $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
+                                Log::info($logAction);
                                 break;
                             case 1:
-                                //Mail::to($user["email"])->later($when, new topupNeeded());
+                                //Mail::to($user["email"])-
+
+                                $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
+                                Log::info($logAction);
                                 break;
                             case 3:
                                 $data['name'] = $user['name'];
                                 //Mail::to($user["email"])->later($when, new numberRemovalNotification($data));
+
+                                $logAction = "[Auto Mail] " . $user["email"] . " | numberRemovalNotification";
+                                Log::info($logAction);
                                 break;
                             case 5:
                                 $expiration = Carbon::now()->addDays(2);
@@ -80,6 +101,9 @@ class MaillingController extends Controller
                                 $data['coupon'] = $this->RandomCoupon(30,$expiration);
                                 $data['date'] = $expiration;
                                 //Mail::to($user["email"])->later($when, new newCoupon($data));
+
+                                $logAction = "[Auto Mail] " . $user["email"] . " | Get 30% Off Coupon!";
+                                Log::info($logAction);
                                 break;
                             case 2:
                                 $expiration = Carbon::now()->addDays(2);
@@ -88,6 +112,9 @@ class MaillingController extends Controller
                                 $data['coupon'] = $this->RandomCoupon(50,Carbon::now()->addDays(2));
                                 $data['date'] = $expiration;
                                 //Mail::to($user["email"])->later($when, new newCoupon($data));
+
+                                $logAction = "[Auto Mail] " . $user["email"] . " |  Biggest Sell Out 50% Discount!";
+                                Log::info($logAction);
                                 break;
                         }
                     }
