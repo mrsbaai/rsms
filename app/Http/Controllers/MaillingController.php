@@ -44,6 +44,7 @@ class MaillingController extends Controller
         $balance = $user["balance"];
         $now = Carbon::now();
         $nextBills = $this->NextBills($user_id);
+        $lastSentMail = "";
         if ($nextBills){
             $count = 0;
             foreach($nextBills as $nextBill){
@@ -59,63 +60,93 @@ class MaillingController extends Controller
                         $when = Carbon::now()->addMinutes($count);
                         switch ($diff) {
                             case 14:
-                                //Mail::to($user["email"])->later($when, new topupNeeded());
+                                if ($lastSentMail !== $user["email"]){
+                                    //Mail::to($user["email"])->later($when, new topupNeeded());
+                                    $lastSentMail = $user["email"];
+                                    $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
+                                    Log::info($logAction);
+                                }
 
-                                $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
-                                Log::info($logAction);
                                 break;
                             case 10:
-                                //Mail::to($user["email"])->later($when, new topupNeeded());
+                                if ($lastSentMail !== $user["email"]){
+                                    //Mail::to($user["email"])->later($when, new topupNeeded());
+                                    $lastSentMail = $user["email"];
 
-                                $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
-                                Log::info($logAction);
+                                    $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
+                                    Log::info($logAction);
+                                }
+
+
                                 break;
                             case 7:
-                                //Mail::to($user["email"])->later($when, new topupNeeded());
+                                if ($lastSentMail !== $user["email"]){
+                                    //Mail::to($user["email"])->later($when, new topupNeeded());
+                                    $lastSentMail = $user["email"];
 
-                                $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
-                                Log::info($logAction);
+                                    $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
+                                    Log::info($logAction);
+                                }
                                 break;
                             case 4:
-                                //Mail::to($user["email"])->later($when, new topupNeeded());
+                                if ($lastSentMail !== $user["email"]){
+                                    //Mail::to($user["email"])->later($when, new topupNeeded());
+                                    $lastSentMail = $user["email"];
 
-                                $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
-                                Log::info($logAction);
+                                    $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
+                                    Log::info($logAction);
+                                }
+
                                 break;
                             case 1:
-                                //Mail::to($user["email"])-
+                                if ($lastSentMail !== $user["email"]){
+                                    //Mail::to($user["email"])->later($when, new topupNeeded());
+                                    $lastSentMail = $user["email"];
 
-                                $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
-                                Log::info($logAction);
+                                    $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
+                                    Log::info($logAction);
+                                }
+
                                 break;
                             case 3:
-                                $data['name'] = $user['name'];
-                                //Mail::to($user["email"])->later($when, new numberRemovalNotification($data));
+                                if ($lastSentMail !== $user["email"]){
+                                    $data['name'] = $user['name'];
+                                    //Mail::to($user["email"])->later($when, new numberRemovalNotification($data));
+                                    $lastSentMail = $user["email"];
 
-                                $logAction = "[Auto Mail] " . $user["email"] . " | numberRemovalNotification";
-                                Log::info($logAction);
+                                    $logAction = "[Auto Mail] " . $user["email"] . " | numberRemovalNotification";
+                                    Log::info($logAction);
+                                }
+
                                 break;
                             case 5:
-                                $expiration = Carbon::now()->addDays(2);
-                                $data['subj'] = "<<Receive-SMS>> Get 30% Off Coupon!";
-                                $data['header'] = "Get a 30% Off All Your Top Ups!";
-                                $data['coupon'] = $this->RandomCoupon(30,$expiration);
-                                $data['date'] = $expiration;
-                                //Mail::to($user["email"])->later($when, new newCoupon($data));
+                                if ($lastSentMail !== $user["email"]){
+                                    $expiration = Carbon::now()->addDays(2);
+                                    $data['subj'] = "<<Receive-SMS>> Get 30% Off Coupon!";
+                                    $data['header'] = "Get a 30% Off All Your Top Ups!";
+                                    $data['coupon'] = $this->RandomCoupon(30,$expiration);
+                                    $data['date'] = $expiration;
+                                    //Mail::to($user["email"])->later($when, new newCoupon($data));
+                                    $lastSentMail = $user["email"];
 
-                                $logAction = "[Auto Mail] " . $user["email"] . " | Get 30% Off Coupon!";
-                                Log::info($logAction);
+                                    $logAction = "[Auto Mail] " . $user["email"] . " | Get 30% Off Coupon!";
+                                    Log::info($logAction);
+                                }
+
                                 break;
                             case 2:
-                                $expiration = Carbon::now()->addDays(2);
-                                $data['subj'] = "<<Receive-SMS>> Biggest Sell Out 50% Discount!";
-                                $data['header'] = "Get a 50% Off All Your Top Ups!";
-                                $data['coupon'] = $this->RandomCoupon(50,Carbon::now()->addDays(2));
-                                $data['date'] = $expiration;
-                                //Mail::to($user["email"])->later($when, new newCoupon($data));
+                                if ($lastSentMail !== $user["email"]){
+                                    $expiration = Carbon::now()->addDays(2);
+                                    $data['subj'] = "<<Receive-SMS>> Biggest Sell Out 50% Discount!";
+                                    $data['header'] = "Get a 50% Off All Your Top Ups!";
+                                    $data['coupon'] = $this->RandomCoupon(50,Carbon::now()->addDays(2));
+                                    $data['date'] = $expiration;
+                                    //Mail::to($user["email"])->later($when, new newCoupon($data));
+                                    $lastSentMail = $user["email"];
+                                    $logAction = "[Auto Mail] " . $user["email"] . " |  Biggest Sell Out 50% Discount!";
+                                    Log::info($logAction);
+                                }
 
-                                $logAction = "[Auto Mail] " . $user["email"] . " |  Biggest Sell Out 50% Discount!";
-                                Log::info($logAction);
                                 break;
                         }
                     }
