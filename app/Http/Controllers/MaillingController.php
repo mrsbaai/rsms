@@ -57,7 +57,7 @@ class MaillingController extends Controller
                         switch ($diff) {
                             case 12:
                                 if ($lastSentMail !== $user["email"]){
-                                    Mail::to($user["email"])->later($when, new topupNeeded());
+                                    //Mail::to($user["email"])->later($when, new topupNeeded());
                                     $lastSentMail = $user["email"];
                                     $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
                                     Log::info($logAction);
@@ -66,7 +66,7 @@ class MaillingController extends Controller
                                 break;
                             case 9:
                                 if ($lastSentMail !== $user["email"]){
-                                    Mail::to($user["email"])->later($when, new topupNeeded());
+                                    //Mail::to($user["email"])->later($when, new topupNeeded());
                                     $lastSentMail = $user["email"];
 
                                     $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
@@ -77,7 +77,7 @@ class MaillingController extends Controller
                                 break;
                             case 4:
                                 if ($lastSentMail !== $user["email"]){
-                                    Mail::to($user["email"])->later($when, new topupNeeded());
+                                    //Mail::to($user["email"])->later($when, new topupNeeded());
                                     $lastSentMail = $user["email"];
 
                                     $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
@@ -87,7 +87,7 @@ class MaillingController extends Controller
                                 break;
                             case 1:
                                 if ($lastSentMail !== $user["email"]){
-                                    Mail::to($user["email"])->later($when, new topupNeeded());
+                                    //Mail::to($user["email"])->later($when, new topupNeeded());
                                     $lastSentMail = $user["email"];
 
                                     $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
@@ -98,7 +98,7 @@ class MaillingController extends Controller
                             case 3:
                                 if ($lastSentMail !== $user["email"]){
                                     $data['name'] = $user['name'];
-                                    Mail::to($user["email"])->later($when, new numberRemovalNotification($data));
+                                    //Mail::to($user["email"])->later($when, new numberRemovalNotification($data));
                                     $lastSentMail = $user["email"];
 
                                     $logAction = "[Auto Mail] " . $user["email"] . " | numberRemovalNotification";
