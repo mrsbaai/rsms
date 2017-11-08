@@ -290,11 +290,11 @@ img {
 
 .coupon {
     color: #2ab27b;
-    font-size: 26px;
+    font-size: 31px;
     font-weight: bold;
     text-align: center;
 }
 
 .enddate {
-    color: red;
+    color: #bf5329;
 }
