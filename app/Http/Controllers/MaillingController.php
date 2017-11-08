@@ -57,16 +57,16 @@ class MaillingController extends Controller
                         switch ($diff) {
                             case 12:
                                 if ($lastSentMail !== $user["email"]){
-                                    //Mail::to($user["email"])->later($when, new topupNeeded());
+                                    Mail::to($user["email"])->later($when, new topupNeeded());
                                     $lastSentMail = $user["email"];
                                     $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
                                     Log::info($logAction);
                                 }
 
                                 break;
-                            case 9:
+                            case 8:
                                 if ($lastSentMail !== $user["email"]){
-                                    //Mail::to($user["email"])->later($when, new topupNeeded());
+                                    Mail::to($user["email"])->later($when, new topupNeeded());
                                     $lastSentMail = $user["email"];
 
                                     $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
@@ -77,17 +77,7 @@ class MaillingController extends Controller
                                 break;
                             case 4:
                                 if ($lastSentMail !== $user["email"]){
-                                    //Mail::to($user["email"])->later($when, new topupNeeded());
-                                    $lastSentMail = $user["email"];
-
-                                    $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
-                                    Log::info($logAction);
-                                }
-
-                                break;
-                            case 1:
-                                if ($lastSentMail !== $user["email"]){
-                                    //Mail::to($user["email"])->later($when, new topupNeeded());
+                                    Mail::to($user["email"])->later($when, new topupNeeded());
                                     $lastSentMail = $user["email"];
 
                                     $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
@@ -98,7 +88,7 @@ class MaillingController extends Controller
                             case 3:
                                 if ($lastSentMail !== $user["email"]){
                                     $data['name'] = $user['name'];
-                                    //Mail::to($user["email"])->later($when, new numberRemovalNotification($data));
+                                    Mail::to($user["email"])->later($when, new numberRemovalNotification($data));
                                     $lastSentMail = $user["email"];
 
                                     $logAction = "[Auto Mail] " . $user["email"] . " | numberRemovalNotification";
@@ -113,7 +103,7 @@ class MaillingController extends Controller
                                     $data['header'] = "Get a 30% Off All Your Top Ups!";
                                     $data['coupon'] = $this->RandomCoupon(30,$expiration);
                                     $data['date'] = $expiration;
-                                    //Mail::to($user["email"])->later($when, new newCoupon($data));
+                                    Mail::to($user["email"])->later($when, new newCoupon($data));
                                     $lastSentMail = $user["email"];
 
                                     $logAction = "[Auto Mail] " . $user["email"] . " | Get 30% Off Coupon!";
@@ -121,7 +111,7 @@ class MaillingController extends Controller
                                 }
 
                                 break;
-                            case 2:
+                            case 1:
                                 if ($lastSentMail !== $user["email"]){
                                     $expiration = Carbon::now()->addDays(2);
                                     $data['subj'] = "<<Receive-SMS>> Biggest Sell Out 50% Discount!";
