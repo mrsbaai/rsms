@@ -1,5 +1,7 @@
 @component('mail::message')
-# {{$header}} Use coupon code:
+# {{$header}}
+
+# Use coupon code:
 
 # {{$coupon}}
 
