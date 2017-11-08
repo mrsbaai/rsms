@@ -1,15 +1,16 @@
 @component('mail::message')
-# {{$header}}
+# {{$header}} Use coupon code:
 
-# Use coupon code:
+<div class="coupon">
+    {{$coupon}}
+</div>
 
-# {{$coupon}}
 
 @component('mail::button', ['url' => 'http://receive-sms.com/login'])
 Login to your account
 @endcomponent
 
-Hurry, offer ends {{$date}}
+Hurry, offer ends <span class="enddate">{{$date}}</span>
 
 Regards,<br>
 {{ config('app.name') }}

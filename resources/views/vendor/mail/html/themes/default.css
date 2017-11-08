@@ -287,3 +287,14 @@ img {
     margin-top: 0;
     text-align: center;
 }
+
+.coupon {
+    color: #2ab27b;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.enddate {
+    color: red;
+}
