@@ -59,8 +59,6 @@ class MaillingController extends Controller
                                 if ($lastSentMail !== $user["email"]){
                                     Mail::to($user["email"])->later($when, new topupNeeded());
                                     $lastSentMail = $user["email"];
-                                    $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
-                                    Log::info($logAction);
                                 }
 
                                 break;
@@ -69,8 +67,7 @@ class MaillingController extends Controller
                                     Mail::to($user["email"])->later($when, new topupNeeded());
                                     $lastSentMail = $user["email"];
 
-                                    $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
-                                    Log::info($logAction);
+;
                                 }
 
 
@@ -80,8 +77,6 @@ class MaillingController extends Controller
                                     Mail::to($user["email"])->later($when, new topupNeeded());
                                     $lastSentMail = $user["email"];
 
-                                    $logAction = "[Auto Mail] " . $user["email"] . " | topupNeeded";
-                                    Log::info($logAction);
                                 }
 
                                 break;
@@ -91,8 +86,7 @@ class MaillingController extends Controller
                                     Mail::to($user["email"])->later($when, new numberRemovalNotification($data));
                                     $lastSentMail = $user["email"];
 
-                                    $logAction = "[Auto Mail] " . $user["email"] . " | numberRemovalNotification";
-                                    Log::info($logAction);
+
                                 }
 
                                 break;
@@ -104,10 +98,7 @@ class MaillingController extends Controller
                                     $data['coupon'] = $this->RandomCoupon(30,$expiration);
                                     $data['date'] = $expiration;
                                     Mail::to($user["email"])->later($when, new newCoupon($data));
-                                    $lastSentMail = $user["email"];
 
-                                    $logAction = "[Auto Mail] " . $user["email"] . " | Get 30% Off Coupon!";
-                                    Log::info($logAction);
                                 }
 
                                 break;
@@ -120,8 +111,6 @@ class MaillingController extends Controller
                                     $data['date'] = $expiration;
                                     Mail::to($user["email"])->later($when, new newCoupon($data));
                                     $lastSentMail = $user["email"];
-                                    $logAction = "[Auto Mail] " . $user["email"] . " |  Biggest Sell Out 50% Discount!";
-                                    Log::info($logAction);
                                 }
 
                                 break;
