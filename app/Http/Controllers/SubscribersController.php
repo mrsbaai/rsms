@@ -56,7 +56,10 @@ class SubscribersController extends Controller
 
     }
     Public function subscribe(Request $request){
-        if ($request->email == null){return redirect('/home');}
+        if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
+            flash()->overlay('Please enter your real email address.', 'Error!');
+            return redirect('/home');
+        }
         $suppression = suppression::where('email', $request->email)->first();
 
         if(!is_null($suppression)) {
