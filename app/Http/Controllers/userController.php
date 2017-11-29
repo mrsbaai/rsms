@@ -105,6 +105,13 @@ class userController extends Controller
 
     }
 
+    public function resendConfirmation(){
+
+        // build this --->
+        $confirmation_code = str_random(30);
+        Mail::to($data['email'])->send(new confirmEmail($confirmation_code));
+        flash()->overlay('Confirmation email has been sent to your email address.', 'Thanks for signing up!');
+    }
 
 
 
