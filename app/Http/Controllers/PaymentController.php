@@ -200,9 +200,15 @@ class PaymentController extends Controller
             }
         }
 
+        print_r($ids);
         asort($ids);
         return key($ids);
 
+
+    }
+
+    public function test(){
+        return $this->GetPayPal();
 
     }
 
@@ -431,13 +437,7 @@ class PaymentController extends Controller
 
     }
 
-    public function test(){
-        $url = "https://receive-sms.com/sms/%D4%80%CD%B6%CC%83%00k";
-        if (filter_var($url, FILTER_VALIDATE_URL) === FALSE) {
-            die('Not a valid URL');
-        }
 
-    }
 
     Private function log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem){
 
