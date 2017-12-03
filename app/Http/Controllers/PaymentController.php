@@ -200,10 +200,24 @@ class PaymentController extends Controller
             }
         }
 
-        print_r($ids);
+
         asort($ids);
 
-        $selected_paypal_account_id = paypalids::where('email', key($ids))->first();
+        print_r($ids);
+
+        $least_amout_of_cases = $ids[key($ids)];
+
+        $acceptable_accounts = array();
+        foreach($ids as $email => $count){
+            if ($least_amout_of_cases == $count){
+                array_push($acceptable_accounts, $email);
+            }
+        }
+
+        print_r($acceptable_accounts);
+        echo "---------->";
+        $finalEmail = array_rand($acceptable_accounts);
+        $selected_paypal_account_id = paypalids::where('email', $finalEmail)->first();
         return $selected_paypal_account_id['paypalid'];
 
 
