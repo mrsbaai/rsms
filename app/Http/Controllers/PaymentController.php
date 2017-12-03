@@ -203,7 +203,6 @@ class PaymentController extends Controller
 
         asort($ids);
 
-        print_r($ids);
 
         $least_amout_of_cases = $ids[key($ids)];
 
@@ -214,7 +213,6 @@ class PaymentController extends Controller
             }
         }
 
-        print_r($acceptable_accounts);
 
         shuffle($acceptable_accounts);
         $selected_paypal_account_id = paypalids::where('email', $acceptable_accounts[0])->first();
