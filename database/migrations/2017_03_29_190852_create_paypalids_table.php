@@ -12,6 +12,7 @@ class CreatePaypalidsTable extends Migration
         Schema::create('paypalids', function (Blueprint $table) {
             $table->increments('id');
             $table->string('paypalid');
+            $table->string('email');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

@@ -189,20 +189,22 @@ class PaymentController extends Controller
 
         $ids = array();
         foreach($paypalids as $paypalid){
-            $ids[$paypalid['paypalid']] = 0;
+            $ids[$paypalid['email']] = 0;
         }
 
         foreach($paypalids as $paypalid){
             foreach($logs as $log){
-                if ($log['account_id'] == $paypalid['paypalid']){
-                    $ids[$paypalid['paypalid']] = $ids[$paypalid['paypalid']] + 1;
+                if ($log['account_id'] == $paypalid['email']){
+                    $ids[$paypalid['email']] = $ids[$paypalid['email']] + 1;
                 }
             }
         }
 
         print_r($ids);
         asort($ids);
-        return key($ids);
+
+        $selected_paypal_account_id = paypalids::where('email', key($ids))->first();
+        return $selected_paypal_account_id;
 
 
     }
