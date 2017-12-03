@@ -180,22 +180,22 @@ class PaymentController extends Controller
     private function GetPayPal(){
 
 
-        $earlier = Carbon::now()->subDays(20);
+        $earlier = Carbon::now()->subDays(25);
 
-        $paypalids = paypalids::where('is_active', '=' ,true)->get();
+        $paypalAccounts = paypalids::where('is_active', '=' ,true)->get();
 
         $logs = paymentlog::where('type', '=' ,"new_case")->where('created_at', '>', $earlier)->get();
 
 
         $ids = array();
-        foreach($paypalids as $paypalid){
-            $ids[$paypalid['email']] = 0;
+        foreach($paypalAccounts as $paypalAccount){
+            $ids[$paypalAccount['email']] = 0;
         }
 
-        foreach($paypalids as $paypalid){
+        foreach($paypalAccounts as $paypalAccount){
             foreach($logs as $log){
-                if ($log['account_id'] == $paypalid['email']){
-                    $ids[$paypalid['email']] = $ids[$paypalid['email']] + 1;
+                if ($log['accountId'] == $paypalAccount['email']){
+                    $ids[$paypalAccount['email']] = $ids[$paypalAccount['email']] + 1;
                 }
             }
         }
@@ -204,7 +204,7 @@ class PaymentController extends Controller
         asort($ids);
 
         $selected_paypal_account_id = paypalids::where('email', key($ids))->first();
-        return $selected_paypal_account_id;
+        return $selected_paypal_account_id['paypalid'];
 
 
     }
