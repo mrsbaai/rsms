@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' =>'https://sms-verification.net',
+    'url' =>'https://receive-sms.com',
 
     /*
     |--------------------------------------------------------------------------
