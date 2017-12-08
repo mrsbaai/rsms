@@ -23,6 +23,7 @@
                             <tr>
                                 @foreach($columns as $column)
                                     <th>{{ $column }}</th>
+                                    <th>Respond</th>
                                 @endforeach
                             </tr>
                             </thead>
