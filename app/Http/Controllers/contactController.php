@@ -46,6 +46,8 @@ class contactController extends Controller
 
             Mail::to($email)->send(new contactReceived());
 
+            Mail::to("support@receive-sms.com")->from($email)->subject($subject)->text($content);
+
             return view('contact')->with('result', '- Sent!');
 
 
