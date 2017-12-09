@@ -37,13 +37,15 @@ class supportController extends Controller
 
             Mail::to($email)->send(new contactReceived());
 
-            //$to = 'support@receive-sms.com';
-            //Mail::send('emails.contact', ['content' => $content], function ($message) use($subject,$email,$name,$to){
-            //    $message->from($email, $name);
-            //    $message->subject($subject);
-            //    $message->to($to);
-            //});
-            return view('support')->with('result', '- Sent!');
+            $subject = "(Receive-SMS Support From): " . $subject;
+            $to = 'support@receive-sms.com';
+            Mail::send('emails.contact', ['content' => $content], function ($message) use($subject,$email,$name, $to){
+                $message->from($email, $name);
+                $message->subject($subject);
+                $message->to($to);
+            });
+
+        return view('support')->with('result', '- Sent!');
 
 
     }
