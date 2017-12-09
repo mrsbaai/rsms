@@ -37,7 +37,7 @@ class supportController extends Controller
 
             Mail::to($email)->send(new contactReceived());
 
-            $subject = "(Receive-SMS Support From): " . $subject;
+            $subject = "(Receive-SMS Support From) " . $subject;
             $to = 'support@receive-sms.com';
             Mail::send('emails.contact', ['content' => $content], function ($message) use($subject,$email,$name, $to){
                 $message->from($email, $name);
