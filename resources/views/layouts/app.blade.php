@@ -89,16 +89,7 @@
 <div class="spacer"></div>
 
 
-    <div class="container width-fix col-sm-12 text-center footer-c no-padding no-margin">
-        <img src="../img/bitcoin.png">
-        <img src="../img/paypal.png">
-        <img src="../img/payza.png">
-        <div class="spacer"></div>
-        <div class="container col-sm-12 text-center small-logo">
-            {{Config::get('settings.name')}} &copy; {{ Carbon\Carbon::now()->format('Y') }}
-        </div>
 
-    </div>
 
 
 
