@@ -547,8 +547,11 @@ h4{
 }
 
 .footer-c{
-    margin-bottom: 25px;
+    padding: 12px;
+
+    font: 15px TitilliumText22LRegular, Arial, sans-serif;
 }
+
 
 
 .share-table > tbody > tr > td,

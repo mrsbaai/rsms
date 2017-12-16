@@ -88,12 +88,6 @@
 
 <div class="spacer"></div>
 
-
-
-
-
-
-
 <noscript>
     To enjoy full functionality of Receive-SMS it is necessary to enable JavaScript.
     Here are the <a href="http://www.enable-javascript.com/" target="_blank">
@@ -102,7 +96,11 @@
 <script>
     $('#flash-overlay-modal').modal();
 </script>
+
 @yield('bottom')
 
+<div class="container width-fix col-sm-12 text-center footer-c no-padding no-margin">
+    {{Config::get('settings.name')}} &copy; {{ Carbon\Carbon::now()->format('Y') }} All rights reserved.
+</div>
 </body>
 </html>
