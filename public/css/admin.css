@@ -81,7 +81,7 @@ a:focus, a:hover {
 }
 
 label {
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .welcome-texture
@@ -130,10 +130,10 @@ label {
 }
 .h-stars {
 
-    font-size: 25px;
+    font-size: 20px;
     color: #F1C40F;
     margin: 0px;
-    font-size: 19px;
+    font-size: 14px;
 
 }
 
@@ -145,7 +145,7 @@ label {
 .panel-title {
 
     font-family: 'Oswald', sans-serif;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
 
     letter-spacing: -0.8px;
@@ -159,11 +159,11 @@ label {
 }
 
 .logo span{
-    font-size: 35px;
+    font-size: 25px;
     color:#90c6c5 ;
 }
 .help-block{
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .width-fix{
@@ -246,7 +246,7 @@ a.thumb span{
     background: rgba(0, 128, 0, 0.7);
     padding: 5px;
     display: inline-block;
-    font-size: 22px; /*or whatever you want*/
+    font-size: 16px; /*or whatever you want*/
     color: white;
 }
 
@@ -362,7 +362,7 @@ a.thumb span{
 }
 
 .message {
-    font-size: large;
+    font-size: medium;
 }
 
 
@@ -373,7 +373,7 @@ a.thumb span{
 
 .jumbotron h1, h2 {
     color : #90c6c5;
-    font-size: 25px;
+    font-size: 20px;
 }
 h2{
     color : #90c6c5;
@@ -387,12 +387,12 @@ h4{
 
 .table {
 
-    font-size: 18px;
+    font-size: 13px;
 
 }
 
 .messages-table{
-    font-size: 14px;
+    font-size: 10px;
     text-shadow: 1px 1px 2px black;
     word-wrap: break-word;
     word-break: break-all;
@@ -491,7 +491,7 @@ h4{
 
 
     color: white;
-    font-size: 18px;
+    font-size: 14px;
     //font-weight: bold;
     //color: #90c6c5;
 }
@@ -571,8 +571,8 @@ h4{
     text-shadow: 1px 0px 0px #1A1D1F ;
 }
 .jumbotron p{
-    font-size: 19px;
+    font-size: 12px;
 }
 .messages-table {
-    font-size: 12px;
+    font-size: 9px;
 }
