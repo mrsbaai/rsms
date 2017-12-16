@@ -15,6 +15,14 @@
         <div class="jumbotron welcome-texture">
             <h1>Respond To Users Requests</h1>
 
+            <p>We have experienced a high volume of inquires and regret that we have not addressed your case sooner.</p>
+            <p>I just found this unreplied message. We only provide US numbers at the moment. You might find what you're looking for here: https://sms-verification.net</p>
+            <p>I just found this unreplied message. Sending SMS messages is not possible at the moment. You might find what you're looking for here: https://sms-verification.net</p>
+            <p>I just found this unreplied message. Yes, our US numbers can receive SMS messages from anyware with our PAID service. Use this coupon code "WINTER" with all your tom ups to get a 50% discount. </p>
+            <p>I just found this unreplied message. We can't provide that amount of numbers at the current time. You might find what you're looking for here: https://sms-verification.net</p>
+            <p>I just found this unreplied message. Sorry we can't provide back expired numbers.</p>
+            <p>Use this coupon code "WINTER" with all your tom ups to get a 50% discount.</p>
+            
             <div class="container-fluid no-padding ">
                 <div class="col-sm-12 no-padding ">
                     <div class="table-responsive">
