@@ -29,10 +29,14 @@
                         <table class="table table-condensed">
                             <thead>
                             <tr>
-                                @foreach($columns as $column)
-                                    <th>{{ $column }}</th>
-                                @endforeach
-                                    <th>Respond</th>
+                                <th style="width: 50px;">id</th>
+                                <th style="width: 50px;">is_support</th>
+                                <th style="width: 50px;">created_at</th>
+                                <th style="width: 50px;">subject</th>
+                                <th style="width: 50px;">name</th>
+                                <th style="width: 50px;">email</th>
+                                <th style="width: 700px;">message</th>
+                                <th style="width: 700px;">Respond</th>
                             </tr>
                             </thead>
                             <tbody>
