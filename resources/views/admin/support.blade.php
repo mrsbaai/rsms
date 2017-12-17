@@ -39,7 +39,7 @@
                                             <input type="hidden" name="name" value="{{$array['4']}}">
                                             <input type="hidden" name="subject" value="{{$array['3']}}">
                                             <input type="hidden" name="id" value="{{$array['0']}}">
-                                            <textarea id="response" type="text" name="response" class="form-control" style="width: 900px; height: 500px;"></textarea>
+                                            <textarea id="response" type="text" name="response" class="form-control" style="width: 300px; height: 400px;"></textarea>
                                             <br/>
                                             <input type="submit" class="btn btn-primary btn-send " value="Send">
                                             <a class="float:right;"><a href="/admin/support/delete/{{$array['0']}}">Delete</a></span>
