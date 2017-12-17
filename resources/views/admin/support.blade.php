@@ -33,7 +33,7 @@
                                     @foreach($array as $content)
                                         <td>{{ $content }}</td>
                                     @endforeach
-                                        <td>
+                                        <td style="width: 500px;">
                                             {{ Form::open(array('action' => 'adminController@sendResponse', 'id' => 'mailer-form'))}}
                                             <input type="hidden" name="email" value="{{$array['5']}}">
                                             <input type="hidden" name="name" value="{{$array['4']}}">
