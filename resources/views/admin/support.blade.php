@@ -27,19 +27,16 @@
                 <div class="col-sm-12 no-padding ">
                     <div class="table-responsive">
                         <table class="table table-condensed">
-                            <thead>
-                            <tr>
-                                <th>Respond</th>
-                                @foreach($columns as $column)
-                                    <th>{{ $column }}</th>
-                                @endforeach
-
-                            </tr>
-                            </thead>
                             <tbody>
                             @foreach($rows as $id => $array)
                                 <tr>
-                                    <td style="width: 1000px;">
+                                    @foreach($array as $content)
+                                        <td>{{ $content }}</td>
+                                    @endforeach
+
+                                </tr>
+                                <tr>
+                                    <td>
                                         {{ Form::open(array('action' => 'adminController@sendResponse', 'id' => 'mailer-form'))}}
                                         <input type="hidden" name="email" value="{{$array['5']}}">
                                         <input type="hidden" name="name" value="{{$array['4']}}">
@@ -52,9 +49,6 @@
                                         {{ Form::close() }}
 
                                     </td>
-                                    @foreach($array as $content)
-                                        <td>{{ $content }}</td>
-                                    @endforeach
 
 
                                 </tr>
