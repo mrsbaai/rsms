@@ -25,7 +25,7 @@
 
             <div class="container-fluid no-padding ">
                 <div class="col-sm-12 no-padding ">
-                    <div class="table-responsive">
+                    <div class="no-more-tables">
                         <table class="table table-condensed">
                             <tbody>
                             @foreach($rows as $id => $array)
