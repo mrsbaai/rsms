@@ -29,23 +29,17 @@
                         <table class="table table-condensed">
                             <thead>
                             <tr>
-                                <th style="width: 50px;">id</th>
-                                <th style="width: 50px;">is_support</th>
-                                <th style="width: 50px;">created_at</th>
-                                <th style="width: 50px;">subject</th>
-                                <th style="width: 50px;">name</th>
-                                <th style="width: 50px;">email</th>
-                                <th style="width: 900px;">message</th>
-                                <th style="width: 900px;">Respond</th>
+                                <th>Respond</th>
+                                @foreach($columns as $column)
+                                    <th>{{ $column }}</th>
+                                @endforeach
+
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($rows as $id => $array)
                                 <tr>
-                                    @foreach($array as $content)
-                                        <td style="width: 50px;">{{ $content }}</td>
-                                    @endforeach
-                                    <td>
+                                    <td style="width: 1000px;">
                                         {{ Form::open(array('action' => 'adminController@sendResponse', 'id' => 'mailer-form'))}}
                                         <input type="hidden" name="email" value="{{$array['5']}}">
                                         <input type="hidden" name="name" value="{{$array['4']}}">
@@ -58,6 +52,10 @@
                                         {{ Form::close() }}
 
                                     </td>
+                                    @foreach($array as $content)
+                                        <td>{{ $content }}</td>
+                                    @endforeach
+
 
                                 </tr>
                             @endforeach
