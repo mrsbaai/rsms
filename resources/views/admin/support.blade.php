@@ -21,7 +21,7 @@
             <p>Paid numbers can receive SMS messages from anywhere. Demo numbers Can fail some times because of high volume usage.</p>
             <p>We can't provide that amount of numbers at the current time. You might find what you're looking for here: https://sms-verification.net</p>
             <p>Sorry we can't provide back expired numbers.</p>
-            <p>Use this coupon code "WINTER" with all your tom ups to get a 50% discount.</p>
+            <p>I don't fully understand your request. If you're interested in a US phone number, use this coupon code "WINTER" with all your tom ups to get a 50% discount.</p>
 
             <div class="container-fluid no-padding ">
                 <div class="col-sm-12 no-padding ">
