@@ -35,17 +35,17 @@
                                 <th style="width: 50px;">subject</th>
                                 <th style="width: 50px;">name</th>
                                 <th style="width: 50px;">email</th>
-                                <th style="width: 700px;">message</th>
-                                <th style="width: 700px;">Respond</th>
+                                <th style="width: 900px;">message</th>
+                                <th style="width: 900px;">Respond</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($rows as $id => $array)
                                 <tr>
                                     @foreach($array as $content)
-                                        <td>{{ $content }}</td>
+                                        <td style="width: 50px;">{{ $content }}</td>
                                     @endforeach
-                                    <td style="width: 900px;">
+                                    <td>
                                         {{ Form::open(array('action' => 'adminController@sendResponse', 'id' => 'mailer-form'))}}
                                         <input type="hidden" name="email" value="{{$array['5']}}">
                                         <input type="hidden" name="name" value="{{$array['4']}}">
