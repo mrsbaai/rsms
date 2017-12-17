@@ -16,7 +16,7 @@
             <h1>Respond To Users Requests</h1>
 
             <p>We have experienced a high volume of inquires and regret that we have not addressed your case sooner.</p>
-            <p>We only provide US numbers at the moment.</p>
+            <p>We can only provide US numbers at the moment.</p>
             <p>Sending SMS messages is not possible at the moment.</p>
             <p>Paid numbers can receive SMS messages from anywhere. Demo numbers Can fail some times because of high volume usage.</p>
             <p>We can't provide that amount of numbers at the current time.</p>
