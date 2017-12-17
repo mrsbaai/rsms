@@ -16,13 +16,13 @@
             <h1>Respond To Users Requests</h1>
 
             <p>We have experienced a high volume of inquires and regret that we have not addressed your case sooner.</p>
-            <p>We only provide US numbers at the moment. You might find what you're looking for here: https://sms-verification.net</p>
-            <p>Sending SMS messages is not possible at the moment. You might find what you're looking for here: https://sms-verification.net</p>
+            <p>We only provide US numbers at the moment.</p>
+            <p>Sending SMS messages is not possible at the moment.</p>
             <p>Paid numbers can receive SMS messages from anywhere. Demo numbers Can fail some times because of high volume usage.</p>
-            <p>We can't provide that amount of numbers at the current time. You might find what you're looking for here: https://sms-verification.net</p>
+            <p>We can't provide that amount of numbers at the current time.</p>
             <p>Sorry we can't provide back expired numbers.</p>
             <p>I don't fully understand your request. If you're interested in a US phone number, use this coupon code "WINTER" with all your tom ups to get a 50% discount.</p>
-
+            <p>If you are interested in a large amount of numbers, you might find what you're looking for here: https://sms-verification.net</p>
             <div class="container-fluid no-padding ">
                 <div class="col-sm-12 no-padding ">
                     <div class="no-more-tables">
