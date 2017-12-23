@@ -34,6 +34,7 @@ class generic extends Mailable
     protected $img1;
     protected $img2;
     protected $subj;
+    protected $email;
 
     public function __construct($data)
     {
@@ -55,6 +56,7 @@ class generic extends Mailable
         $this->img2 = $data['img2'];
 
         $this->subj = $data['subj'];
+        $this->email = $data['email'];
 
     }
 
@@ -83,7 +85,8 @@ class generic extends Mailable
                 'button3' => $this->button3,
                 'buttonURL3' => $this->buttonURL3,
                 'img1' => $this->img1,
-                'img2' => $this->img2
+                'img2' => $this->img2,
+                'email' => $this->email
             ]);
 
     }

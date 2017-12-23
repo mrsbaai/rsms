@@ -446,8 +446,7 @@ class adminController extends Controller
     }
 
     public function send(){
-        $type =  Input::get('list');
-        $emails = $this->generateEmailList($type);
+
 
         $data['subj'] = Input::get('subject');
 
@@ -491,7 +490,15 @@ class adminController extends Controller
         if ($data['img2']  == "nothing"){$data['img2']  = null;}
 
 
-        Mail::to($emails)->queue(new generic($data));
+        $type =  Input::get('list');
+        $emails = $this->generateEmailList($type);
+
+        foreach($emails as $email) {
+            $data['email'] = $email;
+            Mail::to($email)->queue(new generic($data));
+        }
+        
+
 
         flash()->overlay("Good Luck with the $$$", 'Good luck');
         return view("admin.mailer");
