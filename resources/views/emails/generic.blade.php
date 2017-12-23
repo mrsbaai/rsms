@@ -108,7 +108,7 @@
 
 @endif
 @if($text4)
-
+<br/><br/>
 
 
 {{$text4}}
