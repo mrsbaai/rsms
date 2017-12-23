@@ -398,13 +398,38 @@ class adminController extends Controller
     }
 
     public function send(){
-        return  Input::get('list');
+        $type =  Input::get('list');
+        $emails = $this->generateEmailList($type);
+
+
+        $data['heading1'] = Input::get('heading1');
+        $data['heading2'] = Input::get('heading2');
+        $data['text2'] = Input::get('text2');
+        $data['text1'] = Input::get('text1');
+        $data['button'] = Input::get('button');
+        $data['buttonURL'] = Input::get('buttonURL');
+        $data['subj'] = Input::get('subject');
+
+        if ($data['heading1']  == "nothing"){$data['heading1']  = null;}
+        if ($data['heading2']  == "nothing"){$data['heading2']  = null;}
+        if ($data['text2']  == "nothing"){$data['text2']  = null;}
+        if ($data['text1']  == "nothing"){$data['text1']  = null;}
+        if ($data['button']  == "nothing"){$data['button']  = null;}
+        if ($data['buttonURL']  == "nothing"){$data['buttonURL']  = null;}
+
+
+        Mail::to($emails)->queue(new generic($data));
+
+        flash()->overlay("Good Luck with the $$$", 'Good luck');
+        return view("admin.mailer");
+
     }
 
 
     private function generateEmailList($type){
         switch ($type){
             case "All Subscribers and Users":
+                return array("abdelilah.sbaai@gmail.com", "abdel.ilah.sbaai@gmail.com", "a.bdelilah.sbaai@gmail.com");
             case "All Subscribers":
             case "All Users":
             case "Subscribers Didn't register":

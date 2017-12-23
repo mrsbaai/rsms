@@ -32,7 +32,7 @@
         <div class="jumbotron welcome-texture">
             <h1>Promo mail</h1>
             {{ Form::open(array('action' => 'adminController@send', 'id' => 'mailer-form'))}}
-                <input type="text" name="subject" class="form-control" placeholder="Subject" required="required"><br>
+                <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject" required="required"><br>
                 <input type="text" id="heading1" name="heading1" class="form-control" placeholder="Heading 1" onchange="showPreview()"><br>
                 <textarea id="text1" name="text1" class="form-control" placeholder="Text 1" onchange="showPreview()"></textarea><br>
                 <input type="text" id="heading2"  name="heading2" class="form-control" placeholder="Heading 2" onchange="showPreview()"><br>
