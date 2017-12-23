@@ -52,7 +52,7 @@ class generic extends Mailable
         $this->button3 = $data['button3'];
         $this->buttonURL3 = $data['buttonURL3'];
         $this->img1 = $data['img1'];
-        $this->img1 = $data['img2'];
+        $this->img2 = $data['img2'];
 
         $this->subj = $data['subj'];
 
