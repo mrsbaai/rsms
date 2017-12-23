@@ -21,8 +21,19 @@ class generic extends Mailable
     protected $heading2;
     protected $text1;
     protected $text2;
-    protected $button;
-    protected $buttonURL;
+    protected $heading3;
+    protected $heading4;
+    protected $text3;
+    protected $text4;
+    protected $button1;
+    protected $buttonURL1;
+    protected $button2;
+    protected $buttonURL2;
+    protected $button3;
+    protected $buttonURL3;
+    protected $img1;
+    protected $img2;
+    protected $email;
     protected $subj;
 
     public function __construct($data)
@@ -31,8 +42,20 @@ class generic extends Mailable
         $this->heading2 = $data['heading2'];
         $this->text1 = $data['text1'];
         $this->text2 = $data['text2'];
-        $this->button = $data['button'];
-        $this->buttonURL = $data['buttonURL'];
+        $this->heading3 = $data['heading3'];
+        $this->heading4 = $data['heading4'];
+        $this->text3 = $data['text3'];
+        $this->text4 = $data['text4'];
+        $this->button1 = $data['button1'];
+        $this->buttonURL1 = $data['buttonURL1'];
+        $this->button2 = $data['button2'];
+        $this->buttonURL2 = $data['buttonURL2'];
+        $this->button3 = $data['button3'];
+        $this->buttonURL3 = $data['buttonURL3'];
+        $this->img1 = $data['img1'];
+        $this->img1 = $data['img2'];
+        $this->email = $data['email'];
+
         $this->subj = $data['subj'];
 
     }
@@ -51,8 +74,19 @@ class generic extends Mailable
                 'heading2' => $this->heading2,
                 'text1' => $this->text1,
                 'text2' => $this->text2,
-                'button' => $this->button,
-                'buttonURL' => $this->buttonURL
+                'button1' => $this->button1,
+                'buttonURL1' => $this->buttonURL1,
+                'heading3' => $this->heading3,
+                'heading4' => $this->heading4,
+                'text3' => $this->text3,
+                'text4' => $this->text4,
+                'button2' => $this->button2,
+                'buttonURL2' => $this->buttonURL2,
+                'button3' => $this->button3,
+                'buttonURL3' => $this->buttonURL3,
+                'img1' => $this->img1,
+                'img2' => $this->img2,
+                'email' => $this->email,
             ]);
 
     }
