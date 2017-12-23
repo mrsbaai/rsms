@@ -3,8 +3,6 @@
 <div class = "heading">
 {{$heading1}}
 </div>
-<br/>
-
 @endif
 @if($text1)
 <br/>
@@ -17,7 +15,6 @@
 {{$button1}}
 @endcomponent
 <br/>
-
 @endif
 @if($img1)
 <br/>
@@ -25,22 +22,16 @@
 <br/>
 @endif
 @if($heading2)
-<br/>
-
 <div class = "heading">
 {{$heading2}}
 </div>
-<br/>
-
 @endif
 @if($text2)
 <br/>
 {{$text2}}
 <br/>
-
 @endif
 @if($button2)
-<br/>
 @component('mail::button', ['url' => $buttonURL2])
 {{$button2}}
 @endcomponent
@@ -48,8 +39,6 @@
 
 @endif
 @if($heading3)
-<br/>
-
 <div class = "heading">
 {{$heading3}}
 </div>
@@ -63,7 +52,6 @@
 
 @endif
 @if($button3)
-<br/>
 @component('mail::button', ['url' => $buttonURL3])
 {{$button3}}
 @endcomponent
