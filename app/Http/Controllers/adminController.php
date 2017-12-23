@@ -257,7 +257,7 @@ class adminController extends Controller
     public function preview($content){
 
         $content =  base64_decode($content);
-        return $content;
+
         if ($content == "nothing"){$content = null;}
 
         $markdown = new Markdown(view(), config('mail.markdown'));
