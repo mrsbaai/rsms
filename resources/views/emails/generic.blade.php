@@ -33,10 +33,6 @@
             {{$button2}}
         @endcomponent
     @endif
-    @if($img2)
-        <br/><br/>
-        <img src="{{$img2}}"/>
-    @endif
     @if($heading3)
         <div class = "heading">
             {{$heading3}}
@@ -52,9 +48,9 @@
             {{$button3}}
         @endcomponent
     @endif
-    @if($img3)
+    @if($img2)
         <br/><br/>
-        <img src="{{$img3}}"/>
+        <img src="{{$img2}}"/>
     @endif
     @if($heading4)
         <div class = "heading">
