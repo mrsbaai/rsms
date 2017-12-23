@@ -71,9 +71,9 @@ Regards,
 {{ config('app.name') }} Team.
 <br/>
 <br/>
-<div class = "text-center">
-<a style="font-size: 80%;" href="https://receive-sms.com/unsubscribe/{{$email}}">Unsubscribe</a>
-</div>
+
+<a class = "text-center" style="font-size: 80%;" href="https://receive-sms.com/unsubscribe/{{$email}}">Unsubscribe</a>
+
 
 
 @endcomponent
