@@ -71,10 +71,7 @@ Regards,
 {{ config('app.name') }} Team.
 <br/>
 <br/>
-@if($email)
 <a style="font-size: 50%; text-align: center;" href="https://receive-sms.com/unsubscribe/{{$email}}">Unsubscribe</a>
-@else
-<a style="font-size: 50%; text-align: center;" href="https://receive-sms.com/unsubscribe">Unsubscribe</a>
-@endif
+
 
 @endcomponent

@@ -300,6 +300,7 @@ class adminController extends Controller
 
         return $markdown->render('emails.generic',
             [
+                'email' => "no-reply@receive-sms.com",
                 'img1' => $img1,
                 'img2' => $img2,
                 'button1' => $button1,
