@@ -449,21 +449,32 @@ class adminController extends Controller
         $type =  Input::get('list');
         $emails = $this->generateEmailList($type);
 
+        $data['subj'] = Input::get('subject');
 
         $data['heading1'] = Input::get('heading1');
         $data['heading2'] = Input::get('heading2');
         $data['text2'] = Input::get('text2');
         $data['text1'] = Input::get('text1');
-        $data['button'] = Input::get('button');
-        $data['buttonURL'] = Input::get('buttonURL');
-        $data['subj'] = Input::get('subject');
 
-        if ($data['heading1']  == "nothing"){$data['heading1']  = null;}
-        if ($data['heading2']  == "nothing"){$data['heading2']  = null;}
-        if ($data['text2']  == "nothing"){$data['text2']  = null;}
-        if ($data['text1']  == "nothing"){$data['text1']  = null;}
-        if ($data['button']  == "nothing"){$data['button']  = null;}
-        if ($data['buttonURL']  == "nothing"){$data['buttonURL']  = null;}
+        if ($data['heading3']  == "nothing"){$data['heading3']  = null;}
+        if ($data['heading4']  == "nothing"){$data['heading4']  = null;}
+        if ($data['text3']  == "nothing"){$data['text3']  = null;}
+        if ($data['text4']  == "nothing"){$data['text4']  = null;}
+
+
+
+
+
+
+        if ($data['button1']  == "nothing"){$data['button1']  = null;}
+        if ($data['buttonURL1']  == "nothing"){$data['buttonURL1']  = null;}
+        if ($data['button2']  == "nothing"){$data['button2']  = null;}
+        if ($data['buttonURL2']  == "nothing"){$data['buttonURL2']  = null;}
+        if ($data['button3']  == "nothing"){$data['button3']  = null;}
+        if ($data['buttonURL3']  == "nothing"){$data['buttonURL3']  = null;}
+
+        if ($data['img1']  == "nothing"){$data['img1']  = null;}
+        if ($data['img2']  == "nothing"){$data['img2']  = null;}
 
 
         Mail::to($emails)->queue(new generic($data));
