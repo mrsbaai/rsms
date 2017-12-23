@@ -72,7 +72,7 @@ Regards,
 <br/>
 <br/>
 
-<div class = "heading">
+<div style="text-align: center;">
 <a style="font-size: 80%;" href="https://receive-sms.com/unsubscribe/{{$email}}">Unsubscribe</a>
 </div>
 
