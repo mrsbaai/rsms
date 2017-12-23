@@ -19,8 +19,9 @@ use Mail;
 use App\Mail\numbersReady;
 use App\Mail\response;
 use App\mail\generic;
-use Illuminate\Mail\Markdown;
 
+
+use Illuminate\Mail\Markdown;
 
 class adminController extends Controller
 {
