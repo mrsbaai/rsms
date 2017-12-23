@@ -8,16 +8,10 @@
 @endif
 @if($text1)
 <br/>
-
-<br/>
 {{$text1}}
-<br/>
-
 <br/>
 @endif
 @if($button1)
-<br/>
-
 <br/>
 @component('mail::button', ['url' => $buttonURL1])
 {{$button1}}
@@ -27,11 +21,7 @@
 @endif
 @if($img1)
 <br/>
-
-<br/>
 <img src="{{$img1}}"/>
-<br/>
-
 <br/>
 @endif
 @if($heading2)
@@ -45,15 +35,11 @@
 @endif
 @if($text2)
 <br/>
-
-<br/>
 {{$text2}}
 <br/>
 
 @endif
 @if($button2)
-<br/>
-
 <br/>
 @component('mail::button', ['url' => $buttonURL2])
 {{$button2}}
@@ -72,15 +58,11 @@
 @endif
 @if($text3)
 <br/>
-
-<br/>
 {{$text3}}
 <br/>
 
 @endif
 @if($button3)
-<br/>
-
 <br/>
 @component('mail::button', ['url' => $buttonURL3])
 {{$button3}}
@@ -90,11 +72,7 @@
 @endif
 @if($img2)
 <br/>
-
-<br/>
 <img src="{{$img2}}"/>
-<br/>
-
 <br/>
 
 @endif
@@ -114,8 +92,6 @@
 <br/>
 
 @endif
-<br/>
-
 <br/>
 
 Regards,
