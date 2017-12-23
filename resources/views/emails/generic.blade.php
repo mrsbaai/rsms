@@ -23,6 +23,9 @@
 
 
 <img src="{{$img1}}"/>
+
+
+
 @endif
 @if($heading2)
 <div class = "heading">
@@ -67,6 +70,10 @@
 
 
 <img src="{{$img2}}"/>
+
+
+
+
 @endif
 @if($heading4)
 <div class = "heading">
