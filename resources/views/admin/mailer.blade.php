@@ -28,7 +28,7 @@
             <h1>Promo mail</h1>
             {{ Form::open(array('action' => 'adminController@send', 'id' => 'mailer-form'))}}
                 <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject" required="required"><br>
-                <textarea id="text1" name="text1" class="form-control" style="height: 700px;" placeholder="Text 1" onchange="showPreview()"></textarea><br>
+                <textarea id="text1" name="text1" class="form-control" style="height: 500px;" placeholder="Text 1" onchange="showPreview()"></textarea><br>
 
             <div class="form-group">
                 <label for="list">Select Email List:</label>
