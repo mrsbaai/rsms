@@ -5,13 +5,16 @@
 </div>
 <br/><br/>
 {{$text1}}
+@if($button1)
 <br/><br/>
 @component('mail::button', ['url' => $buttonURL1])
-    {{$button1}}
+{{$button1}}
 @endcomponent
+@endif
+
 <br/><br/>
 <img src="{{$img1}}"/>
-
+s
 <div class = "heading">
 {{$heading2}}
 </div>
