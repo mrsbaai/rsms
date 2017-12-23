@@ -1,3 +1,4 @@
-@component('mail::message')
 {{$content}}
+@component('mail::message')
+    {{$content}}
 @endcomponent
