@@ -105,7 +105,7 @@
 {{$heading4}}
 </div>
 
-    
+
 @endif
 @if($text4)
 
@@ -121,5 +121,5 @@
 
 Regards,
 
-{{ config('app.name') }} Team
+{{ config('app.name') }} Team.
 @endcomponent
