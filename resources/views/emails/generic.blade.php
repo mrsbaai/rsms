@@ -82,6 +82,7 @@
 
 
 
-    Regards,<br>
+    Regards,
+    
     {{ config('app.name') }}
 @endcomponent
