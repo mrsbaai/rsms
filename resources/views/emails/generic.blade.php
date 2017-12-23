@@ -1,4 +1,7 @@
 
 @component('mail::message')
-    {{render($content)}}
+    <div class = "heading">
+        {{$content}}
+    </div>
+
 @endcomponent
