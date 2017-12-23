@@ -497,7 +497,7 @@ class adminController extends Controller
             $data['email'] = $email;
             Mail::to($email)->queue(new generic($data));
         }
-        
+
 
 
         flash()->overlay("Good Luck with the $$$", 'Good luck');
