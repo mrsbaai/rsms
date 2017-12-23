@@ -18,7 +18,7 @@ use Charts;
 use Mail;
 use App\Mail\numbersReady;
 use App\Mail\response;
-use App\Mail\generic;
+
 use Illuminate\Mail\Markdown;
 
 
@@ -254,14 +254,23 @@ class adminController extends Controller
         return view("admin.mailer");
     }
 
-    public function preview($content){
+    public function preview($text1, $text2, $heading1, $heading2, $button,$buttonURL){
 
-        $content =  base64_decode($content);
+        $heading1 =  base64_decode($heading1);
+        $heading2 =  base64_decode($heading2);
+        $text2 =  base64_decode($text2);
+        $text1 =  base64_decode($text1);
+        $button =  base64_decode($button);
+        $buttonURL =  base64_decode($buttonURL);
 
-        if ($content == "nothing"){$content = null;}
-
+        if ($heading1 == "nothing"){$heading1 = null;}
+        if ($heading2 == "nothing"){$heading2 = null;}
+        if ($text2 == "nothing"){$text2 = null;}
+        if ($text1 == "nothing"){$text1 = null;}
+        if ($button == "nothing"){$button = null;}
+        if ($buttonURL == "nothing"){$buttonURL = null;}
         $markdown = new Markdown(view(), config('mail.markdown'));
-        return $markdown->render('emails.generic', ['content' => $content]);
+        return $markdown->render('emails.generic', ['button' => $button, 'text1' => $text1, 'heading1' => $heading1, 'heading2' => $heading2, 'text2' => $text2, 'buttonURL' => $buttonURL]);
     }
 
     public function coupon(){
@@ -392,10 +401,21 @@ class adminController extends Controller
         $type =  Input::get('list');
         $emails = $this->generateEmailList($type);
 
-        $data['content'] = Input::get('content');
-        $data['subj'] = Input::get('subject');
-        if ($data['content']  == "nothing"){$data['content']  = null;}
 
+        $data['heading1'] = Input::get('heading1');
+        $data['heading2'] = Input::get('heading2');
+        $data['text2'] = Input::get('text2');
+        $data['text1'] = Input::get('text1');
+        $data['button'] = Input::get('button');
+        $data['buttonURL'] = Input::get('buttonURL');
+        $data['subj'] = Input::get('subject');
+
+        if ($data['heading1']  == "nothing"){$data['heading1']  = null;}
+        if ($data['heading2']  == "nothing"){$data['heading2']  = null;}
+        if ($data['text2']  == "nothing"){$data['text2']  = null;}
+        if ($data['text1']  == "nothing"){$data['text1']  = null;}
+        if ($data['button']  == "nothing"){$data['button']  = null;}
+        if ($data['buttonURL']  == "nothing"){$data['buttonURL']  = null;}
 
 
         Mail::to($emails)->queue(new generic($data));
