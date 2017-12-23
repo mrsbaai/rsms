@@ -254,23 +254,14 @@ class adminController extends Controller
         return view("admin.mailer");
     }
 
-    public function preview($text1, $text2, $heading1, $heading2, $button,$buttonURL){
+    public function preview($content){
 
-        $heading1 =  base64_decode($heading1);
-        $heading2 =  base64_decode($heading2);
-        $text2 =  base64_decode($text2);
-        $text1 =  base64_decode($text1);
-        $button =  base64_decode($button);
-        $buttonURL =  base64_decode($buttonURL);
+        $content =  base64_decode($content);
 
-        if ($heading1 == "nothing"){$heading1 = null;}
-        if ($heading2 == "nothing"){$heading2 = null;}
-        if ($text2 == "nothing"){$text2 = null;}
-        if ($text1 == "nothing"){$text1 = null;}
-        if ($button == "nothing"){$button = null;}
-        if ($buttonURL == "nothing"){$buttonURL = null;}
+        if ($content == "nothing"){$content = null;}
+
         $markdown = new Markdown(view(), config('mail.markdown'));
-        return $markdown->render('emails.generic', ['button' => $button, 'text1' => $text1, 'heading1' => $heading1, 'heading2' => $heading2, 'text2' => $text2, 'buttonURL' => $buttonURL]);
+        return $markdown->render('emails.generic', ['content' => $content]);
     }
 
     public function coupon(){

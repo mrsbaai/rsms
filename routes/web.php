@@ -69,7 +69,7 @@ Route::get('/admin/blacklists', 'adminController@blacklists');
 Route::get('/admin/coupon', 'adminController@coupon');
 Route::post('/admin/coupon', 'adminController@addCoupon');
 
-Route::get('/admin/mailer/preview/{text1}/{text2}/{heading1}/{heading2}/{button}/{buttonURL}', 'adminController@preview');
+Route::get('/admin/mailer/preview/{content}', 'adminController@preview');
 Route::post('/admin/mailer', 'adminController@send');
 
 Route::get('/admin/test', 'adminController@test');
