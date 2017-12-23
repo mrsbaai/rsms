@@ -502,7 +502,7 @@ class adminController extends Controller
     private function generateEmailList($type){
         switch ($type){
             case "All Subscribers and Users":
-                return array("abdelilah.sbaai@gmail.com", "abdel.ilah.sbaai@gmail.com", "a.bdelilah.sbaai@gmail.com");
+                return array("abdelilah.sbaai@gmail.com", "mrchioua@gmail.com");
             case "All Subscribers":
             case "All Users":
             case "Subscribers Didn't register":
