@@ -392,21 +392,10 @@ class adminController extends Controller
         $type =  Input::get('list');
         $emails = $this->generateEmailList($type);
 
-
-        $data['heading1'] = Input::get('heading1');
-        $data['heading2'] = Input::get('heading2');
-        $data['text2'] = Input::get('text2');
-        $data['text1'] = Input::get('text1');
-        $data['button'] = Input::get('button');
-        $data['buttonURL'] = Input::get('buttonURL');
+        $data['content'] = Input::get('content');
         $data['subj'] = Input::get('subject');
+        if ($data['content']  == "nothing"){$data['content']  = null;}
 
-        if ($data['heading1']  == "nothing"){$data['heading1']  = null;}
-        if ($data['heading2']  == "nothing"){$data['heading2']  = null;}
-        if ($data['text2']  == "nothing"){$data['text2']  = null;}
-        if ($data['text1']  == "nothing"){$data['text1']  = null;}
-        if ($data['button']  == "nothing"){$data['button']  = null;}
-        if ($data['buttonURL']  == "nothing"){$data['buttonURL']  = null;}
 
 
         Mail::to($emails)->queue(new generic($data));
