@@ -18,7 +18,7 @@ use Charts;
 use Mail;
 use App\Mail\numbersReady;
 use App\Mail\response;
-
+use App\Mail\generic;
 use Illuminate\Mail\Markdown;
 
 
