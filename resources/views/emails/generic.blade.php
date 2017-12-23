@@ -78,11 +78,13 @@
 
 
 {{$text4}}
+
+
 @endif
 
 
 
-Regards,
 
+Regards,
 {{ config('app.name') }}
 @endcomponent
