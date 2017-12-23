@@ -1,4 +1,4 @@
-{{$content}}
+
 @component('mail::message')
-    {{$content}}
+    {{render($content)}}
 @endcomponent
