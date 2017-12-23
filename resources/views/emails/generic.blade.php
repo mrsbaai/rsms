@@ -86,5 +86,6 @@
 
 
 Regards,
-{{ config('app.name') }}
+
+{{ config('app.name') }} Team
 @endcomponent
