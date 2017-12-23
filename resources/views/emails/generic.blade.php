@@ -5,18 +5,18 @@
         </div>
     @endif
     @if($text1)
-        <br/><br/>
+<br/><br/>
         {{$text1}}
     @endif
     @if($button1)
-        <br/><br/>
+<br/><br/>
         @component('mail::button', ['url' => $buttonURL1])
             {{$button1}}
         @endcomponent
     @endif
     @if($img1)
-        <br/><br/>
-        <img src="{{$img1}}"/>
+ <br/><br/>
+ <img src="{{$img1}}"/>
     @endif
     @if($heading2)
         <div class = "heading">
@@ -24,11 +24,11 @@
         </div>
     @endif
     @if($text2)
-        <br/><br/>
+<br/><br/>
         {{$text2}}
     @endif
     @if($button2)
-        <br/><br/>
+<br/><br/>
         @component('mail::button', ['url' => $buttonURL2])
             {{$button2}}
         @endcomponent
@@ -39,17 +39,17 @@
         </div>
     @endif
     @if($text3)
-        <br/><br/>
+<br/><br/>
         {{$text3}}
     @endif
     @if($button3)
-        <br/><br/>
+<br/><br/>
         @component('mail::button', ['url' => $buttonURL3])
             {{$button3}}
         @endcomponent
     @endif
     @if($img2)
-        <br/><br/>
+<br/><br/>
         <img src="{{$img2}}"/>
     @endif
     @if($heading4)
@@ -58,7 +58,7 @@
         </div>
     @endif
     @if($text4)
-        <br/><br/>
+<br/><br/>
         {{$text4}}
     @endif
 <br/><br/>
