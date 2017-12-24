@@ -8,5 +8,7 @@ class suppression extends Model
 {
     protected $table = 'suppressionlist';
 
-
+    protected $fillable = [
+        'email'
+    ];
 }
