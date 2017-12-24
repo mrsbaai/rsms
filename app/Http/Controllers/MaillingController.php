@@ -234,8 +234,12 @@ class MaillingController extends Controller
     private function generateEmailList($type){
 
         $suppression = suppression::all()->keyBy('email');
-        print_r($suppression);
-        return;
+
+        $plucked = suppression::all()->pluck('email');
+
+        return $plucked->all();
+
+
         switch ($type){
             case "All Subscribers and Users":
                 $list = array("abdelilah.sbaai@gmail.com", "mrchioua@gmail.com");
