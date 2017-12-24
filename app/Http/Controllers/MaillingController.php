@@ -16,6 +16,7 @@ use App\Mail\newCoupon;
 use Log;
 use App\pendinglist;
 
+
 use Carbon\Carbon;
 
 class MaillingController extends Controller
@@ -144,7 +145,7 @@ class MaillingController extends Controller
     public function makeList(){
 
         $data['subj'] = Input::get('subject');
-        $data['sendingdate'] = Input::get('sendingdate');
+        $data['sendingdate'] = carbon::parse(Input::get('sendingdate'));
 
 
         $data['heading1'] = Input::get('heading1');
