@@ -14,7 +14,9 @@ use App\Mail\numberRemovalNotification;
 use App\Mail\topupNeeded;
 use App\Mail\newCoupon;
 use Log;
+
 use App\pendinglist;
+use App\suppression;
 
 use carbon\carbon;
 
@@ -231,8 +233,8 @@ class MaillingController extends Controller
 
     private function generateEmailList($type){
 
-        $suppression = array("abdelilah.sbaai@gmail.com", "mark@gmail.com");
-
+        $suppression = array();
+        $suppression = suppression::all()->keyBy('email');
 
         switch ($type){
             case "All Subscribers and Users":
@@ -245,6 +247,7 @@ class MaillingController extends Controller
             case "Users With Numbers":
             case "Users Without Numbers":
         }
+
         $list = array_diff($list, $suppression);
         return $list;
     }
