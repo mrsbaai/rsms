@@ -70,7 +70,8 @@ Route::get('/admin/coupon', 'adminController@coupon');
 Route::post('/admin/coupon', 'adminController@addCoupon');
 
 Route::get('/admin/mailer/preview/{text1}/{text2}/{text3}/{text4}/{heading1}/{heading2}/{heading3}/{heading4}/{img1}/{img2}/{button1}/{button2}/{button3}/{buttonURL1}/{buttonURL2}/{buttonURL}', 'adminController@preview');
-Route::post('/admin/mailer', 'adminController@send');
+
+Route::post('/admin/mailer', 'MaillingController@makeList');
 
 Route::get('/admin/test', 'adminController@test');
 
