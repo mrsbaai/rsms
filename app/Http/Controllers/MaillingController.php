@@ -16,8 +16,7 @@ use App\Mail\newCoupon;
 use Log;
 use App\pendinglist;
 
-
-use Carbon\Carbon;
+use carbon\carbon;
 
 class MaillingController extends Controller
 {
