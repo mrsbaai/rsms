@@ -233,11 +233,10 @@ class MaillingController extends Controller
 
     private function generateEmailList($type){
 
-        $suppression = suppression::all()->keyBy('email');
 
         $plucked = suppression::all()->pluck('email');
 
-        return $plucked->all();
+        $suppression =  $plucked->all();
 
 
         switch ($type){
