@@ -449,55 +449,12 @@ class adminController extends Controller
     public function send(){
 
 
-        $data['subj'] = Input::get('subject');
 
-        $data['heading1'] = Input::get('heading1');
-        $data['heading2'] = Input::get('heading2');
-        $data['text2'] = Input::get('text2');
-        $data['text1'] = Input::get('text1');
-        $data['heading3'] = Input::get('heading3');
-        $data['heading4'] = Input::get('heading4');
-        $data['text3'] = Input::get('text3');
-        $data['text4'] = Input::get('text4');
-        $data['img1'] = Input::get('img1');
-        $data['img2'] = Input::get('img2');
-
-        $data['button1'] = Input::get('button1');
-        $data['button2'] = Input::get('button2');
-        $data['button3'] = Input::get('button3');
-
-        $data['buttonURL1'] = Input::get('buttonURL1');
-        $data['buttonURL2'] = Input::get('buttonURL2');
-        $data['buttonURL3'] = Input::get('buttonURL3');
-
-        if ($data['heading1']  == "nothing"){$data['heading1']  = null;}
-        if ($data['heading2']  == "nothing"){$data['heading2']  = null;}
-        if ($data['text1']  == "nothing"){$data['text1']  = null;}
-        if ($data['text2']  == "nothing"){$data['text2']  = null;}
-
-        if ($data['heading3']  == "nothing"){$data['heading3']  = null;}
-        if ($data['heading4']  == "nothing"){$data['heading4']  = null;}
-        if ($data['text3']  == "nothing"){$data['text3']  = null;}
-        if ($data['text4']  == "nothing"){$data['text4']  = null;}
-
-        if ($data['button1']  == "nothing"){$data['button1']  = null;}
-        if ($data['buttonURL1']  == "nothing"){$data['buttonURL1']  = null;}
-        if ($data['button2']  == "nothing"){$data['button2']  = null;}
-        if ($data['buttonURL2']  == "nothing"){$data['buttonURL2']  = null;}
-        if ($data['button3']  == "nothing"){$data['button3']  = null;}
-        if ($data['buttonURL3']  == "nothing"){$data['buttonURL3']  = null;}
-
-        if ($data['img1']  == "nothing"){$data['img1']  = null;}
-        if ($data['img2']  == "nothing"){$data['img2']  = null;}
 
 
         $type =  Input::get('list');
         $emails = $this->generateEmailList($type);
 
-        foreach($emails as $email) {
-            $data['email'] = $email;
-            Mail::to($email)->queue(new generic($data));
-        }
 
 
 

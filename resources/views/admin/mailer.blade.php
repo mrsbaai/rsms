@@ -5,6 +5,7 @@
 
 
 @section('head')
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <title>Receive-SMS :: Mailer</title>
 
@@ -44,10 +45,17 @@
 @stop
 
 @section('content')
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
+    </script>
     <div class="container width-fix col-sm-12">
         <div class="jumbotron welcome-texture">
             <h1>Promo mail</h1>
-            {{ Form::open(array('action' => 'adminController@send', 'id' => 'mailer-form'))}}
+            {{ Form::open(array('action' => 'MaillingController@makeList', 'id' => 'mailer-form'))}}
                 <input type="text" name="subject" class="form-control" placeholder="Subject" required="required"><br>
 
                 <input type="text" id="heading1" name="heading1" class="form-control" placeholder="Heading 1" onchange="showPreview()"><br>
@@ -70,7 +78,7 @@
 
                 <input type="text" id="heading4" name="heading4" class="form-control" placeholder="Heading 4" onchange="showPreview()"><br>
                 <textarea id="text4" name="text4" class="form-control" placeholder="Text 4" onchange="showPreview()"></textarea><br>
-
+                <input type="text" id="datepicker" name="sendingdate" class="form-control" placeholder="Sending date" required="required"><br>
 
             <div class="form-group">
                 <label for="list">Select Email List:</label>
@@ -90,7 +98,7 @@
 
 
                 <div class="text-right">
-                    <input type="submit" class="btn btn-lg btn-success btn-send" value="SEND">
+                    <input type="submit" class="btn btn-lg btn-success btn-send" value="Make Pending List">
                 </div>
             {{ Form::close() }}
         </div>

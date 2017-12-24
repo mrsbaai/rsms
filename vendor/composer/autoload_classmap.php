@@ -16,6 +16,7 @@ return array(
     'CreatePaymentSystemsTable' => $baseDir . '/database/migrations/2017_04_29_162204_CreatePaymentSystemsTable.php',
     'CreatePaymentlogTable' => $baseDir . '/database/migrations/2017_04_29_162343_CreatePaymentLogTable.php',
     'CreatePaypalidsTable' => $baseDir . '/database/migrations/2017_03_29_190852_create_paypalids_table.php',
+    'CreatePendingList' => $baseDir . '/database/migrations/2017_12_24_133223_create_pending_list.php',
     'CreateSendersBlacklist' => $baseDir . '/database/migrations/2017_05_01_191234_CreateSendersBlacklist.php',
     'CreateStringsBlacklist' => $baseDir . '/database/migrations/2017_05_01_191257_CreateStringsBlacklist.php',
     'CreateSubscribersTable' => $baseDir . '/database/migrations/2017_02_10_145922_CreateSubscribersTable.php',

@@ -50,7 +50,7 @@ class SubscribersController extends Controller
             $subscriber->subscribed = false;
             $subscriber->save();
         }
-        flash()->overlay(' You have successfully unsubscribed from ' . config('app.name') . ' Newsletter. You will no longer receive new demo numbers notifications and special offers.', 'You have been successfully unsubscribed');
+        flash()->overlay(' You have successfully unsubscribed from ' . config('app.name') . ' Newsletter. You will no longer receive new notifications and special offers.', 'You have been successfully unsubscribed');
         return redirect('/home');
 
 
