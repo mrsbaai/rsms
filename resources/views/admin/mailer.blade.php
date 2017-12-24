@@ -60,14 +60,14 @@
 
                 <input type="text" id="heading1" name="heading1" class="form-control" placeholder="Heading 1" onchange="showPreview()"><br>
                 <textarea id="text1" name="text1" class="form-control" placeholder="Text 1" onchange="showPreview()"></textarea><br>
-                <input type="text" id="button1"  name="button" class="form-control" placeholder="Button 1" onchange="showPreview()"><br>
-                <input type="text" id="buttonURL1" name="buttonURL" class="form-control" placeholder="Button URL 1" onchange="showPreview()"><br>
+                <input type="text" id="button1"  name="button1" class="form-control" placeholder="Button 1" onchange="showPreview()"><br>
+                <input type="text" id="buttonURL1" name="buttonURL1" class="form-control" placeholder="Button URL 1" onchange="showPreview()"><br>
                 <input type="text" id="img1" name="img1" class="form-control" placeholder="img1" onchange="showPreview()"><br>
 
                 <input type="text" id="heading2"  name="heading2" class="form-control" placeholder="Heading 2" onchange="showPreview()"><br>
                 <textarea id="text2" name="text2" class="form-control" placeholder="Text 2" onchange="showPreview()"></textarea><br>
-                <input type="text" id="button2"  name="button" class="form-control" placeholder="Button 2" onchange="showPreview()"><br>
-                <input type="text" id="buttonURL2" name="buttonURL" class="form-control" placeholder="Button URL 2" onchange="showPreview()"><br>
+                <input type="text" id="button2"  name="button2" class="form-control" placeholder="Button 2" onchange="showPreview()"><br>
+                <input type="text" id="buttonURL2" name="buttonURL2" class="form-control" placeholder="Button URL 2" onchange="showPreview()"><br>
 
                 <input type="text" id="heading3"  name="heading3" class="form-control" placeholder="Heading 3" onchange="showPreview()"><br>
                 <textarea id="text3" name="text3" class="form-control" placeholder="Text 3" onchange="showPreview()"></textarea><br>

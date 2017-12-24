@@ -198,7 +198,7 @@ class MaillingController extends Controller
             $pendinglist->heading1 = $data['heading1'];
             $pendinglist->heading2 = $data['heading2'];
             $pendinglist->heading3 = $data['heading3'];
-            $pendinglist->heading4 = $data['heading3'];
+            $pendinglist->heading4 = $data['heading4'];
             $pendinglist->text1 = $data['text1'];
             $pendinglist->text2 = $data['text2'];
             $pendinglist->text3 = $data['text3'];
