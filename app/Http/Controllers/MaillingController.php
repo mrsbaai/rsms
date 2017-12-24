@@ -230,9 +230,13 @@ class MaillingController extends Controller
 
 
     private function generateEmailList($type){
+
+        $suppression = array("abdelilah.sbaai@gmail.com", "mark@gmail.com");
+
+
         switch ($type){
             case "All Subscribers and Users":
-                return array("abdelilah.sbaai@gmail.com", "mrchioua@gmail.com");
+                $list = array("abdelilah.sbaai@gmail.com", "mrchioua@gmail.com");
             case "All Subscribers":
             case "All Users":
             case "Subscribers Didn't register":
@@ -241,6 +245,7 @@ class MaillingController extends Controller
             case "Users With Numbers":
             case "Users Without Numbers":
         }
-        return array("abdelilah.sbaai@gmail.com", "mrchioua@gmail.com");
+        $list = array_diff($list, $suppression);
+        return $list;
     }
 }
