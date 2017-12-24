@@ -212,8 +212,6 @@ class MaillingController extends Controller
             $pendinglist->img1 = $data['img1'];
             $pendinglist->img2 = $data['img2'];
 
-
-
             $pendinglist->save();
 
 

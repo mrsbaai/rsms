@@ -36,6 +36,7 @@ class CreatePendingList extends Migration
             $table->string('buttonURL3');
             $table->string('img1');
             $table->string('img2');
+            $table->timestamps();
         });
     }
 
