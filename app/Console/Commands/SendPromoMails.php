@@ -46,7 +46,8 @@ class SendPromoMails extends Command
             if(carbon::now()->gte(carbon::parse($entry['sendingdate']))){
 
                 Mail::to($entry['email'])->queue(new generic($entry));
-                echo $entry['subject'] . " -> " . $entry['email'] . "<br>   ";
+                $this->info($entry['subject'] . " -> " . $entry['email']  . "\n");
+
                 $entry->delete();
             }
 
