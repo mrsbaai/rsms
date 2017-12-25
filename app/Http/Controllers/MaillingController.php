@@ -230,7 +230,6 @@ class MaillingController extends Controller
     public function SendList(){
 
         $pendinglist = pendinglist::all();
-
         foreach($pendinglist as $entry){
             echo $entry['email'];
             $entry->delete();
