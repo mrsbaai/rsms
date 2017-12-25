@@ -249,28 +249,24 @@ class MaillingController extends Controller
 
         $plucked = suppression::all()->pluck('email');
         $suppression =  $plucked->all();
-
-
-        switch ($type){
-            case "All Subscribers and Users":
-                $plucked1 = subscriber::all()->pluck('email');
-                $plucked2 = user::all()->pluck('email');
-                $list1 =  $plucked1->all();
-                $list2 = $plucked2->all();
-                $list = array_unique(array_merge($list1,$list2), SORT_REGULAR);
-
-            case "All Subscribers":
-                $plucked = subscriber::all()->pluck('email');
-                $list =  $plucked->all();
-            case "All Users":
-                $plucked = user::all()->pluck('email');
-                $list =  $plucked->all();
-            case "Subscribers Didn't register":
-                $list = array('mrchioua@gmail.com','a.b.delilahsbaai@gmail.com');
-            case "Users Topped Up":
-            case "Users Didn't Top Up":
-            case "Users With Numbers":
-            case "Users Without Numbers":
+        $list = array();
+        if ($type == "All Subscribers and Users") {
+            $plucked1 = subscriber::all()->pluck('email');
+            $plucked2 = user::all()->pluck('email');
+            $list1 =  $plucked1->all();
+            $list2 = $plucked2->all();
+            $list = array_unique(array_merge($list1,$list2), SORT_REGULAR);
+        }
+        if ($type == "All Subscribers") {
+            $plucked = subscriber::all()->pluck('email');
+            $list =  $plucked->all();
+        }
+        if ($type == "All Users") {
+            $plucked = user::all()->pluck('email');
+            $list =  $plucked->all();
+        }
+        if ($type == "Subscribers Didn't register") {
+            $list = array('mrchioua@gmail.com','a.b.delilahsbaai@gmail.com');
         }
 
 
