@@ -63,7 +63,7 @@ class userController extends Controller
 
 
 
-    public function inbox($number = null){
+    public function inbox($number = null, $isResend = false){
         if (!is_numeric($number)){
             $number = null;
         }
@@ -92,10 +92,10 @@ class userController extends Controller
                 if ($number == null){$number = "All";}
                 $confirmed = Auth::user()->confirmed;
 
-
-                if (!$confirmed){
+                if (!$confirmed and !$isResend){
                     flash('<span style="font-size: 80%">Please check your email and click the activation link to verify your account! <a href="/resend">Resend</a></span>')->warning()->important();
                 }
+
                 return view('inbox')->with('numbers', $numbers)->with('current', $number)->with('messages', $messages)->with('lastMessage', $lastMessage)->with('noNumbers', $noNumbers);
 
             }
@@ -118,9 +118,9 @@ class userController extends Controller
 
 
         Mail::to($email)->send(new confirmEmail($confirmation_code));
-        flash('Confirmation email has been sent to your email address.');
+
         flash()->overlay('Confirmation email has been sent to your email address.', 'confirmation sent!');
-        return redirect('/');
+        return redirect('inbox')->with($isResend = true);
     }
 
 
