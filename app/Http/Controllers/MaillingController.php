@@ -271,6 +271,15 @@ class MaillingController extends Controller
 
 
         $list = array_diff($list, $suppression);
-        return $list;
+
+        $filterd_emails = array();
+        foreach($list as $email){
+            if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+                $filterd_emails[] = $email;
+            }
+        }
+
+
+        return $filterd_emails;
     }
 }
