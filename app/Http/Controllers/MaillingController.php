@@ -246,7 +246,7 @@ class MaillingController extends Controller
                 $list1 =  $plucked1->all();
                 $list2 = $plucked2->all();
                 $list = array_unique(array_merge($list1,$list2), SORT_REGULAR);
-                
+
             case "All Subscribers":
                 $plucked = subscriber::all()->pluck('email');
                 $list =  $plucked->all();

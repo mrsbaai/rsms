@@ -93,7 +93,7 @@ class userController extends Controller
 
 
                 if (!$confirmed){
-                    flash('Please check your email and click the activation link to verify your account!')->warning()->important();
+                    flash('<span style="font-size: 50%">Please check your email and click the activation link to verify your account! <a href="/resend">Resend</a></span>')->warning()->important();
                 }
                 return view('inbox')->with('numbers', $numbers)->with('current', $number)->with('messages', $messages)->with('lastMessage', $lastMessage)->with('noNumbers', $noNumbers);
 
