@@ -229,6 +229,13 @@ class MaillingController extends Controller
 
     public function SendList(){
 
+        $pendinglist = pendinglist::all();
+
+        foreach($pendinglist as $entry){
+            echo $entry['email'];
+            $entry->delete();
+        }
+
     }
 
 
@@ -254,6 +261,7 @@ class MaillingController extends Controller
                 $plucked = user::all()->pluck('email');
                 $list =  $plucked->all();
             case "Subscribers Didn't register":
+                $list = array('ab@gmail.com','sssss@gmail.com');
             case "Users Topped Up":
             case "Users Didn't Top Up":
             case "Users With Numbers":
