@@ -118,6 +118,7 @@ class userController extends Controller
 
         Mail::to($email)->send(new confirmEmail($confirmation_code));
         flash()->overlay('Confirmation email has been sent to your email address.', 'confirmation sent!');
+        return redirect('/inbox');
     }
 
 
