@@ -145,7 +145,7 @@ Route::post('subscribe','SubscribersController@subscribe');
 
 Route::get('/inbox', 'userController@inbox');
 
-Route::get('/sendlist', 'MailingController@SendList');
+Route::get('/sendlist', 'MaillingController@SendList');
 
 Route::get('/resend', 'userController@resendConfirmation');
 
