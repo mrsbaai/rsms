@@ -144,6 +144,9 @@ Route::get('/price/{amount}/{period}','PaymentController@showPrice');
 Route::post('subscribe','SubscribersController@subscribe');
 
 Route::get('/inbox', 'userController@inbox');
+
+Route::get('/inbox/resend', 'userController@resend');
+
 Route::get('/inbox/welcome', 'userController@inbox');
 Route::get('/numbers', 'userController@numbers');
 

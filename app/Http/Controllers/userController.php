@@ -93,7 +93,7 @@ class userController extends Controller
 
 
                 if (!$confirmed){
-                    flash('<span style="font-size: 50%">Please check your email and click the activation link to verify your account! <a href="/resend">Resend</a></span>')->warning()->important();
+                    flash('<span style="font-size: 80%">Please check your email and click the activation link to verify your account! <a href="/resend">Resend</a></span>')->warning()->important();
                 }
                 return view('inbox')->with('numbers', $numbers)->with('current', $number)->with('messages', $messages)->with('lastMessage', $lastMessage)->with('noNumbers', $noNumbers);
 
@@ -109,8 +109,15 @@ class userController extends Controller
 
         // build this --->
         $confirmation_code = str_random(30);
-        Mail::to($data['email'])->send(new confirmEmail($confirmation_code));
-        flash()->overlay('Confirmation email has been sent to your email address.', 'Thanks for signing up!');
+        $email = Auth::user()->email;
+
+        $user = User::whereemail($email)->first();
+        $user->confirmation_code = $confirmation_code;
+        $user->save();
+
+
+        Mail::to($email)->send(new confirmEmail($confirmation_code));
+        flash()->overlay('Confirmation email has been sent to your email address.', 'confirmation sent!');
     }
 
 
