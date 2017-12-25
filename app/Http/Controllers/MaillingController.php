@@ -9,6 +9,7 @@ use Mail;
 use App\number;
 use App\coupon;
 use App\user;
+use App\subscriber;
 use App\paymentsystem;
 use App\Mail\numberRemovalNotification;
 use App\Mail\topupNeeded;
@@ -235,21 +236,30 @@ class MaillingController extends Controller
 
 
         $plucked = suppression::all()->pluck('email');
-
         $suppression =  $plucked->all();
 
 
         switch ($type){
             case "All Subscribers and Users":
-                $list = array("abdelilah.sbaai@gmail.com", "mrchioua@gmail.com");
+                $plucked1 = subscriber::all()->pluck('email');
+                $plucked2 = user::all()->pluck('email');
+                $list1 =  $plucked1->all();
+                $list2 = $plucked2->all();
+                $list = array_unique(array_merge($list1,$list2), SORT_REGULAR);
+                
             case "All Subscribers":
+                $plucked = subscriber::all()->pluck('email');
+                $list =  $plucked->all();
             case "All Users":
+                $plucked = user::all()->pluck('email');
+                $list =  $plucked->all();
             case "Subscribers Didn't register":
             case "Users Topped Up":
             case "Users Didn't Top Up":
             case "Users With Numbers":
             case "Users Without Numbers":
         }
+
 
         $list = array_diff($list, $suppression);
         return $list;
