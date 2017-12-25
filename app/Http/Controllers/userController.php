@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use App\paymentsystem;
 use Mail;
 use App\Mail\numbersReady;
+use App\Mail\confirmEmail;
 use Flash;
 
 class userController extends Controller
