@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use carbon\carbon;
 use App\pendinglist;
+use App\Mail\generic;
 use Mail;
 
 class SendPromoMails extends Command
