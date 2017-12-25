@@ -231,8 +231,11 @@ class MaillingController extends Controller
 
         $pendinglist = pendinglist::all();
         foreach($pendinglist as $entry){
-            echo $entry['email'];
-            $entry->delete();
+            if(carbon::now()->gte($entry->sendingdate)){
+                echo $entry['email'];
+                $entry->delete();
+            }
+
         }
 
     }
