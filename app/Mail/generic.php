@@ -55,7 +55,7 @@ class generic extends Mailable
         $this->img1 = $data['img1'];
         $this->img2 = $data['img2'];
 
-        $this->subj = $data['subj'];
+        $this->subj = $data['subject'];
         $this->email = $data['email'];
 
     }

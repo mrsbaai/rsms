@@ -13,6 +13,7 @@ use App\subscriber;
 use App\paymentsystem;
 use App\Mail\numberRemovalNotification;
 use App\Mail\topupNeeded;
+use App\Mail\generic;
 use App\Mail\newCoupon;
 use Log;
 
@@ -232,7 +233,9 @@ class MaillingController extends Controller
         $pendinglist = pendinglist::all();
         foreach($pendinglist as $entry){
             if(carbon::now()->gte(carbon::parse($entry['sendingdate']))){
-                echo $entry['email'];
+
+                Mail::to($entry['email'])->queue(new generic($entry));
+                echo $entry['subject'] . " -> " . $entry['email'] . "<br>   ";
                 $entry->delete();
             }
 
@@ -263,7 +266,7 @@ class MaillingController extends Controller
                 $plucked = user::all()->pluck('email');
                 $list =  $plucked->all();
             case "Subscribers Didn't register":
-                $list = array('ab@gmail.com','sssss@gmail.com');
+                $list = array('mrchioua@gmail.com','a.b.delilahsbaai@gmail.com');
             case "Users Topped Up":
             case "Users Didn't Top Up":
             case "Users With Numbers":
