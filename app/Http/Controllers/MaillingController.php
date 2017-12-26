@@ -251,18 +251,18 @@ class MaillingController extends Controller
         $suppression =  $plucked->all();
         $list = array();
         if ($type == "All Subscribers and Users") {
-            $plucked1 = subscriber::all()->pluck('email');
+            $plucked1 = subscriber::all()->where("confirmed","=",true)->pluck('email');
             $plucked2 = user::all()->pluck('email');
             $list1 =  $plucked1->all();
             $list2 = $plucked2->all();
             $list = array_unique(array_merge($list1,$list2), SORT_REGULAR);
         }
         if ($type == "All Subscribers") {
-            $plucked = subscriber::all()->pluck('email');
+            $plucked = subscriber::all()->where("confirmed","=",true)->pluck('email');
             $list =  $plucked->all();
         }
         if ($type == "All Users") {
-            $plucked = user::all()->pluck('email');
+            $plucked = user::all()->where("confirmed","=",true)->pluck('email');
             $list =  $plucked->all();
         }
         if ($type == "Subscribers Didn't register") {

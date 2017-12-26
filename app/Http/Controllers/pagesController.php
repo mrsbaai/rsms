@@ -23,7 +23,7 @@ use Illuminate\Mail\Markdown;
 
 use App\Libraries\Session;
 
-
+use App\Http\Controllers\MG_Email;
 class pagesController extends Controller
 {
     Public function home(){
@@ -129,20 +129,22 @@ class pagesController extends Controller
         }
     }
 
-    public function test($days){
+    public function test(){
 
 
-
-        message::truncate();
-        $total = 4000;
-        for ($i = 1; $i <= $days; $i++) {
-            $total = $total + (($total * 0.45) /100);
+        $mg_email = new MG_Email();
+        $email = 'mark@yahoo.com';
+        if ($mg_email->is_valid($email)) {
+            echo $email.' is valid';
+        }
+        else {
+            echo $email.' is invalid.';
+            if ($mg_email->spell_check)
+                echo ' Do you mean '.$mg_email->spell_check.'?';
         }
 
-        $d = ($total * 0.45) /100;
-        $m = $d * 30;
-        return 'If You invert $' . $total . ' After ' . $days . ' days You will be having $' . $total . ' invested and generating $' . $d . ' a day ($' . $m . ' a month).';
     }
+
     public function pricing(){
         return view('pricing');
     }

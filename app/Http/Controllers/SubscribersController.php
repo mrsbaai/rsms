@@ -7,6 +7,7 @@ use App\suppression;
 use Illuminate\Http\Request;
 use Mail;
 use App\Mail\subscribeConfirmation;
+use App\Http\Controllers\MG_Email;
 
 class SubscribersController extends Controller
 {
@@ -56,17 +57,22 @@ class SubscribersController extends Controller
 
     }
     Public function subscribe(Request $request){
-        if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
-            flash()->overlay('Please enter your real email address.', 'Error!');
+        $mg_email = new MG_Email();
+        if (!$mg_email->is_valid($request->email)) {
+            flash()->overlay($request->email . ' Is not a valid email address.', 'Invalid E-mail!');
             return redirect('/home');
         }
+
         $suppression = suppression::where('email', $request->email)->first();
 
         if(!is_null($suppression)) {
             $suppression->delete();
         }
 
+
         $subscribed = subscriber::where('email', $request->email)->where('subscribed', true)->first();
+
+
 
        if(!is_null($subscribed)) {
            flash()->overlay('Your e-mail already exists in our database.', 'Already subscribed!');
