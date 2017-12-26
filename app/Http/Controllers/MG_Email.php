@@ -9,7 +9,7 @@ class MG_Email extends Controller
     var $key;
     var $spell_check;
 
-    function __construct($key = "pubkey-5be4d52a89a01e0e10dedfb1f4a064ff\"") {
+    function __construct($key = "pubkey-5be4d52a89a01e0e10dedfb1f4a064ff") {
         $this->key = $key;
     }
 
