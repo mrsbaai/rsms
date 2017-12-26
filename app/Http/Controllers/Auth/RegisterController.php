@@ -53,11 +53,6 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
 
-        $mg_email = new MG_Email();
-        if (!$mg_email->is_valid($data['email'])) {
-            return false;
-        }
-
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|unique:users|email',
@@ -74,8 +69,12 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-
-
+        $mg_email = new MG_Email();
+        if (!$mg_email->is_valid($data['email'])) {
+            flash()->overlay($data['email'] . ' Is not a valid email address.', 'Invalid E-mail!');
+            return redirect('/register');
+        }
+        
         $confirmation_code = str_random(30);
         Mail::to($data['email'])->send(new confirmEmail($confirmation_code));
         flash()->overlay('Confirmation email has been sent to your email address.', 'Thanks for signing up!');
