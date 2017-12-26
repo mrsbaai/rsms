@@ -252,7 +252,7 @@ class MaillingController extends Controller
         $list = array();
         if ($type == "All Subscribers and Users") {
             $plucked1 = subscriber::all()->where("confirmed","=",true)->pluck('email');
-            $plucked2 = user::all()->pluck('email');
+            $plucked2 = user::all()->where("confirmed","=",true)->pluck('email');
             $list1 =  $plucked1->all();
             $list2 = $plucked2->all();
             $list = array_unique(array_merge($list1,$list2), SORT_REGULAR);
