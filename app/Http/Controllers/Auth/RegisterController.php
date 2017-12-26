@@ -9,7 +9,6 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Mail;
 use App\Mail\confirmEmail;
 use Flash;
-use App\Http\Controllers\MG_Email;
 use Carbon\Carbon;
 
 class RegisterController extends Controller
@@ -69,11 +68,6 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        $mg_email = new MG_Email();
-        if (!$mg_email->is_valid($data['email'])) {
-            flash()->overlay($data['email'] . ' Is not a valid email address.', 'Invalid E-mail!');
-            return redirect('/register');
-        }
 
 
         $confirmation_code = str_random(30);
