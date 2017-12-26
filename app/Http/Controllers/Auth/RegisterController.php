@@ -55,9 +55,7 @@ class RegisterController extends Controller
 
         $mg_email = new MG_Email();
         if (!$mg_email->is_valid($data['email'])) {
-
-            $ret = $data['email'] . ' Is not a valid email address.';
-            return $ret;
+            return false;
         }
 
         return Validator::make($data, [
