@@ -132,16 +132,6 @@ class pagesController extends Controller
     public function test(){
 
 
-        $mg_email = new MG_Email();
-        $email = 'mark@yahoo.com';
-        if ($mg_email->is_valid($email)) {
-            echo $email.' is valid';
-        }
-        else {
-            echo $email.' is invalid.';
-            if ($mg_email->spell_check)
-                echo ' Do you mean '.$mg_email->spell_check.'?';
-        }
 
     }
 

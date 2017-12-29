@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 class MG_Email extends Controller
 {
     var $key;
-    var $spell_check;
 
     function __construct($key = "pubkey-5be4d52a89a01e0e10dedfb1f4a064ff") {
         $this->key = $key;
@@ -15,8 +14,6 @@ class MG_Email extends Controller
 
     function is_valid($email) {
         $response = json_decode($this->get('https://api.mailgun.net/v2/address/validate?address='.$email));
-        $this->spell_check = $response->did_you_mean ? $response->did_you_mean : '';
-
         //var_dump($response);
         return $response->is_valid ? true : false;
     }
