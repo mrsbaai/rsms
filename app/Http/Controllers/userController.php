@@ -108,9 +108,15 @@ class userController extends Controller
 
     public function resendConfirmation(){
 
-        // build this --->
         $confirmation_code = str_random(30);
-        $email = Auth::user()->email;
+
+        if (Auth::check()){
+            $email = Auth::user()->email;
+        }else{
+            return view('auth.login');
+        }
+
+
 
         $user = User::whereemail($email)->first();
         $user->confirmation_code = $confirmation_code;

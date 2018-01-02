@@ -393,11 +393,10 @@ class PaymentController extends Controller
             $email = Auth::user()->email;
             $numbers = number::where('is_private',true)->where('email',$email)->get();
 
-            try {
-                $totalAmount = $amount + count($numbers);
-            } catch (Exception $e) {
-                $totalAmount = $amount;
-            }
+            if (!is_numeric($amount)){$amount=1;}
+
+            $totalAmount = $amount + count($numbers);
+
 
 
         }else{
