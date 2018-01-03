@@ -13,13 +13,14 @@ class MG_Email extends Controller
     }
 
     function is_valid($email) {
-        try {
-            $response = json_decode($this->get('https://api.mailgun.net/v2/address/validate?address='.$email));
-            //var_dump($response);
+        $response = json_decode($this->get('https://api.mailgun.net/v2/address/validate?address='.$email));
+        if(isset($response->is_valid)){
             return $response->is_valid ? true : false;
-        } catch (Exception $e) {
+        }else{
             return false;
         }
+
+
 
     }
 
