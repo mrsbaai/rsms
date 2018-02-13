@@ -387,6 +387,40 @@ class PaymentController extends Controller
         header("HTTP/1.1 200 OK");
     }
 
+public function smsver(){
+        $ipn = new PaypalIPN();
+        $verified = $ipn->verifyIPN();
+        if ($verified) {
+            $paymentSystem = "PayPal";
+
+
+
+
+            if (isset($_POST["mc_gross"])){$payedAmount = $_POST["mc_gross"];}else{$payedAmount = "";}
+            if (isset($_POST["txn_type"])){$transactionType = $_POST["txn_type"];}else{$transactionType = "";}
+            if (isset($_POST["payment_status"])){$transactionStatus = $_POST["payment_status"];}else{$transactionStatus = "";}
+            if (isset($_POST["payer_email"])){$buyerEmail = $_POST["payer_email"];}else{$buyerEmail = "";}
+            if (isset($_POST["business"])){$accountId = $_POST["business"];}else{$accountId = "";}
+            if (isset($_POST["payment_status"])){$payment_status = $_POST["payment_status"];}else{$payment_status = "";}
+            if (isset($_POST["payment_type"])){$payment_type = $_POST["payment_type"];}else{$payment_type = "";}
+            if (isset($_POST["pending_reason"])){$pending_reason = $_POST["pending_reason"];}else{$pending_reason = "";}
+
+            $originalAmount = $payedAmount;
+            $userEmail = $buyerEmail;
+            $code = "SMS-Verification.net";
+            // loging the event
+
+            $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
+
+            if (($payment_status == 'Completed') || ($payment_status == 'Pending' && $payment_type == 'instant' && $pending_reason == 'paymentreview')){
+                // successful payment -> SMS notification
+                Log::info("[Payment Successful] [SMS-Verification.net] $payedAmount USD $accountId");
+
+            }
+        }
+        header("HTTP/1.1 200 OK");
+    }
+
 
     public function getPrice($amount=1,$period=1){
         if (Auth::check()){
