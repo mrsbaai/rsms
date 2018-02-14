@@ -258,7 +258,7 @@ class adminController extends Controller
     public function preview($text1, $text2, $text3, $text4, $heading1, $heading2, $heading3, $heading4, $img1, $img2, $button1, $button2, $button3,$buttonURL1, $buttonURL2, $buttonURL3){
 
         return "test";
-       
+
     }
 
     public function coupon(){
