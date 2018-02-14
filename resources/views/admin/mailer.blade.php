@@ -35,7 +35,7 @@
             if (!document.getElementById('img2').value ){var img2 = "nothing"}else{var img2 = document.getElementById('img2').value}
 
 
-            var url = "/admin/mailer/preview/" + encodeURIComponent(text1) + "/" + encodeURIComponent(text2) + "/" + encodeURIComponent(text3) + "/" + encodeURIComponent(text4) + "/" + encodeURIComponent(heading1) + "/" + encodeURIComponent(heading2) + "/" + encodeURIComponent(heading3) + "/" + encodeURIComponent(heading4) + "/" + encodeURIComponent(img1) + "/" + encodeURIComponent(img2) + "/" + encodeURIComponent(button1) + "/" + encodeURIComponent(button2) + "/" + encodeURIComponent(button3) + "/" + encodeURIComponent(buttonURL1) + "/" + encodeURIComponent(buttonURL2) + "/" + encodeURIComponent(buttonURL3);
+            var url = "/admin/mailer/preview/" + encodeURIComponent(text1) + "/" + encodeURIComponent(text2) + "/" + encodeURIComponent(text3) + "/" + encodeURIComponent(text4) + "/" + encodeURIComponent(heading1) + "/" + encodeURIComponent(heading2) + "/" + encodeURIComponent(heading3) + "/" + encodeURIComponent(heading4) + "/" + encodeURIComponent(img1) + "/" + encodeURIComponent(img2) + "/" + encodeURIComponent(button1) + "/" + encodeURIComponent(button2) + "/" + encodeURIComponent(button3) + "/" + btoa(buttonURL1) + "/" + btoa(buttonURL2) + "/" + btoa(buttonURL3);
             document.getElementById('previewIframe').src = url;
         }
     </script>

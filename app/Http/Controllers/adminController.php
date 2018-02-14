@@ -267,11 +267,11 @@ class adminController extends Controller
         $text3 =  urldecode($text3);
         $text4 =  urldecode($text4);
         $button1 =  urldecode($button1);
-        $buttonURL1 =  urldecode($buttonURL1);
+        $buttonURL1 =  base64_decode($buttonURL1);
         $button2 =  urldecode($button2);
-        $buttonURL2 =  urldecode($buttonURL2);
+        $buttonURL2 =  base64_decode($buttonURL2);
         $button3 =  urldecode($button3);
-        $buttonURL3 =  urldecode($buttonURL3);
+        $buttonURL3 =  base64_decode($buttonURL3);
         $img1 =  urldecode($img1);
         $img2 =  urldecode($img2);
 
