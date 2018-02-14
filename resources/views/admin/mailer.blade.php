@@ -36,8 +36,8 @@
 
 
             var url = "/admin/mailer/preview/" + btoa(text1) + "/" + btoa(text2) + "/" + btoa(text3) + "/" + btoa(text4) + "/" + btoa(heading1) + "/" + btoa(heading2) + "/" + btoa(heading3) + "/" + btoa(heading4) + "/" + btoa(img1) + "/" + btoa(img2) + "/" + btoa(button1) + "/" + btoa(button2) + "/" + btoa(button3) + "/" + btoa(buttonURL1) + "/" + btoa(buttonURL2) + "/" + btoa(buttonURL3);
-
-            document.getElementById('previewIframe').innerHTML = url;
+            alert(url);
+            document.getElementById('previewIframe').src = url;
         }
     </script>
 
