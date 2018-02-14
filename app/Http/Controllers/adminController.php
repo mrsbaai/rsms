@@ -257,23 +257,23 @@ class adminController extends Controller
 
     public function preview($text1, $text2, $text3, $text4, $heading1, $heading2, $heading3, $heading4, $img1, $img2, $button1, $button2, $button3,$buttonURL1, $buttonURL2, $buttonURL3){
 
-        $heading1 =  base64_decode($heading1);
-        $heading2 =  base64_decode($heading2);
-        $heading3 =  base64_decode($heading3);
-        $heading4 =  base64_decode($heading4);
+        $heading1 =  urldecode ($heading1);
+        $heading2 =  urldecode ($heading2);
+        $heading3 =  urldecode ($heading3);
+        $heading4 =  urldecode ($heading4);
 
-        $text2 =  base64_decode($text2);
-        $text1 =  base64_decode($text1);
-        $text3 =  base64_decode($text3);
-        $text4 =  base64_decode($text4);
-        $button1 =  base64_decode($button1);
-        $buttonURL1 =  base64_decode($buttonURL1);
-        $button2 =  base64_decode($button2);
-        $buttonURL2 =  base64_decode($buttonURL2);
-        $button3 =  base64_decode($button3);
-        $buttonURL3 =  base64_decode($buttonURL3);
-        $img1 =  base64_decode($img1);
-        $img2 =  base64_decode($img2);
+        $text2 =  urldecode ($text2);
+        $text1 =  urldecode($text1);
+        $text3 =  urldecode($text3);
+        $text4 =  urldecode($text4);
+        $button1 =  urldecode($button1);
+        $buttonURL1 =  urldecode($buttonURL1);
+        $button2 =  urldecode($button2);
+        $buttonURL2 =  urldecode($buttonURL2);
+        $button3 =  urldecode($button3);
+        $buttonURL3 =  urldecode($buttonURL3);
+        $img1 =  urldecode($img1);
+        $img2 =  urldecode($img2);
 
         if ($heading1 == "nothing"){$heading1 = null;}
         if ($heading2 == "nothing"){$heading2 = null;}
