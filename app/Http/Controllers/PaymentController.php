@@ -267,22 +267,24 @@ class PaymentController extends Controller
                 $response = urldecode($response);
                 parse_str($response, $responseArray);
 
+				if (isset($responseArray['ap_description'])){
+					description = $responseArray['ap_description'];
+					$paymentSystem="Payza";
+					$originalAmount = $this->getDescriptionVariables("originalAmount",$description);
+					$userEmail = $this->getDescriptionVariables("userEmail",$description);
+					$code = $this->getDescriptionVariables("code",$description);
+					$payedAmount = $responseArray['ap_amount'];
 
-                $description = $responseArray['ap_description'];
-                $paymentSystem="Payza";
-                $originalAmount = $this->getDescriptionVariables("originalAmount",$description);
-                $userEmail = $this->getDescriptionVariables("userEmail",$description);
-                $code = $this->getDescriptionVariables("code",$description);
-                $payedAmount = $responseArray['ap_amount'];
+					$transactionType = $responseArray['ap_notificationtype'];
+					$transactionStatus = $responseArray['ap_transactionstate'];
+					$buyerEmail = $responseArray['ap_custemailaddress'];
+					$accountId = $responseArray['ap_merchant'];
+					$this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
+					if ("Completed" == $transactionStatus or "On Hold" == $transactionStatus){
+						$this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
+					}
+				}
 
-                $transactionType = $responseArray['ap_notificationtype'];
-                $transactionStatus = $responseArray['ap_transactionstate'];
-                $buyerEmail = $responseArray['ap_custemailaddress'];
-                $accountId = $responseArray['ap_merchant'];
-                $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
-                if ("Completed" == $transactionStatus or "On Hold" == $transactionStatus){
-                    $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
-                }
 
             }
         }
