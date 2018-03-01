@@ -268,7 +268,7 @@ class PaymentController extends Controller
                 parse_str($response, $responseArray);
 
 				if (isset($responseArray['ap_description'])){
-					description = $responseArray['ap_description'];
+					$description = $responseArray['ap_description'];
 					$paymentSystem="Payza";
 					$originalAmount = $this->getDescriptionVariables("originalAmount",$description);
 					$userEmail = $this->getDescriptionVariables("userEmail",$description);
