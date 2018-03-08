@@ -56,12 +56,22 @@ class SubscribersController extends Controller
 
 
     }
+    public function valid_email($email) {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            list($user, $domain ) = explode( '@', $email );
+            return checkdnsrr( $domain, 'mx');
+        }else{
+            return false;
+        }
+    }
+
     Public function subscribe(Request $request){
-        $mg_email = new MG_Email();
-        if (!$mg_email->is_valid($request->email)) {
+
+        if(!$this->valid_email('user@hotmail.fr')) {
             flash()->overlay($request->email . ' Is not a valid email address.', 'Invalid E-mail!');
             return redirect('/home');
         }
+
 
         $suppression = suppression::where('email', $request->email)->first();
 

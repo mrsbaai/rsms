@@ -23,7 +23,6 @@ use Illuminate\Mail\Markdown;
 
 use App\Libraries\Session;
 
-use App\Http\Controllers\MG_Email;
 class pagesController extends Controller
 {
     Public function home(){
@@ -130,10 +129,18 @@ class pagesController extends Controller
     }
 
     public function test(){
-
-
-
+        if($this->valid_email('user@hotmail.fr')) {echo('Valid');} else {echo('Not valid');}
     }
+
+    public function valid_email($email) {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            list($user, $domain ) = explode( '@', $email );
+            return checkdnsrr( $domain, 'mx');
+        }else{
+            return false;
+        }
+    }
+
 
     public function pricing(){
         return view('pricing');

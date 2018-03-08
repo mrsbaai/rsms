@@ -65,14 +65,29 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
+
+    public function valid_email($email) {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            list($user, $domain ) = explode( '@', $email );
+            return checkdnsrr( $domain, 'mx');
+        }else{
+            return false;
+        }
+    }
+
     protected function create(array $data)
     {
 
 
         $confirmation_code = str_random(30);
 
-        Mail::to($data['email'])->send(new confirmEmail($confirmation_code));
+
+        if ($this->valid_email($data['email'])){
+            Mail::to($data['email'])->send(new confirmEmail($confirmation_code));
+        }
+
         flash()->overlay('Confirmation email has been sent to your email address.', 'Thanks for signing up!');
+
         if(isset($_COOKIE['origin_ref'])){
             $source = $_COOKIE['origin_ref'];
         }else{
