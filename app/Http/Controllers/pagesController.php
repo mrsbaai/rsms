@@ -129,16 +129,58 @@ class pagesController extends Controller
     }
 
     public function test(){
-        if($this->valid_email('user@hotmail.fr')) {echo('Valid');} else {echo('Not valid');}
+        $email ="test@hotmail.com";
+        if($this->valid_email($email)) {echo($email.  'Valid');} else {echo($email . ' Not valid');}
+        $email ="test@hotmail11.com";
+        if($this->valid_email($email)) {echo($email.  'Valid');} else {echo($email . ' Not valid');}
+        $email ="dfhmlglglmdflhmdfhlml@gmail.com";
+        if($this->valid_email($email)) {echo($email.  'Valid');} else {echo($email . ' Not valid');}
+        $email ="drhqtsfjsjs@srgqsrg.fr";
+        if($this->valid_email($email)) {echo($email.  'Valid');} else {echo($email . ' Not valid');}
+        $email ="blooddity@hotmail.com";
+        if($this->valid_email($email)) {echo($email.  'Valid');} else {echo($email . ' Not valid');}
+        $email ="mrchioua@gmail.com";
+        if($this->valid_email($email)) {echo($email.  'Valid');} else {echo($email . ' Not valid');}
     }
 
     public function valid_email($email) {
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            list($user, $domain ) = explode( '@', $email );
-            return checkdnsrr( $domain, 'mx');
-        }else{
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return false;
         }
+
+        $domain = explode('@', $email)[1];
+        if (!getmxrr($domain)) {
+            return false;
+        }
+
+        $socket = @fsockopen($domain, 25, $errno, $errstr, 30);
+        if (!$socket) {
+            return false;
+        }
+
+        $str = @fgets($socket, 515); // Clear response, get connected message and optionally verify it.
+
+        fwrite($socket, 'HELLO \r\n');
+        $str = @fgets($socket, 515); // Clear response.
+
+        fwrite($socket, 'MAIL FROM: <test@gmail.com>\r\n');
+        $str = @fgets($socket, 515); // Clear response.
+
+        fwrite($socket, "RCPT TO: <${email}>\r\n");
+        $str = @fgets($socket, 515); // Clear response.
+
+        @fclose($socket);
+
+        if (stripos($str, 'OK') === false) {
+            return false;
+        }
+
+        if (!mail($email, '[Ignore] Testing if email address exists', 'message body...')) {
+            return false;
+        }
+
+
+        return true;
     }
 
 

@@ -59,10 +59,10 @@ class SubscribersController extends Controller
     }
     public function valid_email($email) {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            Log::info("$email passed filter 1");
+
             list($user, $domain ) = explode( '@', $email );
             if(checkdnsrr( $domain, 'mx')) {
-            Log::info("$email passed filter 2");
+
             return true;
             };
         }else{
