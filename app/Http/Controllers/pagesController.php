@@ -149,7 +149,7 @@ class pagesController extends Controller
         }
 
         $domain = explode('@', $email)[1];
-        if (!getmxrr($domain)) {
+        if (!checkdnsrr( $domain, 'mx')) {
             return false;
         }
 
