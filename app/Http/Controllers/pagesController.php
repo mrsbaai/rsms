@@ -131,16 +131,7 @@ class pagesController extends Controller
     public function test(){
         $email ="test@hotmail.com";
         if($this->valid_email($email)) {echo($email.  'Valid');} else {echo($email . ' Not valid');}
-        $email ="test@hotmail11.com";
-        if($this->valid_email($email)) {echo($email.  'Valid');} else {echo($email . ' Not valid');}
-        $email ="dfhmlglglmdflhmdfhlml@gmail.com";
-        if($this->valid_email($email)) {echo($email.  'Valid');} else {echo($email . ' Not valid');}
-        $email ="drhqtsfjsjs@srgqsrg.fr";
-        if($this->valid_email($email)) {echo($email.  'Valid');} else {echo($email . ' Not valid');}
-        $email ="blooddity@hotmail.com";
-        if($this->valid_email($email)) {echo($email.  'Valid');} else {echo($email . ' Not valid');}
-        $email ="mrchioua@gmail.com";
-        if($this->valid_email($email)) {echo($email.  'Valid');} else {echo($email . ' Not valid');}
+
     }
 
     public function valid_email($email) {
