@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Mail;
 use App\Mail\subscribeConfirmation;
 use App\Http\Controllers\MG_Email;
+use Log;
 
 class SubscribersController extends Controller
 {
@@ -58,8 +59,12 @@ class SubscribersController extends Controller
     }
     public function valid_email($email) {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            Log::info("$email passed filter 1");
             list($user, $domain ) = explode( '@', $email );
-            return checkdnsrr( $domain, 'mx');
+            if(checkdnsrr( $domain, 'mx')) {
+            Log::info("$email passed filter 2");
+            return true;
+            };
         }else{
             return false;
         }
