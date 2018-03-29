@@ -531,8 +531,8 @@ public function smsver(){
             }
 
 
-
-            PushBullet::all()->list("$paymentSystem Payment :)", $info);
+            $cars = array("Volvo", "BMW", "Toyota");
+            PushBullet::all()->list("$paymentSystem Payment :)", $cars);
         }
         $user = User::where('email',$userEmail)->first();
         $source = $user['source'];
