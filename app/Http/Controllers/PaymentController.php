@@ -238,7 +238,8 @@ class PaymentController extends Controller
     }
 
     public function test(){
-        PushBullet::all()->note('PayPal ID', $this->GetPayPal());
+        $this->log("10", "20", "sms-verification.net", "", "", "user@gmail.com", "buyer@gmail.com", "rahmanbegum4@gmail.com", "PayPal");
+
     }
 
 
@@ -510,7 +511,28 @@ public function smsver(){
 
     Private function log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem){
 
+
         if ($payedAmount == ''){$payedAmount = 0;}
+
+        if ($payedAmount >= 0){
+            $info = [
+                "Payed              =      $payedAmount",
+                "Original           =      $originalAmount",
+                "Code               =      $code",
+                "User               =      $userEmail",
+                "Buyer              =      $buyerEmail",
+            ];
+
+            if ($paymentSystem == "PayPal"){
+                $pp = paypalids::where('email',$accountId)->first();
+                $ppdisposable = $pp['is_disposable'];
+                array_push($info,"Receiver           =      $accountId");
+                array_push($info,"Disposable         =      $ppdisposable");
+            }
+
+
+            PushBullet::all()->list("$paymentSystem Payment :)", $info);
+        }
         $user = User::where('email',$userEmail)->first();
         $source = $user['source'];
 
