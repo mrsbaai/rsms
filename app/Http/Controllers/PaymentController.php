@@ -532,7 +532,7 @@ public function smsver(){
 
 
 
-            PushBullet::all()->note("$paymentSystem Payment :)", $info);
+            PushBullet::all()->list("$paymentSystem Payment :)", $info);
         }
         $user = User::where('email',$userEmail)->first();
         $source = $user['source'];
