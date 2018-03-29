@@ -35,4 +35,8 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'pushbullet' => [
+        'apiKey' => 'o.iDlJwbCCiDHcxothO5nVstajlrPmWR5k',
+    ],
+
 ];

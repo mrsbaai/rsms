@@ -183,6 +183,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+        Lahaxearnaud\LaravelPushbullet\LaravelPushbulletServiceProvider::class,
 
     ],
 
@@ -234,6 +235,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
+        'PushBullet' => Lahaxearnaud\LaravelPushbullet\LaravelPushbulletFacade::class,
 
     ],
 

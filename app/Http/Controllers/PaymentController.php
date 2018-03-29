@@ -238,7 +238,6 @@ class PaymentController extends Controller
 
     public function test(){
         return $this->GetPayPal();
-
     }
 
 

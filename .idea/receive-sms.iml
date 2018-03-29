@@ -18,6 +18,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-highlighter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jenssegers/date" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jlawrence/eos" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/joetannenbaum/phpushbullet" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/lahaxearnaud/laravel-pushbullet" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laracasts/flash" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/framework" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/tinker" />
@@ -65,6 +67,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/http-foundation" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/http-kernel" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php70" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/process" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/routing" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/translation" />
@@ -106,6 +109,8 @@
           <root url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-highlighter" />
           <root url="file://$MODULE_DIR$/vendor/jenssegers/date" />
           <root url="file://$MODULE_DIR$/vendor/jlawrence/eos" />
+          <root url="file://$MODULE_DIR$/vendor/joetannenbaum/phpushbullet" />
+          <root url="file://$MODULE_DIR$/vendor/lahaxearnaud/laravel-pushbullet" />
           <root url="file://$MODULE_DIR$/vendor/laracasts/flash" />
           <root url="file://$MODULE_DIR$/vendor/laravel/framework" />
           <root url="file://$MODULE_DIR$/vendor/laravel/tinker" />
@@ -153,6 +158,7 @@
           <root url="file://$MODULE_DIR$/vendor/symfony/http-foundation" />
           <root url="file://$MODULE_DIR$/vendor/symfony/http-kernel" />
           <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-php70" />
           <root url="file://$MODULE_DIR$/vendor/symfony/process" />
           <root url="file://$MODULE_DIR$/vendor/symfony/routing" />
           <root url="file://$MODULE_DIR$/vendor/symfony/translation" />
@@ -180,6 +186,8 @@
           <root url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-highlighter" />
           <root url="file://$MODULE_DIR$/vendor/jenssegers/date" />
           <root url="file://$MODULE_DIR$/vendor/jlawrence/eos" />
+          <root url="file://$MODULE_DIR$/vendor/joetannenbaum/phpushbullet" />
+          <root url="file://$MODULE_DIR$/vendor/lahaxearnaud/laravel-pushbullet" />
           <root url="file://$MODULE_DIR$/vendor/laracasts/flash" />
           <root url="file://$MODULE_DIR$/vendor/laravel/framework" />
           <root url="file://$MODULE_DIR$/vendor/laravel/tinker" />
@@ -227,6 +235,7 @@
           <root url="file://$MODULE_DIR$/vendor/symfony/http-foundation" />
           <root url="file://$MODULE_DIR$/vendor/symfony/http-kernel" />
           <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-php70" />
           <root url="file://$MODULE_DIR$/vendor/symfony/process" />
           <root url="file://$MODULE_DIR$/vendor/symfony/routing" />
           <root url="file://$MODULE_DIR$/vendor/symfony/translation" />

@@ -38,7 +38,7 @@ Route::get('subscribe/verify/{email}', [
     'uses' => 'SubscribersController@confirm'
 ]);
 
-Route::get('/test','pagesController@test');
+Route::get('/test','PaymentController@test');
 Route::get('/testing','pagesController@testing');
 
 Route::get('/datafix','adminController@dataFix');
