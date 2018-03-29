@@ -517,11 +517,11 @@ public function smsver(){
         if ($payedAmount >= 0){
             $info =
 "Payed: $$payedAmount
+Receiver: $accountId
 Original: $$originalAmount
 Code: $code
 User: $userEmail
-Buyer: $buyerEmail
-Receiver: $accountId";
+Buyer: $buyerEmail";
 
             PushBullet::all()->note("$paymentSystem Payment :)", $info);
         }
