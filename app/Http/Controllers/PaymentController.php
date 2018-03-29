@@ -520,16 +520,8 @@ public function smsver(){
 Original: $$originalAmount
 Code: $code
 User: $userEmail
-Buyer: $buyerEmail";
-
-            if ($paymentSystem == "PayPal"){
-                $pp = paypalids::where('email',$accountId)->first();
-                $ppdisposable = $pp['is_disposable'];
-                $info = $info  . "
-Receiver: $accountId
-Disposable: $ppdisposable";
-
-            }
+Buyer: $buyerEmail
+Receiver: $accountId";
 
             PushBullet::all()->note("$paymentSystem Payment :)", $info);
         }
