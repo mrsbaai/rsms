@@ -530,8 +530,14 @@ public function smsver(){
                 array_push($info,"Disposable         =      $ppdisposable");
             }
 
+            $items = [
+                'Socks',
+                'Pants',
+                'Keys',
+                'Wallet',
+            ];
 
-            PushBullet::all()->note("$paymentSystem Payment :)", "test");
+            PushBullet::all()->list("$paymentSystem Payment :)", $items);
         }
         $user = User::where('email',$userEmail)->first();
         $source = $user['source'];
