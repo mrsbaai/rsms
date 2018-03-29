@@ -531,7 +531,10 @@ public function smsver(){
             }
 
 
-            $cars = array("Volvo", "BMW", "Toyota");
+            $cars = array();
+            array_push($cars,"ddd");
+            array_push($cars,"ddd");
+            array_push($cars,"ddd");
             PushBullet::all()->list("$paymentSystem Payment :)", $cars);
         }
         $user = User::where('email',$userEmail)->first();
