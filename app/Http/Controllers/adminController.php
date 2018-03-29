@@ -26,6 +26,7 @@ use Illuminate\Mail\Markdown;
 class adminController extends Controller
 {
 
+
     Public function dashboard(){
 
 

@@ -47,6 +47,10 @@ Route::pattern('number', '[0-9]{8,13}');
 
 Auth::routes();
 
+Route::get('/getdisposable', 'PaymentController@getdisposable');
+Route::get('/pp', 'PaymentController@pp');
+Route::get('/ppsned', 'PaymentController@ppsend');
+
 Route::get('/admin', 'adminController@dashboard');
 Route::get('/admin/dashboard', 'adminController@dashboard');
 Route::get('/admin/mailer', 'adminController@mailer');
