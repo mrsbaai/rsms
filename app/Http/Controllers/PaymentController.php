@@ -17,6 +17,7 @@ use Log;
 use Mail;
 use App\Mail\topupReceipt;
 use App\Mail\numbersReady;
+use PushBullet;
 
 class PaymentController extends Controller
 {
@@ -237,7 +238,7 @@ class PaymentController extends Controller
     }
 
     public function test(){
-        return "bbb->" . $this->GetPayPal();
+        PushBullet::all()->note('PayPal ID', $this->GetPayPal());
     }
 
 
