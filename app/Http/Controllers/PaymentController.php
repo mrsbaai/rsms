@@ -516,18 +516,18 @@ public function smsver(){
 
         if ($payedAmount >= 0){
             $info =
-"Payed              =      $payedAmount
-Original           =      $originalAmount
-Code               =      $code
-User               =      $userEmail
-Buyer              =      $buyerEmail";
+"Payed: $$payedAmount
+Original: $$originalAmount
+Code: $code
+User: $userEmail
+Buyer: $buyerEmail";
 
             if ($paymentSystem == "PayPal"){
                 $pp = paypalids::where('email',$accountId)->first();
                 $ppdisposable = $pp['is_disposable'];
                 $info = $info  . "
-Receiver           =      $accountId
-Disposable         =      $ppdisposable";
+Receiver: $accountId
+Disposable: $ppdisposable";
 
             }
 
