@@ -515,27 +515,23 @@ public function smsver(){
         if ($payedAmount == ''){$payedAmount = 0;}
 
         if ($payedAmount >= 0){
-            $info = [
-                "Payed              =      $payedAmount",
-                "Original           =      $originalAmount",
-                "Code               =      $code",
-                "User               =      $userEmail",
-                "Buyer              =      $buyerEmail",
-            ];
+            $info =
+                "Payed              =      $payedAmount" . "<br>" .
+                "Original           =      $originalAmount" . "<br>" .
+                "Code               =      $code" . "<br>" .
+                "User               =      $userEmail" . "<br>" .
+                "Buyer              =      $buyerEmail";
 
             if ($paymentSystem == "PayPal"){
                 $pp = paypalids::where('email',$accountId)->first();
                 $ppdisposable = $pp['is_disposable'];
-                array_push($info,"Receiver           =      $accountId");
-                array_push($info,"Disposable         =      $ppdisposable");
+                $info = $info  . "<br>" .
+                    "Receiver           =      $accountId" . "<br>" .
+                    "Disposable         =      $ppdisposable";
+
             }
-
-
-            $cars = array();
-            array_push($cars,"ddd");
-            array_push($cars,"ddd");
-            array_push($cars,"ddd");
-            PushBullet::all()->list("$paymentSystem Payment :)", $cars);
+  
+            PushBullet::all()->note("$paymentSystem Payment :)", $info);
         }
         $user = User::where('email',$userEmail)->first();
         $source = $user['source'];
