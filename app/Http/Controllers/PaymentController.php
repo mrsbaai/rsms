@@ -229,8 +229,8 @@ class PaymentController extends Controller
         }
 
 
-        //shuffle($acceptable_accounts);
-        $selected_paypal_account_id = paypalids::where('email', $acceptable_accounts[0])->first();
+        shuffle($acceptable_accounts);
+        $selected_paypal_account_id = paypalids->where('email', $acceptable_accounts[0])->first();
         return $selected_paypal_account_id['paypalid'];
 
 
@@ -238,6 +238,7 @@ class PaymentController extends Controller
 
     public function test(){
         return $this->GetPayPal();
+
     }
 
 
