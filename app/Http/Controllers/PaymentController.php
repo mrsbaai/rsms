@@ -518,7 +518,8 @@ public function smsver(){
 
 
         if ($payedAmount == ''){$payedAmount = 0;}
-
+        if ($originalAmount == ''){$originalAmount = 0;}
+        
         if ($payedAmount !== 0 and $paymentSystem == "PayPal"){
             $pp = paypalids::where('email',$accountId)->first();
             $newBalance = $pp['balance'] + $payedAmount;
