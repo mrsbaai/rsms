@@ -8,47 +8,16 @@
 
 @section('content')
 
-
-
-    <div class="container width-fix col-sm-2">
+    <div class="container width-fix col-sm-12">
         <div class="jumbotron welcome-texture">
-            <p>Today</p>
-            <h1>$0</h1>
-        </div>
-    </div>
+            <h1>Send Money</h1>
+            {{ Form::open(array('action' => 'PaymentController@RedirectToPaymentInternal'))}}
 
-    <div class="container width-fix col-sm-2">
-        <div class="jumbotron welcome-texture">
-            <p>Month</p>
-            <h1>$0</h1>
-        </div>
-    </div>
+            <input type="text" name="amount" id="amount" placeholder="amount">
+            <input type="text" name="toemail" id="toemail" placeholder="Receiver email">
+            <button id="send" type="submit">send</button>
 
-    <div class="container width-fix col-sm-2">
-        <div class="jumbotron welcome-texture">
-            <p>Topups</p>
-            <h1>3</h1>
-        </div>
-    </div>
-
-    <div class="container width-fix col-sm-2">
-        <div class="jumbotron welcome-texture">
-            <p>Something</p>
-            <h1>$0</h1>
-        </div>
-    </div>
-
-    <div class="container width-fix col-sm-2">
-        <div class="jumbotron welcome-texture">
-            <p>XX</p>
-            <h1>$0</h1>
-        </div>
-    </div>
-
-    <div class="container width-fix col-sm-2">
-        <div class="jumbotron welcome-texture">
-            <p>Something</p>
-            <h1>$0</h1>
+            {{ Form::close() }}
         </div>
     </div>
 

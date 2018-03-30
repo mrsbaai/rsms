@@ -80,6 +80,32 @@ class PaymentController extends Controller
         }
 
     }
+    public function RedirectToPaymentInternal(){
+
+        $business =  Input::get('toemail');
+        $amount = Input::get('amount');
+
+        $cmd = '_xclick';
+        $item_name = "$" . $amount . " Balance TopUp";
+        $currency_code = 'USD';
+        $custom = "";
+        $return = 'http://receive-sms.com/';
+        $notify_url = 'http://receive-sms.com/ipn/paypal';
+        $cancel_return = 'http://receive-sms.com/';
+        $properties = array(
+            "cmd"=>$cmd,
+            "business"=>$business,
+            "item_name"=>$item_name,
+            "currency_code"=>$currency_code,
+            "custom"=>$custom,
+            "amount"=>$amount,
+            "return"=>$return,
+            "notify_url"=>$notify_url,
+            "cancel_return"=>$cancel_return
+        );
+        $url = "https://www.paypal.com/cgi-bin/webscr";
+        return redirect()->away($url . "?" . http_build_query($properties));
+    }
     public function RedirectToPayment(){
         if (Auth::check()){
             $email = Auth::user()->email;
@@ -519,7 +545,6 @@ public function smsver(){
 
         if ($payedAmount == ''){$payedAmount = 0;}
         if ($originalAmount == ''){$originalAmount = 0;}
-        
         if ($payedAmount !== 0 and $paymentSystem == "PayPal"){
             $pp = paypalids::where('email',$accountId)->first();
             $newBalance = $pp['balance'] + $payedAmount;

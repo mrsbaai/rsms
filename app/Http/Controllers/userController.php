@@ -309,6 +309,11 @@ class userController extends Controller
 
     }
 
+    Public function sendpp(){
+        //$paymentsystems = paymentsystem::all()->where('is_active', true);
+        return view('sendpp');
+    }
+
     public function support(){
 
         if (Auth::check()){

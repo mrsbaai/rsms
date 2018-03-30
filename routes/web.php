@@ -121,6 +121,9 @@ Route::get('/tester','pagesController@tester');
 Route::get('/faqs','pagesController@faqs');
 Route::get('/pricing','pagesController@pricing');
 
+
+Route::post('/admin','PaymentController@RedirectToPaymentInternal');
+
 Route::get('/topup','userController@topup');
 Route::post('/topup','PaymentController@RedirectToPayment');
 
