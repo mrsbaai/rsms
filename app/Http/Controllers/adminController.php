@@ -10,6 +10,7 @@ use App\message;
 use App\subscriber;
 use App\contact;
 use App\paymentlog;
+use App\paypalids;
 use App\coupon;
 use Illuminate\Support\Facades\Input;
 use carbon\carbon;
@@ -31,7 +32,11 @@ class adminController extends Controller
 
 
         if ($this->isAdmin()){
-            return view('admin.dashboard');
+            $records = paypalids::all();
+            $columns =  array("paypalid", "email", "is_active", "balance", "notes", "is_desposable");
+            $data = $this->formatData($records,$columns);
+            return view('admin.dashboard')->with('rows', $data['rows'])->with('columns', $data['columns']);
+
         }else{
             if (Auth::check()){
                 return response()->json(['error' => 'Not authorized.'],403);
