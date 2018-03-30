@@ -428,6 +428,8 @@ class PaymentController extends Controller
 
                     $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
                 }
+            }else{
+                $originalAmount = $payedAmount;
             }
 
             // loging the event
@@ -559,7 +561,7 @@ public function smsver(){
 
             $pp = paypalids::where('email',$buyerEmail)->first();
             if ($pp){
-                $newBalance = $pp['balance'] - $payedAmount;
+                $newBalance = $pp['balance'] - $originalAmount;
                 paypalids::where('email', "=", $buyerEmail)->update(['balance' => $newBalance]);
                 $message = "From: $" . $pp['balance'] . " To: $" . $newBalance;
                 PushBullet::all()->note("$buyerEmail: Balance changed", $message);
