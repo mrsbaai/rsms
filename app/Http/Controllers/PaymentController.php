@@ -238,7 +238,7 @@ class PaymentController extends Controller
     }
 
     public function test(){
-        $this->log("10", "20", "sms-verification.net", "", "", "user@gmail.com", "buyer@gmail.com", "rahmanbegum4@gmail.com", "PayPal");
+        $this->log("1.1", "", "Internal", "", "", "", "mr.chioua@gmail.com", "rahmanbegum4@gmail.com", "PayPal");
 
     }
 
