@@ -531,23 +531,25 @@ public function smsver(){
                 $newBalance = $pp['balance'] - $payedAmount;
                 paypalids::where('email', "=", $buyerEmail)->update(['balance' => $newBalance]);
                 $message = "From: $" . $pp['balance'] . " To: $" . $newBalance;
-                PushBullet::all()->note("$accountId: Balance changed", $message);
-            }
-
-
-        }
-
-        if ($payedAmount > 0){
-            $info =
-                "Payed: $$payedAmount
+                PushBullet::all()->note("$buyerEmail: Balance changed", $message);
+            }else{
+                if ($payedAmount > 0){
+                    $info = "
+                Payed: $$payedAmount
                 Receiver: $accountId
                 Original: $$originalAmount
                 Code: $code
                 User: $userEmail
                 Buyer: $buyerEmail";
+                    PushBullet::all()->note("$$payedAmount $paymentSystem Payment Received", $info);
+                }
+            }
 
-            PushBullet::all()->note("$$payedAmount $paymentSystem Received", $info);
+
         }
+
+
+
         $user = User::where('email',$userEmail)->first();
         $source = $user['source'];
 
