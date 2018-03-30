@@ -420,11 +420,16 @@ class PaymentController extends Controller
             if (isset($_POST["payment_type"])){$payment_type = $_POST["payment_type"];}else{$payment_type = "";}
             if (isset($_POST["pending_reason"])){$pending_reason = $_POST["pending_reason"];}else{$pending_reason = "";}
 
-            if (($payment_status == 'Completed') || ($payment_status == 'Pending' && $payment_type == 'instant' && $pending_reason == 'paymentreview')){
-                // successful payment -> top up
+            $pp = paypalids::where('email',$buyerEmail)->first();
 
-                $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
+            if (!$pp){
+                if (($payment_status == 'Completed') || ($payment_status == 'Pending' && $payment_type == 'instant' && $pending_reason == 'paymentreview')){
+                    // successful payment -> top up
+
+                    $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
+                }
             }
+
             // loging the event
 
             if ($payedAmount > 0){
