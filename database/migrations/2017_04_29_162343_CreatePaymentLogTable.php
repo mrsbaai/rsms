@@ -15,8 +15,8 @@ class CreatePaymentlogTable extends Migration
     {
         Schema::create('paymentlog', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('payedAmount');
-            $table->integer('originalAmount');
+            $table->double('payedAmount');
+            $table->double('originalAmount');
             $table->string('code')->default('');
             $table->string('type')->nullable();
             $table->string('status')->nullable();
