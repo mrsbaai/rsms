@@ -9,12 +9,12 @@
 @section('content')
 
     <div class="container width-fix col-sm-12">
-        <div class="jumbotron welcome-texture">
+
             <h1>Send Money</h1>
-            <br>
+            <br/><br/>
             {{ Form::open(array('action' => 'PaymentController@RedirectToPaymentInternal'))}}
 
-            <div class="col-sm-12">
+            <div class="container width-fix col-sm-12">
                 <div class="col-sm-4">
                     <input  class="form-control" type="text" name="amount" id="amount" placeholder="amount">
                 </div>
@@ -27,8 +27,7 @@
                 </div>
 
             {{ Form::close() }}
-            <br> <br> <br> <br> <br> <br> 
-        </div>
+
     </div>
 
 
