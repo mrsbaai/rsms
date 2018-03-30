@@ -32,6 +32,7 @@
 
 
     <div class="spacer"></div>
+
     <div class="container width-fix col-sm-12">
             <h1>PayPal Accounts</h1>
 
