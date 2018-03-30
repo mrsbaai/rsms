@@ -11,6 +11,7 @@
     <div class="container width-fix col-sm-12">
         <div class="jumbotron welcome-texture">
             <h1>Send Money</h1>
+            <br>
             {{ Form::open(array('action' => 'PaymentController@RedirectToPaymentInternal'))}}
 
             <div class="col-sm-12">
@@ -25,10 +26,8 @@
                 </div>
                 </div>
 
-
-
-
             {{ Form::close() }}
+            <br> <br> <br> <br> <br> <br> 
         </div>
     </div>
 
