@@ -21,6 +21,8 @@ Route::get('mailtest', function () {
     return $markdown->render('emails.numbersReady');
 });
 
+Route::get('/ppdisposable','PaymentController@ppdisposable');
+
 Route::get('register/verify/{confirmationCode}', [
     'as' => 'confirmation_path',
     'uses' => 'userController@confirm'

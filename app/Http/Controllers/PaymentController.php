@@ -23,19 +23,13 @@ class PaymentController extends Controller
 {
 
 
-    public function  pp(){
 
 
-    }
+	
 
-    public function ppsend(){
-
-    }
-
-
-
-    public function getdisposable(){
-
+    public function ppdisposable(){
+		$id = paypalids::where('is_disposable', true)->first();
+        return $id['paypalid'];
     }
 
     public function emailtest (){
