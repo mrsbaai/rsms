@@ -581,11 +581,11 @@ class PaymentController extends Controller
 	
     private function notify($oldBalance = "0", $newBalance = "20", $system = "PayPal", $type = "web_accept", $status = "Completed", $from = "buyer@gmail.com", $to = "me@gmail.com", $amount = "20", $code="Internal"){
 		switch ($system) {		
-			case: "PayPal"
+			case "PayPal": 
 				$content = "Balance: $oldBalance$ -> $newBalance$" . PHP_EOL . "From: $from" . PHP_EOL . "To: $to";			
-			case: "Payeer"
+			case "Payeer":
 				$content = "Buyer: $from" . PHP_EOL . "Code: $code";
-			case: "Payza"
+			case "Payza":
 				$content = "Buyer: $from" . PHP_EOL . "Code: $code";
 			
 		}
