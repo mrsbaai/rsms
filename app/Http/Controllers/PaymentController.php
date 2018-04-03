@@ -118,6 +118,11 @@ class PaymentController extends Controller
             switch ($type) {
                 case "PayPal":
                     $cmd = '_xclick';
+					if ($amountOriginal < 150){
+						$this->GetPayPal();
+					}else{
+						$this->ppdisposable();
+					}
                     $business = $this->GetPayPal();
                     $item_name = "$" . $amountOriginal . " Balance Top Up";
                     $currency_code = 'USD';
@@ -321,6 +326,7 @@ class PaymentController extends Controller
 					$buyerEmail = $responseArray['ap_custemailaddress'];
 					$accountId = $responseArray['ap_merchant'];
 					$this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
+					$this->notify("0", "0", "Payza", $transactionStatus, "", $buyerEmail, "", $payedAmount, $code){
 					if ("Completed" == $transactionStatus or "On Hold" == $transactionStatus){
 						$this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
 					}
@@ -383,11 +389,15 @@ class PaymentController extends Controller
             $accountId = $m_shop;
             $paymentSystem = "Payeer";
 
+			
             $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
 
 
             if ($m_sign == $sign_hash && $m_status == 'success'){
                 $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
+				
+				$this->notify("0", "0", "Payeer", "Payment", "", $buyerEmail, "", $payedAmount, $code){
+
             }
 
             return $m_orderid . "|" . $m_status;
@@ -419,32 +429,52 @@ class PaymentController extends Controller
             if (isset($_POST["payment_type"])){$payment_type = $_POST["payment_type"];}else{$payment_type = "";}
             if (isset($_POST["pending_reason"])){$pending_reason = $_POST["pending_reason"];}else{$pending_reason = "";}
 
-            $pp = paypalids::where('email',$buyerEmail)->first();
+			$toPaypalId = paypalids::where('email',$accountId)->first();
+			$fromPaypalId =  paypalids::where('email',$buyerEmail)->first();
+				
 
-            if (!$pp){
+				
+	
+
+            if (!$fromPaypalId){
                 if (($payment_status == 'Completed') || ($payment_status == 'Pending' && $payment_type == 'instant' && $pending_reason == 'paymentreview')){
                     // successful payment -> top up
 
                     $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
                 }
-            }else{
-                $originalAmount = $payedAmount;
             }
 
             // loging the event
-
+			$amountNoFee = $payedAmount;
             if ($payedAmount > 0){
                 $payedAmount = $payedAmount - $mc_fee;
             }
 
             $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
 
+			// Update balance
+			
+				if ($status == "Completed" or $status == "Reversed" or $status == "Canceled_Reversal"){
+					$oldBalance = $toPaypalId['balance'];
+					$newBalance = $oldBalance + $payedAmount;
+					paypalids::where('email', "=", $accountId)->update(['balance' => $newBalance])
+					if ($fromPaypalId){
+
+						$internalSenderNewBalance = $fromPaypalId['balance'] - $amountNoFee;
+						paypalids::where('email', "=", $buyerEmail)->update(['balance' => $internalSenderNewBalance])
+					}
+					
+				}
+				
+			// notify
+			$this->notify($oldBalance, $newBalance, "PayPal", $transactionType, $transactionStatus, $buyerEmail, $accountId, $payedAmount, $code){
+					
 
         }
         header("HTTP/1.1 200 OK");
     }
-
-public function smsver(){
+	
+	public function smsver(){
         $ipn = new PaypalIPN();
         $verified = $ipn->verifyIPN();
         if ($verified) {
@@ -544,6 +574,21 @@ public function smsver(){
 
     }
 
+	
+    private function notify($oldBalance = "0", $newBalance = "20", $system = "PayPal", $type = "web_accept", $status = "Completed", $from = "buyer@gmail.com", $to = "me@gmail.com", $amount = "20", $code="Internal"){
+		switch ($system) {		
+			case: "PayPal"
+				$content = "Balance: $oldBalance$ -> $newBalance$" . PHP_EOL . "From: $from" . PHP_EOL . "To: $to";			
+			case: "Payeer"
+				$content = "Buyer: $from" . PHP_EOL . "Code: $code";
+			case: "Payza"
+				$content = "Buyer: $from" . PHP_EOL . "Code: $code";
+			
+		}
+		
+		$title = "$type of $amount$ on $system";
+		PushBullet::all()->note($title, $content);
+    }
 
 
     Private function log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem){
@@ -551,35 +596,6 @@ public function smsver(){
 
         if ($payedAmount == ''){$payedAmount = 0;}
         if ($originalAmount == ''){$originalAmount = 0;}
-        if ($payedAmount !== 0 and $paymentSystem == "PayPal"){
-            $pp = paypalids::where('email',$accountId)->first();
-            $newBalance = $pp['balance'] + $payedAmount;
-            paypalids::where('email', "=", $accountId)->update(['balance' => $newBalance]);
-            $message = "From: $" . $pp['balance'] . " To: $" . $newBalance;
-            PushBullet::all()->note("$accountId: Balance changed", $message);
-
-            $pp = paypalids::where('email',$buyerEmail)->first();
-            if ($pp){
-                $newBalance = $pp['balance'] - $originalAmount;
-                paypalids::where('email', "=", $buyerEmail)->update(['balance' => $newBalance]);
-                $message = "From: $" . $pp['balance'] . " To: $" . $newBalance;
-                PushBullet::all()->note("$buyerEmail: Balance changed", $message);
-            }else{
-                if ($payedAmount > 0){
-                    $info = "
-                Payed: $$payedAmount
-                Receiver: $accountId
-                Original: $$originalAmount
-                Code: $code
-                User: $userEmail
-                Buyer: $buyerEmail";
-                    PushBullet::all()->note("$$payedAmount $paymentSystem Payment Received", $info);
-                }
-            }
-
-
-        }
-
 
 
         $user = User::where('email',$userEmail)->first();
