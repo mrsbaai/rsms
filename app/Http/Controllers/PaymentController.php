@@ -414,9 +414,8 @@ class PaymentController extends Controller
             $paymentSystem = "PayPal";
             if (isset($_POST["custom"])){$description = $_POST["custom"];}else{$description = "";}
 
-            $originalAmount = $this->getDescriptionVariables("originalAmount",$description);
-            $userEmail = $this->getDescriptionVariables("userEmail",$description);
-            $code = $this->getDescriptionVariables("code",$description);
+
+            
 
             if (isset($_POST["mc_fee"])){$mc_fee = $_POST["mc_fee"];}else{$mc_fee = "0";}
             if (isset($_POST["mc_gross"])){$payedAmount = $_POST["mc_gross"];}else{$payedAmount = "";}
@@ -428,12 +427,19 @@ class PaymentController extends Controller
             if (isset($_POST["payment_type"])){$payment_type = $_POST["payment_type"];}else{$payment_type = "";}
             if (isset($_POST["pending_reason"])){$pending_reason = $_POST["pending_reason"];}else{$pending_reason = "";}
 
+			if ($description = "SMS-Verification"){
+				$originalAmount = $payedAmount;
+				$userEmail = $buyerEmail;
+				$code = "SMS-Verification";
+			}else{
+				$originalAmount = $this->getDescriptionVariables("originalAmount",$description);
+				$userEmail = $this->getDescriptionVariables("userEmail",$description);
+				$code = $this->getDescriptionVariables("code",$description);
+			}
+			
 			$toPaypalId = paypalids::where('email',$accountId)->first();
 			$fromPaypalId =  paypalids::where('email',$buyerEmail)->first();
-				
 
-				
-	
 
             if (!$fromPaypalId){
                 if (($payment_status == 'Completed') || ($payment_status == 'Pending' && $payment_type == 'instant' && $pending_reason == 'paymentreview')){
@@ -458,7 +464,6 @@ class PaymentController extends Controller
 					$newBalance = $oldBalance + $payedAmount;
 					paypalids::where('email', "=", $accountId)->update(['balance' => $newBalance]);
 					if ($fromPaypalId){
-
 						$internalSenderNewBalance = $fromPaypalId['balance'] - $amountNoFee;
 						paypalids::where('email', "=", $buyerEmail)->update(['balance' => $internalSenderNewBalance]);
 					}
@@ -466,7 +471,7 @@ class PaymentController extends Controller
 				}
 				
 			// notify
-			$this->notify($oldBalance, $newBalance, "PayPal", $transactionType, $transactionStatus, $buyerEmail, $accountId, $payedAmount, $code){
+			$this->notify($oldBalance, $newBalance, "PayPal", $transactionType, $transactionStatus, $buyerEmail, $accountId, $payedAmount, $code);
 					
 
         }
