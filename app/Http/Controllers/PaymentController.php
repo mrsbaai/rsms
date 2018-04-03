@@ -441,7 +441,7 @@ class PaymentController extends Controller
 			$fromPaypalId =  paypalids::where('email',$buyerEmail)->first();
 
 
-            if (!$fromPaypalId){
+            if (!$fromPaypalId and $description != "SMS-Verification"){
                 if (($payment_status == 'Completed') || ($payment_status == 'Pending' && $payment_type == 'instant' && $pending_reason == 'paymentreview')){
                     // successful payment -> top up
 
