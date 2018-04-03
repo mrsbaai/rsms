@@ -407,10 +407,13 @@ class PaymentController extends Controller
 
 
     public function paypalIPN(){
-
+		Log::info("stage 1 <br\>");
         $ipn = new PaypalIPN();
+		Log::info("stage 2 <br\>");
         $verified = $ipn->verifyIPN();
+		Log::info("stage 3 <br\>");
         if ($verified) {
+			Log::info("stage 4 <br\>");
             $paymentSystem = "PayPal";
             if (isset($_POST["custom"])){$description = $_POST["custom"];}else{$description = "";}
 
@@ -426,7 +429,7 @@ class PaymentController extends Controller
             if (isset($_POST["payment_status"])){$payment_status = $_POST["payment_status"];}else{$payment_status = "";}
             if (isset($_POST["payment_type"])){$payment_type = $_POST["payment_type"];}else{$payment_type = "";}
             if (isset($_POST["pending_reason"])){$pending_reason = $_POST["pending_reason"];}else{$pending_reason = "";}
-
+			Log::info("stage 5 <br\>");
 			if ($description == "SMS-Verification"){
 				$originalAmount = $payedAmount;
 				$userEmail = $buyerEmail;
@@ -436,7 +439,7 @@ class PaymentController extends Controller
 				$userEmail = $this->getDescriptionVariables("userEmail",$description);
 				$code = $this->getDescriptionVariables("code",$description);
 			}
-			
+			Log::info("stage 6 <br\>");
 			$toPaypalId = paypalids::where('email',$accountId)->first();
 			$fromPaypalId =  paypalids::where('email',$buyerEmail)->first();
 
@@ -444,11 +447,11 @@ class PaymentController extends Controller
             if (!$fromPaypalId and $description != "SMS-Verification"){
                 if (($payment_status == 'Completed') || ($payment_status == 'Pending' && $payment_type == 'instant' && $pending_reason == 'paymentreview')){
                     // successful payment -> top up
-
+Log::info("stage 7 <br\>");
                     $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
                 }
             }
-
+Log::info("stage 8 <br\>");
             // loging the event
 			$amountNoFee = $payedAmount;
             if ($payedAmount > 0){
@@ -456,7 +459,7 @@ class PaymentController extends Controller
             }
 
             $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
-
+Log::info("stage 9 <br\>");
 			// Update balance
 			
 				if ($status == "Completed" or $status == "Reversed" or $status == "Canceled_Reversal"){
@@ -469,10 +472,10 @@ class PaymentController extends Controller
 					}
 					
 				}
-				
+				Log::info("stage 10 <br\>");
 			// notify
 			$this->notify($oldBalance, $newBalance, "PayPal", $transactionType, $transactionStatus, $buyerEmail, $accountId, $payedAmount, $code);
-					
+					Log::info("stage 11 <br\>");
 
         }
         header("HTTP/1.1 200 OK");
