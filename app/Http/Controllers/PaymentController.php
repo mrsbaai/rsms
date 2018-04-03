@@ -456,11 +456,11 @@ class PaymentController extends Controller
 				if ($status == "Completed" or $status == "Reversed" or $status == "Canceled_Reversal"){
 					$oldBalance = $toPaypalId['balance'];
 					$newBalance = $oldBalance + $payedAmount;
-					paypalids::where('email', "=", $accountId)->update(['balance' => $newBalance])
+					paypalids::where('email', "=", $accountId)->update(['balance' => $newBalance]);
 					if ($fromPaypalId){
 
 						$internalSenderNewBalance = $fromPaypalId['balance'] - $amountNoFee;
-						paypalids::where('email', "=", $buyerEmail)->update(['balance' => $internalSenderNewBalance])
+						paypalids::where('email', "=", $buyerEmail)->update(['balance' => $internalSenderNewBalance]);
 					}
 					
 				}
