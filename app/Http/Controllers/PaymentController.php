@@ -462,7 +462,7 @@ Log::info("stage 8 <br\>");
 Log::info("stage 9 <br\>");
 			// Update balance
 			
-				if ($status == "Completed" or $status == "Reversed" or $status == "Canceled_Reversal"){
+				if ($transactionStatus == "Completed" or $transactionStatus == "Reversed" or $transactionStatus == "Canceled_Reversal"){
 					$oldBalance = $toPaypalId['balance'];
 					$newBalance = $oldBalance + $payedAmount;
 					paypalids::where('email', "=", $accountId)->update(['balance' => $newBalance]);
