@@ -140,7 +140,7 @@ Route::get('/delete/{number}','userController@deleteNumber');
 Route::post('/ipn/payza','PaymentController@payzaIPN');
 
 Route::post('/ipn/paypal','PaymentController@paypalIPN');
-Route::post('/ipn/smsver','PaymentController@smsver');
+Route::post('/ipn/smsver','PaymentController@paypalIPN');
 Route::post('/ipn/payeer','PaymentController@payeerIPN');
 
 //Route::get('/messages','messagesController@getPublic');

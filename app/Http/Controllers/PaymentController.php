@@ -427,7 +427,7 @@ class PaymentController extends Controller
             if (isset($_POST["payment_type"])){$payment_type = $_POST["payment_type"];}else{$payment_type = "";}
             if (isset($_POST["pending_reason"])){$pending_reason = $_POST["pending_reason"];}else{$pending_reason = "";}
 
-			if ($description = "SMS-Verification"){
+			if ($description == "SMS-Verification"){
 				$originalAmount = $payedAmount;
 				$userEmail = $buyerEmail;
 				$code = "SMS-Verification";
