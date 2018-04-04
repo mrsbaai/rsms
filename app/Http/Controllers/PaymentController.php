@@ -461,18 +461,16 @@ class PaymentController extends Controller
 
 			// Update balance
 
-				$oldBalance = $toPaypalId['balance'];	
-				$newBalance = $oldBalance + $payedAmount;
-				if ($fromPaypalId){
-					$senderOldBalance = ['balance'];
-					$senderNewBalance = $oldBalance - $amountNoFee;
-				}
+				$oldBalance = $newBalance = $senderOldBalance = $senderNewBalance = "";
 
 				if ($transactionStatus == "Completed" or $transactionStatus == "Reversed" or $transactionStatus == "Canceled_Reversal"){
-
+					$oldBalance = $toPaypalId['balance'];
+					$newBalance = $oldBalance + $payedAmount;
 					paypalids::where('email', "=", $accountId)->update(['balance' => $newBalance]);
 					
 					if ($fromPaypalId){
+						$senderOldBalance = ['balance'];
+						$senderNewBalance = $oldBalance - $amountNoFee;
 						paypalids::where('email', "=", $buyerEmail)->update(['balance' => $senderNewBalance]);
 					}
 					
