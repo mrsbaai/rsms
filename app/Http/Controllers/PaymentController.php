@@ -28,8 +28,8 @@ class PaymentController extends Controller
 	
 
     public function ppdisposable(){
-		$pp = paypalids::where('is_disposable', true)->first();
-		if ($pp['balance'] >= 0){
+		$pp = paypalids::where('is_disposable', true)->where('is_active', true)->first();
+		if ($pp and $pp['balance'] >= 0){
 			 return $pp['paypalid'];
 		}else{
 			return $this->GetPayPal();
@@ -228,7 +228,7 @@ class PaymentController extends Controller
 
         $earlier = Carbon::now()->subDays(25);
 
-        $paypalAccounts = paypalids::where('is_active', '=' ,true)->where('balance', '>=' ,0)->get();
+        $paypalAccounts = paypalids::where('is_active', '=' ,true)->where('is_disposable', '=' ,false)->where('balance', '>=' ,0)->get();
 
         $logs = paymentlog::where('type', '=' ,"new_case")->where('created_at', '>', $earlier)->get();
 
