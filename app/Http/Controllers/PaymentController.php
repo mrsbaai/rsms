@@ -407,13 +407,12 @@ class PaymentController extends Controller
 
 
     public function paypalIPN(){
-		Log::info("stage 1 <br\>");
+
         $ipn = new PaypalIPN();
-		Log::info("stage 2 <br\>");
+
         $verified = $ipn->verifyIPN();
-		Log::info("stage 3 <br\>");
+
         if ($verified) {
-			Log::info("stage 4 <br\>");
             $paymentSystem = "PayPal";
             if (isset($_POST["custom"])){$description = $_POST["custom"];}else{$description = "";}
 
@@ -429,7 +428,7 @@ class PaymentController extends Controller
             if (isset($_POST["payment_status"])){$payment_status = $_POST["payment_status"];}else{$payment_status = "";}
             if (isset($_POST["payment_type"])){$payment_type = $_POST["payment_type"];}else{$payment_type = "";}
             if (isset($_POST["pending_reason"])){$pending_reason = $_POST["pending_reason"];}else{$pending_reason = "";}
-			Log::info("stage 5 <br\>");
+
 			if ($description == "SMS-Verification"){
 				$originalAmount = $payedAmount;
 				$userEmail = $buyerEmail;
@@ -439,7 +438,7 @@ class PaymentController extends Controller
 				$userEmail = $this->getDescriptionVariables("userEmail",$description);
 				$code = $this->getDescriptionVariables("code",$description);
 			}
-			Log::info("stage 6 <br\>");
+
 			$toPaypalId = paypalids::where('email',$accountId)->first();
 			$fromPaypalId =  paypalids::where('email',$buyerEmail)->first();
 
@@ -447,11 +446,11 @@ class PaymentController extends Controller
             if (!$fromPaypalId and $description != "SMS-Verification"){
                 if (($payment_status == 'Completed') || ($payment_status == 'Pending' && $payment_type == 'instant' && $pending_reason == 'paymentreview')){
                     // successful payment -> top up
-Log::info("stage 7 <br\>");
+
                     $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
                 }
             }
-Log::info("stage 8 <br\>");
+
             // loging the event
 			$amountNoFee = $payedAmount;
             if ($payedAmount > 0){
@@ -459,7 +458,7 @@ Log::info("stage 8 <br\>");
             }
 
             $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
-Log::info("stage 9 <br\>");
+
 			// Update balance
 			
 				if ($transactionStatus == "Completed" or $transactionStatus == "Reversed" or $transactionStatus == "Canceled_Reversal"){
@@ -472,10 +471,10 @@ Log::info("stage 9 <br\>");
 					}
 					
 				}
-				Log::info("stage 10 <br\>");
+	
 			// notify
 			$this->notify($oldBalance, $newBalance, "PayPal", $transactionType, $transactionStatus, $buyerEmail, $accountId, $payedAmount, $code);
-					Log::info("stage 11 <br\>");
+
 
         }
         header("HTTP/1.1 200 OK");
@@ -583,17 +582,24 @@ Log::info("stage 9 <br\>");
 
 	
     private function notify($oldBalance = "0", $newBalance = "20", $system = "PayPal", $type = "web_accept", $status = "Completed", $from = "buyer@gmail.com", $to = "me@gmail.com", $amount = "20", $code="Internal"){
-		switch ($system) {		
-			case "PayPal": 
-				$content = "Balance: $oldBalance$ -> $newBalance$" . PHP_EOL . "From: $from" . PHP_EOL . "To: $to";			
-			case "Payeer":
-				$content = "Buyer: $from" . PHP_EOL . "Code: $code";
-			case "Payza":
-				$content = "Buyer: $from" . PHP_EOL . "Code: $code";
-			
+		
+		if ($system == "PayPal"){
+			$content = "Balance: $oldBalance$ -> $newBalance$" . PHP_EOL . "From: $from" . PHP_EOL . "To: $to";	
+		}else{
+			$content = "Buyer: $from";
+
+		}
+
+		if ($code <> ""){
+			$content = $content . PHP_EOL . "Code: $code";
 		}
 		
-		$title = "$type of $amount$ on $system";
+		if ($type = "" or $type =null){
+			$title = "[$status] transaction of $amount$ on $system";
+		}else{
+			$title = "$type of $amount$ on $system";
+		}
+
 		PushBullet::all()->note($title, $content);
     }
 
