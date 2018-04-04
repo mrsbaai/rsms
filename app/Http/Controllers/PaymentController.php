@@ -588,7 +588,7 @@ class PaymentController extends Controller
 		if ($system == "PayPal"){
 			$content = "Balance: $oldBalance$ -> $newBalance$" . PHP_EOL . "From: $from" . PHP_EOL . "To: $to";	
 		}else{
-			$content = "Buyer: $from";
+			$content = "From: $from";
 
 		}
 
