@@ -460,22 +460,26 @@ class PaymentController extends Controller
             $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
 
 			// Update balance
-			
-				$oldBalance = $toPaypalId['balance'];
+
+				$oldBalance = $toPaypalId['balance'];	
 				$newBalance = $oldBalance + $payedAmount;
-				
+				if ($fromPaypalId){
+					$senderOldBalance = ['balance'];
+					$senderNewBalance = $oldBalance - $amountNoFee;
+				}
+
 				if ($transactionStatus == "Completed" or $transactionStatus == "Reversed" or $transactionStatus == "Canceled_Reversal"){
 
 					paypalids::where('email', "=", $accountId)->update(['balance' => $newBalance]);
+					
 					if ($fromPaypalId){
-						$internalSenderNewBalance = $fromPaypalId['balance'] - $amountNoFee;
-						paypalids::where('email', "=", $buyerEmail)->update(['balance' => $internalSenderNewBalance]);
+						paypalids::where('email', "=", $buyerEmail)->update(['balance' => $senderNewBalance]);
 					}
 					
 				}
 	
 			// notify
-			$this->notify($oldBalance, $newBalance, "PayPal", $transactionType, $transactionStatus, $buyerEmail, $accountId, $payedAmount, $code);
+			$this->notify($oldBalance, $newBalance, "PayPal", $transactionType, $transactionStatus, $buyerEmail, $accountId, $payedAmount, $code, $senderOldBalance, $senderNewBalance);
 
 
         }
@@ -583,20 +587,25 @@ class PaymentController extends Controller
     }
 
 	
-    private function notify($oldBalance = "0", $newBalance = "20", $system = "PayPal", $type = "web_accept", $status = "Completed", $from = "buyer@gmail.com", $to = "me@gmail.com", $amount = "20", $code="Internal"){
+    private function notify($oldBalance = "", $newBalance = "", $system = "PayPal", $type = "web_accept", $status = "Completed", $from = "buyer@gmail.com", $to = "me@gmail.com", $amount = "20", $code="Internal", $senderOldBalance="", $senderNewBalance=""){
 		
-		if ($system == "PayPal"){
-			$content = "Balance: $oldBalance$ -> $newBalance$" . PHP_EOL . "From: $from" . PHP_EOL . "To: $to";	
-		}else{
-			$content = "From: $from";
-
-		}
-
 		if ($code <> ""){
 			$content = $content . PHP_EOL . "Code: $code";
 		}
 		
-		if ($type = "" or $type =null){
+		if ($system == "PayPal"){
+			$content = "From: $from" . PHP_EOL . "To: $to";
+			if ($oldBalance <> ""){$content = $content . "$to Old balance: $oldBalance" . PHP_EOL;}
+			if ($newBalance <> ""){$content = $content . "$to NEW BALANCE: $newBalance" . PHP_EOL;}
+			if ($senderOldBalance <> ""){$content = $content . "$from Old balance: $senderOldBalance" . PHP_EOL;}
+			if ($senderNewBalance <> ""){$content = $content . "$from NEW BALANCE: $senderNewBalance" . PHP_EOL;}
+		}else{
+			$content = "From: $from";
+		}
+
+
+		
+		if ($type == "" or $type == null){
 			$title = "[$status] transaction of $amount$ on $system";
 		}else{
 			$title = "[$type] of $amount$ on $system";
