@@ -602,12 +602,19 @@ class PaymentController extends Controller
 		}
 
 
+		$title = "$system: ";
+		
+		if ($amount <> "" and $amount <> 0){
+			$title =  $title . "$amount$";
+		}
+		
 		
 		if ($type == "" or $type == null){
-			$title = "[$status] transaction of $amount$ on $system";
+			$title = " $status transaction";
 		}else{
-			$title = "[$type] of $amount$ on $system";
+			$title = " $type";
 		}
+		
 
 		PushBullet::all()->note($title, $content);
     }
