@@ -469,8 +469,8 @@ class PaymentController extends Controller
 					paypalids::where('email', "=", $accountId)->update(['balance' => $newBalance]);
 					
 					if ($fromPaypalId){
-						$senderOldBalance = ['balance'];
-						$senderNewBalance = $oldBalance - $amountNoFee;
+						$senderOldBalance = $fromPaypalId['balance'];
+						$senderNewBalance = $senderOldBalance - $amountNoFee;
 						paypalids::where('email', "=", $buyerEmail)->update(['balance' => $senderNewBalance]);
 					}
 					
