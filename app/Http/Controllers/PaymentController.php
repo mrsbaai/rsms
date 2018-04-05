@@ -595,11 +595,11 @@ class PaymentController extends Controller
 
 		
 		if ($system == "PayPal"){
-			$content = $content . "From: $from" . PHP_EOL . "To: $to";
-			if ($oldBalance <> ""){$content = $content . "$to Old balance: $oldBalance" . PHP_EOL;}
-			if ($newBalance <> ""){$content = $content . "$to NEW BALANCE: $newBalance" . PHP_EOL;}
-			if ($senderOldBalance <> ""){$content = $content . "$from Old balance: $senderOldBalance" . PHP_EOL;}
-			if ($senderNewBalance <> ""){$content = $content . "$from NEW BALANCE: $senderNewBalance" . PHP_EOL;}
+			$content = $content . "From: $from" . PHP_EOL . "To: $to" . PHP_EOL;
+			if ($oldBalance <> ""){$content = $content . "$to Old Balance: $$oldBalance" . PHP_EOL;}
+			if ($newBalance <> ""){$content = $content . "$to New Balance: $$newBalance" . PHP_EOL;}
+			if ($senderOldBalance <> ""){$content = $content . "$from Old balance: $$senderOldBalance" . PHP_EOL;}
+			if ($senderNewBalance <> ""){$content = $content . "$from New Balance: $$senderNewBalance" . PHP_EOL;}
 		}else{
 			$content = $content . "From: $from";
 		}
@@ -608,7 +608,7 @@ class PaymentController extends Controller
 		$title = "$system: ";
 		
 		if ($amount <> "" and $amount <> 0){
-			$title =  $title . "$amount$";
+			$title =  $title . "$$amount";
 		}
 		
 		
