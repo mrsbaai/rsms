@@ -268,7 +268,7 @@ class PaymentController extends Controller
     }
 
     public function test(){
-		$this->notify("0", "0", "Payza", "payed", "", "xxx@gmail.com", "", "20", "sms-ver.net");
+		$this->notify("0", "0", "Payeer", "Payment", "", "buyer@gmail.com", "", "50", "code","","");
     }
 
 
@@ -325,7 +325,7 @@ class PaymentController extends Controller
 					$buyerEmail = $responseArray['ap_custemailaddress'];
 					$accountId = $responseArray['ap_merchant'];
 					$this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
-					$this->notify("0", "0", "Payza", $transactionStatus, "", $buyerEmail, "", $payedAmount, $code);
+					$this->notify("0", "0", "Payza", $transactionStatus, "", $buyerEmail, "", $payedAmount, $code,"","");
 					if ("Completed" == $transactionStatus or "On Hold" == $transactionStatus){
 						$this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
 					}
@@ -395,7 +395,7 @@ class PaymentController extends Controller
             if ($m_sign == $sign_hash && $m_status == 'success'){
                 $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
 				
-				$this->notify("0", "0", "Payeer", "Payment", "", $buyerEmail, "", $payedAmount, $code);
+				$this->notify("0", "0", "Payeer", "Payment", "", $buyerEmail, "", $payedAmount, $code,"","");
 
             }
 
