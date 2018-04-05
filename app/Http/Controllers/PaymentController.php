@@ -587,9 +587,12 @@ class PaymentController extends Controller
 	
     private function notify($oldBalance = "", $newBalance = "", $system = "PayPal", $type = "web_accept", $status = "Completed", $from = "buyer@gmail.com", $to = "me@gmail.com", $amount = "20", $code="Internal", $senderOldBalance="", $senderNewBalance=""){
 		
+		$content = "";
+		
 		if ($code <> ""){
 			$content = $content . PHP_EOL . "Code: $code";
 		}
+
 		
 		if ($system == "PayPal"){
 			$content = "From: $from" . PHP_EOL . "To: $to";
