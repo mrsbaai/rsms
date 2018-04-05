@@ -613,9 +613,9 @@ class PaymentController extends Controller
 		
 		
 		if ($type == "" or $type == null){
-			$title = " $status transaction";
+			$title = $title . " $status transaction";
 		}else{
-			$title = " $type";
+			$title = $title . " $type";
 		}
 		
 
