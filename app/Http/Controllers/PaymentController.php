@@ -595,13 +595,15 @@ class PaymentController extends Controller
 
 		
 		if ($system == "PayPal"){
-			$content = $content . "From: $from" . PHP_EOL . "To: $to" . PHP_EOL;
-			if ($oldBalance <> ""){$content = $content . "$to Old Balance: $$oldBalance" . PHP_EOL;}
-			if ($newBalance <> ""){$content = $content . "$to New Balance: $$newBalance" . PHP_EOL;}
-			if ($senderOldBalance <> ""){$content = $content . "$from Old balance: $$senderOldBalance" . PHP_EOL;}
-			if ($senderNewBalance <> ""){$content = $content . "$from New Balance: $$senderNewBalance" . PHP_EOL;}
+			$content = $content . "Receiver: $to" . PHP_EOL;
+			if ($oldBalance <> "" and $newBalance <> ""){$content = $content . "Receiver: $$oldBalance -> $$newBalance" . PHP_EOL;}
+
+			$content = $content . "Sender: $from" . PHP_EOL;
+			
+			if ($senderOldBalance <> "" and $senderNewBalance <> ""){$content = $content . "Sender: $$senderOldBalance -> $$senderNewBalance" . PHP_EOL;}
+
 		}else{
-			$content = $content . "From: $from";
+			$content = $content . "Sender: $from";
 		}
 
 
