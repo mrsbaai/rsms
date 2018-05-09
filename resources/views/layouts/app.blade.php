@@ -79,9 +79,7 @@
 </div>
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
-<div class="container width-fix col-sm-12">
-            @include('flash::message')
-</div>
+
 
 
 @yield('content')

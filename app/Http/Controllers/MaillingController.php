@@ -26,6 +26,10 @@ class MaillingController extends Controller
 {
 
 
+    public function test(){
+        print_r($this->NextBills("5020"));
+        return;
+    }
     public function NextBills($user_id){
         $user = User::whereid($user_id)->first();
         $numbers = Number::all()->where('is_private',true)->where('email', $user['email']);
@@ -131,13 +135,13 @@ class MaillingController extends Controller
         }
     }
     public function RandomCoupon($value,$expiration){
-        $code = substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(5/strlen($x)) )),1,6);
+        $code = substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', ceil(3/strlen($x)) )),1,4) . "-" . $value . "OFF";
         $paymentsystems = paymentsystem::all();
         foreach ($paymentsystems as $paymentsystem){
             $newCoupon = new coupon();
             $newCoupon->code = $code;
             $newCoupon->value = $value;
-            $newCoupon->paymentsystem_id = $paymentsystem['id'];
+            $newCoupon->paymentsystem_id = $paymentsystem['system'];
             $newCoupon->expiration = $expiration;
             $newCoupon->save();
         }
