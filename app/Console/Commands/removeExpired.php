@@ -9,6 +9,10 @@ use App\user;
 use Carbon\Carbon;
 
 use Log;
+
+use Mail;
+
+use App\Mail\topupNeeded;
 class removeExpired extends Command
 {
     /**

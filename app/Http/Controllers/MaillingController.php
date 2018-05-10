@@ -11,8 +11,7 @@ use App\coupon;
 use App\user;
 use App\subscriber;
 use App\paymentsystem;
-use App\Mail\numberRemovalNotification;
-use App\Mail\topupNeeded;
+
 use App\Mail\generic;
 use App\Mail\newCoupon;
 use Log;
