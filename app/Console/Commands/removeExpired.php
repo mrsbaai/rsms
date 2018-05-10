@@ -57,7 +57,7 @@ class removeExpired extends Command
         foreach($numbers as $number){
             $date = Carbon::parse($number['expiration']);
             $diff = $now->diffInDays($date, false);
-            if ($diff <= 0){
+            if ($diff < 0){
                 // auto renew
                 $email = $number['email'];
                 $user = User::whereemail($email)->first();
@@ -90,7 +90,7 @@ class removeExpired extends Command
 
             }
 
-            if ($diff > 0 and $diff < 4){
+            if ($diff >= 0 and $diff < 4){
                 // send TOP UP needed
                 if (! in_array( $number["email"], $sendedEmails)){
                     $count = $count + 2;
