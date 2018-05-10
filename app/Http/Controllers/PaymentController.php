@@ -23,10 +23,6 @@ class PaymentController extends Controller
 {
 
 
-
-
-	
-
     public function ppdisposable(){
 		$pp = paypalids::where('is_disposable', true)->where('is_active', true)->first();
 		if ($pp and $pp['balance'] >= 0){

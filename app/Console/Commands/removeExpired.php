@@ -13,6 +13,9 @@ use Log;
 use Mail;
 
 use App\Mail\topupNeeded;
+
+use app\Http\Controllers\PaymentController;
+
 class removeExpired extends Command
 {
     /**

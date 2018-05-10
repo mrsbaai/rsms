@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('SendPromoMails:Send')->daily();
         $schedule->command('SendAutoMails:SendMails')->daily();
 
-        $schedule->command('expired:remove')->hourly();
+        $schedule->command('expired:remove')->daily();
 
         //$schedule->command('Verification:Send')->daily();
     }
