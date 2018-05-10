@@ -87,6 +87,8 @@ class removeExpired extends Command
                 $count = $count + 2;
                 $when = Carbon::now()->addMinutes($count);
 
+                $user = User::whereemail($email)->first();
+                
                 $data['name'] = $user['name'];
                 $data['date'] = $number['expiration'];
 
