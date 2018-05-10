@@ -7,6 +7,8 @@ use App\number;
 use App\user;
 
 use Carbon\Carbon;
+
+use Log;
 class removeExpired extends Command
 {
     /**
@@ -59,17 +61,23 @@ class removeExpired extends Command
                     // renew number
                     $expiration = Carbon::now()->addMonths(1);
                     $balance = $user['balance'] - $price;
-                    User::where('email', '=', $email)->update(['balance' => $balance]);
 
-                    Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+                    //User::where('email', '=', $email)->update(['balance' => $balance]);
+                    //Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+
+                    $n = $number['number'];
+                    Log::info("renew number: $email -> $balance - $n -> $expiration");
 
 
 
                 }else{
                     // remove number
                     $expiration = Carbon::now()->addYears(20);
-                    Number::where('id', '=', $number['id'])->update(['email' => null]);
-                    Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+                    //Number::where('id', '=', $number['id'])->update(['email' => null]);
+                    //Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+
+                    $n = $number['number'];
+                    Log::info("remove number: $n");
                 }
 
             }
@@ -81,7 +89,13 @@ class removeExpired extends Command
 
                 $data['name'] = $user['name'];
                 $data['date'] = $number['expiration'];
-                Mail::to($user["email"])->later($when, new topupNeeded($data));
+
+                //Mail::to($number["email"])->later($when, new topupNeeded($data));
+
+                Mail::to("abdelilah.sbaai@gmail.com")->later($when, new topupNeeded($data));
+
+                $m = $number["email"];
+                Log::info("send TOP UP needed: $m");
 
             }
         }
