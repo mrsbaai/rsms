@@ -53,6 +53,7 @@ class removeExpired extends Command
         $numbers = Number::where('email','!=','null')->get();
 
         $count = 0;
+        $sendedEmails = array();
         foreach($numbers as $number){
             $date = Carbon::parse($number['expiration']);
             $diff = $now->diffInDays($date, false);
@@ -91,20 +92,23 @@ class removeExpired extends Command
 
             if ($diff > 0 and $diff < 4){
                 // send TOP UP needed
-                $count = $count + 2;
-                $when = Carbon::now()->addMinutes($count);
+                if (! in_array( $number["email"], $sendedEmails)){
+                    $count = $count + 2;
+                    $when = Carbon::now()->addMinutes($count);
 
-                $user = User::whereemail($number["email"])->first();
+                    $user = User::whereemail($number["email"])->first();
 
-                $data['name'] = $user['name'];
-                $data['date'] = $number['expiration'];
+                    $data['name'] = $user['name'];
+                    $data['date'] = $number['expiration'];
 
-                //Mail::to($number["email"])->later($when, new topupNeeded($data));
+                    //Mail::to($number["email"])->later($when, new topupNeeded($data));
 
-                Mail::to("abdelilah.sbaai@gmail.com")->later($when, new topupNeeded($data));
+                    array_push($sendedEmails, $number["email"]);
+                    Mail::to("abdelilah.sbaai@gmail.com")->later($when, new topupNeeded($data));
+                    $m = $number["email"];
+                    Log::info("send TOP UP needed: $m");
+                }
 
-                $m = $number["email"];
-                Log::info("send TOP UP needed: $m");
 
             }
         }
