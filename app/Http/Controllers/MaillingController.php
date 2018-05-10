@@ -60,72 +60,14 @@ class MaillingController extends Controller
             $count = 0;
             foreach($nextBills as $nextBill){
                 foreach($nextBill as $date => $amount){
-                    if ($amount < $balance){
+                    if ($amount > $balance){
                         $date = Carbon::parse($date);
                         $diff = $now->diffInDays($date, false);
                         $count = $count + 2;
                         $when = Carbon::now()->addMinutes($count);
-                        switch ($diff) {
-                            case 12:
-                                if ($lastSentMail !== $user["email"]){
-                                    Mail::to($user["email"])->later($when, new topupNeeded());
-                                    $lastSentMail = $user["email"];
-                                }
+                        //switch ($diff) {
 
-                                break;
-                            case 8:
-                                if ($lastSentMail !== $user["email"]){
-                                    Mail::to($user["email"])->later($when, new topupNeeded());
-                                    $lastSentMail = $user["email"];
-
-;
-                                }
-
-
-                                break;
-                            case 4:
-                                if ($lastSentMail !== $user["email"]){
-                                    Mail::to($user["email"])->later($when, new topupNeeded());
-                                    $lastSentMail = $user["email"];
-
-                                }
-
-                                break;
-                            case 3:
-                                if ($lastSentMail !== $user["email"]){
-                                    $data['name'] = $user['name'];
-                                    Mail::to($user["email"])->later($when, new numberRemovalNotification($data));
-                                    $lastSentMail = $user["email"];
-
-
-                                }
-
-                                break;
-                            case 7:
-                                if ($lastSentMail !== $user["email"]){
-                                    $expiration = Carbon::now()->addDays(2);
-                                    $data['subj'] = "<<Receive-SMS>> Get 30% Off Coupon!";
-                                    $data['header'] = "Get a 30% Off All Your Top Ups!";
-                                    $data['coupon'] = $this->RandomCoupon(30,$expiration);
-                                    $data['date'] = $expiration;
-                                    Mail::to($user["email"])->later($when, new newCoupon($data));
-
-                                }
-
-                                break;
-                            case 1:
-                                if ($lastSentMail !== $user["email"]){
-                                    $expiration = Carbon::now()->addDays(2);
-                                    $data['subj'] = "<<Receive-SMS>> Biggest Sell Out 50% Discount!";
-                                    $data['header'] = "Get a 50% Off All Your Top Ups!";
-                                    $data['coupon'] = $this->RandomCoupon(50,Carbon::now()->addDays(2));
-                                    $data['date'] = $expiration;
-                                    Mail::to($user["email"])->later($when, new newCoupon($data));
-                                    $lastSentMail = $user["email"];
-                                }
-
-                                break;
-                        }
+                        //}
                     }
 
                 }

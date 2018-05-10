@@ -1,14 +1,18 @@
 @component('mail::message')
 
-# Your credit balance won't cover this month
+Hello {{$name}},
 
-Your usage costs this month have exceeded the credit balance on your account.
+Some of your numbers will be removed permanently from your account at "".
 
-Please login to your account and Top-up
+The numbers removed will be permanently removed from our database, and cannot be recovred.
+
+To avoid service interruption, please login and Top-Up your account:
 
 @component('mail::button', ['url' => 'http://receive-sms.com/inbox'])
 Login
 @endcomponent
 
-Got questions about your bill? <a href="http://receive-sms.com/support">Contact Receive-SMS Support</a>
+Thank you for using {{ config('app.name') }},<br>
+Got questions? <a href="http://receive-sms.com/support">We're here to help</a>.
+
 @endcomponent

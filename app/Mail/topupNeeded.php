@@ -11,14 +11,17 @@ class topupNeeded extends Mailable
 {
     use Queueable, SerializesModels;
 
+    protected $name;
+    protected $date;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->name = $data['name'];
+        $this->name = $data['date'];
     }
 
     /**
@@ -29,6 +32,12 @@ class topupNeeded extends Mailable
     public function build()
     {
         return $this->markdown('emails.topupNeeded')
-            ->subject('<<Receive-SMS>> You need to top-up your account');
+            ->subject('Notice - Numbers are pending removal')
+            ->with([
+                'name' => $this->name,
+                'date' => $this->date,
+            ])
+            ;
+
     }
 }

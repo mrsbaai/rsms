@@ -152,8 +152,11 @@
                 </small></p>
         @if(count($numbers) < 10)
                 <p><small>
-                        You have less then 10 numbers in your account, the price now is $9/M per number. Once you have more then 10 numbers in your account the price will change to $5/M per number.
-
+                        You have <b>Less</b> then <b>10 Numbers</b> in your account, the price now is <b>$9/Month</b> per number. Once you have <b>More</b> then <b>10 Numbers</b> in your account, add/renew price will change to <b>$5/Month</b> per number.
+                    </small></p>
+            @else
+                <p><small>
+                        Add/renew price now is <b>$5/Month</b> per number.
                     </small></p>
             @endif
 
@@ -179,7 +182,7 @@
                                     <th></th>
                                     <th>[Number]</th>
                                     <th>[Country]</th>
-                                    <th>[Expiration]</th>
+                                    <th>[Next Auto Renewal]</th>
                                     <th></th>
 
                                 </tr>
@@ -188,9 +191,9 @@
                                 @foreach ($numbers as $number)
                                     <tr>
                                         <td><input type="checkbox" name="numbers_list[]" value="{{$number->number}}" onchange="getRenewPrice()"></td>
-                                        <td><b>[<a style="color:white;" href="inbox/{{$number->number}}" title="Click To See Inbound SMS">{{$number->number}}</a>]</b></td>
-                                        <td>[{{$number->country}}]</td>
-                                        <td>[{{$number->expiration}}]</td>
+                                        <td><b>[{{$number->number}}</b></td>
+                                        <td>{{$number->country}}</td>
+                                        <td>{{$number->expiration}}]</td>
                                         <td>
                                                 <a href="/delete/{{$number->number}}" class="btn btn-xs btn-danger" style="text-shadow: none;">Delete</a>
                                         </td>

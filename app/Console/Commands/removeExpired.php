@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\number;
+use App\user;
+
 use Carbon\Carbon;
 class removeExpired extends Command
 {
@@ -40,14 +42,47 @@ class removeExpired extends Command
     {
         $now = Carbon::now();
         $numbers = Number::where('email','!=','null')->get();
-        $expiration = Carbon::now()->addYears(20);
 
+        $count = 0;
         foreach($numbers as $number){
             $date = Carbon::parse($number['expiration']);
             $diff = $now->diffInDays($date, false);
             if ($diff <= 0){
-                Number::where('id', '=', $number['id'])->update(['email' => null]);
-                Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+                // auto renew
+                $email = $number['email'];
+                $user = User::whereemail($email)->first();
+
+                $PaymentController = new PaymentController();
+                $price = $PaymentController->getPrice(1,1,$email);
+
+                if ($price <= $user['balance']){
+                    // renew number
+                    $expiration = Carbon::now()->addMonths(1);
+                    $balance = $user['balance'] - $price;
+                    User::where('email', '=', $email)->update(['balance' => $balance]);
+
+                    Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+
+
+
+                }else{
+                    // remove number
+                    $expiration = Carbon::now()->addYears(20);
+                    Number::where('id', '=', $number['id'])->update(['email' => null]);
+                    Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+                }
+
+            }
+
+            if ($diff > 0 and $diff < 4){
+                // send TOP UP needed
+                $count = $count + 2;
+                $when = Carbon::now()->addMinutes($count);
+
+                $data['name'] = $user['name'];
+                $data['date'] = $number['expiration'];
+                Mail::to($user["email"])->later($when, new topupNeeded($data));
+
             }
         }
 

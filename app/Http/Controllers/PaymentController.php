@@ -515,20 +515,25 @@ class PaymentController extends Controller
     }
 
 
-    public function getPrice($amount=1,$period=1){
-        if (Auth::check()){
-            $email = Auth::user()->email;
-            $numbers = number::where('is_private',true)->where('email',$email)->get();
+    public function getPrice($amount=1,$period=1, $email=null){
 
-            if (!is_numeric($amount)){$amount=1;}
+        if ($email == null){
+            if (Auth::check()){
+                $email = Auth::user()->email;
+                $numbers = number::where('is_private',true)->where('email',$email)->get();
 
-            $totalAmount = $amount + count($numbers);
+                if (!is_numeric($amount)){$amount=1;}
 
-
-
+                $totalAmount = $amount + count($numbers);
+            }else{
+                $totalAmount = $amount;
+            }
         }else{
-            $totalAmount = $amount;
+            $numbers = number::where('is_private',true)->where('email',$email)->get();
+            if (!is_numeric($amount)){$amount=1;}
+            $totalAmount = $amount + count($numbers);
         }
+
 
 
         $unit_price = 9;
