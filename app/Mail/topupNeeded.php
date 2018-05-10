@@ -21,7 +21,7 @@ class topupNeeded extends Mailable
     public function __construct($data)
     {
         $this->name = $data['name'];
-        $this->name = $data['date'];
+        $this->date = $data['date'];
     }
 
     /**
