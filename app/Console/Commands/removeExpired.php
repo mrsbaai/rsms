@@ -104,7 +104,7 @@ class removeExpired extends Command
                     //Mail::to($number["email"])->later($when, new topupNeeded($data));
 
                     array_push($sendedEmails, $number["email"]);
-                    //Mail::to("abdelilah.sbaai@gmail.com")->later($when, new topupNeeded($data));
+                    Mail::to("abdelilah.sbaai@gmail.com")->later($when, new topupNeeded($data));
                     $m = $number["email"];
                     Log::info("send TOP UP needed: $m");
                 }
