@@ -364,6 +364,21 @@ class adminController extends Controller
         $source = $user['source'];
     }
 
+    public function freeNumber($email,$days = 31){
+        $number = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->first();
+        if ($number['number']){
+            $expiration = Carbon::now()->addDays($days);
+            number::where('id', '=', $number['id'])->update(['email' => $email]);
+            number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+            return $number['number'];
+        }else{
+            return false;
+        }
+
+
+
+    }
+
     public function giveNumbers(){
 
         $amount = Input::get('amount');

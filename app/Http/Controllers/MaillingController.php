@@ -27,13 +27,20 @@ class MaillingController extends Controller
 
 
     public function test(){
-        $email = "abdelilah.sbaai@gmail.com";
-        $data['name'] = "abdel";
-        $data['number'] = "5559966228";
         $when = Carbon::now();
 
-        Mail::to($email)->later($when, new freeNumber($data));
-        return;
+
+        $email = "abdelilah.sbaai@gmail.com";
+        $data['name'] = "abdel";
+
+        $admin = new adminController();
+        $freeNumber = $admin->freeNumber($email);
+        if ($freeNumber){
+            $data['number'] = $freeNumber;
+            Mail::to($email)->later($when, new freeNumber($data));
+        }
+
+
     }
     public function NextBills($user_id){
         $user = User::whereid($user_id)->first();
