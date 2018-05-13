@@ -549,7 +549,7 @@ class PaymentController extends Controller
     }
 
     public function showPrice($amount=1,$period=1){
-        if (is_numeric()){
+        if (is_numeric($amount) and is_numeric($period)){
             $price = $this->getPrice($amount,$period);
             if (Auth::check()){
                 if($price > Auth::user()->balance){$isPossible = false;}else{$isPossible = true;}
