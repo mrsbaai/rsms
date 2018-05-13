@@ -14,6 +14,7 @@ use App\paymentsystem;
 
 use App\Mail\generic;
 use App\Mail\newCoupon;
+use App\Mail\freeNumber;
 use Log;
 
 use App\pendinglist;
@@ -26,7 +27,12 @@ class MaillingController extends Controller
 
 
     public function test(){
-        print_r($this->NextBills("5020"));
+        $email = "abdelilah.sbaai@gmail.com";
+        $data['name'] = "abdel";
+        $data['number'] = "5559966228";
+        $when = Carbon::now();
+
+        Mail::to($email)->later($when, new freeNumber($data));
         return;
     }
     public function NextBills($user_id){
