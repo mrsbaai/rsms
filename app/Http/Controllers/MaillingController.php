@@ -75,6 +75,35 @@ class MaillingController extends Controller
             return;
         }
     }
+
+
+    public function SendAutoPromoEmail($user_id){
+        $user = User::whereid($user_id)->first();
+        $balance = $user["balance"];
+        $now = Carbon::now();
+        $nextBills = $this->NextBills($user_id);
+        $lastSentMail = "";
+        if ($nextBills){
+            $count = 0;
+            foreach($nextBills as $nextBill){
+                foreach($nextBill as $date => $amount){
+                    if ($amount > $balance){
+                        $date = Carbon::parse($date);
+                        $diff = $now->diffInDays($date, false);
+                        $count = $count + 2;
+                        $when = Carbon::now()->addMinutes($count);
+                        //switch ($diff) {
+
+                        //}
+                    }
+
+                }
+            }
+        }else{
+            return;
+        }
+    }
+
     public function RandomCoupon($value,$expiration){
         $code = substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', ceil(3/strlen($x)) )),1,4) . "-" . $value . "OFF";
         $paymentsystems = paymentsystem::all();

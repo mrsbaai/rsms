@@ -549,12 +549,19 @@ class PaymentController extends Controller
     }
 
     public function showPrice($amount=1,$period=1){
-        $price = $this->getPrice($amount,$period);
-        if (Auth::check()){
-            if($price > Auth::user()->balance){$isPossible = false;}else{$isPossible = true;}
+        if (is_numeric()){
+            $price = $this->getPrice($amount,$period);
+            if (Auth::check()){
+                if($price > Auth::user()->balance){$isPossible = false;}else{$isPossible = true;}
+            }else{
+                $isPossible = false;
+            }
         }else{
             $isPossible = false;
+            $price = "n/a";
+
         }
+
 
         header('Content-type: application/json');
         return json_encode(array ('isPossible'=> $isPossible,'price'=>$price));

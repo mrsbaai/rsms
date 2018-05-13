@@ -42,6 +42,9 @@
                     try{
                         $.get( url , function( data ) {
                             try {data = JSON.parse(data);}catch(err) {}
+                                    if (data.price === 'n/a'){
+                                        location.reload();
+                                    }
 
                                     if (data.isPossible === false){
                                         document.getElementById("renew").disabled = true;
@@ -151,9 +154,16 @@
             Numbers will be valid for <b>1 Month</b> (+10 days). You will be able to renew later as desired.
                 </small></p>
         @if(count($numbers) < 10)
-                <p><small>
-                        You have <b>Less</b> then <b>10 Numbers</b> in your account, the price now is <b>$9/Month</b> per number. Once you have <b>More</b> then <b>10 Numbers</b> in your account, add/renew price will change to <b>$5/Month</b> per number.
-                    </small></p>
+                <p>
+                    <small>
+                        You have <b>Less</b> then <b>10 Numbers</b> in your account, the price now is <b>$9/Month</b> per number.
+                    </small>
+                </p>
+                <p>
+                    <small>
+                       Once you have <b>More</b> then <b>10 Numbers</b>, add/renew price will change to <b>$5/Month</b> per number.
+                    </small>
+                </p>
             @else
                 <p><small>
                         Add/renew price now is <b>$5/Month</b> per number.
@@ -191,9 +201,9 @@
                                 @foreach ($numbers as $number)
                                     <tr>
                                         <td><input type="checkbox" name="numbers_list[]" value="{{$number->number}}" onchange="getRenewPrice()"></td>
-                                        <td><b>[{{$number->number}}</b></td>
-                                        <td>{{$number->country}}</td>
-                                        <td>{{$number->expiration}}]</td>
+                                        <td><b>[{{$number->number}}]</b></td>
+                                        <td>[{{$number->country}}]</td>
+                                        <td>[{{$number->expiration}}]</td>
                                         <td>
                                                 <a href="/delete/{{$number->number}}" class="btn btn-xs btn-danger" style="text-shadow: none;">Delete</a>
                                         </td>

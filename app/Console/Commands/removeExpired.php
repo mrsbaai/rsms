@@ -70,8 +70,8 @@ class removeExpired extends Command
                     $expiration = Carbon::now()->addMonths(1);
                     $balance = $user['balance'] - $price;
 
-                    //User::where('email', '=', $email)->update(['balance' => $balance]);
-                    //Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+                    User::where('email', '=', $email)->update(['balance' => $balance]);
+                    Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
 
                     $n = $number['number'];
                     Log::info("renew number: $email -> $balance - $n -> $expiration");
@@ -81,8 +81,8 @@ class removeExpired extends Command
                 }else{
                     // remove number
                     $expiration = Carbon::now()->addYears(20);
-                    //Number::where('id', '=', $number['id'])->update(['email' => null]);
-                    //Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+                    Number::where('id', '=', $number['id'])->update(['email' => null]);
+                    Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
 
                     $n = $number['number'];
                     Log::info("remove number: $n");
@@ -101,10 +101,10 @@ class removeExpired extends Command
                     $data['name'] = $user['name'];
                     $data['date'] = Carbon::parse($number['expiration'])->toDateString();
 
-                    //Mail::to($number["email"])->later($when, new topupNeeded($data));
+                    Mail::to($number["email"])->later($when, new topupNeeded($data));
 
                     array_push($sendedEmails, $number["email"]);
-                    //Mail::to("abdelilah.sbaai@gmail.com")->later($when, new topupNeeded($data));
+
                     $m = $number["email"];
                     $f = $data['date'];
                     Log::info("send TOP UP needed: $m  - $f");
