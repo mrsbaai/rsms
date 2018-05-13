@@ -77,31 +77,30 @@ class MaillingController extends Controller
     }
 
 
-    public function SendAutoPromoEmail($user_id){
-        $user = User::whereid($user_id)->first();
-        $balance = $user["balance"];
-        $now = Carbon::now();
-        $nextBills = $this->NextBills($user_id);
-        $lastSentMail = "";
-        if ($nextBills){
-            $count = 0;
-            foreach($nextBills as $nextBill){
-                foreach($nextBill as $date => $amount){
-                    if ($amount > $balance){
-                        $date = Carbon::parse($date);
-                        $diff = $now->diffInDays($date, false);
-                        $count = $count + 2;
-                        $when = Carbon::now()->addMinutes($count);
-                        //switch ($diff) {
-
-                        //}
-                    }
-
-                }
-            }
+    public function SendAutoPromoEmail($id, $is_user = true){
+        if ($is_user){
+            $user = User::whereid($id)->first();
+            $name = $user["name"];
+            $email = $user["email"];
+            $date = $user["created_at"];
         }else{
-            return;
+            //$subscriber=
         }
+
+
+        $now = Carbon::now();
+        $date = Carbon::parse($date);
+
+        $diff = $now->diffInDays($date, false);
+        $when = Carbon::now()->addSeconds(rand(30,900));
+
+        switch ($diff) {
+            case 3:
+                    $data['name'] = $user['name'];
+                    Mail::to($email)->later($when, new numberRemovalNotification($data));
+
+        }
+
     }
 
     public function RandomCoupon($value,$expiration){
