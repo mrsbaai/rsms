@@ -370,6 +370,7 @@ class adminController extends Controller
             $expiration = Carbon::now()->addDays($days);
             number::where('id', '=', $number['id'])->update(['email' => $email]);
             number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+            echo $this->formatPhoneNumber($number['number']);
             return $this->formatPhoneNumber($number['number']);
         }else{
             return false;
