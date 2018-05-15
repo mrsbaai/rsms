@@ -19,7 +19,7 @@ class freeNumber extends Mailable
     {
         $this->name = $data['name'];
         $this->number = $data['number'];
-        $this->number = $data['email'];
+        $this->email = $data['email'];
 
     }
 

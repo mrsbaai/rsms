@@ -91,7 +91,7 @@ class MaillingController extends Controller
             case -7:
 
                 $data['subj'] = "[30% Off] Get An Online SMS Number";
-                $data['header'] = "Get a 30% Off All Your Top Ups!";
+                $data['header'] = "Be Anonymous Online, And Get a 30% Off!";
                 $data['coupon'] = $coupon30;
                 $data['date'] = $expiration30;
                 $data['email'] = $email;
@@ -118,8 +118,8 @@ class MaillingController extends Controller
 
             case -25:
 
-                $data['subj'] = "50% Discount Code!";
-                $data['header'] = "Get a 50% Discount And Be Anonymous Online!";
+                $data['subj'] = "50% Discount Code! Numbers On Sale";
+                $data['header'] = "Get a 50% Discount!! And Be Anonymous Online.";
                 $data['coupon'] = $coupon50;
                 $data['date'] = $expiration50;
                 $data['email'] = $email;
@@ -129,7 +129,7 @@ class MaillingController extends Controller
                 return;
             case -40:
                 $data['subj'] = "Get Your 30% Discount Code";
-                $data['header'] = "Get a 30% Off A Cheap Price For Online Privacy!";
+                $data['header'] = "Get a 30% Off! A Cheap Price For Online Privacy.";
                 $data['coupon'] = $coupon30;
                 $data['date'] = $expiration30;
                 $data['email'] = $email;
