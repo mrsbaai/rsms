@@ -40,7 +40,7 @@ class SendAutoMails extends Command
      */
     public function handle()
     {
-        $users = User::all()->where('email' , 'abdelilah.sbaai@gmail.com')->where('confirmed' , true)->where('is_active' , true)->where('balance' , '<','10');
+        $users = User::all()->where('email' , 'abdelilah.sbaai@gmail.com')->where('confirmed' , true)->where('is_active' , true)->where('balance' , '<','9');
         $subscribers = subscriber::all()->where('email' , 'abdelilah.sbaai@gmail.com')->where('confirmed' , true);
         $sendedEmails = array();
 
