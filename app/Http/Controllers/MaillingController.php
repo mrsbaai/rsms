@@ -86,6 +86,7 @@ class MaillingController extends Controller
 
         $expiration50 = Carbon::now()->addDays(3);
         $coupon50 = $this->RandomCoupon(30,$expiration50);
+        echo $diff;
         switch ($diff) {
             case 7:
 
