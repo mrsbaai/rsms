@@ -62,32 +62,6 @@ class MaillingController extends Controller
         return $NextBills;
     }
 
-    public function SendTopupEmail($user_id){
-        $user = User::whereid($user_id)->first();
-        $balance = $user["balance"];
-        $now = Carbon::now();
-        $nextBills = $this->NextBills($user_id);
-        $lastSentMail = "";
-        if ($nextBills){
-            $count = 0;
-            foreach($nextBills as $nextBill){
-                foreach($nextBill as $date => $amount){
-                    if ($amount > $balance){
-                        $date = Carbon::parse($date);
-                        $diff = $now->diffInDays($date, false);
-                        $count = $count + 2;
-                        $when = Carbon::now()->addMinutes($count);
-                        //switch ($diff) {
-
-                        //}
-                    }
-
-                }
-            }
-        }else{
-            return;
-        }
-    }
 
 
     public function SendAutoPromoEmail($id, $is_user = true){
@@ -97,7 +71,7 @@ class MaillingController extends Controller
             $email = $user["email"];
             $date = $user["created_at"];
         }else{
-            //$subscriber=
+            $subscriber= subscriber::whereid($id)->first();
         }
 
 
@@ -107,10 +81,59 @@ class MaillingController extends Controller
         $diff = $now->diffInDays($date, false);
         $when = Carbon::now()->addSeconds(rand(30,900));
 
+        $expiration30 = Carbon::now()->addDays(7);
+        $coupon30 = $this->RandomCoupon(30,$expiration30);
+
+        $expiration50 = Carbon::now()->addDays(3);
+        $coupon50 = $this->RandomCoupon(30,$expiration50);
         switch ($diff) {
-            case 3:
-                    $data['name'] = $user['name'];
-                    Mail::to($email)->later($when, new numberRemovalNotification($data));
+            case 14:
+                if ($is_user){
+                    $admin = new adminController();
+                    $freeNumber = $admin->freeNumber($email);
+                    if ($freeNumber){
+                        $data['name'] = $name;
+                        $data['email'] = $email;
+                        $data['number'] = $freeNumber;
+                        if ($this->is_email_subscribed($email)){
+                            Mail::to($email)->later($when, new freeNumber($data));
+                        }
+
+                    }
+                }
+            case 7:
+
+                $data['subj'] = "[30% Off] Get An Online SMS Number";
+                $data['header'] = "Get a 30% Off All Your Top Ups!";
+                $data['coupon'] = $coupon30;
+                $data['date'] = $expiration30;
+                $data['email'] = $email;
+                if ($this->is_email_subscribed($email)){
+                    Mail::to($user["email"])->later($when, new newCoupon($data));
+                }
+
+            case 25:
+
+                $data['subj'] = "50% Discount Code!";
+                $data['header'] = "Get a 50% Discount And Be Anonymous Online!";
+                $data['coupon'] = $coupon50;
+                $data['date'] = $expiration50;
+                $data['email'] = $email;
+                if ($this->is_email_subscribed($email)){
+                    Mail::to($user["email"])->later($when, new newCoupon($data));
+                }
+
+            case 40:
+                $data['subj'] = "Get Your 30% Discount Code";
+                $data['header'] = "Get a 30% Off A Cheap Price For Online Privacy!";
+                $data['coupon'] = $coupon30;
+                $data['date'] = $expiration30;
+                $data['email'] = $email;
+                if ($this->is_email_subscribed($email)){
+                    Mail::to($user["email"])->later($when, new newCoupon($data));
+                }
+
+
 
         }
 
@@ -267,5 +290,16 @@ class MaillingController extends Controller
 
 
         return $filterd_emails;
+    }
+
+
+    public function is_email_subscribed($email){
+
+        $user = suppression::where('email', '=', $email)->first();
+        if ($user === null) {
+            return true;
+        }else{
+            return false;
+        }
     }
 }

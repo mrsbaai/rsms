@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 
 use App\user;
+use App\subscriber;
 
 class SendAutoMails extends Command
 {
@@ -39,11 +40,26 @@ class SendAutoMails extends Command
      */
     public function handle()
     {
-        $users = User::all();
+        $users = User::all()->where('email' , 'abdelilah.sbaai@gmail.com');
+        $subscribers = subscriber::all()->where('email' , 'abdelilah.sbaai@gmail.com');
+        $sendedEmails = array();
 
         foreach($users as $user){
-            $MaillingController = new \App\Http\Controllers\MaillingController;
-            $MaillingController->SendTopupEmail($user['id']);
+            if (! in_array($user["email"], $sendedEmails)){
+                $MaillingController = new \App\Http\Controllers\MaillingController;
+                $MaillingController->SendAutoPromoEmail($user['id'],true);
+                array_push($sendedEmails, $user["email"]);
+            }
+
+        }
+
+        foreach($subscribers as $subscriber){
+            if (! in_array($subscriber["email"], $sendedEmails)){
+                $MaillingController = new \App\Http\Controllers\MaillingController;
+                $MaillingController->SendAutoPromoEmail($subscriber['id'],false);
+                array_push($sendedEmails, $subscriber["email"]);
+            }
+
         }
 
         return;

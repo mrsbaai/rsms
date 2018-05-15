@@ -1,5 +1,7 @@
 @component('mail::message')
-# {{$header}} Use coupon code:
+# {{$header}}
+
+Use coupon code:
 
 <div class="coupon">
     {{$coupon}}
@@ -7,11 +9,15 @@
 
 
 @component('mail::button', ['url' => 'http://receive-sms.com/login'])
-Login to your account
+Redeem Now
 @endcomponent
 
-Hurry, offer ends <span class="enddate">{{$date}}</span>
+Hurry, offer ends <span class="enddate">{{$date}}</span><br>
+{{ config('app.name') }} Team
+<br/>
+<br/>
 
-Regards,<br>
-{{ config('app.name') }}
+<div style="text-align: center;">
+    <a style="font-size: 90%;" href="https://receive-sms.com/unsubscribe/{{$email}}">Unsubscribe</a>
+</div>
 @endcomponent

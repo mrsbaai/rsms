@@ -370,6 +370,7 @@ class adminController extends Controller
             $expiration = Carbon::now()->addDays($days);
             number::where('id', '=', $number['id'])->update(['email' => $email]);
             number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+            message::where('receiver', $number['number'])->delete();
             echo $this->formatPhoneNumber($number['number']);
             return $this->formatPhoneNumber($number['number']);
         }else{
@@ -422,6 +423,7 @@ class adminController extends Controller
             $number = number::where('id', '=', $number['id'])->first();
             number::where('id', '=', $number['id'])->update(['email' => $email]);
             number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+            message::where('receiver', $number['number'])->delete();
             $addedNumber = array($number['number'],$number['country'],"International",$expiration);
             array_push($data['numbers'],$addedNumber);
         }

@@ -12,12 +12,14 @@ class freeNumber extends Mailable
     use Queueable, SerializesModels;
 
     protected $name;
+    protected $email;
     protected $number;
 
     public function __construct($data)
     {
         $this->name = $data['name'];
         $this->number = $data['number'];
+        $this->number = $data['email'];
 
     }
 
@@ -27,10 +29,11 @@ class freeNumber extends Mailable
 
 
         return $this->markdown('emails.freeNumber')
-            ->subject("Free Number Added To Your Account ")
+            ->subject("Free Number Added To Your Account")
             ->with([
                 'name' => $this->name,
                 'number' => $this->number,
+                'email' => $this->email,
             ]);
     }
 

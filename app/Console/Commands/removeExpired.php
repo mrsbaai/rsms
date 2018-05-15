@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\number;
 use App\user;
-
+use App\message;
 use Carbon\Carbon;
 
 use Log;
@@ -83,7 +83,10 @@ class removeExpired extends Command
                     $expiration = Carbon::now()->addYears(20);
                     Number::where('id', '=', $number['id'])->update(['email' => null]);
                     Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+                    // remove messages
+                    Message::where('receiver', '=', $number['number'])->delete();
 
+                    //
                     $n = $number['number'];
                     Log::info("remove number: $n");
                 }

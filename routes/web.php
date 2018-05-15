@@ -28,12 +28,10 @@ Route::get('register/verify/{confirmationCode}', [
     'uses' => 'userController@confirm'
 ]);
 
-Route::get('unsubscribe/{email}', [
-    'as' => 'unsubscribe_path',
-    'uses' => 'SubscribersController@unsubscribe'
-]);
+Route::post('unsubscribe','SubscribersController@unsubscribe');
 
-
+Route::get('unsubscribe/{email}','SubscribersController@showUnsubscribe');
+Route::get('unsubscribe','SubscribersController@showUnsubscribe');
 
 Route::get('subscribe/verify/{email}', [
     'as' => 'subscription',

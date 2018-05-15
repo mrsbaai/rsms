@@ -18,4 +18,10 @@ You have any questions? <a href="http://receive-sms.com/support">We're here to h
 
 Have Fun!<br>
 Receive-SMS Team
+<br/>
+<br/>
+
+<div style="text-align: center;">
+    <a style="font-size: 90%;" href="https://receive-sms.com/unsubscribe/{{$email}}">Unsubscribe</a>
+</div>
 @endcomponent

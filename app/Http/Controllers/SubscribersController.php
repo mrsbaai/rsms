@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Input;
 use App\subscriber;
 use App\suppression;
 use Illuminate\Http\Request;
@@ -39,15 +40,17 @@ class SubscribersController extends Controller
 
     public function unsubscribe(Request $request){
 
-        $suppressed = suppression::where('email', $request->email)->first();
+        $email= Input::get('email');
+
+        $suppressed = suppression::where('email', $email)->first();
 
         if(is_null($suppressed)) {
             $suppression = new suppression();
-            $suppression->email = $request->email;
+            $suppression->email = $email;
             $suppression->save();
         }
 
-        $subscriber = subscriber::where('email', $request->email)->first();
+        $subscriber = subscriber::where('email', $email)->first();
         if ($subscriber ){
             $subscriber->subscribed = false;
             $subscriber->save();
@@ -68,6 +71,11 @@ class SubscribersController extends Controller
         }else{
             return false;
         }
+    }
+
+    public function showUnsubscribe($email = ""){
+
+        return view('unsubscribe')->with("email",$email);
     }
 
     Public function subscribe(Request $request){

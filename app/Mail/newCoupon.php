@@ -21,6 +21,7 @@ class newCoupon extends Mailable
     protected $header;
     protected $coupon;
     protected $date;
+    protected $email;
 
     public function __construct($data)
     {
@@ -28,6 +29,7 @@ class newCoupon extends Mailable
         $this->header = $data['header'];
         $this->coupon = $data['coupon'];
         $this->date = $data['date'];
+        $this->email = $data['email'];
     }
 
     /**
@@ -43,6 +45,7 @@ class newCoupon extends Mailable
                 'header' => $this->header,
                 'coupon' => $this->coupon,
                 'date' => $this->date,
+                'email' => $this->email,
             ]);
     }
 }
