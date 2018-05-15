@@ -121,8 +121,8 @@ class MaillingController extends Controller
 
             case -25:
 
-                $data['subj'] = "50% Discount Code! Numbers On Sale";
-                $data['header'] = "Topup Now And Get 50% Discount!! ";
+                $data['subj'] = "50% Discount Code! Numbers On Sale (Valid For 3 Days)";
+                $data['header'] = "Topup Now And Get 50% Discount!";
                 $data['coupon'] = $coupon50;
                 $data['date'] = $expiration50;
                 $data['email'] = $email;
