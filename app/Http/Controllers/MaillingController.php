@@ -81,6 +81,9 @@ class MaillingController extends Controller
         $diff = $now->diffInDays($date, false);
         $when = Carbon::now()->addSeconds(rand(30,900));
 
+        $expiration25 = Carbon::now()->addDays(10);
+        $coupon25 = $this->RandomCoupon(30,$expiration25);
+
         $expiration30 = Carbon::now()->addDays(7);
         $coupon30 = $this->RandomCoupon(30,$expiration30);
 
@@ -90,10 +93,10 @@ class MaillingController extends Controller
         switch ($diff) {
             case -7:
 
-                $data['subj'] = "[30% Off] Get An Online SMS Number";
-                $data['header'] = "Be Anonymous Online, And Get a 30% Off!";
-                $data['coupon'] = $coupon30;
-                $data['date'] = $expiration30;
+                $data['subj'] = "[25% Off] Get An Online SMS Number";
+                $data['header'] = "Be Anonymous Online, And Get 25% Off!";
+                $data['coupon'] = $coupon25;
+                $data['date'] = $expiration25;
                 $data['email'] = $email;
                 if ($this->is_email_subscribed($email)){
                     Mail::to($user["email"])->later($when, new newCoupon($data));
@@ -119,7 +122,7 @@ class MaillingController extends Controller
             case -25:
 
                 $data['subj'] = "50% Discount Code! Numbers On Sale";
-                $data['header'] = "Get a 50% Discount!! And Be Anonymous Online.";
+                $data['header'] = "Topup Now And Get 50% Discount!! ";
                 $data['coupon'] = $coupon50;
                 $data['date'] = $expiration50;
                 $data['email'] = $email;
@@ -129,7 +132,7 @@ class MaillingController extends Controller
                 return;
             case -40:
                 $data['subj'] = "Get Your 30% Discount Code";
-                $data['header'] = "Get a 30% Off! A Cheap Price For Online Privacy.";
+                $data['header'] = "Get 30% Off! A Cheap Price For Online Privacy.";
                 $data['coupon'] = $coupon30;
                 $data['date'] = $expiration30;
                 $data['email'] = $email;
