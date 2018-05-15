@@ -88,7 +88,7 @@ class MaillingController extends Controller
         $coupon50 = $this->RandomCoupon(30,$expiration50);
         echo $diff;
         switch ($diff) {
-            case 7:
+            case -7:
 
                 $data['subj'] = "[30% Off] Get An Online SMS Number";
                 $data['header'] = "Get a 30% Off All Your Top Ups!";
@@ -99,7 +99,7 @@ class MaillingController extends Controller
                     Mail::to($user["email"])->later($when, new newCoupon($data));
                 }
 
-            case 14:
+            case -14:
                 if ($is_user){
                     $admin = new adminController();
                     $freeNumber = $admin->freeNumber($email);
@@ -114,7 +114,7 @@ class MaillingController extends Controller
                     }
                 }
 
-            case 25:
+            case -25:
 
                 $data['subj'] = "50% Discount Code!";
                 $data['header'] = "Get a 50% Discount And Be Anonymous Online!";
@@ -125,7 +125,7 @@ class MaillingController extends Controller
                     Mail::to($user["email"])->later($when, new newCoupon($data));
                 }
 
-            case 40:
+            case -40:
                 $data['subj'] = "Get Your 30% Discount Code";
                 $data['header'] = "Get a 30% Off A Cheap Price For Online Privacy!";
                 $data['coupon'] = $coupon30;
