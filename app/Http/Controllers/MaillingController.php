@@ -72,6 +72,9 @@ class MaillingController extends Controller
             $date = $user["created_at"];
         }else{
             $subscriber= subscriber::whereid($id)->first();
+            $name = "";
+            $email = $subscriber["email"];
+            $date = $subscriber["created_at"];
         }
 
 
