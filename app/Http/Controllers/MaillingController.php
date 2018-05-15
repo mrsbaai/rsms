@@ -98,6 +98,7 @@ class MaillingController extends Controller
                 if ($this->is_email_subscribed($email)){
                     Mail::to($user["email"])->later($when, new newCoupon($data));
                 }
+                return;
 
             case -14:
                 if ($is_user){
@@ -113,6 +114,7 @@ class MaillingController extends Controller
 
                     }
                 }
+                return;
 
             case -25:
 
@@ -124,7 +126,7 @@ class MaillingController extends Controller
                 if ($this->is_email_subscribed($email)){
                     Mail::to($user["email"])->later($when, new newCoupon($data));
                 }
-
+                return;
             case -40:
                 $data['subj'] = "Get Your 30% Discount Code";
                 $data['header'] = "Get a 30% Off A Cheap Price For Online Privacy!";
@@ -134,6 +136,7 @@ class MaillingController extends Controller
                 if ($this->is_email_subscribed($email)){
                     Mail::to($user["email"])->later($when, new newCoupon($data));
                 }
+                return;
 
 
 
