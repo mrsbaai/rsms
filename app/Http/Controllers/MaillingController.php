@@ -87,6 +87,17 @@ class MaillingController extends Controller
         $expiration50 = Carbon::now()->addDays(3);
         $coupon50 = $this->RandomCoupon(30,$expiration50);
         switch ($diff) {
+            case 7:
+
+                $data['subj'] = "[30% Off] Get An Online SMS Number";
+                $data['header'] = "Get a 30% Off All Your Top Ups!";
+                $data['coupon'] = $coupon30;
+                $data['date'] = $expiration30;
+                $data['email'] = $email;
+                if ($this->is_email_subscribed($email)){
+                    Mail::to($user["email"])->later($when, new newCoupon($data));
+                }
+
             case 14:
                 if ($is_user){
                     $admin = new adminController();
@@ -100,16 +111,6 @@ class MaillingController extends Controller
                         }
 
                     }
-                }
-            case 7:
-
-                $data['subj'] = "[30% Off] Get An Online SMS Number";
-                $data['header'] = "Get a 30% Off All Your Top Ups!";
-                $data['coupon'] = $coupon30;
-                $data['date'] = $expiration30;
-                $data['email'] = $email;
-                if ($this->is_email_subscribed($email)){
-                    Mail::to($user["email"])->later($when, new newCoupon($data));
                 }
 
             case 25:

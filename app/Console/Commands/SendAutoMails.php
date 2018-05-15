@@ -62,6 +62,7 @@ class SendAutoMails extends Command
 
         }
 
+        print_r($sendedEmails);
         return;
     }
 }
