@@ -65,8 +65,10 @@ class MaillingController extends Controller
 
 
     public function SendAutoPromoEmail($id, $is_user = true){
+        $balance = 0;
         if ($is_user){
             $user = User::whereid($id)->first();
+            $balance = $user["balance"];
             $name = $user["name"];
             $email = $user["email"];
             $date = $user["created_at"];
@@ -95,7 +97,7 @@ class MaillingController extends Controller
         echo $diff;
         switch ($diff) {
             case -7:
-
+                if ( $balance > 8 ) {return "he have money";}
                 $data['subj'] = "[25% Off] Get An Online SMS Number";
                 $data['header'] = "Be Anonymous Online, And Get 25% Off!";
                 $data['coupon'] = $coupon25;
@@ -108,6 +110,7 @@ class MaillingController extends Controller
 
             case -14:
                 if ($is_user){
+                    if ( $balance > 8 ) {return "he have money";}
                     $admin = new adminController();
                     $freeNumber = $admin->freeNumber($email);
                     if ($freeNumber){
@@ -123,7 +126,7 @@ class MaillingController extends Controller
                 return;
 
             case -25:
-
+                if ( $balance > 8 ) {return "he have money";}
                 $data['subj'] = "50% Discount Code! Numbers On Sale (Valid For 3 Days)";
                 $data['header'] = "Topup Now And Get 50% Discount!";
                 $data['coupon'] = $coupon50;
