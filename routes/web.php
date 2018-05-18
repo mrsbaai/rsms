@@ -60,6 +60,8 @@ Route::get('/admin/dashboard', 'adminController@dashboard');
 Route::get('/admin/mailer', 'adminController@mailer');
 Route::get('/admin/support', 'adminController@support');
 
+Route::get('/admin/contact', 'adminController@contact');
+
 Route::get('/admin/numbers', 'adminController@showNumbers');
 Route::get('/admin/topups', 'adminController@showTopups');
 Route::get('/admin/orders', 'adminController@showOrders');
@@ -67,6 +69,7 @@ Route::get('/admin/sources', 'adminController@showSources');
 Route::post('/admin/sources', 'adminController@showSources');
 
 Route::post('/admin/support', 'adminController@sendResponse');
+Route::post('/admin/contact', 'adminController@sendResponse');
 Route::get('/admin/support/delete/{id}', 'adminController@deleteEmail');
 
 Route::get('/admin/give', 'adminController@give');

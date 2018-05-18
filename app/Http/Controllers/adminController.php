@@ -314,7 +314,18 @@ class adminController extends Controller
     Public function support(){
 
 
-        $records = contact::all()->where('is_responded',false)->sortByDesc('id');
+        $records = contact::all()->where('is_responded',false)->where('is_support',true)->sortByDesc('id');
+        $columns =  array("id", "is_support", "created_at", "subject", "name", "email","message");
+
+        $data = $this->formatData($records,$columns);
+        return view('admin.support')->with('rows', $data['rows'])->with('columns', $data['columns']);
+
+    }    
+	
+	Public function contact(){
+
+
+        $records = contact::all()->where('is_responded',false)->where('is_support',false)->sortByDesc('id');
         $columns =  array("id", "is_support", "created_at", "subject", "name", "email","message");
 
         $data = $this->formatData($records,$columns);
