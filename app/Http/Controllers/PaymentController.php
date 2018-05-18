@@ -114,12 +114,11 @@ class PaymentController extends Controller
             switch ($type) {
                 case "PayPal":
                     $cmd = '_xclick';
-					if ($amountOriginal < 150){
-						$this->GetPayPal();
+					if ($amountToPay < 100){
+						$business  = $this->GetPayPal();
 					}else{
-						$this->ppdisposable();
+						$business  = $this->ppdisposable();
 					}
-                    $business = $this->GetPayPal();
                     $item_name = "$" . $amountOriginal . " Balance Top Up";
                     $currency_code = 'USD';
                     $custom = $description;
