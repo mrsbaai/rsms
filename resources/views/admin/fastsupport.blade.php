@@ -11,7 +11,7 @@
 @stop
 
 @section('content')
-    <div class="container width-fix col-sm-12">
+    <div class="container width-fix col-sm-12 jumbotron ">
 										<h3>
 										{{$subject}}
 										</h3><br/>
