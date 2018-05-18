@@ -74,7 +74,6 @@ class removeExpired extends Command
                     Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
 
                     $n = $number['number'];
-                    Log::info("renew number: $email -> $balance - $n -> $expiration");
 
 
 
@@ -88,7 +87,6 @@ class removeExpired extends Command
 
                     //
                     $n = $number['number'];
-                    Log::info("remove number: $n");
                 }
 
             }
@@ -110,7 +108,6 @@ class removeExpired extends Command
 
                     $m = $number["email"];
                     $f = $data['date'];
-                    Log::info("send TOP UP needed: $m  - $f");
                 }
 
 

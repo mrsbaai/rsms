@@ -40,8 +40,8 @@ class SendAutoMails extends Command
      */
     public function handle()
     {
-        $users = User::all()->where('email' , 'abdelilah.sbaai@gmail.com')->where('confirmed' , true)->where('is_active' , true);
-        $subscribers = subscriber::all()->where('email' , 'abdelilah.sbaai@gmail.com')->where('confirmed' , true);
+        $users = User::all()->where('confirmed' , true)->where('is_active' , true);
+        $subscribers = subscriber::all()->where('confirmed' , true);
         $sendedEmails = array();
 
         foreach($users as $user){
