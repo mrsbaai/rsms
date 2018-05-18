@@ -43,7 +43,8 @@
                                         <textarea id="response" type="text" name="response" class="form-control" style="width: 280px; height: 200px;">We have experienced a high volume of inquires and regret that we have not addressed your case sooner.</textarea>
                                         <br/>
                                         <input type="submit" class="btn btn-primary btn-send " value="Send">
-                                        <a class="float:right;"><a href="/admin/support/delete/{{$array['0']}}">Delete</a></span>
+                                        <a href="/fast/support/{{$array['0']}}">View</a> | 
+                                        <a href="/admin/support/delete/{{$array['0']}}">Delete</a>
                                         {{ Form::close() }}
 
                                     </td>
