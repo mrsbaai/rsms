@@ -36,6 +36,7 @@
 										Registred: {{$info[6]}}<br>
 										Numbers: {{$info[7]}}<br>
 										SMS Received: {{$info[3]}}<br>
+										Balance: {{$info[11]}}<br>
 										Total Invested: ${{$info[2]}}<br>
 										Cases: {{$info[4]}}<br>
 										Topups: {{$info[5]}}<br>
