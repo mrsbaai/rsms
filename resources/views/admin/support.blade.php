@@ -41,7 +41,7 @@
 									</td>
                                     <td style="width: 100px;">{{$array['3']}}</td>
 									
-									<td style="width: 300px;">{{$array['5']}}</td>
+									<td style="width: 300px;">{{$array['6']}}</td>
                                     <td style="width: 300px;">
                                         {{ Form::open(array('action' => 'adminController@sendResponse', 'id' => 'mailer-form'))}}
                                         <input type="hidden" name="email" value="{{$array['5']}}">
