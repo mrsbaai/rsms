@@ -98,12 +98,13 @@ class adminController extends Controller
 	public function fastSupport($id){
 		
 		$support = contact::where('id',$id)->first();
+		$info = $this->getUserInfo($support['email']);
         return view('admin.fastsupport')
 		->with('id', $id)
 		->with('email', $support['email'])
 		->with('name', $support['name'])
 		->with('message', $support['message'])
-		->with('info', $support['info'])
+		->with('info', $info)
 		->with('subject', $support['subject']);
 		
 	}
