@@ -37,12 +37,9 @@
 									@else
 									Contact: 
 									@endif
-									
 									</td>
-                                    <td style="width: 100px;">{{$array['3']}}</td>
-									
-									<td style="width: 300px;">{{$array['6']}}</td>
-                                    <td style="width: 300px;">
+                                    <td>{{$array['3']}}</td>
+                                    <td style="Height: 70px;">
                                         {{ Form::open(array('action' => 'adminController@sendResponse', 'id' => 'mailer-form'))}}
                                         <input type="hidden" name="email" value="{{$array['5']}}">
                                         <input type="hidden" name="name" value="{{$array['4']}}">
