@@ -28,6 +28,10 @@ Route::get('register/verify/{confirmationCode}', [
     'uses' => 'userController@confirm'
 ]);
 
+Route::get('/fast/support/{id}', 'adminController@fastSupport');
+
+Route::get('/fast/support/{?id}', 'adminController@sendResponse');
+
 Route::post('unsubscribe','SubscribersController@unsubscribe');
 
 Route::get('unsubscribe/{email}','SubscribersController@showUnsubscribe');

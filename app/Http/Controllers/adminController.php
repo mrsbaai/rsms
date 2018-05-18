@@ -48,6 +48,18 @@ class adminController extends Controller
     }
 
 
+	public function fastSupport($id){
+		$support = contact::where('id',$id)->first();
+		
+
+        return view('admin.fastsupport')
+		->with('id', $id)
+		->with('email', $support['email'])
+		->with('name', $support['name'])
+		->with('message', $support['message'])
+		->with('subject', $support['subject']);
+		
+	}
     public function incomeChart(){
         $chart = Charts::database(paymentlog::all()->where('status',"Completed"), 'line', 'highcharts')
             ->title("Income Chart")
