@@ -349,6 +349,8 @@ class userController extends Controller
                 User::where('email', '=', Auth::user()->email)->update(['name' => Input::get('name')]);
                 User::where('email', '=', Auth::user()->email)->update(['callback_url' => Input::get('callback')]);
                 User::where('email', '=', Auth::user()->email)->update(['email' => Input::get('email')]);
+				number::where('email', '=', Auth::user()->email)->update(['email' => Input::get('email')]);
+               
 
             } catch(\Illuminate\Database\QueryException $ex){
                 return view('account')->with('account_form_result', '- Error!')->with('account_form_color', 'text-danger');
