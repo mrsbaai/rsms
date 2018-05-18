@@ -81,17 +81,16 @@ class adminController extends Controller
 		$name = $user['name'];
 		$numberCount = count($numbers);
 		$supportCount = count(contact::all()->where('email',$email));
-		
-		$info = 
-		'Name: ' . $name . '<br>' .
-		'Email: ' . $email . '<br>' .
-		'Total Invested: $' . $invested . '<br>' .
-		'SMS Received: ' . $received . '<br>' .
-		'Cases: ' . $casesCount . '<br>' .
-		'Topups: ' . $topupCount . '<br>' .
-		'registred: ' . $registred . '<br>' .
-		'Numbers: ' . $numberCount . '<br>' .
-		'Support: ' . $supportCount . '<br>' ;
+		$info = array();
+		array_push($info, $name);
+		array_push($info, $email);
+		array_push($info, $invested);
+		array_push($info, $received);
+		array_push($info, $casesCount);
+		array_push($info, $topupCount);
+		array_push($info, $registred);		
+		array_push($info, $numberCount);
+		array_push($info, $supportCount);		
 
 		return $info;
 		

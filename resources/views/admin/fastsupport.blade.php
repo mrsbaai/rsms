@@ -11,7 +11,7 @@
 @stop
 
 @section('content')
-    <div class="container width-fix col-sm-12 jumbotron ">
+    <div class="container width-fix col-sm-12">
 										<h3>
 										{{$subject}}
 										</h3><br/>
@@ -28,8 +28,17 @@
                                         <input type="submit" class="btn btn-primary btn-send " value="Send">
                                         <a class="float:right;"><a href="/admin/support/delete/{{$id}}">Ignore</a></span>
                                         {{ Form::close() }}
+										<br/><br/><br/>
 										<p>
-										{{$info}}
+										Name:</b> {{$info[0]}}<br>
+										Email:</b> {{$info[1]}}<br>
+										Total Invested: ${{$info[2]}}<br>
+										SMS Received:</b> {{$info[3]}}<br>
+										Cases:</b> {{$info[4]}}<br>
+										Topups:</b> {{$info[5]}}<br>
+										registred:</b> {{$info[6]}}<br>
+										Numbers:</b> {{$info[7]}}<br>
+										Support:</b> {{$info[8]}}<br>
 										</p>
 
     </div>
