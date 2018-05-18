@@ -30,10 +30,10 @@
                                         <a class="float:right;"><a href="/admin/support/delete/{{$id}}">Ignore</a></span>
                                         {{ Form::close() }}
 										<br/><br/>
-										<p class="lead">
+										
 										<div class="container col-md-12">
 										<div  class="col-md-6">
-											
+											<p class="lead">
 											Balance: {{$info[11]}}<br>
 											Total Invested: ${{$info[2]}}<br>
 											Cases: {{$info[4]}}<br>
@@ -41,13 +41,16 @@
 											Payeer: {{$info[9]}}<br>
 											PayPal: {{$info[10]}}<br>
 											Supports: {{$info[8]}}<br>
+											</p>
 										</div>
 										<div  class="col-md-6">
+										<p class="lead">
 											Name: {{$info[0]}}<br>
 											Email: {{$info[1]}}<br>
 											Registred: {{$info[6]}}<br>
 											Numbers: {{$info[7]}}<br>
 											SMS Received: {{$info[3]}}<br>
+											</p>
 										</div>
 										</div>
 
