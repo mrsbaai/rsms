@@ -31,18 +31,24 @@
                                         {{ Form::close() }}
 										<br/><br/>
 										<p class="lead">
-										Name: {{$info[0]}}<br>
-										Email: {{$info[1]}}<br>
-										Registred: {{$info[6]}}<br>
-										Numbers: {{$info[7]}}<br>
-										SMS Received: {{$info[3]}}<br>
-										Balance: {{$info[11]}}<br>
-										Total Invested: ${{$info[2]}}<br>
-										Cases: {{$info[4]}}<br>
-										Topups: {{$info[5]}}<br>
-										Payeer: {{$info[9]}}<br>
-										PayPal: {{$info[10]}}<br>
-										Supports: {{$info[8]}}<br>
+										<span style="float:left;">
+											
+											Balance: {{$info[11]}}<br>
+											Total Invested: ${{$info[2]}}<br>
+											Cases: {{$info[4]}}<br>
+											Topups: {{$info[5]}}<br>
+											Payeer: {{$info[9]}}<br>
+											PayPal: {{$info[10]}}<br>
+											Supports: {{$info[8]}}<br>
+										</span>
+										<span style="float:right;">
+											Name: {{$info[0]}}<br>
+											Email: {{$info[1]}}<br>
+											Registred: {{$info[6]}}<br>
+											Numbers: {{$info[7]}}<br>
+											SMS Received: {{$info[3]}}<br>
+										</span>
+
 										</p>
 
     </div>
