@@ -31,9 +31,10 @@
                             <tbody>
                             @foreach($rows as $id => $array)
                                 <tr>
-                                    @foreach($array as $content)
-                                        <td>{{ $content }}</td>
-                                    @endforeach
+									<td>{{if($array['1'] = true){echo "Support :";}else{echo "Contact: ";}}}</td>
+                                    <td>{{$array['3']}}</td>
+									
+									<td style="width: 300px;">{{$array['4']}}</td>
                                     <td style="width: 300px;">
                                         {{ Form::open(array('action' => 'adminController@sendResponse', 'id' => 'mailer-form'))}}
                                         <input type="hidden" name="email" value="{{$array['5']}}">
