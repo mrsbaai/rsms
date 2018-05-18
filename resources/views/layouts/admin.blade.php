@@ -48,6 +48,7 @@
                 </li>
 
 
+                <li><a href="{{ url('/admin/contact') }}">Contact</a></li>
                 <li><a href="{{ url('/admin/support') }}">Support</a></li>
                 <li><a href="{{ url('/admin/mailer') }}">Promo Mail</a></li>
                 <li>
