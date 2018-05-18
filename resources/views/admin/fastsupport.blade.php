@@ -14,8 +14,9 @@
     <div class="container width-fix col-sm-12">
 										<p class="lead">
 										{{$date}}
-										</h3><br/>
+								
 										</p>
+										<h3>
 										{{$subject}}
 										</h3><br/>
 										<p class="lead">
@@ -31,7 +32,7 @@
                                         <input type="submit" class="btn btn-primary btn-send " value="Send">
                                         <a class="float:right;"><a href="/admin/support/delete/{{$id}}">Ignore</a></span>
                                         {{ Form::close() }}
-										<br/><br/><br/>
+										<br/><br/>
 										<p class="lead">
 										Name: {{$info[0]}}<br>
 										Email: {{$info[1]}}<br>
