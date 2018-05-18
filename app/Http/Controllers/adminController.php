@@ -74,6 +74,9 @@ class adminController extends Controller
 
 		$casesCount = count(paymentlog::all()->where('userEmail',$email)->where('type','new_case'));
 		
+		$payeerCount = count($succsess);
+		$paypalCount = count($completed);
+		
 		$topupCount = count($completed) + count($succsess);
 		
 		$registred = $this->nicetime($user['created_at']);
@@ -90,7 +93,9 @@ class adminController extends Controller
 		array_push($info, $topupCount);
 		array_push($info, $registred);		
 		array_push($info, $numberCount);
-		array_push($info, $supportCount);		
+		array_push($info, $supportCount);
+		array_push($info, $payeerCount);
+		array_push($info, $paypalCount);	
 
 		return $info;
 		

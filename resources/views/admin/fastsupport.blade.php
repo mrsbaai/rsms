@@ -32,13 +32,15 @@
 										<p>
 										Name:</b> {{$info[0]}}<br>
 										Email:</b> {{$info[1]}}<br>
-										Total Invested: ${{$info[2]}}<br>
+										Registred:</b> {{$info[6]}}<br>
+										Numbers:</b> {{$info[7]}}<br>
 										SMS Received:</b> {{$info[3]}}<br>
+										Total Invested: ${{$info[2]}}<br>
 										Cases:</b> {{$info[4]}}<br>
 										Topups:</b> {{$info[5]}}<br>
-										registred:</b> {{$info[6]}}<br>
-										Numbers:</b> {{$info[7]}}<br>
-										Support:</b> {{$info[8]}}<br>
+										Payeer:</b> {{$info[9]}}<br>
+										PayPal:</b> {{$info[10]}}<br>
+										Supports:</b> {{$info[8]}}<br>
 										</p>
 
     </div>
