@@ -28,9 +28,9 @@
                                         <input type="submit" class="btn btn-primary btn-send " value="Send">
                                         <a class="float:right;"><a href="/admin/support/delete/{{$id}}">Ignore</a></span>
                                         {{ Form::close() }}
-										<h3>
+										<p>
 										{{$info}}
-										</h3>
+										</p>
 
     </div>
 
