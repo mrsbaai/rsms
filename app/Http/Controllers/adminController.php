@@ -80,7 +80,7 @@ class adminController extends Controller
 		$balance = $user['balance'];
 		$name = $user['name'];
 		$numberCount = count($numbers);
-		$supportCount = count(contact::all()-where('email',$email));
+		$supportCount = count(contact::all()->where('email',$email));
 		
 		$info = 
 		'Name: ' . $name . '<br>' .
