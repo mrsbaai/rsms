@@ -13,14 +13,17 @@
 @section('content')
     <div class="container width-fix col-sm-12">
 										<h3>
+										{{$subject}}
+										</h3><br/>
+										<h5>
 										{{$message}}
-										</h3>
+										</h5>
                                         {{ Form::open(array('action' => 'adminController@sendResponse', 'id' => 'fastsupport-form'))}}
                                         <input type="hidden" name="email" value="{{$email}}">
                                         <input type="hidden" name="name" value="{{$name}}">
                                         <input type="hidden" name="subject" value="{{$subject}}">
                                         <input type="hidden" name="id" value="{{$id}}">
-                                        <textarea id="response" type="text" name="response" class="form-control" style="width: 280px; height: 200px;">
+                                        <textarea id="response" type="text" name="response" class="form-control">
 										</textarea>
                                         <br/>
                                         <input type="submit" class="btn btn-primary btn-send " value="Send">
