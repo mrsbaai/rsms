@@ -93,6 +93,7 @@ class adminController extends Controller
 		'Numbers: ' . $numberCount . '<br>' .
 		'Support: ' . $supportCount . '<br>' ;
 
+		return $info;
 		
 	}
 	public function fastSupport($id){
