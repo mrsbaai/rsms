@@ -48,15 +48,62 @@ class adminController extends Controller
     }
 
 
-	public function fastSupport($id){
-		$support = contact::where('id',$id)->first();
+	public function getUserInfo($email){
+		
+		$invested = 0;
+		$received = 0;
+		$completed = paymentlog::all()->where('userEmail',$email)->where('status','Completed');
+		$succsess = paymentlog::all()->where('userEmail',$email)->where('status','success')
+		$numbers = number::all()->where('email',$email);
+		$user = user::where('email', $email)->first();
 		
 
+		foreach ($numbers as $number) {
+			$received = $received + count(message::where('receiver',$number));
+		}
+
+		foreach ($completed as $c) {
+			$invested = $invested + $c['payedAmount'];
+		}
+		
+		foreach ($succsess as $s) {
+			$invested = $invested + $s['payedAmount'];
+		}
+		
+
+
+		$casesCount = count(paymentlog::all()->where('userEmail',$email)->where('type','new_case'));
+		
+		$topupCount = count($completed) + count($succsess);
+		
+		$registred = $this->nicetime($user['created_at']);
+		$balance = $user['balance'];
+		$name = $user['name'];
+		$numberCount = count($numbers);
+		$supportCount = count(contact::all()-where('email',$email));
+		
+		$info = 
+		'Name: ' . $name . '<br>' .
+		'Email: ' . $email . '<br>' .
+		'Total Invested: $' . $invested . '<br>' .
+		'SMS Received: ' . $received . '<br>' .
+		'Cases: ' . $casesCount . '<br>' .
+		'Topups: ' . $topupCount . '<br>' .
+		'registred: ' . $registred . '<br>' .
+		'Numbers: ' . $numberCount . '<br>' .
+		'Support: ' . $supportCount . '<br>' ;
+
+		
+	}
+	public function fastSupport($id){
+		
+		$support = contact::where('id',$id)->first();
         return view('admin.fastsupport')
 		->with('id', $id)
 		->with('email', $support['email'])
 		->with('name', $support['name'])
 		->with('message', $support['message'])
+		->with('info', $support['info'])
 		->with('subject', $support['subject']);
 		
 	}
