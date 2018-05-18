@@ -31,7 +31,8 @@
                                         {{ Form::close() }}
 										<br/><br/>
 										<p class="lead">
-										<span style="float:left;">
+										<div class="container col-md-12">
+										<div  class="col-md-6">
 											
 											Balance: {{$info[11]}}<br>
 											Total Invested: ${{$info[2]}}<br>
@@ -40,14 +41,15 @@
 											Payeer: {{$info[9]}}<br>
 											PayPal: {{$info[10]}}<br>
 											Supports: {{$info[8]}}<br>
-										</span>
-										<span style="float:right;">
+										</div>
+										<div  class="col-md-6">
 											Name: {{$info[0]}}<br>
 											Email: {{$info[1]}}<br>
 											Registred: {{$info[6]}}<br>
 											Numbers: {{$info[7]}}<br>
 											SMS Received: {{$info[3]}}<br>
-										</span>
+										</div>
+										</div>
 
 										</p>
 
