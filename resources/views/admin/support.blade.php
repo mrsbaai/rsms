@@ -31,7 +31,7 @@
                             <tbody>
                             @foreach($rows as $id => $array)
                                 <tr>
-									<td>
+									<td style="width: 50px;">
 									@if ($array['1'])
 									Support: 
 									@else
@@ -39,9 +39,9 @@
 									@endif
 									
 									</td>
-                                    <td>{{$array['3']}}</td>
+                                    <td style="width: 100px;">{{$array['3']}}</td>
 									
-									<td style="width: 300px;">{{$array['4']}}</td>
+									<td style="width: 300px;">{{$array['5']}}</td>
                                     <td style="width: 300px;">
                                         {{ Form::open(array('action' => 'adminController@sendResponse', 'id' => 'mailer-form'))}}
                                         <input type="hidden" name="email" value="{{$array['5']}}">
