@@ -35,7 +35,8 @@ class supportController extends Controller
             $contact->name = $name;
             $contact->is_responded = false;
             $contact->save();
-
+			
+			PushBullet::all()->link($subject, 'https://receive-sms.com/fast/support/', $content);
             Mail::to($email)->send(new contactReceived());
 
             $subject = "(Receive-SMS Support From) " . $subject;
