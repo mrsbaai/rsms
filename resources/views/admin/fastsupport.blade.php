@@ -12,12 +12,9 @@
 
 @section('content')
     <div class="container width-fix col-sm-12">
-										<p class="lead">
-										{{$date}}
-								
-										</p>
+
 										<h3>
-										{{$subject}}
+										{{$subject}} - ({{$date}})
 										</h3><br/>
 										<p class="lead">
 										{{$message}}
