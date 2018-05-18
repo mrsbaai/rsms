@@ -53,7 +53,7 @@ class adminController extends Controller
 		$invested = 0;
 		$received = 0;
 		$completed = paymentlog::all()->where('userEmail',$email)->where('status','Completed');
-		$succsess = paymentlog::all()->where('userEmail',$email)->where('status','success')
+		$succsess = paymentlog::all()->where('userEmail',$email)->where('status','success');
 		$numbers = number::all()->where('email',$email);
 		$user = user::where('email', $email)->first();
 		
