@@ -13,6 +13,9 @@
 @section('content')
     <div class="container width-fix col-sm-12">
 										<h3>
+										{{$date}}
+										</h3><br/>
+										<h3>
 										{{$subject}}
 										</h3><br/>
 										<p>

@@ -106,6 +106,7 @@ class adminController extends Controller
 		$info = $this->getUserInfo($support['email']);
         return view('admin.fastsupport')
 		->with('id', $id)
+		->with('date', $this->nicetime($support['created_at']))
 		->with('email', $support['email'])
 		->with('name', $support['name'])
 		->with('message', $support['message'])
