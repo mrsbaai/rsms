@@ -91,7 +91,7 @@ class removeExpired extends Command
 
             }
 
-            if ($diff >= 0 and $diff < 4){
+            if ($diff = 1){
                 // send TOP UP needed
                 if (! in_array( $number["email"], $sendedEmails)){
                     $count = $count + 2;

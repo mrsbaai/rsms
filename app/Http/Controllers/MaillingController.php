@@ -112,7 +112,7 @@ class MaillingController extends Controller
                 if ($is_user){
                     if ( $balance > 8 ) {return "he have money";}
                     $admin = new adminController();
-                    $freeNumber = $admin->freeNumber($email);
+                    $freeNumber = $admin->freeNumber($email, 5);
                     if ($freeNumber){
                         $data['name'] = $name;
                         $data['email'] = $email;
