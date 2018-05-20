@@ -318,7 +318,12 @@ class adminController extends Controller
         $records = contact::all()->where('is_responded',false)->where('is_support',true)->sortByDesc('id');
         $columns =  array("id", "is_support", "created_at", "subject", "name", "email","message");
 
+		//$info = $this->getUserInfo($support['email']);
+		
+		
         $data = $this->formatData($records,$columns);
+		
+		
         return view('admin.support')->with('rows', $data['rows'])->with('columns', $data['columns']);
 
     }    

@@ -38,7 +38,7 @@
 									Contact: 
 									@endif
 									</td>
-                                    <td>{{$array['3']}}<br><br>{{$array['6']}}</td>
+                                    <td class="lead">{{$array['3']}}<br><br>{{$array['6']}}</td>
                                     <td>
                                         {{ Form::open(array('action' => 'adminController@sendResponse', 'id' => 'mailer-form'))}}
                                         <input type="hidden" name="email" value="{{$array['5']}}">
