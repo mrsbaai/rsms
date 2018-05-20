@@ -104,7 +104,7 @@ class MaillingController extends Controller
                 $data['date'] = $expiration25;
                 $data['email'] = $email;
                 if ($this->is_email_subscribed($email)){
-                    Mail::to($email])->later($when, new newCoupon($data));
+                    Mail::to($email)->later($when, new newCoupon($data));
                 }
                 return;
 
