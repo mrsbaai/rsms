@@ -37,6 +37,7 @@ return array(
     'App\\Http\\Middleware\\RememberSource' => $baseDir . '/app/Http/Middleware/RememberSource.php',
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Http\\Requests\\ContactFormRequest' => $baseDir . '/app/Http/Requests/ContactFormRequest.php',
     'App\\Libraries\\Address' => $baseDir . '/app/Libraries/tropo-rest.php',
     'App\\Libraries\\AddressType' => $baseDir . '/app/Libraries/tropo-rest.php',
     'App\\Libraries\\Application' => $baseDir . '/app/Libraries/tropo-rest.php',

@@ -394,6 +394,7 @@ class ComposerStaticInit45de193095ab851f93bb59cf8632511a
         'App\\Http\\Middleware\\RememberSource' => __DIR__ . '/../..' . '/app/Http/Middleware/RememberSource.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Requests\\ContactFormRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ContactFormRequest.php',
         'App\\Libraries\\Address' => __DIR__ . '/../..' . '/app/Libraries/tropo-rest.php',
         'App\\Libraries\\AddressType' => __DIR__ . '/../..' . '/app/Libraries/tropo-rest.php',
         'App\\Libraries\\Application' => __DIR__ . '/../..' . '/app/Libraries/tropo-rest.php',
