@@ -140,6 +140,8 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+		 
+		Nissi\ReCaptcha\ReCaptchaServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
 
         Illuminate\Auth\AuthServiceProvider::class,
