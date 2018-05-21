@@ -14,8 +14,8 @@ class ComposerStaticInit45de193095ab851f93bb59cf8632511a
         '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
-        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         'e23faeee409e941dc9b4c80386209c39' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/functions.php',
@@ -74,6 +74,10 @@ class ComposerStaticInit45de193095ab851f93bb59cf8632511a
             'Psr\\Http\\Message\\' => 17,
             'PhpParser\\' => 10,
             'PHPushbullet\\' => 13,
+        ),
+        'N' => 
+        array (
+            'Nissi\\ReCaptcha\\' => 16,
         ),
         'M' => 
         array (
@@ -230,6 +234,10 @@ class ComposerStaticInit45de193095ab851f93bb59cf8632511a
         array (
             0 => __DIR__ . '/..' . '/joetannenbaum/phpushbullet/src',
         ),
+        'Nissi\\ReCaptcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nissicreative/laravel-recaptcha/src',
+        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
@@ -355,7 +363,6 @@ class ComposerStaticInit45de193095ab851f93bb59cf8632511a
     );
 
     public static $classMap = array (
-        'AddFeildsTopaypalids' => __DIR__ . '/../..' . '/database/migrations/2018_03_26_211606_AddFeildsTopaypalids.php',
         'AddPaidToUsers' => __DIR__ . '/../..' . '/database/migrations/2017_10_07_064407_add_paid_to_users.php',
         'App\\Console\\Commands\\SendAutoMails' => __DIR__ . '/../..' . '/app/Console/Commands/SendAutoMails.php',
         'App\\Console\\Commands\\SendNumberVerification' => __DIR__ . '/../..' . '/app/Console/Commands/SendNumberVerification.php',
@@ -432,6 +439,7 @@ class ComposerStaticInit45de193095ab851f93bb59cf8632511a
         'App\\Mail\\confirmEmail' => __DIR__ . '/../..' . '/app/Mail/confirmEmail.php',
         'App\\Mail\\contactReceived' => __DIR__ . '/../..' . '/app/Mail/contactReceived.php',
         'App\\Mail\\emails' => __DIR__ . '/../..' . '/app/Mail/emails.generic.php',
+        'App\\Mail\\freeNumber' => __DIR__ . '/../..' . '/app/Mail/freeNumber.php',
         'App\\Mail\\generic' => __DIR__ . '/../..' . '/app/Mail/generic.php',
         'App\\Mail\\newCoupon' => __DIR__ . '/../..' . '/app/Mail/newCoupon.php',
         'App\\Mail\\newdemonumbers' => __DIR__ . '/../..' . '/app/Mail/newdemonumbers.php',
@@ -2047,6 +2055,8 @@ class ComposerStaticInit45de193095ab851f93bb59cf8632511a
         'Monolog\\Processor\\UidProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/UidProcessor.php',
         'Monolog\\Processor\\WebProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/WebProcessor.php',
         'Monolog\\Registry' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Registry.php',
+        'Nissi\\ReCaptcha\\ReCaptcha' => __DIR__ . '/..' . '/nissicreative/laravel-recaptcha/src/ReCaptcha.php',
+        'Nissi\\ReCaptcha\\ReCaptchaServiceProvider' => __DIR__ . '/..' . '/nissicreative/laravel-recaptcha/src/ReCaptchaServiceProvider.php',
         'NumbersSeeder' => __DIR__ . '/../..' . '/database/seeds/NumbersSeeder.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
         'PHPUnit\\Framework\\AssertionFailedError' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/AssertionFailedError.php',

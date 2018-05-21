@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'AddFeildsTopaypalids' => $baseDir . '/database/migrations/2018_03_26_211606_AddFeildsTopaypalids.php',
     'AddPaidToUsers' => $baseDir . '/database/migrations/2017_10_07_064407_add_paid_to_users.php',
     'App\\Console\\Commands\\SendAutoMails' => $baseDir . '/app/Console/Commands/SendAutoMails.php',
     'App\\Console\\Commands\\SendNumberVerification' => $baseDir . '/app/Console/Commands/SendNumberVerification.php',
@@ -83,6 +82,7 @@ return array(
     'App\\Mail\\confirmEmail' => $baseDir . '/app/Mail/confirmEmail.php',
     'App\\Mail\\contactReceived' => $baseDir . '/app/Mail/contactReceived.php',
     'App\\Mail\\emails' => $baseDir . '/app/Mail/emails.generic.php',
+    'App\\Mail\\freeNumber' => $baseDir . '/app/Mail/freeNumber.php',
     'App\\Mail\\generic' => $baseDir . '/app/Mail/generic.php',
     'App\\Mail\\newCoupon' => $baseDir . '/app/Mail/newCoupon.php',
     'App\\Mail\\newdemonumbers' => $baseDir . '/app/Mail/newdemonumbers.php',
@@ -1698,6 +1698,8 @@ return array(
     'Monolog\\Processor\\UidProcessor' => $vendorDir . '/monolog/monolog/src/Monolog/Processor/UidProcessor.php',
     'Monolog\\Processor\\WebProcessor' => $vendorDir . '/monolog/monolog/src/Monolog/Processor/WebProcessor.php',
     'Monolog\\Registry' => $vendorDir . '/monolog/monolog/src/Monolog/Registry.php',
+    'Nissi\\ReCaptcha\\ReCaptcha' => $vendorDir . '/nissicreative/laravel-recaptcha/src/ReCaptcha.php',
+    'Nissi\\ReCaptcha\\ReCaptchaServiceProvider' => $vendorDir . '/nissicreative/laravel-recaptcha/src/ReCaptchaServiceProvider.php',
     'NumbersSeeder' => $baseDir . '/database/seeds/NumbersSeeder.php',
     'PHPUnit\\Framework\\Assert' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
     'PHPUnit\\Framework\\AssertionFailedError' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/AssertionFailedError.php',

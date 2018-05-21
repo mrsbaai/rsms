@@ -1585,6 +1585,57 @@
         ]
     },
     {
+        "name": "nissicreative/laravel-recaptcha",
+        "version": "1.0.1",
+        "version_normalized": "1.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/nissicreative/laravel-recaptcha.git",
+            "reference": "fa600ab74514a25d14dbe2fd05b36c7850676968"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/nissicreative/laravel-recaptcha/zipball/fa600ab74514a25d14dbe2fd05b36c7850676968",
+            "reference": "fa600ab74514a25d14dbe2fd05b36c7850676968",
+            "shasum": ""
+        },
+        "require": {
+            "guzzlehttp/guzzle": "^6.2",
+            "illuminate/support": "^5.0",
+            "php": "^5.6 || ^7.0"
+        },
+        "time": "2017-07-31T03:54:25+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Nissi\\ReCaptcha\\ReCaptchaServiceProvider"
+                ]
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Nissi\\ReCaptcha\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Folsom",
+                "email": "mike@nissicreative.com"
+            }
+        ],
+        "description": "A simple reCAPTCHA implementation for your Laravel project.",
+        "keywords": [
+            "laravel",
+            "recaptcha"
+        ]
+    },
+    {
         "name": "paragonie/random_compat",
         "version": "v2.0.11",
         "version_normalized": "2.0.11.0",

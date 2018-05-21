@@ -32,6 +32,7 @@ return array(
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
     'PHPushbullet\\' => array($vendorDir . '/joetannenbaum/phpushbullet/src'),
+    'Nissi\\ReCaptcha\\' => array($vendorDir . '/nissicreative/laravel-recaptcha/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
     'Laravel\\Tinker\\' => array($vendorDir . '/laravel/tinker/src'),

@@ -8,12 +8,13 @@
         "php": ">=5.6.4",
         "consoletvs/charts": "4.*",
         "guzzlehttp/guzzle": "~5.3|~6.0",
+        "lahaxearnaud/laravel-pushbullet": "~1.0",
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.3.0",
-        "rap2hpoutre/laravel-log-viewer": "^0.10.4",
-        "lahaxearnaud/laravel-pushbullet": "~1.0"
+        "nissicreative/laravel-recaptcha": "^1.0",
+        "rap2hpoutre/laravel-log-viewer": "^0.10.4"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

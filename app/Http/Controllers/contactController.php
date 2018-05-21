@@ -8,20 +8,21 @@ use Mail;
 use Illuminate\Http\Request;
 use App\contact;
 use App\Mail\contactReceived;
+use App\Http\Requests\ContactFormRequest;
 
 class contactController extends Controller
 {
     //
-    public function send()
+    public function send(Request $request)
     {
 
 
-            $name = Input::get('name');
-            $email =  Input::get('email');
+            $name = $request->get('name');
+            $email =  $request->get('email');
 
 
-            $subject =  Input::get('subject');
-            $content =  Input::get('message');
+            $subject =  $request->get('subject');
+            $content = $request->get('message');
 
 
             // save contact message here
