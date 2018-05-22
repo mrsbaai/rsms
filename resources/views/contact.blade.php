@@ -49,14 +49,17 @@
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
+                        <div class="col-md-12 text-center">
+                            @include('recaptcha::widget')
+                        </div>
 
                         <div class="col-md-12 text-danger">
                                 <ul>
                                     @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
+                                        <li><p>{{ $error }}</p></li>
                                     @endforeach
                                 </ul>
-                            
+
                             <div class="form-group">
 
                                 <div id="messages"></div>
