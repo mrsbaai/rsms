@@ -66,12 +66,17 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-12">
+                                OR
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <div class="col-12">
                                 <a href="/register">
                                     <button class="btn btn-lg btn-block btn-success">
-                                        Register New Inbox
+                                        Register Your Inbox
                                     </button>
                                 </a>
 

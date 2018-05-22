@@ -17,7 +17,7 @@
             <a style="color:white; " href="https://sms-verification.net/"  title="SMS Verification">Interested In 200+ Numbers? Checkout SMS-Verification.net</a>
         </h2>
     </div>
-    
+
     <div class="container col-sm-12">
         <div class="container col-sm-3 text-center">
         </div>
