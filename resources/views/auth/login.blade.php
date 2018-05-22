@@ -67,7 +67,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-12">
+                            <div class="col-12 text-center">
                                 OR
                             </div>
                         </div>
