@@ -12,11 +12,7 @@
 
 
 @section('bottom')
-    <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-        <h2 style="color:white;">
-            <a style="color:white; " href="https://sms-verification.net/"  title="SMS Verification">Interested In 200+ Numbers? Checkout SMS-Verification.net</a>
-        </h2>
-    </div>
+
 
     <div class="container col-sm-12">
         <div class="container col-sm-3 text-center">
@@ -33,6 +29,21 @@
         <div class="container col-sm-3 text-center">
         </div>
 
-
     </div>
+
+    <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+        <a href="/register">
+            <button class="btn btn-lg btn-success">
+                Create Your Private Inbox
+            </button>
+        </a>
+    </div>
+
+    <br><br>
+    <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+        <h2 style="color:white;">
+            <a style="color:white; " href="https://sms-verification.net/"  title="SMS Verification">Interested In 200+ Numbers? Checkout SMS-Verification.net</a>
+        </h2>
+    </div>
+    <br><br>
 @stop
