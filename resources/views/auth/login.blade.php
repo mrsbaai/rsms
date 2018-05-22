@@ -76,7 +76,7 @@
                             <div class="col-12">
                                 <a href="/register">
                                     <button class="btn btn-lg btn-block btn-success">
-                                        Register Your Inbox
+                                        Create A New Inbox
                                     </button>
                                 </a>
 
