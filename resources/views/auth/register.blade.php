@@ -73,7 +73,7 @@
 
                         <div class="form-group">
                             <div class="col-12">
-                                <button type="submit" class="btn btn-lg btn-block btn-primary">
+                                <button type="submit" class="btn btn-lg btn-block btn-success">
                                     Register
                                 </button>
                             </div>
