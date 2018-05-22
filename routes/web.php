@@ -118,7 +118,7 @@ Route::get('/subscribed', 'pagesController@home');
 Route::get('/contact','pagesController@contact');
 Route::get('/support', 'userController@support');
 
-Route::post('contact','contactController@send');
+Route::post('contact','contactController@store');
 Route::post('support', 'supportController@send');
 
 

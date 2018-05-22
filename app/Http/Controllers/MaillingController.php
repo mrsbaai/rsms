@@ -34,7 +34,7 @@ class MaillingController extends Controller
         $data['name'] = "abdel";
 
         $admin = new adminController();
-        $freeNumber = $admin->freeNumber($email);
+        $freeNumber = $admin->freeNumber($email, 5);
         if ($freeNumber){
             $data['number'] = $freeNumber;
             //Mail::to($email)->later($when, new freeNumber($data));

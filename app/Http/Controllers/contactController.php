@@ -8,13 +8,21 @@ use Mail;
 use Illuminate\Http\Request;
 use App\contact;
 use App\Mail\contactReceived;
-use App\Http\Requests\ContactFormRequest;
+
 
 class contactController extends Controller
 {
     //
-    public function send(Request $request)
+    public function store(Request $request)
     {
+
+
+        $validatedData = $request->validate([
+            'name'    => 'required|max:50|min:5',
+            'email'   => 'required|email|max:70|min:9',
+            'message'     => 'required|max:600|min:20',
+            'subject'     => 'required|max:255|min:10'
+        ]);
 
 
             $name = $request->get('name');
