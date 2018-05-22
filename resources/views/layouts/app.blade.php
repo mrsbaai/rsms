@@ -105,7 +105,7 @@
             Create Your Private Inbox
         </button>
     </a>
-    <br>
+    <br><br><br>
     @endif
 
     {{Config::get('settings.name')}} &copy; {{ Carbon\Carbon::now()->format('Y') }} All rights reserved.
