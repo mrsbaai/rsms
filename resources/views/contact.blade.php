@@ -18,7 +18,7 @@
 
                     <p class="lead">Please fill the form below and will get back to you as soon as possible.</p>
 
-                    {{ Form::open(array('action' => 'contactController@send', 'id' => 'contact-form'))}}
+                    {{ Form::open(array('action' => 'contactController@store', 'id' => 'contact-form'))}}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
