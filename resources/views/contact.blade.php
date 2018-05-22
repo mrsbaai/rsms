@@ -16,6 +16,16 @@
 
                     <h2>Contact Us {{@$result}}</h2>
 
+                    <div class="col-md-12 text-danger">
+                        <div class="form-group">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li><p>{{ $error }}</p></li>
+                                @endforeach
+                            </ul>
+                        </div>
+
+                    </div>
                     <p class="lead">Please fill the form below and will get back to you as soon as possible.</p>
 
                     {{ Form::open(array('action' => 'contactController@store', 'id' => 'contact-form'))}}
@@ -49,22 +59,13 @@
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
-                        <div class="col-md-12 text-center">
+                        <div class="col-md-12">
+                            <div class="form-group">
                             @include('recaptcha::widget')
+                            </div>
                         </div>
 
-                        <div class="col-md-12 text-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li><p>{{ $error }}</p></li>
-                                    @endforeach
-                                </ul>
 
-                            <div class="form-group">
-
-                                <div id="messages"></div>
-
-                            </div>
                         </div>
 						
 						

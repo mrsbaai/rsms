@@ -21,7 +21,7 @@ class contactController extends Controller
             'g-recaptcha-response' => 'required|recaptcha',
             'name'    => 'required|max:50|min:5',
             'email'   => 'required|email|max:70|min:9',
-            'message'     => 'required|max:600|min:20',
+            'message'     => 'required|max:600|min:15',
             'subject'     => 'required|max:255|min:10'
         ]);
 
