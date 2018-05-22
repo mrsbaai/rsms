@@ -8,7 +8,7 @@
         <div class="jumbotron welcome-texture">
             <div class="container">
                 <div class="row">
-                    <h1>Create an account</h1>
+                    <h1>Register</h1>
                     <form role="form" method="POST" action="{{ url('/register') }}" id="register-form">
                         {{ csrf_field() }}
 
@@ -74,7 +74,7 @@
                         <div class="form-group">
                             <div class="col-12">
                                 <button type="submit" class="btn btn-lg btn-block btn-success">
-                                    Create
+                                    Register
                                 </button>
                             </div>
                         </div>
