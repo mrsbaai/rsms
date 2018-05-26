@@ -133,7 +133,7 @@ class MaillingController extends Controller
                 $data['date'] = $expiration50;
                 $data['email'] = $email;
                 if ($this->is_email_subscribed($email)){
-                    Mail::to($user["email"])->later($when, new newCoupon($data));
+                    Mail::to($email)->later($when, new newCoupon($data));
                 }
                 return;
             case -40:
@@ -143,7 +143,7 @@ class MaillingController extends Controller
                 $data['date'] = $expiration30;
                 $data['email'] = $email;
                 if ($this->is_email_subscribed($email)){
-                    Mail::to($user["email"])->later($when, new newCoupon($data));
+                    Mail::to($email)->later($when, new newCoupon($data));
                 }
                 return;
 
