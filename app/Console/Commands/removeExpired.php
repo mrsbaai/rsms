@@ -70,9 +70,9 @@ class removeExpired extends Command
                     $expiration = Carbon::now()->addMonths(1);
                     $balance = $user['balance'] - $price;
 
-                    User::where('email', '=', $email)->update(['balance' => $balance]);
-                    Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
-
+                    //User::where('email', '=', $email)->update(['balance' => $balance]);
+                    //Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+					echo "number renewed: " . $number['number'];
                     $n = $number['number'];
 
 
@@ -80,10 +80,12 @@ class removeExpired extends Command
                 }else{
                     // remove number
                     $expiration = Carbon::now()->addYears(20);
-                    Number::where('id', '=', $number['id'])->update(['email' => null]);
-                    Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+                    //Number::where('id', '=', $number['id'])->update(['email' => null]);
+                    //Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+					echo "number removed: " . $number['number'];
+					
                     // remove messages
-                    Message::where('receiver', '=', $number['number'])->delete();
+                    //Message::where('receiver', '=', $number['number'])->delete();
 
                     //
                     $n = $number['number'];
@@ -93,20 +95,20 @@ class removeExpired extends Command
 
             if ($diff = 1){
                 // send TOP UP needed
-                if (! in_array( $number["email"], $sendedEmails)){
+                if (! in_array( $number['email'], $sendedEmails)){
                     $count = $count + 2;
                     $when = Carbon::now()->addMinutes($count);
 
-                    $user = User::whereemail($number["email"])->first();
+                    $user = User::whereemail($number['email'])->first();
 
                     $data['name'] = $user['name'];
                     $data['date'] = Carbon::parse($number['expiration'])->toDateString();
+					echo "topup needed email: " . $number['number'];
+                    //Mail::to($number["email"])->later($when, new topupNeeded($data));
+					
+                    array_push($sendedEmails, $number['email']);
 
-                    Mail::to($number["email"])->later($when, new topupNeeded($data));
-
-                    array_push($sendedEmails, $number["email"]);
-
-                    $m = $number["email"];
+                    $m = $number['email'];
                     $f = $data['date'];
                 }
 
