@@ -80,12 +80,12 @@ class removeExpired extends Command
                 }else{
                     // remove number
                     $expiration = Carbon::now()->addYears(20);
-                    //Number::where('id', '=', $number['id'])->update(['email' => null]);
-                    //Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+                    Number::where('id', '=', $number['id'])->update(['email' => null]);
+                    Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
 					echo "number removed: " . $number['number'];
 					
                     // remove messages
-                    //Message::where('receiver', '=', $number['number'])->delete();
+                    Message::where('receiver', '=', $number['number'])->delete();
 
                     //
                     $n = $number['number'];
