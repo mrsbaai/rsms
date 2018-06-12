@@ -27,10 +27,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('SendPromoMails:Send')->daily();
-        $schedule->command('SendAutoMails:SendMails')->daily();
 
         $schedule->command('expired:remove')->daily();
+		
+		$schedule->command('SendPromoMails:Send')->daily();
+        $schedule->command('SendAutoMails:SendMails')->daily();
 
         //$schedule->command('Verification:Send')->daily();
     }
