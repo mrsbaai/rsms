@@ -70,8 +70,8 @@ class removeExpired extends Command
                     $expiration = Carbon::now()->addMonths(1);
                     $balance = $user['balance'] - $price;
 
-                    //User::where('email', '=', $email)->update(['balance' => $balance]);
-                    //Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+                    User::where('email', '=', $email)->update(['balance' => $balance]);
+                    Number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
 					echo "number renewed: " . $number['number'];
                     $n = $number['number'];
 
@@ -104,7 +104,7 @@ class removeExpired extends Command
                     $data['name'] = $user['name'];
                     $data['date'] = Carbon::parse($number['expiration'])->toDateString();
 					echo "topup needed email: " . $number['number'];
-                    //Mail::to($number["email"])->later($when, new topupNeeded($data));
+                    Mail::to($number["email"])->later($when, new topupNeeded($data));
 					
                     array_push($sendedEmails, $number['email']);
 
