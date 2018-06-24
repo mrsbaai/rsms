@@ -628,7 +628,7 @@ class PaymentController extends Controller
 		}
 		
 
-		PushBullet::all()->note($title, $content);
+		//PushBullet::all()->note($title, $content);
     }
 
 
