@@ -391,7 +391,7 @@ class PaymentController extends Controller
                 $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
 				//$this->notify("0", "0", "Payeer", "Payment", "", $buyerEmail, "", $payedAmount, $code,"","");
             }
-
+			header("HTTP/1.1 200 OK");
             return $m_orderid . "|" . $m_status;
 
         }
@@ -585,7 +585,7 @@ class PaymentController extends Controller
         $data['finalBalance'] = $topup;
         $data['type'] = $paymentSystem;
 
-        Mail::to($email)->send(new topupReceipt($data));
+        //Mail::to($email)->send(new topupReceipt($data));
 
     }
 
