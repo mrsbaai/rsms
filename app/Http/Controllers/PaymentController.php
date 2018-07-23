@@ -384,7 +384,7 @@ class PaymentController extends Controller
             $paymentSystem = "Payeer";
 
 			
-            $this->log($payedAmount, $originalAmount, $code, $transactionType, $m_orderid, $userEmail, $buyerEmail, $accountId, $m_orderid);
+            $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
 
 
             if ($m_sign == $sign_hash && $m_status == 'success'){
