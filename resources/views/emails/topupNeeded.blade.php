@@ -2,9 +2,7 @@
 
 Hello {{$name}},
 
-Some of your numbers need to be renewed.
-
-The numbers will permanently removed from our database at {{$date}}, and cannot be recovered.
+Some of your numbers will be permanently removed from our database at {{$date}}, and cannot be recovered.
 
 To avoid this service interruption, please login and Top-Up your account:
 
