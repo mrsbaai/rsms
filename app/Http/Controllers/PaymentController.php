@@ -391,7 +391,7 @@ class PaymentController extends Controller
                 $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
 				
 				//$this->notify("0", "0", "Payeer", "Payment", "", $buyerEmail, "", $payedAmount, $code,"","");
-				return $m_orderid . "|" . $m_status;
+				return "test";
             }
 
             return $m_orderid . "|" . $m_status;
