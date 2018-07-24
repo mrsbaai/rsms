@@ -573,28 +573,44 @@ class PaymentController extends Controller
 
     private function doTopup($email,$payedAmount,$originalAmount,$code,$paymentSystem){
 
-        // check coupon
-        $topup  = $originalAmount;
-        $couponApplied = $this->CouponToPrice($originalAmount,$paymentSystem,$code);
-        if ($couponApplied <> $payedAmount) {$topup = $payedAmount ;}
-        Log::info("[Payment Successful] $topup | $email | $paymentSystem");
-        // topup
-        $user = User::where('email', $email)->first();
-        User::where('email', "=", $email)->update(['paid' => $topup]);
+        if(is_numeric($payedAmount) && is_numeric($originalAmount) && is_string($paymentSystem) && is_string($email) ){
 
-        $topup  = $topup + $user['balance'];
-		Log::info("[TopUP] $topup");
-        User::where('email', "=", $email)->update(['balance' => $topup]);
-        // send receipt
+       
+            // check coupon
+            $topup  = $originalAmount;
+            $couponApplied = $this->CouponToPrice($originalAmount,$paymentSystem,$code);
+            if ($couponApplied <> $payedAmount) {$topup = $payedAmount ;}
+            Log::info("[Payment Successful] $topup | $email | $paymentSystem");
+            // topup
+            $user = User::where('email', $email)->first();
+            if ($user){
+                User::where('email', "=", $email)->update(['paid' => $topup]);
 
-        $data['name'] = $user['name'];
-        $data['date'] = Carbon::now();
-        $data['amount'] = $originalAmount;
-        $data['finalBalance'] = $topup;
-        $data['type'] = $paymentSystem;
-		Log::info("[name] " .  $data['name']);
-        //Mail::to($email)->send(new topupReceipt($data));
+            $topup  = $topup + $user['balance'];
 
+            User::where('email', "=", $email)->update(['balance' => $topup]);
+            // send receipt
+
+            $data['name'] = $user['name'];
+            $data['date'] = Carbon::now();
+            $data['amount'] = $originalAmount;
+            $data['finalBalance'] = $topup;
+            $data['type'] = $paymentSystem;
+
+            try {
+                Mail::to($email)->send(new topupReceipt($data));
+            }catch(Exception $e){
+                Log::error("error sending email");
+            }
+            
+            }else{
+                Log::error("no user with email $ email");
+            }
+            }else{
+            Log::error("[$email] [$payedAmount] [$originalAmount] [$code] [$paymentSystem] something is not right");
+        }
+        
+       
     }
 
 	
