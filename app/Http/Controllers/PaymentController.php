@@ -263,10 +263,10 @@ class PaymentController extends Controller
     }
 
     public function test(){
-		$userEmail = "abdelilah.sbaai6665@gmail.com";
+		$userEmail = "abdelilah.sbaai@gmail.com";
 		$payedAmount = "50";
 		$originalAmount = "50";
-		$code = "";
+		$code = null;
 		$paymentSystem = "payeer";
 		$this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
 		
@@ -600,12 +600,12 @@ class PaymentController extends Controller
             try {
                 Mail::to($email)->send(new topupReceipt($data));
             }catch(Exception $e){
-                Log::error("error sending email");
+                Log::error("error sending to $email");
 				return;
             }
             
             }else{
-                Log::error("no user with email $ email");
+                Log::error("no user with email $email");
 				 return;
 
             }
