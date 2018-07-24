@@ -263,7 +263,13 @@ class PaymentController extends Controller
     }
 
     public function test(){
-		$this->notify("0", "0", "Payeer", "Payment", "", "buyer@gmail.com", "", "50", "code","","");
+		$userEmail = "dustin-maertin@gmx.de";
+		$payedAmount = "50";
+		$originalAmount = "50";
+		$code = "";
+		$paymentSystem = "payeer";
+		$this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
+		
     }
 
 
@@ -577,6 +583,7 @@ class PaymentController extends Controller
         User::where('email', "=", $email)->update(['paid' => $topup]);
 
         $topup  = $topup + $user['balance'];
+		Log::info("[TopUP] $topup");
         User::where('email', "=", $email)->update(['balance' => $topup]);
         // send receipt
 
@@ -585,7 +592,7 @@ class PaymentController extends Controller
         $data['amount'] = $originalAmount;
         $data['finalBalance'] = $topup;
         $data['type'] = $paymentSystem;
-
+		Log::info("[name] $data['name']");
         //Mail::to($email)->send(new topupReceipt($data));
 
     }
