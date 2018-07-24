@@ -263,7 +263,7 @@ class PaymentController extends Controller
     }
 
     public function test(){
-		$userEmail = "abdelilah.sbaai@gmail.com";
+		$userEmail = "abdelilah.sbaai6665@gmail.com";
 		$payedAmount = "50";
 		$originalAmount = "50";
 		$code = "";
@@ -601,15 +601,19 @@ class PaymentController extends Controller
                 Mail::to($email)->send(new topupReceipt($data));
             }catch(Exception $e){
                 Log::error("error sending email");
+				return;
             }
             
             }else{
                 Log::error("no user with email $ email");
+				 return;
+
             }
             }else{
             Log::error("[$email] [$payedAmount] [$originalAmount] [$code] [$paymentSystem] something is not right");
+			 return;
         }
-        
+        return;
        
     }
 
