@@ -592,7 +592,7 @@ class PaymentController extends Controller
         $data['amount'] = $originalAmount;
         $data['finalBalance'] = $topup;
         $data['type'] = $paymentSystem;
-		Log::info("[name] $data['name']");
+		Log::info("[name] " .  $data['name']);
         //Mail::to($email)->send(new topupReceipt($data));
 
     }
