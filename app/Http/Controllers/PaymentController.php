@@ -394,7 +394,13 @@ class PaymentController extends Controller
 
 
             if ($m_sign == $sign_hash && $m_status == 'success'){
-                $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
+			try {
+                 $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
+            }catch(Exception $e){
+                Log::error("error doTopup $userEmail");
+
+            }
+               
 				//$this->notify("0", "0", "Payeer", "Payment", "", $buyerEmail, "", $payedAmount, $code,"","");
             }
 
@@ -600,17 +606,16 @@ class PaymentController extends Controller
                 //Mail::to($email)->send(new topupReceipt($data));
             }catch(Exception $e){
                 Log::error("error sending to $email");
-				return;
+
             }
             
             }else{
                 Log::error("no user with email $email");
-				 return;
+
 
             }
             }else{
             Log::error("[$email] [$payedAmount] [$originalAmount] [$code] [$paymentSystem] something is not right");
-			 return;
         }
         return;
        
