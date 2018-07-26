@@ -573,10 +573,18 @@ class PaymentController extends Controller
         return json_encode(array ('isPossible'=> $isPossible,'price'=>$price));
     }
 
-    private function doTopup($email,$payedAmount,$originalAmount,$code,$paymentSystem){
+    private function doTopup($email,$payedAmount,$originalAmount,$code,$paymentSystem, $operation_id = null){
 
+		
         if(is_numeric($payedAmount) && is_numeric($originalAmount) && is_string($paymentSystem) && is_string($email) ){
-
+			if ($operation_id !== null){
+				$log = paymentlog::where('operation_id', $operation_id)->first();
+				if ($log === null) {
+					Log::error("operation: $operation_id Already exist");
+					return;
+				}
+				
+			}
        
             // check coupon
             $topup  = $originalAmount;
@@ -600,7 +608,7 @@ class PaymentController extends Controller
             $data['type'] = $paymentSystem;
 
             try {
-                //Mail::to($email)->send(new topupReceipt($data));
+                Mail::to($email)->send(new topupReceipt($data));
             }catch(Exception $e){
                 Log::error("error sending to $email");
 
