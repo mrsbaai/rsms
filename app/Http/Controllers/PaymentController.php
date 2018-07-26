@@ -403,7 +403,7 @@ class PaymentController extends Controller
                
 				//$this->notify("0", "0", "Payeer", "Payment", "", $buyerEmail, "", $payedAmount, $code,"","");
             }
-
+			Log::error($m_orderid . "|" . $m_status);
             return $m_orderid . "|" . $m_status;
 
         }
