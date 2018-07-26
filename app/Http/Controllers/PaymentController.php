@@ -617,6 +617,7 @@ class PaymentController extends Controller
             }else{
             Log::error("[$email] [$payedAmount] [$originalAmount] [$code] [$paymentSystem] something is not right");
         }
+		Log::error("end of do topup $email");
         return;
        
     }
