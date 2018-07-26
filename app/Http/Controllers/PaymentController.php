@@ -575,7 +575,7 @@ class PaymentController extends Controller
 
     private function doTopup($email,$payedAmount,$originalAmount,$code,$paymentSystem, $operation_id = null){
 
-		
+		Log::error("im in");
         if(is_numeric($payedAmount) && is_numeric($originalAmount) && is_string($paymentSystem) && is_string($email) ){
 			if ($operation_id !== null){
 				$log = paymentlog::where('operation_id', $operation_id)->first();
@@ -585,7 +585,7 @@ class PaymentController extends Controller
 				}
 				
 			}
-       
+       Log::error("passed check");
             // check coupon
             $topup  = $originalAmount;
             $couponApplied = $this->CouponToPrice($originalAmount,$paymentSystem,$code);
