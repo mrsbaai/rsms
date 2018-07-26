@@ -390,20 +390,15 @@ class PaymentController extends Controller
             $paymentSystem = "Payeer";
 
 			
-            $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
+            $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem, $m_orderid);
 
 
             if ($m_sign == $sign_hash && $m_status == 'success'){
-			try {
-                 $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
-            }catch(Exception $e){
-                Log::error("error doTopup $userEmail");
-
-            }
+			 $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
                
 				//$this->notify("0", "0", "Payeer", "Payment", "", $buyerEmail, "", $payedAmount, $code,"","");
             }
-			Log::error($m_orderid . "|" . $m_status);
+
             return $m_orderid . "|" . $m_status;
 
         }
@@ -433,6 +428,8 @@ class PaymentController extends Controller
             if (isset($_POST["payment_status"])){$payment_status = $_POST["payment_status"];}else{$payment_status = "";}
             if (isset($_POST["payment_type"])){$payment_type = $_POST["payment_type"];}else{$payment_type = "";}
             if (isset($_POST["pending_reason"])){$pending_reason = $_POST["pending_reason"];}else{$pending_reason = "";}
+			
+            if (isset($_POST["txn_id"])){$txn_id = $_POST["txn_id"];}else{$txn_id = null;}
 
 			if ($description == "SMS-Verification"){
 				$originalAmount = $payedAmount;
@@ -462,7 +459,7 @@ class PaymentController extends Controller
                 $payedAmount = $payedAmount - $mc_fee;
             }
 
-            $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem);
+            $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem,$txn_id);
 
 			// Update balance
 
@@ -617,7 +614,6 @@ class PaymentController extends Controller
             }else{
             Log::error("[$email] [$payedAmount] [$originalAmount] [$code] [$paymentSystem] something is not right");
         }
-		Log::error("end of do topup $email");
         return;
        
     }
@@ -663,7 +659,7 @@ class PaymentController extends Controller
     }
 
 
-    Private function log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem){
+    Private function log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem, $operationId = null){
 
 
         if ($payedAmount == ''){$payedAmount = 0;}
@@ -688,6 +684,7 @@ class PaymentController extends Controller
                 "accountId"=>$accountId,
                 "paymentSystemId"=>$paymentSystemId,
                 "source"=>$source,
+                "operation_id"=>$operationId,
                 "created_at"=>Carbon::now()
             );
 
