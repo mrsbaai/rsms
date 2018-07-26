@@ -382,7 +382,7 @@ class PaymentController extends Controller
 
             $payedAmount = $m_amount;
 
-            $transactionType = $m_operation_ps;
+            $transactionType = "Payemnt";
             $transactionStatus = $m_status;
 
             $buyerEmail = $userEmail;

@@ -7,11 +7,11 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddPaidToUsers' => $baseDir . '/database/migrations/2017_10_07_064407_add_paid_to_users.php',
+    'AddoperationidToLog' => $baseDir . '/database/migrations/2018_07_26_141047_addoperationidToLog.php',
     'ArithmeticError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
     'AssertionError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
     'CouponsSeeder' => $baseDir . '/database/seeds/CouponsSeeder.php',
     'CreateContactsTable' => $baseDir . '/database/migrations/2017_07_07_141643_CreateContactsTable.php',
-    'CreateCountries' => $baseDir . '/database/migrations/2018_07_02_115845_createCountries.php',
     'CreateCouponsTable' => $baseDir . '/database/migrations/2017_04_29_162712_CreateCouponsTable.php',
     'CreateMessagesTable' => $baseDir . '/database/migrations/2017_01_30_185553_CreateMessagesTable.php',
     'CreateNumbersTable' => $baseDir . '/database/migrations/2017_01_30_185717_CreateNumbersTable.php',
