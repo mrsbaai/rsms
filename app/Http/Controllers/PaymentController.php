@@ -394,11 +394,11 @@ class PaymentController extends Controller
 
 
             if ($m_sign == $sign_hash && $m_status == 'success'){
-			 $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem, $m_orderid);
+				$this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem, $m_orderid);
                
 				//$this->notify("0", "0", "Payeer", "Payment", "", $buyerEmail, "", $payedAmount, $code,"","");
             }
-
+			Log::info("$m_orderid | $m_status");
             return $m_orderid . "|" . $m_status;
 
         }
