@@ -579,7 +579,7 @@ class PaymentController extends Controller
         if(is_numeric($payedAmount) && is_numeric($originalAmount) && is_string($paymentSystem) && is_string($email) ){
 			if ($operation_id !== null){
 				$log = paymentlog::where('operation_id', $operation_id)->first();
-				if ($log === null) {
+				if ($log !== null) {
 					Log::error("operation: $operation_id Already exist");
 					return;
 				}
