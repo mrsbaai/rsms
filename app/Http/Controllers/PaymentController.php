@@ -394,7 +394,7 @@ class PaymentController extends Controller
 
 
             if ($m_sign == $sign_hash && $m_status == 'success'){
-			 $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
+			 $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem, $m_orderid);
                
 				//$this->notify("0", "0", "Payeer", "Payment", "", $buyerEmail, "", $payedAmount, $code,"","");
             }
@@ -449,7 +449,7 @@ class PaymentController extends Controller
                 if (($payment_status == 'Completed') || ($payment_status == 'Pending' && $payment_type == 'instant' && $pending_reason == 'paymentreview')){
                     // successful payment -> top up
 
-                    $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
+                    $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem, $m_orderid);
                 }
             }
 
