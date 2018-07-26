@@ -597,7 +597,7 @@ class PaymentController extends Controller
             $data['type'] = $paymentSystem;
 
             try {
-                Mail::to($email)->send(new topupReceipt($data));
+                //Mail::to($email)->send(new topupReceipt($data));
             }catch(Exception $e){
                 Log::error("error sending to $email");
 				return;
