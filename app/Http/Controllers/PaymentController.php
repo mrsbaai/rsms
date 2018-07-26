@@ -392,9 +392,11 @@ class PaymentController extends Controller
 			
             $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem, $m_orderid);
 
-
+Log::error("logged");
             if ($m_sign == $sign_hash && $m_status == 'success'){
+				Log::error("i will top up");
 				$this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem, $m_orderid);
+				Log::error("toped up");
                
 				//$this->notify("0", "0", "Payeer", "Payment", "", $buyerEmail, "", $payedAmount, $code,"","");
             }
