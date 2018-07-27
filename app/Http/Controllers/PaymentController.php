@@ -451,7 +451,7 @@ Log::error("logged");
                 if (($payment_status == 'Completed') || ($payment_status == 'Pending' && $payment_type == 'instant' && $pending_reason == 'paymentreview')){
                     // successful payment -> top up
 
-                    $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem, $m_orderid);
+                    $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem, $txn_id);
                 }
             }
 
