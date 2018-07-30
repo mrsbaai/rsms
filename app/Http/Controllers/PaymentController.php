@@ -447,7 +447,12 @@ class PaymentController extends Controller
                 if (($payment_status == 'Completed') || ($payment_status == 'Pending' && $payment_type == 'instant' && $pending_reason == 'paymentreview')){
                     // successful payment -> top up
 
-                    $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem, $txn_id);
+			try {
+               $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem, $txn_id);
+            }catch(Exception $e){
+                Log::error("doTopup Error");
+
+            }       
                 }
             }
 
@@ -573,7 +578,7 @@ class PaymentController extends Controller
 
     private function doTopup($email,$payedAmount,$originalAmount,$code,$paymentSystem, $operation_id = null){
 
-		Log::error("im in");
+
         if(is_numeric($payedAmount) && is_numeric($originalAmount) && is_string($paymentSystem) && is_string($email) ){
 			if ($operation_id !== null){
 				$log = paymentlog::where('operation_id', $operation_id)->first();
@@ -583,7 +588,7 @@ class PaymentController extends Controller
 				}
 				
 			}
-       Log::error("passed check");
+   
             // check coupon
             $topup  = $originalAmount;
             $couponApplied = $this->CouponToPrice($originalAmount,$paymentSystem,$code);
