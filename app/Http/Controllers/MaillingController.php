@@ -86,66 +86,66 @@ class MaillingController extends Controller
         $diff = $now->diffInDays($date, false);
         $when = Carbon::now()->addSeconds(rand(30,900));
 
-        $expiration25 = Carbon::now()->addDays(10);
-        $coupon25 = $this->RandomCoupon(30,$expiration25);
+        //$expiration25 = Carbon::now()->addDays(10);
+        //$coupon25 = $this->RandomCoupon(30,$expiration25);
 
-        $expiration30 = Carbon::now()->addDays(7);
-        $coupon30 = $this->RandomCoupon(30,$expiration30);
+        //$expiration30 = Carbon::now()->addDays(7);
+        //$coupon30 = $this->RandomCoupon(30,$expiration30);
 
-        $expiration50 = Carbon::now()->addDays(3);
-        $coupon50 = $this->RandomCoupon(30,$expiration50);
+        //$expiration50 = Carbon::now()->addDays(3);
+        //$coupon50 = $this->RandomCoupon(30,$expiration50);
         echo $diff;
         switch ($diff) {
             case -7:
                 if ( $balance > 8 ) {return "he have money";}
                 $data['subj'] = "[25% Off] Get An Online SMS Number";
                 $data['header'] = "Be Anonymous Online, And Get 25% Off!";
-                $data['coupon'] = $coupon25;
-                $data['date'] = $expiration25;
+                $data['coupon'] = "PRIVACY";
+                $data['date'] = Carbon::now()->addDays(20);
                 $data['email'] = $email;
                 if ($this->is_email_subscribed($email)){
                     Mail::to($email)->later($when, new newCoupon($data));
                 }
                 return;
 
-            case -14:
-                if ($is_user){
-                    if ( $balance > 8 ) {return "he have money";}
-                    $admin = new adminController();
-                    $freeNumber = $admin->freeNumber($email, 5);
-                    if ($freeNumber){
-                        $data['name'] = $name;
-                        $data['email'] = $email;
-                        $data['number'] = $freeNumber;
-                        if ($this->is_email_subscribed($email)){
-                            Mail::to($email)->later($when, new freeNumber($data));
-                        }
+            //case -14:
+            //    if ($is_user){
+            //        if ( $balance > 8 ) {return "he have money";}
+            //        $admin = new adminController();
+            //        $freeNumber = $admin->freeNumber($email, 5);
+            //        if ($freeNumber){
+            //            $data['name'] = $name;
+            //            $data['email'] = $email;
+            //            $data['number'] = $freeNumber;
+            //            if ($this->is_email_subscribed($email)){
+            //                Mail::to($email)->later($when, new freeNumber($data));
+            //            }
 
-                    }
-                }
-                return;
+            //        }
+            //    }
+            //    return;
 
-            case -25:
-                if ( $balance > 8 ) {return "he have money";}
-                $data['subj'] = "50% Discount Code! Numbers On Sale (Valid For 3 Days)";
-                $data['header'] = "Topup Now And Get 50% Discount!";
-                $data['coupon'] = $coupon50;
-                $data['date'] = $expiration50;
-                $data['email'] = $email;
-                if ($this->is_email_subscribed($email)){
-                    Mail::to($email)->later($when, new newCoupon($data));
-                }
-                return;
-            case -40:
-                $data['subj'] = "Get Your 30% Discount Code";
-                $data['header'] = "Get 30% Off! A Cheap Price For Online Privacy.";
-                $data['coupon'] = $coupon30;
-                $data['date'] = $expiration30;
-                $data['email'] = $email;
-                if ($this->is_email_subscribed($email)){
-                    Mail::to($email)->later($when, new newCoupon($data));
-                }
-                return;
+            //case -25:
+            //    if ( $balance > 8 ) {return "he have money";}
+            //    $data['subj'] = "50% Discount Code! Numbers On Sale (Valid For 3 Days)";
+            //    $data['header'] = "Topup Now And Get 50% Discount!";
+            //    $data['coupon'] = $coupon50;
+            //    $data['date'] = $expiration50;
+            //    $data['email'] = $email;
+            //    if ($this->is_email_subscribed($email)){
+            //        Mail::to($email)->later($when, new newCoupon($data));
+            //    }
+            //    return;
+            //case -40:
+                //$data['subj'] = "Get Your 30% Discount Code";
+                //$data['header'] = "Get 30% Off! A Cheap Price For Online Privacy.";
+                //$data['coupon'] = $coupon30;
+                //$data['date'] = $expiration30;
+                //$data['email'] = $email;
+                //if ($this->is_email_subscribed($email)){
+                    //Mail::to($email)->later($when, new newCoupon($data));
+                //}
+                //return;
 
 
 
