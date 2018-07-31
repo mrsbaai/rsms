@@ -389,6 +389,12 @@ class PaymentController extends Controller
             $accountId = $m_shop;
             $paymentSystem = "Payeer";           
 
+			$checkLog = paymentlog::where('operation_id', $m_orderid)->first();
+			if ($checkLog !== null) {
+				Log::error("Payeer operation: $operation_id Already exist");
+				return;
+			}
+			
             if ($m_sign == $sign_hash && $m_status == 'success'){
 
 				$this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem, $m_orderid);        
@@ -428,6 +434,13 @@ class PaymentController extends Controller
             if (isset($_POST["pending_reason"])){$pending_reason = $_POST["pending_reason"];}else{$pending_reason = "";}
 			
             if (isset($_POST["txn_id"])){$txn_id = $_POST["txn_id"];}else{$txn_id = null;}
+			
+			$checkLog = paymentlog::where('operation_id', $txn_id)->first();
+			if ($checkLog !== null) {
+				Log::error("PayPal operation: $operation_id Already exist");
+				return;
+			}
+				
 
 			if ($description == "SMS-Verification"){
 				$originalAmount = $payedAmount;
@@ -438,6 +451,8 @@ class PaymentController extends Controller
 				$userEmail = $this->getDescriptionVariables("userEmail",$description);
 				$code = $this->getDescriptionVariables("code",$description);
 			}
+			
+
 
 			$toPaypalId = paypalids::where('email',$accountId)->first();
 			$fromPaypalId =  paypalids::where('email',$buyerEmail)->first();
