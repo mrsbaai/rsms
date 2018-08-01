@@ -437,7 +437,7 @@ class PaymentController extends Controller
 			
 			$checkLog = paymentlog::where('operation_id', $txn_id)->first();
 			if ($checkLog !== null) {
-				Log::error("PayPal operation: $operation_id Already exist");
+				Log::error("PayPal operation: $txn_id Already exist");
 				return;
 			}
 				
