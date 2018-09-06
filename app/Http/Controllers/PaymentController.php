@@ -633,7 +633,7 @@ class PaymentController extends Controller
 
             $topup  = $topup + $user['balance'];
 
-            User::where('email', "=", $email)->update(['balance' => $topup]);
+            
             // send receipt
 
             $data['name'] = $user['name'];
@@ -648,11 +648,11 @@ class PaymentController extends Controller
                 Log::error("error sending to $email");
 
             }
+			
+			User::where('email', "=", $email)->update(['balance' => $topup]);
             
             }else{
                 Log::error("no user with email $email");
-
-
             }
             }else{
             Log::error("[$email] [$payedAmount] [$originalAmount] [$code] [$paymentSystem] something is not right");

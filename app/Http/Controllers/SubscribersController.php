@@ -18,6 +18,7 @@ class SubscribersController extends Controller
     {
         if( ! $email)
         {
+			request->session()->forget('flash_notification'); 
             flash()->overlay('Invalid or nonexistent e-mail.', 'Subscribe Confirmation');
             return redirect('/home');
         }
@@ -26,6 +27,7 @@ class SubscribersController extends Controller
 
         if ( ! $subscriber)
         {
+			request->session()->forget('flash_notification'); 
             flash()->overlay('Invalid or nonexistent e-mail.', 'Subscribe Confirmation');
             return redirect('/');
         }
@@ -33,6 +35,7 @@ class SubscribersController extends Controller
         $subscriber->confirmed = 1;
         $subscriber->save();
 
+		request->session()->forget('flash_notification'); 
         flash()->overlay('Subscription verified successfully', 'Thank you!');
 
         return redirect('/home');
@@ -55,6 +58,7 @@ class SubscribersController extends Controller
             $subscriber->subscribed = false;
             $subscriber->save();
         }
+		request->session()->forget('flash_notification'); 
         flash()->overlay(' You have successfully unsubscribed from ' . config('app.name') . ' Newsletter. You will no longer receive new notifications and special offers.', 'You have been successfully unsubscribed');
         return redirect('/home');
 
@@ -81,6 +85,7 @@ class SubscribersController extends Controller
     Public function subscribe(Request $request){
 
         if(!$this->valid_email($request->email)) {
+			request->session()->forget('flash_notification'); 
             flash()->overlay($request->email . ' Is not a valid email address.', 'Invalid E-mail!');
             return redirect('/home');
         }
@@ -98,6 +103,7 @@ class SubscribersController extends Controller
 
 
        if(!is_null($subscribed)) {
+		   request->session()->forget('flash_notification'); 
            flash()->overlay('Your e-mail already exists in our database.', 'Already subscribed!');
            return redirect('/home');
 
@@ -121,6 +127,7 @@ class SubscribersController extends Controller
            }
 
            Mail::to($request->email)->send(new subscribeConfirmation($request->email));
+		   request->session()->forget('flash_notification'); 
            flash()->overlay('You have been subscribed successfully. Please check your e-mail for confirmation.', 'Thank you for your subscription!');
 
            return redirect('/subscribed');
