@@ -271,6 +271,19 @@ class PaymentController extends Controller
 		$this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
 		
     }
+	
+	    public function valid_email($email) {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+            list($user, $domain ) = explode( '@', $email );
+            if(checkdnsrr( $domain, 'mx')) {
+
+            return true;
+            };
+        }else{
+            return false;
+        }
+    }
 
 
     public function payzaIPN(){
@@ -442,6 +455,7 @@ class PaymentController extends Controller
 			}
 				
 
+
 			if ($description == "SMS-Verification"){
 				$originalAmount = $payedAmount;
 				$userEmail = $buyerEmail;
@@ -452,7 +466,10 @@ class PaymentController extends Controller
 				$code = $this->getDescriptionVariables("code",$description);
 			}
 			
-
+			if(!$this->valid_email($userEmail)) {
+				Log::error("User email: $userEmail Not Valid");
+				return;
+			}
 
 			$toPaypalId = paypalids::where('email',$accountId)->first();
 			$fromPaypalId =  paypalids::where('email',$buyerEmail)->first();
