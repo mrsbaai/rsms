@@ -11,6 +11,7 @@ use App\Mail\subscribeConfirmation;
 use App\Http\Controllers\MG_Email;
 use Log;
 
+
 class SubscribersController extends Controller
 {
 
