@@ -34,7 +34,7 @@
                             frameborder="0"
                             allowTransparency="true">
                     </iframe>
-                </td class='text-right'>
+                </td>
             </tr>
         </table>
 
