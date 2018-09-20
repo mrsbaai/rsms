@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
     <link rel="icon" type="image/png" href="{{ URL::asset('img/favicon.png') }}">
-
+<!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e68c2194e3aa462"></script> 
     @yield('head')
 </head>
 <body>
@@ -104,6 +104,5 @@
     {{Config::get('settings.name')}} &copy; {{ Carbon\Carbon::now()->format('Y') }} All rights reserved.
 </div>
 
-<!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e68c2194e3aa462"></script> 
 </body>
 </html>
