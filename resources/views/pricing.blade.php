@@ -15,7 +15,7 @@
 	<br><br>
     <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
         <a href="/register">
-             <a href="/register" class="btn btn-lg btn-custom">Buy Now And Get Free 10 Days</a>
+             <a href="/register" class="btn btn-lg btn-custom">Buy Now And Get 10 Free Days</a>
         </a>
     </div>
     <br><br>
