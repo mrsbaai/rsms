@@ -179,7 +179,7 @@
                                         title="Enter your email here"
                                         onfocus="this.select();"
                                         onmouseup="return false;"
-										max-width: 200px;
+										max-width:="200px";
                                         required
 
                                 >
