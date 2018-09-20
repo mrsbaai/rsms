@@ -222,7 +222,7 @@
     @if(!Auth::check())
         <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
             <a href="/register">
-                <button class="btn btn-lg share btn-success">
+                <button class="btn btn-lg btn-success">
                     Create Your Private Inbox
                 </button>
             </a>
