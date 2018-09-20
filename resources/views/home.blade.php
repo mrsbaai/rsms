@@ -5,38 +5,7 @@
 
 
 @section('share_buttons')
-    <link rel="canonical" href="https://receive-sms.com" />
 
-    <script src="https://apis.google.com/js/platform.js" async defer>
-    </script>
-        <table class='table share-table'>
-            <tr>
-
-                <td class='text-left'>
-                    <iframe
-                            src="https://platform.twitter.com/widgets/tweet_button.html?size=m&url=https%3A%2F%2Freceive-sms.com&hashtags=privacy"
-                            width="70"
-                            height="24"
-                            title="Receive SMS Online"
-                            style="border: 0; overflow: hidden;">
-                    </iframe>
-                </td>
-                <td class='text-center'>
-                    <g:plusone size="medium"></g:plusone>
-                </td>
-                <td class='text-right'>
-                    <iframe
-                            src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Freceive-sms.com&width=144&layout=button&action=recommend&size=small&show_faces=true&share=true&height=65&appId=464170053669778"
-                            width="144"
-                            height="24"
-                            style="border:none;overflow:hidden"
-                            scrolling="no"
-                            frameborder="0"
-                            allowTransparency="true">
-                    </iframe>
-                </td>
-            </tr>
-        </table>
 
 
 @stop
