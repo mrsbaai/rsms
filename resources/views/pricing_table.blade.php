@@ -15,7 +15,7 @@
                                 <p class="pricing-title">1 to 9 Numbers</p>
                                 <p class="pricing-rate"><sup>$</sup> 9 <span>/Mo.</span></p>
                                 <p>(Per Number)</p>
-                                <a href="/register" class="btn btn-custom">And Get Free 10 Days</a>
+                              
                             </div>
 
                             <div class="pricing-list">
@@ -38,7 +38,7 @@
                                 <p class="pricing-title">10+ Numbers</p>
                                 <p class="pricing-rate"><sup>$</sup> 5  <span> /Mo</span></p>
                                 <p>(Per Number)</p>
-                                <a href="/register" class="btn btn-custom">And Get Free 10 Days</a>
+                              
                             </div>
 
                             <div class="pricing-list">
