@@ -5,11 +5,11 @@
 .btn-custom {
   color: #ffffff;
   font-size: 18px;
-  border: 1px solid #bdc3c7;
+  border: 1px solid #ffffff;
 }
 .btn-custom:hover {
-  color: #bdc3c7;
-  border: 1px solid #ffffff;
+  color: rgb(217, 83, 79);
+  border: 1px solid rgb(217, 83, 79);
 }
 #pricing-table {
   padding-top: 0px;
