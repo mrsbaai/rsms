@@ -14,7 +14,7 @@
         <div class="container width-fix col-sm-12">
             <div class="jumbotron welcome-texture">
                 <h2>Hello {{Auth::user()->name}}!</h2>
-                <p>Welcome to your Inbox. Now you can <a href="../topup">Top-up</a> your balance and <a href="../numbers">add numbers</a> right away!</p>
+                <p>Welcome to your Inbox. Now you can <a href="./topup">Top-up</a> your balance and <a href="./numbers">add numbers</a> right away!</p>
             </div>
 
         </div>
