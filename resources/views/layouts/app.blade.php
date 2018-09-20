@@ -103,5 +103,7 @@
 
     {{Config::get('settings.name')}} &copy; {{ Carbon\Carbon::now()->format('Y') }} All rights reserved.
 </div>
+
+<!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e68c2194e3aa462"></script> 
 </body>
 </html>
