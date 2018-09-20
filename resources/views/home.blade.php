@@ -33,12 +33,17 @@
             <div class="jumbotron welcome-texture">
                 <h1>Receive SMS Online</h1>
                 <p class="left_15">
-                    This website can be useful if you want to protect your privacy by keeping your real phone number to yourself.
+                    This tool can be useful if you want to protect your privacy by keeping your real phone number to yourself.
                 </p>
 
                 <h2>How To Use?</h2>
                 <p class="left_15">
                     Here you will find some numbers, just use one with your online registrations, and the inbound messages will show up on this site within seconds.
+                </p>                
+				
+				<h2>Do think this might help someone else?</h2>
+                <p class="left_15">
+                   <div class="addthis_inline_share_toolbox"></div> 
                 </p>
 
             </div>
@@ -73,6 +78,7 @@
                                         title="Enter your email here"
                                         onfocus="this.select();"
                                         onmouseup="return false;"
+										max-width: 200px;
                                         required
 
                                 >
