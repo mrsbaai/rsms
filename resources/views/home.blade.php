@@ -42,7 +42,7 @@
                     Here you will find some numbers, just use one with your online registrations, and the inbound messages will show up on this site within seconds.
                 </p>                
 				
-				<h2>Do think this might help someone else?</h2>
+				<h2>You think this might help someone else?</h2>
                 
                    <center>
 				   <!-- Sharingbutton Facebook -->
