@@ -29,7 +29,7 @@
 
 @section('content')
 
-
+<!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e68c2194e3aa462"></script> 
         <div class="container width-fix col-sm-12">
             <div class="jumbotron welcome-texture">
                 <h1>Receive SMS Online</h1>
