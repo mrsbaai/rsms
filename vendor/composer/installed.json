@@ -3160,6 +3160,38 @@
         "homepage": "https://github.com/sebastianbergmann/version"
     },
     {
+        "name": "simplepush/simplepush-php",
+        "version": "1.0.1",
+        "version_normalized": "1.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/simplepush/simplepush-php.git",
+            "reference": "d68ba4e8004217bd1770dcd06e51585709edabd3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/simplepush/simplepush-php/zipball/d68ba4e8004217bd1770dcd06e51585709edabd3",
+            "reference": "d68ba4e8004217bd1770dcd06e51585709edabd3",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2017-02-04T21:44:38+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "description": "Send push notifications to your smartphone with simplepush.io",
+        "homepage": "https://simplepush.io",
+        "keywords": [
+            "android",
+            "app",
+            "notification",
+            "push",
+            "simplepush"
+        ]
+    },
+    {
         "name": "swiftmailer/swiftmailer",
         "version": "v5.4.9",
         "version_normalized": "5.4.9.0",

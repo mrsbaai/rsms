@@ -22,7 +22,7 @@ use Illuminate\Mail\Markdown;
 
 use Log;
 use App\Libraries\Session;
-
+use use simplepush;
 class pagesController extends Controller
 {
     Public function home(){
@@ -129,18 +129,8 @@ class pagesController extends Controller
     }
 
     public function test(){
-        $email ="test@hotmail.com";
-        if($this->valid_email($email)) {Log::info($email . "valid");} else {Log::info($email . " Not valid");}
-        $email ="test@hotmail11.com";
-        if($this->valid_email($email)) {Log::info($email . "valid");} else {Log::info($email . " Not valid");}
-        $email ="dfhmlglglmdflhmdfhlml@gmail.com";
-        if($this->valid_email($email)) {Log::info($email . "valid");} else {Log::info($email . " Not valid");}
-        $email ="drhqtsfjsjs@srgqsrg.fr";
-        if($this->valid_email($email)) {Log::info($email . "valid");} else {Log::info($email . " Not valid");}
-        $email ="blooddity@hotmail.com";
-        if($this->valid_email($email)) {Log::info($email . "valid");} else {Log::info($email . " Not valid");}
-        $email ="mrchioua@gmail.com";
-        if($this->valid_email($email)) {Log::info($email . "valid");} else {Log::info($email . " Not valid");}
+		Simplepush::send("H5ZAU6", "title", "message", "event");
+
     }
 
     public function valid_email($email) {

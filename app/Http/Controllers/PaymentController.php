@@ -17,7 +17,8 @@ use Log;
 use Mail;
 use App\Mail\topupReceipt;
 use App\Mail\numbersReady;
-use PushBullet;
+use simplepush;
+
 
 class PaymentController extends Controller
 {
@@ -83,7 +84,7 @@ class PaymentController extends Controller
         $cmd = '_xclick';
         $item_name = "$" . $amount . " Balance TopUp";
         $currency_code = 'USD';
-        $custom = "";
+        $custom = "internal";
         $return = 'http://receive-sms.com/';
         $notify_url = 'http://receive-sms.com/ipn/paypal';
         $cancel_return = 'http://receive-sms.com/';
@@ -431,6 +432,9 @@ class PaymentController extends Controller
 
         if ($verified) {
             $paymentSystem = "PayPal";
+			
+			$payedAmount = $originalAmount = $code = $transactionType = $transactionStatus = $userEmail = $buyerEmail = $accountId = $paymentSystem = $txn_id = "";
+			
             if (isset($_POST["custom"])){$description = $_POST["custom"];}else{$description = "";}
 
 
@@ -455,38 +459,40 @@ class PaymentController extends Controller
 			}
 				
 
+			if ($description == ""){
+				$code
+			}
 
 			if ($description == "SMS-Verification"){
 				$originalAmount = $payedAmount;
 				$userEmail = $buyerEmail;
 				$code = "SMS-Verification";
 			}else{
-				$originalAmount = $this->getDescriptionVariables("originalAmount",$description);
-				$userEmail = $this->getDescriptionVariables("userEmail",$description);
-				$code = $this->getDescriptionVariables("code",$description);
+				if ($description != "internal" and $description != ""){
+					$originalAmount = $this->getDescriptionVariables("originalAmount",$description);
+					$userEmail = $this->getDescriptionVariables("userEmail",$description);
+					$code = $this->getDescriptionVariables("code",$description);
+					
+					if(!$this->valid_email($userEmail)) {
+						Log::error("User email: $userEmail Not Valid");
+						return;
+					}
+					
+					$toPaypalId = paypalids::where('email',$accountId)->first();
+					$fromPaypalId =  paypalids::where('email',$buyerEmail)->first();
+
+
+					if (!$fromPaypalId and $description != "SMS-Verification" and $description != "" and $description != "internal"){
+						if (($payment_status == 'Completed') || ($payment_status == 'Pending' && $payment_type == 'instant' && $pending_reason == 'paymentreview')){
+							// successful payment -> top up
+							$this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem, $txn_id);
+				 
+						}
+					}
+				}
 			}
 			
-			if(!$this->valid_email($userEmail)) {
-				Log::error("User email: $userEmail Not Valid");
-				return;
-			}
 
-			$toPaypalId = paypalids::where('email',$accountId)->first();
-			$fromPaypalId =  paypalids::where('email',$buyerEmail)->first();
-
-
-            if (!$fromPaypalId and $description != "SMS-Verification"){
-                if (($payment_status == 'Completed') || ($payment_status == 'Pending' && $payment_type == 'instant' && $pending_reason == 'paymentreview')){
-                    // successful payment -> top up
-
-			try {
-               $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem, $txn_id);
-            }catch(Exception $e){
-                Log::error("doTopup Error");
-
-            }       
-                }
-            }
 
             // loging the event
 			$amountNoFee = $payedAmount;
@@ -514,7 +520,7 @@ class PaymentController extends Controller
 				}
 	
 			// notify
-			//$this->notify($oldBalance, $newBalance, "PayPal", $transactionType, $transactionStatus, $buyerEmail, $accountId, $payedAmount, $code, $senderOldBalance, $senderNewBalance);
+			$this->notify($oldBalance, $newBalance, "PayPal", $transactionType, $transactionStatus, $buyerEmail, $accountId, $payedAmount, $code, $senderOldBalance, $senderNewBalance);
 
 
         }
@@ -697,8 +703,9 @@ class PaymentController extends Controller
 			$title = $title . " $type";
 		}
 		
+$content
+title
 
-		PushBullet::all()->note($title, $content);
     }
 
 

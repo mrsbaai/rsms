@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d3cc1a36aa5b13cde31a585158f15279",
+    "content-hash": "a8d1d9248fc22a92ca7c9816e4ff1cbb",
     "packages": [
         {
             "name": "consoletvs/charts",
@@ -1678,6 +1678,36 @@
                 "lumen"
             ],
             "time": "2017-06-29T11:18:01+00:00"
+        },
+        {
+            "name": "simplepush/simplepush-php",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/simplepush/simplepush-php.git",
+                "reference": "d68ba4e8004217bd1770dcd06e51585709edabd3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/simplepush/simplepush-php/zipball/d68ba4e8004217bd1770dcd06e51585709edabd3",
+                "reference": "d68ba4e8004217bd1770dcd06e51585709edabd3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Send push notifications to your smartphone with simplepush.io",
+            "homepage": "https://simplepush.io",
+            "keywords": [
+                "android",
+                "app",
+                "notification",
+                "push",
+                "simplepush"
+            ],
+            "time": "2017-02-04T21:44:38+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
