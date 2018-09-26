@@ -22,7 +22,6 @@ use Illuminate\Mail\Markdown;
 
 use Log;
 use App\Libraries\Session;
-use Simplepush;
 
 class pagesController extends Controller
 {
@@ -87,7 +86,8 @@ class pagesController extends Controller
 
 
     public function test(){
-        Simplepush::send("H5ZAU6", "title", "message", "event");
+        $Simplepush = new Simplepush;
+        $Simplepush->send("H5ZAU6", "title", "message", "event");
     }
 
     public function valid_email($email) {
