@@ -359,7 +359,6 @@ class ComposerStaticInit45de193095ab851f93bb59cf8632511a
 
     public static $classMap = array (
         'AddPaidToUsers' => __DIR__ . '/../..' . '/database/migrations/2017_10_07_064407_add_paid_to_users.php',
-        'AddoperationidToLog' => __DIR__ . '/../..' . '/database/migrations/2018_07_26_141047_addoperationidToLog.php',
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
         'CouponsSeeder' => __DIR__ . '/../..' . '/database/seeds/CouponsSeeder.php',

@@ -25,6 +25,7 @@ class CreatePaymentlogTable extends Migration
             $table->string('buyerEmail');
             $table->string('accountId');
             $table->string('paymentSystemId')->default('PayPal');
+            $table->string('operation_id')->nullable()->default(null);
             $table->timestamps();
         });
     }
