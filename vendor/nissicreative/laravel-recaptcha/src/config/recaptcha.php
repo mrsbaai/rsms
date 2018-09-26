@@ -11,8 +11,8 @@ return [
     |
      */
 
-    'key'           => env('RECAPTCHA_KEY'),
-    'secret'        => env('RECAPTCHA_SECRET'),
+    'key' => env('RECAPTCHA_KEY'),
+    'secret' => env('RECAPTCHA_SECRET'),
 
     /*
     |--------------------------------------------------------------------------
@@ -24,8 +24,8 @@ return [
     |
      */
 
-    'script_url'    => 'https://www.google.com/recaptcha/api.js',
-    'verify_url'    => 'https://www.google.com/recaptcha/api/siteverify',
+    'script_url' => 'https://www.google.com/recaptcha/api.js',
+    'verify_url' => 'https://www.google.com/recaptcha/api/siteverify',
 
     /*
     |--------------------------------------------------------------------------

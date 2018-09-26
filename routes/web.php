@@ -42,8 +42,8 @@ Route::get('subscribe/verify/{email}', [
     'uses' => 'SubscribersController@confirm'
 ]);
 
-Route::get('/test','PaymentController@test');
-Route::get('/testing','pagesController@testing');
+Route::get('/test','pagesController@test');
+
 
 Route::get('/datafix','adminController@dataFix');
 
@@ -84,7 +84,7 @@ Route::get('/admin/mailer/preview/{text1}/{text2}/{text3}/{text4}/{heading1}/{he
 
 Route::post('/admin/mailer', 'MaillingController@makeList');
 
-Route::get('/admin/test', 'adminController@test');
+
 
 Route::get('/admin/chart/income', 'adminController@incomeChart');
 Route::get('/admin/chart/subscribers', 'adminController@subscribersChart');
@@ -122,9 +122,9 @@ Route::post('contact','contactController@store');
 Route::post('support', 'supportController@send');
 
 
-Route::get('/hash/{days}','pagesController@test');
 
-Route::get('/tester','pagesController@tester');
+
+
 Route::get('/faqs','pagesController@faqs');
 Route::get('/pricing','pagesController@pricing');
 

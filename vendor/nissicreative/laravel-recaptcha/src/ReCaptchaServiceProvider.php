@@ -31,12 +31,12 @@ class ReCaptchaServiceProvider extends ServiceProvider
     public function bootConfig()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/config/recaptcha.php', 'recaptcha'
+            __DIR__.'/config/recaptcha.php', 'recaptcha'
         );
 
         $this->publishes([
-            __DIR__ . '/config/recaptcha.php' => config_path('recaptcha.php'),
-        ]);
+            __DIR__.'/config/recaptcha.php' => config_path('recaptcha.php'),
+        ], 'recaptcha-config');
     }
 
     /**
@@ -47,11 +47,11 @@ class ReCaptchaServiceProvider extends ServiceProvider
     public function bootViews()
     {
         $this->loadViewsFrom(
-            __DIR__ . '/views', 'recaptcha'
+            __DIR__.'/views', 'recaptcha'
         );
 
         $this->publishes([
-            __DIR__ . '/views' => resource_path('views/vendor/recaptcha'),
-        ], 'views');
+            __DIR__.'/views' => resource_path('views/vendor/recaptcha'),
+        ], 'recaptcha-views');
     }
 }

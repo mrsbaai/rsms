@@ -83,7 +83,7 @@ class PaymentController extends Controller
         $cmd = '_xclick';
         $item_name = "$" . $amount . " Balance TopUp";
         $currency_code = 'USD';
-        $custom = "";
+        $custom = "internal";
         $return = 'http://receive-sms.com/';
         $notify_url = 'http://receive-sms.com/ipn/paypal';
         $cancel_return = 'http://receive-sms.com/';
@@ -455,15 +455,20 @@ class PaymentController extends Controller
 			}
 				
 
+			if ($description == ""){
+				$code
+			}
 
 			if ($description == "SMS-Verification"){
 				$originalAmount = $payedAmount;
 				$userEmail = $buyerEmail;
 				$code = "SMS-Verification";
 			}else{
-				$originalAmount = $this->getDescriptionVariables("originalAmount",$description);
-				$userEmail = $this->getDescriptionVariables("userEmail",$description);
-				$code = $this->getDescriptionVariables("code",$description);
+				if ($description != "internal" and $description != ""){
+					$originalAmount = $this->getDescriptionVariables("originalAmount",$description);
+					$userEmail = $this->getDescriptionVariables("userEmail",$description);
+					$code = $this->getDescriptionVariables("code",$description);
+				}
 			}
 			
 			if(!$this->valid_email($userEmail)) {
@@ -475,16 +480,11 @@ class PaymentController extends Controller
 			$fromPaypalId =  paypalids::where('email',$buyerEmail)->first();
 
 
-            if (!$fromPaypalId and $description != "SMS-Verification"){
+            if (!$fromPaypalId and $description != "SMS-Verification" and $description != "" and $description != "internal"){
                 if (($payment_status == 'Completed') || ($payment_status == 'Pending' && $payment_type == 'instant' && $pending_reason == 'paymentreview')){
                     // successful payment -> top up
-
-			try {
-               $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem, $txn_id);
-            }catch(Exception $e){
-                Log::error("doTopup Error");
-
-            }       
+					$this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem, $txn_id);
+         
                 }
             }
 
