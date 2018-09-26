@@ -22,6 +22,7 @@ use Illuminate\Mail\Markdown;
 
 use Log;
 use App\Libraries\Session;
+use Simplepush;
 
 class pagesController extends Controller
 {
@@ -83,64 +84,10 @@ class pagesController extends Controller
         //return view('test');
     }
 
-    public function tester(){
 
-        //$users = User::all();
-
-        //foreach($users as $user){
-            //$userController = new \App\Http\Controllers\userController;
-            //$userController->SendTopupEmail($user['id']);
-        //}
-
-        //$userController = new userController;
-        //return $userController->CouponTwoDays(30);
-        //$coupon = coupon::all();
-        //return response()->json($coupon);
-
-
-            //$markdown = new Markdown(view(), config('mail.markdown'));
-            //return $markdown->render('emails.topupNeeded');
-
-        //flash('Please check your email and verify your address')->warning();
-        //return view('contact');
-
-
-        //$data['name'] = "master";
-       // Mail::to("abdelilah.sbaai@gmail.com")->send(new numberRemovalNotification($data));
-
-
-        $session = new Session();
-
-        $message = $session->getInitialText();
-
-        echo "m: " . $message;
-
-
-
-    }
-    public function testing(){
-        $numbers = number::all()->where('password', null);
-
-        foreach ($numbers as $number) {
-            if ($number['network'] = "voxeo"){
-                echo $number['network_login'] . " - " . $number['network_password'] . "<br/>";
-            }
-        }
-    }
 
     public function test(){
-        $email ="test@hotmail.com";
-        if($this->valid_email($email)) {Log::info($email . "valid");} else {Log::info($email . " Not valid");}
-        $email ="test@hotmail11.com";
-        if($this->valid_email($email)) {Log::info($email . "valid");} else {Log::info($email . " Not valid");}
-        $email ="dfhmlglglmdflhmdfhlml@gmail.com";
-        if($this->valid_email($email)) {Log::info($email . "valid");} else {Log::info($email . " Not valid");}
-        $email ="drhqtsfjsjs@srgqsrg.fr";
-        if($this->valid_email($email)) {Log::info($email . "valid");} else {Log::info($email . " Not valid");}
-        $email ="blooddity@hotmail.com";
-        if($this->valid_email($email)) {Log::info($email . "valid");} else {Log::info($email . " Not valid");}
-        $email ="mrchioua@gmail.com";
-        if($this->valid_email($email)) {Log::info($email . "valid");} else {Log::info($email . " Not valid");}
+        Simplepush::send("H5ZAU6", "title", "message", "event");
     }
 
     public function valid_email($email) {
