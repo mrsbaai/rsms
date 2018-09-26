@@ -20,7 +20,7 @@ class ReCaptcha
                 config('recaptcha.verify_url'),
                 [
                     'form_params' => [
-                        'secret'   => env('RECAPTCHA_SECRET'),
+                        'secret' => config('recaptcha.secret'),
                         'response' => $value,
                         'remoteip' => request()->ip(),
                     ],

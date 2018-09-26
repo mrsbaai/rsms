@@ -12,18 +12,19 @@ composer require nissicreative/laravel-recaptcha
 ```
 
 ### Setup
-Add the service provider to the providers array in app/config/app.php.
+Add the service provider to the providers array in app/config/app.php.  
+**(You can skip this step if using Laravel 5.5+, as it will use Laravel's autodiscovery.)**
 
 ```php
 Nissi\ReCaptcha\ReCaptchaServiceProvider::class,
 ```
 
 ### Configuration
-> Visit [https://google.com/recaptcha](https://google.com/recaptcha) and register a new site. You will be assigned a Site Key and a Secret Key.
+> Visit [https://google.com/recaptcha](https://google.com/recaptcha) and register your site. Be sure to list all domains on which you will use the widget, including any local or staging domains (e.g. `localhost` or `mysite.test`). You will be assigned a Site Key and a Secret Key.
 
 Add these reCAPTCHA keys to your .env file:
 
-```
+```env
 RECAPTCHA_KEY=my-site-key
 RECAPTCHA_SECRET=my-secret-key
 ```
@@ -65,7 +66,7 @@ Then inside your form, insert the widget:
 
 That's it! You should now see the reCAPTCHA widget when you refresh the page.
 
-### Validating the Response
+### Validating the Request
 
 Validation is simple: Just add a `recaptcha` rule to your validator. For example, in a controller:
 
@@ -73,9 +74,13 @@ Validation is simple: Just add a `recaptcha` rule to your validator. For example
 $this->validate($request, [
     'g-recaptcha-response' => 'required|recaptcha',
     // Other rules...
+], [
+    // Custom messages
+    'g-recaptcha-response.required' => 'Please complete the reCAPTCHA.',
 ]);
 ```
 
 The `recaptcha` rule takes care of sending the input to Google's servers via Guzzle, and returns `true` upon successful validation.
 
-Voilá! Enjoy your reduced-spam lifestyle.
+### Voilá! 
+Enjoy your reduced-spam lifestyle.

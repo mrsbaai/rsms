@@ -8,7 +8,7 @@ use Mail;
 use Illuminate\Http\Request;
 use App\contact;
 use App\Mail\contactReceived;
-use PushBullet;
+
 
 class supportController extends Controller
 {
