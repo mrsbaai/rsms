@@ -263,12 +263,8 @@ class PaymentController extends Controller
     }
 
     public function test(){
-		$userEmail = "abdelilah.sbaai@gmail.com";
-		$payedAmount = "50";
-		$originalAmount = "50";
-		$code = null;
-		$paymentSystem = "payeer";
-		$this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem);
+
+        $this->notify("10", "30", "PayPal", "web_accept", "Completed", "buyer@gmail.com", "me@gmail.com", "20", $code="", "", "");
 		
     }
 	
