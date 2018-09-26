@@ -456,11 +456,8 @@ class PaymentController extends Controller
 				Log::error("PayPal operation: $txn_id Already exist");
 				return;
 			}
-				
 
-			if ($description == ""){
-				$code
-			}
+
 
 			if ($description == "SMS-Verification"){
 				$originalAmount = $payedAmount;
