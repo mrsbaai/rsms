@@ -428,7 +428,6 @@ class PaymentController extends Controller
 
         if ($verified) {
 
-            $paymentSystem = "PayPal";
 			$payedAmount = $originalAmount = $code = $transactionType = $transactionStatus = $userEmail = $buyerEmail = $accountId = $paymentSystem = $txn_id = "";
 			
             if (isset($_POST["custom"])){$description = $_POST["custom"];}else{$description = "";}
@@ -459,7 +458,7 @@ class PaymentController extends Controller
 				$userEmail = $buyerEmail;
 				$code = "SMS-Verification";
 			}else{
-				if ($description != "internal" and $description != ""){
+
 					$originalAmount = $this->getDescriptionVariables("originalAmount",$description);
 					$userEmail = $this->getDescriptionVariables("userEmail",$description);
 					$code = $this->getDescriptionVariables("code",$description);
@@ -476,11 +475,14 @@ class PaymentController extends Controller
 					if (!$fromPaypalId and $description != "SMS-Verification" and $description != "" and $description != "internal"){
 						if (($payment_status == 'Completed') || ($payment_status == 'Pending' && $payment_type == 'instant' && $pending_reason == 'paymentreview')){
 							// successful payment -> top up
-							$this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem, $txn_id);
+                            if ($description != "internal" and $description != ""){
+                                $this->doTopup($userEmail,$payedAmount,$originalAmount,$code, "PayPal", $txn_id);
+                            }
+
 				 
 						}
 					}
-				}
+
 			}
 			
 
@@ -491,8 +493,7 @@ class PaymentController extends Controller
                 $payedAmount = $payedAmount - $mc_fee;
             }
 
-            $paymentSystem = "PayPal";
-            $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem,$txn_id);
+            $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, "PayPal",$txn_id);
 
 			// Update balance
 
