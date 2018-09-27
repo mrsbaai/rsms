@@ -423,17 +423,16 @@ class PaymentController extends Controller
 
         $ipn = new PaypalIPN();
 
+
         $verified = $ipn->verifyIPN();
 
         if ($verified) {
+
             $paymentSystem = "PayPal";
-			
 			$payedAmount = $originalAmount = $code = $transactionType = $transactionStatus = $userEmail = $buyerEmail = $accountId = $paymentSystem = $txn_id = "";
 			
             if (isset($_POST["custom"])){$description = $_POST["custom"];}else{$description = "";}
 
-
-            
 
             if (isset($_POST["mc_fee"])){$mc_fee = $_POST["mc_fee"];}else{$mc_fee = "0";}
             if (isset($_POST["mc_gross"])){$payedAmount = $_POST["mc_gross"];}else{$payedAmount = "";}
@@ -492,6 +491,7 @@ class PaymentController extends Controller
                 $payedAmount = $payedAmount - $mc_fee;
             }
 
+            $paymentSystem = "PayPal";
             $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem,$txn_id);
 
 			// Update balance
