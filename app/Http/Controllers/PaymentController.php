@@ -458,7 +458,11 @@ class PaymentController extends Controller
 				$userEmail = $buyerEmail;
 				$code = "SMS-Verification";
 			}else{
-
+			
+				
+				if ($description != "internal"){
+				
+				
 					$originalAmount = $this->getDescriptionVariables("originalAmount",$description);
 					$userEmail = $this->getDescriptionVariables("userEmail",$description);
 					$code = $this->getDescriptionVariables("code",$description);
@@ -467,6 +471,9 @@ class PaymentController extends Controller
 						Log::error("User email: $userEmail Not Valid");
 						return;
 					}
+					
+				}
+				
 					
 					$toPaypalId = paypalids::where('email',$accountId)->first();
 					$fromPaypalId =  paypalids::where('email',$buyerEmail)->first();
@@ -482,6 +489,7 @@ class PaymentController extends Controller
 				 
 						}
 					}
+
 
 			}
 			
