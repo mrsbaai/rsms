@@ -33,7 +33,8 @@
 
         function formChange() {
             document.getElementById("coupon").value = "";
-            document.getElementById("price").innerHTML = "$" + document.getElementById("amount").value;
+            document.getElementById("top").innerHTML = "$" + document.getElementById("amount").value;
+			document.getElementById("price").innerHTML = "$" + document.getElementById("amount").value;
 
             if (document.getElementById("amount").value !== "0"  && document.getElementById("type").value !== "0"){
                 document.getElementById("pay_button").disabled = false;
@@ -144,7 +145,8 @@
 
 
                     <div class="form-group" id="final_amount">
-                        <span>Final Amount:</span><span id="price" style="float:right;">$0</span>
+						<span>Top-Up Amount:</span><span id="top" style="float:right;">$0</span>
+                        <span>Payment Amount:</span><span id="price" style="float:right;">$0</span>
                     </div>
 
 
