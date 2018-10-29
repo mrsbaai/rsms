@@ -220,7 +220,7 @@
                         <div id="renew-period" hidden>
                             <div class="form-group">
                                 <label>How many months?</label>
-                                <input id="period" name="period" oninput="getRenewPrice()" class="form-control form-group-lg col-xs-3²" type="number" value="1" min="1" max="74" />
+                                <input id="period" name="period" oninput="getRenewPrice()" class="form-control" type="number" value="1" min="1" max="74" />
                             </div>
 
                             <div class="form-group">
