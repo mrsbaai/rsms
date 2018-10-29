@@ -38,9 +38,7 @@ class LoginController extends Controller
     {
 		if (Auth::user()->balance == 0){
 			return redirect('/topup');
-			
-		}else{
-			return redirect('/inbox');
+		
 		}
     }
     public function __construct()
