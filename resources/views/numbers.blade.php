@@ -131,9 +131,9 @@
                 </div>
 
                 <div class="col-lg-6 col-md-6  no-padding ">
-                    <div class="form-group">
+                    <div class="form-group col-lg-5">
                         <label>How many numbers?</label>
-                        <input id="amount" name="amount" oninput="getPrice()" class="form-control form-group-lg col-xs-3" type="number" value="1" min="1" max="{{$max}}" />
+                        <input id="amount" name="amount" oninput="getPrice()" class="form-control input-lg" type="number" value="1" min="1" max="{{$max}}" />
                     </div>
 
                     <div class="form-group">
