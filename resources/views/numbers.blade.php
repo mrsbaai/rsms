@@ -181,9 +181,9 @@
                 {{ Form::open(array('action' => 'userController@renewNumbers', 'id' => 'renew-form'))}}
                 <div class="container-fluid no-padding ">
                     <p>Select at least one number below.</p>
-                    <div class=" col-lg-4 col-md-4">
+                    <div class=" col-lg-3 col-md-3">
                     </div>
-                    <div class="col-lg-4 col-md-4  no-padding ">
+                    <div class="col-lg-6 col-md-6  no-padding ">
                         <div class="table-responsive">
                             <table class="table table-condensed">
                                 <thead>
@@ -233,7 +233,7 @@
                     </div>
 
 
-                    <div class=" col-lg-4 col-md-4 ">
+                    <div class=" col-lg-3 col-md-3 ">
                     </div>
 
 
