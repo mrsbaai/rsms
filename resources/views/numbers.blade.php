@@ -127,10 +127,10 @@
             <h3>Add Numbers</h3>
             {{ Form::open(array('action' => 'userController@addNumbers', 'id' => 'add-form'))}}
             <div class="container-fluid no-padding ">
-                <div class=" col-lg-3 col-md-3 ">
+                <div class=" col-lg-4 col-md-4 ">
                 </div>
 
-                <div class="col-lg-6 col-md-6  no-padding ">
+                <div class="col-lg-4 col-md-4  no-padding ">
                     <div class="form-group">
                         <label>How many numbers?</label>
                         <input id="amount" name="amount" oninput="getPrice()" class="form-control" type="number" value="1" min="1" max="{{$max}}" />
@@ -145,7 +145,7 @@
                     </div>
                 </div>
 
-                <div class=" col-lg-3 col-md-3 ">
+                <div class=" col-lg-4 col-md-4">
                 </div>
 
             </div>
@@ -181,9 +181,9 @@
                 {{ Form::open(array('action' => 'userController@renewNumbers', 'id' => 'renew-form'))}}
                 <div class="container-fluid no-padding ">
                     <p>Select at least one number below.</p>
-                    <div class=" col-lg-3 col-md-3 ">
+                    <div class=" col-lg-4 col-md-4">
                     </div>
-                    <div class="col-lg-6 col-md-6  no-padding ">
+                    <div class="col-lg-4 col-md-4  no-padding ">
                         <div class="table-responsive">
                             <table class="table table-condensed">
                                 <thead>
@@ -233,7 +233,7 @@
                     </div>
 
 
-                    <div class=" col-lg-3 col-md-3 ">
+                    <div class=" col-lg-4 col-md-4 ">
                     </div>
 
 
