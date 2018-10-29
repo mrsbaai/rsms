@@ -47,6 +47,7 @@ class SendPromoMails extends Command
 
                 Mail::to($entry['email'])->queue(new generic($entry));
                 $this->info($entry['subject'] . " -> " . $entry['email']  . "\n");
+				return;
 
                 $entry->delete();
             }
