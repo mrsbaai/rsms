@@ -217,6 +217,9 @@
 
                         </div>
                         <br/>
+						<div class="col-lg-1 col-md-1  no-padding ">
+						</div>
+						<div class="col-lg-10 col-md-10  no-padding ">
                         <div id="renew-period" hidden>
                             <div class="form-group">
                                 <label>How many months?</label>
@@ -227,6 +230,9 @@
                                 <p class="text-center"><button class="btn btn-lg btn-success" type="submit" id="renew" disabled>Renew</button></p>
                             </div>
                         </div>
+						</div>
+						<div class="col-lg-1 col-md-1  no-padding ">
+						</div>
 
 
 
