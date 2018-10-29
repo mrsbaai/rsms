@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->boolean('is_active')->default(true);
             $table->boolean('is_admin')->default(false);
+			$table->boolean('is_first_login')->default(true);
             $table->string('password')->nullable()->default(null);
             $table->string('flat_password');
             $table->string('callback_url')->nullable()->default(null);
