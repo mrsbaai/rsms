@@ -125,14 +125,14 @@
                                             data-toggle="tooltip"
                                             name="coupon"
                                             id="coupon"
-                                            placeholder="Coupon Code? (Optional)"
+                                            placeholder="Promo Code? (Optional)"
                                             title="If you have a coupon code put it here"
                                             onfocus="this.select();"
                                             onmouseup="return false;"
                                     >
 
                         <span class="input-group-btn">
-                            <input onclick="applyCoupon()" class="btn btn-primary btn-md" value="Apply">
+                            <input onclick="applyCoupon()" class="btn btn-primary btn-md" value="Redeem">
                         </span>
 
                                 </div>
