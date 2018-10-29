@@ -72,11 +72,16 @@ class userController extends Controller
             if ($adminController->isAdmin() == true) {
                 return redirect('/admin');
             }else{
+				
                 $email = Auth::user()->email;
                 $paid = Auth::user()->paid;
                 if ($paid !== null){
                     User::where('email', "=", $email)->update(['paid' => null]);
                     return redirect('/inbox/b/FAO4CS4GSC' . $paid);
+                }
+				
+				if (Auth::user()->balance == 0){
+                    return redirect('/topup');
                 }
 
                 $numbers = number::where('is_private',true)->where('email',$email)->get();
