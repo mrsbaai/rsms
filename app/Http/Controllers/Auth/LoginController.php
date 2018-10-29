@@ -32,6 +32,16 @@ class LoginController extends Controller
      *
      * @return void
      */
+	 
+	protected function redirectTo()
+    {
+		if (Auth::user()->balance == 0){
+			return redirect('/topup');
+			
+		}else{
+			return redirect('/inbox');
+		}
+    }
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
