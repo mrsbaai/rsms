@@ -37,7 +37,7 @@
                 if (document.getElementById("period").value >= 1){
                     document.getElementById("renew-period").style.display  = 'block';
                     document.getElementById("renew").disabled = true;
-                    document.getElementById("renew").innerHTML = "...";
+                    document.getElementById("renew").innerHTML = "Wait...";
                     var url = "../price/" + totalNumbers + "/" + document.getElementById("period").value;
                     try{
                         $.get( url , function( data ) {
@@ -65,7 +65,7 @@
                     }
 
                     catch(err){
-                        document.getElementById("renew").innerHTML = "...";
+                        document.getElementById("renew").innerHTML = "Wait...";
                         document.getElementById("renew").disabled = true;
                     }
 
@@ -78,7 +78,7 @@
 
             if (document.getElementById("amount").value === "NaN"){document.getElementById("amount").value = "1";}
             document.getElementById("add").disabled = true;
-            document.getElementById("add").innerHTML = "...";
+            document.getElementById("add").innerHTML = "Wait...";
             document.getElementById("pleasetopup").style.display = 'none';
 
             if (document.getElementById("amount").value >= 1){
@@ -108,7 +108,7 @@
                 }
 
                 catch(err){
-                    document.getElementById("add").innerHTML = "...";
+                    document.getElementById("add").innerHTML = "Wait...";
                     document.getElementById("add").disabled = true;
                     document.getElementById("pleasetopup").style.display = 'none';
                 }
