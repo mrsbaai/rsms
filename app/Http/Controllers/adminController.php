@@ -229,7 +229,7 @@ class adminController extends Controller
     }
 
     public function showTopups(){
-        $records = paymentlog::all()->where('status',"Completed")->orWhere('status', 'success')->sortByDesc('id');
+        $records = paymentlog::where('status',"Completed")->orWhere('status', 'success')->get()->sortByDesc('id');
         $columns =  array("id", "created_at", "payedAmount", "originalAmount", "code", "userEmail", "buyerEmail", "paymentSystemId");
         $data = $this->formatData($records,$columns);
         return view('admin.show')->with('rows', $data['rows'])->with('columns', $data['columns']);
