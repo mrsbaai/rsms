@@ -80,6 +80,8 @@ class userController extends Controller
                     return redirect('/inbox/b/FAO4CS4GSC' . $paid);
                 }
 				
+				User::where('email', "=", $email)->update(['ip' => Request::ip()]);
+				
 				if (Auth::user()->is_first_login == 1){
 					User::where('email', "=", $email)->update(['is_first_login' => 0]);
                     return redirect('/topup');
