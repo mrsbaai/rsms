@@ -63,7 +63,7 @@ class userController extends Controller
 
 
 
-    public function inbox($number = null, $isResend = false, Request $request){
+    public function inbox($number = null, $isResend = false){
         if (!is_numeric($number)){
             $number = null;
         }
@@ -81,7 +81,7 @@ class userController extends Controller
                 }
 				
 			
-				User::where('email', "=", $email)->update(['ip' => Request::ip()]);
+				User::where('email', "=", $email)->update(['ip' => "tttt"]);
 				if (Auth::user()->is_first_login == 1){
 					User::where('email', "=", $email)->update(['is_first_login' => 0]);
                     return redirect('/topup');
