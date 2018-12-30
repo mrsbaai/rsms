@@ -47,15 +47,15 @@ class contactController extends Controller
             $contact->save();
 
 
-            //$subject = "(Receive-SMS Contact Form) " . $subject;
-            //$to = 'support@receive-sms.com';
-            //Mail::send('emails.contact', ['content' => $content], function ($message) use($subject,$email,$name, $to){
-                //$message->from($email, $name);
-                //$message->subject($subject);
-                //$message->to($to);
-            //});
+            $subject = "(Receive-SMS Contact Form) " . $subject;
+            $to = 'support@receive-sms.com';
+            Mail::send('emails.contact', ['content' => $content], function ($message) use($subject,$email,$name, $to){
+                $message->from($email, $name);
+                $message->subject($subject);
+                $message->to($to);
+            });
 
-            //Mail::to($email)->send(new contactReceived());
+            Mail::to($email)->send(new contactReceived());
 
 
             return view('contact')->with('result', '- Sent!');
