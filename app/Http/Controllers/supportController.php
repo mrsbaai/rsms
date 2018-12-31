@@ -39,7 +39,7 @@ class supportController extends Controller
 			
 			$sup = contact::where("subject", $subject)->where("message", $content)->where("email", $email)->orderBy('id', 'desc')->first();
 			$title = $subject;
-			$content = 'https://receive-sms.com/fast/support/' . $sup['id'], $content;
+			$content = 'https://receive-sms.com/fast/support/' . $sup['id'];
 			$status = "[SUPPORT]";
 			$Simplepush = new Simplepush;
 			$Simplepush->send("W6T4J9", $title, $content, $status);
