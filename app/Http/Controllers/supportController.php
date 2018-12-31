@@ -38,11 +38,15 @@ class supportController extends Controller
 			
 			
 			$sup = contact::where("subject", $subject)->where("message", $content)->where("email", $email)->orderBy('id', 'desc')->first();
-			
-			//PushBullet::all()->link($subject, 'https://receive-sms.com/fast/support/' . $sup['id'], $content);
+			$title = $subject;
+			$content = 'https://receive-sms.com/fast/support/' . $sup['id'], $content;
+			$status = "[SUPPORT]";
+			$Simplepush = new Simplepush;
+			$Simplepush->send("W6T4J9", $title, $content, $status);
+			PushBullet::all()->link($subject, 'https://receive-sms.com/fast/support/' . $sup['id'], $content);
             Mail::to($email)->send(new contactReceived());
 
-            $subject = "(Receive-SMS Support From) " . $subject;
+            $subject = "[SUPPORT] " . $subject;
             $to = 'support@receive-sms.com';
             Mail::send('emails.contact', ['content' => $content], function ($message) use($subject,$email,$name, $to){
                 $message->from($email, $name);
