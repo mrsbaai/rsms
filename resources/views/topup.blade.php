@@ -147,7 +147,7 @@
                     <div class="form-group" id="final_amount">
 						<span>Top-Up Amount:</span><span id="top" style="float:right;">$0</span><br/>
 
-                        <div style="font-size:70%;position: relative;"><span>Final Amount:</span><span id="price" style="float:right;position: absolute; bottom: 0;">$0</span></div>
+                        <div style="font-size:70%;position: relative;"><span>Final Amount:</span><span id="price" style="float:right;">$0</span></div>
                     </div>
 
 
