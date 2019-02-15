@@ -8,7 +8,7 @@ use Mail;
 use Illuminate\Http\Request;
 use App\contact;
 use App\Mail\contactReceived;
-
+use Validator;
 
 class contactController extends Controller
 {
@@ -16,14 +16,17 @@ class contactController extends Controller
     public function store(Request $request)
     {
 
-
-        $this->validate($request, [
-            'g-recaptcha-response' => 'required|recaptcha',
+		$validator = Validator::make($request->all(), [
+			'g-recaptcha-response' => 'required|recaptcha',
             'name'    => 'required|max:50|min:5',
             'email'   => 'required|email|max:70|min:9',
             'message'     => 'required|max:600|min:15',
             'subject'     => 'required|max:255|min:10'
-        ]);
+		]);
+
+		if ($validator->fails()) {
+			return view('contact')->with('result', '- Error With The Form!');
+		}
 
 
             $name = $request->get('name');
