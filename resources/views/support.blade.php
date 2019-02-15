@@ -17,6 +17,27 @@
 
                     <h2>Support {{@$result}}</h2>
 
+                        <div class="col-md-12">
+                            <div class="form-group">
+
+                                <div id="messages">
+																	
+									@if ($errors->any())
+										<div class="alert alert-danger">
+											
+												@foreach ($errors->all() as $error)
+												<p class="lead">{{ $error }}</p>
+							
+												@endforeach
+											</ul>
+										</div>
+									@endif
+								
+								</div>
+
+                            </div>
+                        </div>
+						
                     <p class="lead">Please fill the form below and will get back to you as soon as possible.</p>
 
                     {{ Form::open(array('action' => 'supportController@send', 'id' => 'support-form'))}}
@@ -43,26 +64,6 @@
                         </div>
 
 
-                        <div class="col-md-12">
-                            <div class="form-group">
-
-                                <div id="messages">
-																	
-									@if ($errors->any())
-										<div class="alert alert-danger">
-											
-												@foreach ($errors->all() as $error)
-												<p class="lead">{{ $error }}</p>
-								
-												@endforeach
-											</ul>
-										</div>
-									@endif
-								
-								</div>
-
-                            </div>
-                        </div>
 
                         <div class="col-md-12 text-right">
                             <input type="submit" class="btn btn-success btn-send" value="SEND">
