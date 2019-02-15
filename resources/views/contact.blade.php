@@ -17,7 +17,7 @@
                     <h2>Contact Us {{@$result}}</h2>
 
      								@if ($errors->any())
-											<p class="lead">
+											<p class="lead" style="color:red;">
 												@foreach ($errors->all() as $error)
 												{{ $error }}&nbsp;
 												@endforeach
