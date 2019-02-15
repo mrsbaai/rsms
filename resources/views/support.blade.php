@@ -17,13 +17,9 @@
 
                     <h2>Support {{@$result}}</h2>
 
-                        <div class="col-md-12">
-                            <div class="form-group">
-
-                                <div id="messages">
-																	
+												
 									@if ($errors->any())
-										<div class="alert alert-danger">
+										<div class="alert-danger">
 											
 												@foreach ($errors->all() as $error)
 												<p class="lead">{{ $error }}</p>
@@ -33,10 +29,7 @@
 										</div>
 									@endif
 								
-								</div>
 
-                            </div>
-                        </div>
 						
                     <p class="lead">Please fill the form below and will get back to you as soon as possible.</p>
 

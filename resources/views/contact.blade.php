@@ -27,6 +27,24 @@
 
                     </div>
                     <p class="lead">Please fill the form below and will get back to you as soon as possible.</p>
+					
+                        <div class="col-md-12">
+                            <div class="form-group">
+												
+									@if ($errors->any())
+										<div class="alert alert-danger">
+											
+												@foreach ($errors->all() as $error)
+												<p class="lead">{{ $error }}</p>
+							
+												@endforeach
+											</ul>
+										</div>
+									@endif
+								
+	
+                            </div>
+                        </div>
 
                     {{ Form::open(array('action' => 'contactController@store', 'id' => 'contact-form'))}}
                     <div class="row">
@@ -65,26 +83,6 @@
                             </div>
                         </div>
 						
-						<div class="col-md-12">
-                            <div class="form-group">
-
-                                <div id="messages">
-																	
-									@if ($errors->any())
-										<div class="alert alert-danger">
-											<ul>
-												@foreach ($errors->all() as $error)
-													<li>{{ $error }}</li>
-												@endforeach
-											</ul>
-										</div>
-									@endif
-								
-								</div>
-
-                            </div>
-                        </div>
-
 
                         </div>
 						
