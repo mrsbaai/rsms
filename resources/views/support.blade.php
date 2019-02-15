@@ -18,17 +18,12 @@
                     <h2>Support {{@$result}}</h2>
 
 												
-									@if ($errors->any())
-										<div class="alert-danger">
-											
+     								@if ($errors->any())
 												@foreach ($errors->all() as $error)
-												<p class="lead">{{ $error }}</p>
-							
+												<p class="lead" style="color: red;">{{ $error }}</p>
 												@endforeach
-											</ul>
-										</div>
+				
 									@endif
-								
 
 						
                     <p class="lead">Please fill the form below and will get back to you as soon as possible.</p>
