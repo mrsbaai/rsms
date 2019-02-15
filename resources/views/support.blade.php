@@ -21,7 +21,7 @@
      								@if ($errors->any())
 											<p class="lead" style="color:red;">
 												@foreach ($errors->all() as $error)
-												{{ $error }}&nbsp;
+												{{ $error }}
 												@endforeach
 											</p>
 				

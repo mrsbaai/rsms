@@ -17,14 +17,14 @@ class supportController extends Controller
     public function send(Request $request)
     {
 		$validator = Validator::make($request->all(), [
-			'message'     => 'required|max:600|min:15',
+			'message'     => 'required|max:600|min:20',
             'subject'     => 'required|max:255|min:10',
 			'g-recaptcha-response' => 'recaptcha',
 		]);
 
 		if ($validator->fails()) {
 			$errors = $validator->errors();
-			return view('support')->with('result', '- NOT SENT!')->with('errors', $errors);
+			return view('support')->with('result', '- Error!')->with('errors', $errors);
 		}
 
             $name = Auth::user()->name;

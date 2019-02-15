@@ -20,14 +20,14 @@ class contactController extends Controller
 			
             'name'    => 'required|max:50|min:5',
             'email'   => 'required|email|max:70|min:9',
-            'message'     => 'required|max:600|min:15',
+            'message'     => 'required|max:600|min:20',
             'subject'     => 'required|max:255|min:10',
 			'g-recaptcha-response' => 'recaptcha'
 		]);
 
 		if ($validator->fails()) {
 			$errors = $validator->errors();
-			return view('contact')->with('result', '- NOT SENT!')->with('errors', $errors);
+			return view('contact')->with('result', '- Error!')->with('errors', $errors);
 		}
 
 
