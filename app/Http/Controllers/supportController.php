@@ -18,10 +18,13 @@ class supportController extends Controller
     {
 		$validator = Validator::make($request->all(), [
 			'g-recaptcha-response' => 'required|recaptcha',
+			'message'     => 'required|max:600|min:15',
+            'subject'     => 'required|max:255|min:10'
 		]);
 
 		if ($validator->fails()) {
-			return view('support')->with('result', '- CAPTCHA ERROR!');
+			$errors = $validator->errors();
+			return view('support')->with('result', '- Error With The Form!')->with('errors', $errors);
 		}
 
             $name = Auth::user()->name;

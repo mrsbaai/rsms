@@ -25,7 +25,8 @@ class contactController extends Controller
 		]);
 
 		if ($validator->fails()) {
-			return view('contact')->with('result', '- Error With The Form!');
+			$errors = $validator->errors();
+			return view('contact')->with('result', '- Error With The Form!')->with('errors', $errors);
 		}
 
 
