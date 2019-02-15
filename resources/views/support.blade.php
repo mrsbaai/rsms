@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 
-<title>Receive-SMS :: Support</title>
+
+@section('head')	
+	@include('recaptcha::script')
+	<title>Receive-SMS :: Support</title>
+@stop
 
 @section('content')
 
@@ -32,6 +36,12 @@
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
+						<div class="col-md-12">
+                            <div class="form-group">
+                            @include('recaptcha::widget')
+                            </div>
+                        </div>
+
 
                         <div class="col-md-12">
                             <div class="form-group">
