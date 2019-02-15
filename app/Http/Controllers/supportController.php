@@ -15,10 +15,13 @@ class supportController extends Controller
     //
     public function send(Request $request)
     {
+		$validator = Validator::make($request->all(), [
+			'g-recaptcha-response' => 'required|recaptcha',
+		]);
 
-        $this->validate($request, [
-            'g-recaptcha-response' => 'required|recaptcha',
-        ]);
+		if ($validator->fails()) {
+			return view('support')->with('result', '- CAPTCHA ERROR!');
+		}
 
             $name = Auth::user()->name;
             $email =  Auth::user()->email;

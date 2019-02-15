@@ -25,7 +25,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="form_subject">Subject</label>
-                                <input id="form_subject" type="text" name="subject" class="form-control" placeholder="Please enter a subject">
+                                <input id="form_subject" type="text" name="subject" class="form-control" placeholder="Please enter a subject" required="required">
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
