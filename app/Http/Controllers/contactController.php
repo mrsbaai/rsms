@@ -17,7 +17,7 @@ class contactController extends Controller
     {
 
 		$validator = Validator::make($request->all(), [
-			'g-recaptcha-response' => 'required|recaptcha',
+			'g-recaptcha-response' => 'recaptcha',
             'name'    => 'required|max:50|min:5',
             'email'   => 'required|email|max:70|min:9',
             'message'     => 'required|max:600|min:15',
