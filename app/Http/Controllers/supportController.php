@@ -13,10 +13,12 @@ use App\Mail\contactReceived;
 class supportController extends Controller
 {
     //
-    public function send()
+    public function send(Request $request)
     {
 
-
+        $this->validate($request, [
+            'g-recaptcha-response' => 'required|recaptcha',
+        ]);
 
             $name = Auth::user()->name;
             $email =  Auth::user()->email;
