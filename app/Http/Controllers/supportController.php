@@ -24,7 +24,7 @@ class supportController extends Controller
 
 		if ($validator->fails()) {
 			$errors = $validator->errors();
-			return view('support')->with('result', '- Error With The Form!')->with('errors', $errors);
+			return view('support')->with('result', '- NOT SENT!')->with('errors', $errors);
 		}
 
             $name = Auth::user()->name;
