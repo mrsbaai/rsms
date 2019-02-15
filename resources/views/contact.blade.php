@@ -17,31 +17,18 @@
                     <h2>Contact Us {{@$result}}</h2>
 
      								@if ($errors->any())
+											<p class="lead">
 												@foreach ($errors->all() as $error)
-												<p class="lead" style="color: red;">{{ $error }}</p>
+												{{ $error }}&nbsp;
 												@endforeach
+											</p>
 				
 									@endif
+
 								
                     <p class="lead">Please fill the form below and will get back to you as soon as possible.</p>
 					
-                        <div class="col-md-12">
-                            <div class="form-group">
-												
-									@if ($errors->any())
-										<div class="alert alert-danger">
-											
-												@foreach ($errors->all() as $error)
-												<p class="lead">{{ $error }}</p>
-							
-												@endforeach
-											</ul>
-										</div>
-									@endif
-								
-	
-                            </div>
-                        </div>
+
 
                     {{ Form::open(array('action' => 'contactController@store', 'id' => 'contact-form'))}}
                     <div class="row">

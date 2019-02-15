@@ -19,9 +19,11 @@
 
 												
      								@if ($errors->any())
+											<p class="lead">
 												@foreach ($errors->all() as $error)
-												<p class="lead" style="color: red;">{{ $error }}</p>
+												{{ $error }}&nbsp;
 												@endforeach
+											</p>
 				
 									@endif
 
