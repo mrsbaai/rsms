@@ -16,16 +16,13 @@
 
                     <h2>Contact Us {{@$result}}</h2>
 
-                    <div class="col-md-12 text-danger">
-                        <div class="form-group">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li><p>{{ $error }}</p></li>
-                                @endforeach
-                            </ul>
-                        </div>
-
-                    </div>
+     								@if ($errors->any())
+												@foreach ($errors->all() as $error)
+												<p class="lead" style="color: red;">{{ $error }}</p>
+												@endforeach
+				
+									@endif
+								
                     <p class="lead">Please fill the form below and will get back to you as soon as possible.</p>
 					
                         <div class="col-md-12">
