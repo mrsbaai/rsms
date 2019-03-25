@@ -106,6 +106,12 @@
                     <div class="col-xs-12" style="height:30px;"></div>
 
                 </div>
+				
+				<div class="row">
+				  <div class="col-md-12 text-center">
+                     <a class="btn btn-danger btn-send" href="/delete" onclick="return confirm('This will delete your account permanently. Are you sure?')">Delete Account</a>
+                  </div>
+				</div>
 
 
 
