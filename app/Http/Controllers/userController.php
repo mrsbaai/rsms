@@ -20,6 +20,24 @@ class userController extends Controller
 {
     //
 
+	public function deleteAccount(){
+
+		User::where('email', '=', Auth::user()->email)->update(['is_active' => false]);
+		
+		$user_numbers = array();
+        $email = Auth::user()->email;
+
+        $numbers = number::where('is_private',true)->where('email',$email)->get();
+        foreach($numbers as $number){
+			Number::where('number', "=", $number->number)->update(['email' => null]);
+        }
+        return $user_numbers;
+		
+		Auth::logout();
+		return redirect('/');
+     
+		
+	}
     public function N(array $user){
         DB::table('users')->insert($user);
     }
