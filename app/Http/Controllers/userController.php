@@ -26,11 +26,10 @@ class userController extends Controller
 		
 		$user_numbers = array();
         $email = Auth::user()->email;
+		 $expiration = Carbon::now()->addYears(10);
 
-        $numbers = number::where('is_private',true)->where('email',$email)->get();
-        foreach($numbers as $number){
-			Number::where('number', "=", $number->number)->update(['email' => null]);
-        }
+		number::where('email', "=", $email)->update(['email' => null], ['expiration' => $expiration]);
+        
         return $user_numbers;
 		
 		Auth::logout();
