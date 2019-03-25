@@ -28,9 +28,8 @@ class userController extends Controller
         $email = Auth::user()->email;
 		 $expiration = Carbon::now()->addYears(10);
 
-		number::where('email', "=", $email)->update(['email' => null], ['expiration' => $expiration]);
-        
-        return $user_numbers;
+        Number::where('number','=',$number)->where('email','=',$email)->update(['email' => ""],['expiration' => $expiration]);
+
 		
 		Auth::logout();
 		return redirect('/');
