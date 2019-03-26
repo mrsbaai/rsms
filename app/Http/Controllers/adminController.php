@@ -98,10 +98,10 @@ class adminController extends Controller
             $pendinglist->img2 = $img2;
             $pendinglist->save();
 			
-			//$entry = pendinglist::where('email', $test_email)->first();
+			$entry = pendinglist::where('email', $test_email)->first();
 
-            //Mail::to($entry['email'])->queue(new generic($entry));
-                //$entry->delete();
+            Mail::to($entry['email'])->queue(new generic($entry));
+               $entry->delete();
             
 
         
