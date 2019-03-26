@@ -40,7 +40,7 @@
             document.getElementById('previewIframe').src = url;
 			
 			var testurl = "/admin/sendtest/" + encodeURIComponent(text1) + "/" + encodeURIComponent(text2) + "/" + encodeURIComponent(text3) + "/" + encodeURIComponent(text4) + "/" + encodeURIComponent(heading1) + "/" + encodeURIComponent(heading2) + "/" + encodeURIComponent(heading3) + "/" + encodeURIComponent(heading4) + "/" + encodeURIComponent(img1) + "/" + encodeURIComponent(img2) + "/" + encodeURIComponent(button1) + "/" + encodeURIComponent(button2) + "/" + encodeURIComponent(button3) + "/" + btoa(buttonURL1) + "/" + btoa(buttonURL2) + "/" + btoa(buttonURL3)+ "/" + encodeURIComponent(subject);
-            document.getElementById('sendTest').src = testurl;
+            document.getElementById('sendTest').href = testurl;
         }
     </script>
 
