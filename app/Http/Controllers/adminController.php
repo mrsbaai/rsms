@@ -48,8 +48,8 @@ class adminController extends Controller
         $buttonURL2 =  base64_decode($buttonURL2);
         $button3 =  urldecode($button3);
         $buttonURL3 =  base64_decode($buttonURL3);
-        $img1 =  urldecode($img1);
-        $img2 =  urldecode($img2);
+        $img1 =  base64_decode($img1);
+        $img2 =  base64_decode($img2);
 
 		if ($subject == "nothing"){$subject = null;}
         if ($heading1 == "nothing"){$heading1 = null;}
@@ -422,8 +422,8 @@ class adminController extends Controller
         $buttonURL2 =  base64_decode($buttonURL2);
         $button3 =  urldecode($button3);
         $buttonURL3 =  base64_decode($buttonURL3);
-        $img1 =  urldecode($img1);
-        $img2 =  urldecode($img2);
+        $img1 =  base64_decode($img1);
+        $img2 =  base64_decode($img2);
 
         if ($heading1 == "nothing"){$heading1 = null;}
         if ($heading2 == "nothing"){$heading2 = null;}

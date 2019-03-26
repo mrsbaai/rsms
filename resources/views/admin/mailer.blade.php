@@ -59,7 +59,7 @@
         <div class="jumbotron welcome-texture">
             <h1>Promo mail</h1>
             {{ Form::open(array('action' => 'MaillingController@makeList', 'id' => 'mailer-form'))}}
-                <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject" required="required"><br>
+                <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject" required="required" onchange="showPreview()"><br>
 
                 <input type="text" id="heading1" name="heading1" class="form-control" placeholder="Heading 1" onchange="showPreview()"><br>
                 <textarea id="text1" name="text1" class="form-control" placeholder="Text 1" onchange="showPreview()"></textarea><br>
