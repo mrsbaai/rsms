@@ -31,6 +31,48 @@ class adminController extends Controller
 
 	public function sendtest($text1, $text2, $text3, $text4, $heading1, $heading2, $heading3, $heading4, $img1, $img2, $button1, $button2, $button3,$buttonURL1, $buttonURL2, $buttonURL3,$subject){
 		
+		$subject =  urldecode ($subject);
+		
+		$heading1 =  urldecode ($heading1);
+        $heading2 =  urldecode ($heading2);
+        $heading3 =  urldecode ($heading3);
+        $heading4 =  urldecode ($heading4);
+
+        $text2 =  urldecode ($text2);
+        $text1 =  urldecode($text1);
+        $text3 =  urldecode($text3);
+        $text4 =  urldecode($text4);
+        $button1 =  urldecode($button1);
+        $buttonURL1 =  base64_decode($buttonURL1);
+        $button2 =  urldecode($button2);
+        $buttonURL2 =  base64_decode($buttonURL2);
+        $button3 =  urldecode($button3);
+        $buttonURL3 =  base64_decode($buttonURL3);
+        $img1 =  urldecode($img1);
+        $img2 =  urldecode($img2);
+
+		if ($subject == "nothing"){$subject = null;}
+        if ($heading1 == "nothing"){$heading1 = null;}
+        if ($heading2 == "nothing"){$heading2 = null;}
+        if ($text2 == "nothing"){$text2 = null;}
+        if ($text1 == "nothing"){$text1 = null;}
+
+        if ($heading3 == "nothing"){$heading3 = null;}
+        if ($heading4 == "nothing"){$heading4 = null;}
+        if ($text3 == "nothing"){$text3 = null;}
+        if ($text4 == "nothing"){$text4 = null;}
+
+
+        if ($button1 == "nothing"){$button1 = null;}
+        if ($buttonURL1 == "nothing"){$buttonURL1 = null;}
+        if ($button2 == "nothing"){$button2 = null;}
+        if ($buttonURL2 == "nothing"){$buttonURL2 = null;}
+        if ($button3 == "nothing"){$button3 = null;}
+        if ($buttonURL3 == "nothing"){$buttonURL3 = null;}
+
+        if ($img1 == "nothing"){$img1 = null;}
+        if ($img2 == "nothing"){$img2 = null;}
+		
 
 			$pendinglist = new pendinglist();
             $pendinglist->sendingdate = null;
