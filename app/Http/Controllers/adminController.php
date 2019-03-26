@@ -20,6 +20,7 @@ use Mail;
 use App\Mail\numbersReady;
 use App\Mail\response;
 use App\Mail\generic;
+use App\pendinglist;
 
 
 use Illuminate\Mail\Markdown;
@@ -28,6 +29,40 @@ class adminController extends Controller
 {
 
 
+	public function sendtest($text1, $text2, $text3, $text4, $heading1, $heading2, $heading3, $heading4, $img1, $img2, $button1, $button2, $button3,$buttonURL1, $buttonURL2, $buttonURL3,$subject){
+		
+
+			$pendinglist = new pendinglist();
+            $pendinglist->sendingdate = null;
+            $pendinglist->email = "abdelilah.sbaai@gmail.com";
+            $pendinglist->subject = $subject;
+            $pendinglist->heading1 = $heading1;
+            $pendinglist->heading2 = $heading2;
+            $pendinglist->heading3 = $heading3;
+            $pendinglist->heading4 = $heading4;
+            $pendinglist->text1 = $text1;
+            $pendinglist->text2 = $text2;
+            $pendinglist->text3 = $text3;
+            $pendinglist->text4 = $text4;
+            $pendinglist->button1 = $button1;
+            $pendinglist->button2 = $button2;
+            $pendinglist->button3 = $button3;
+            $pendinglist->buttonURL1 = $buttonURL1;
+            $pendinglist->buttonURL2 = $buttonURL2;
+            $pendinglist->buttonURL3 = $buttonURL3;
+            $pendinglist->img1 = $img1;
+            $pendinglist->img2 = $img2;
+            $pendinglist->save();
+			
+			//$entry = pendinglist::all()->first();
+
+            //Mail::to($entry['email'])->queue(new generic($entry));
+                //$entry->delete();
+            
+
+        
+		
+	}
     Public function dashboard(){
 
 

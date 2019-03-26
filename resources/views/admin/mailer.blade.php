@@ -12,7 +12,8 @@
 
     <script>
         function showPreview(){
-
+			if (!document.getElementById('subject').value ){var subject = "nothing"}else{var subject = document.getElementById('subject').value}
+            
             if (!document.getElementById('text1').value ){var text1 = "nothing"}else{var text1 = document.getElementById('text1').value}
             if (!document.getElementById('text2').value ){var text2 = "nothing"}else{var text2 = document.getElementById('text2').value}
             if (!document.getElementById('heading1').value ){var heading1 = "nothing"}else{var heading1 = document.getElementById('heading1').value}
@@ -37,6 +38,9 @@
 
             var url = "/admin/mailer/preview/" + encodeURIComponent(text1) + "/" + encodeURIComponent(text2) + "/" + encodeURIComponent(text3) + "/" + encodeURIComponent(text4) + "/" + encodeURIComponent(heading1) + "/" + encodeURIComponent(heading2) + "/" + encodeURIComponent(heading3) + "/" + encodeURIComponent(heading4) + "/" + encodeURIComponent(img1) + "/" + encodeURIComponent(img2) + "/" + encodeURIComponent(button1) + "/" + encodeURIComponent(button2) + "/" + encodeURIComponent(button3) + "/" + btoa(buttonURL1) + "/" + btoa(buttonURL2) + "/" + btoa(buttonURL3);
             document.getElementById('previewIframe').src = url;
+			
+			var testurl = "/admin/sendtest/" + encodeURIComponent(text1) + "/" + encodeURIComponent(text2) + "/" + encodeURIComponent(text3) + "/" + encodeURIComponent(text4) + "/" + encodeURIComponent(heading1) + "/" + encodeURIComponent(heading2) + "/" + encodeURIComponent(heading3) + "/" + encodeURIComponent(heading4) + "/" + encodeURIComponent(img1) + "/" + encodeURIComponent(img2) + "/" + encodeURIComponent(button1) + "/" + encodeURIComponent(button2) + "/" + encodeURIComponent(button3) + "/" + btoa(buttonURL1) + "/" + btoa(buttonURL2) + "/" + btoa(buttonURL3)+ "/" + encodeURIComponent(subject);
+            document.getElementById('sendTest').src = testurl;
         }
     </script>
 
@@ -100,6 +104,11 @@
                     <input type="submit" class="btn btn-lg btn-success btn-send" value="Make Pending List">
                 </div>
             {{ Form::close() }}
+			
+			
+                <div class="text-right">
+                    <a id = "sendTest" target="_BLANK" class="btn btn-lg btn-success btn-send" href="" value="Send a test">
+                </div>
         </div>
     </div>
 
