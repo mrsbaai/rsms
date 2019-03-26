@@ -74,27 +74,11 @@ class adminController extends Controller
         if ($img2 == "nothing"){$img2 = null;}
 		
 
-			$pendinglist = new pendinglist();
-            $pendinglist->sendingdate = null;
-            $pendinglist->email = "abdelilah.sbaai@gmail.com";
-            $pendinglist->subject = $subject;
-            $pendinglist->heading1 = $heading1;
-            $pendinglist->heading2 = $heading2;
-            $pendinglist->heading3 = $heading3;
-            $pendinglist->heading4 = $heading4;
-            $pendinglist->text1 = $text1;
-            $pendinglist->text2 = $text2;
-            $pendinglist->text3 = $text3;
-            $pendinglist->text4 = $text4;
-            $pendinglist->button1 = $button1;
-            $pendinglist->button2 = $button2;
-            $pendinglist->button3 = $button3;
-            $pendinglist->buttonURL1 = $buttonURL1;
-            $pendinglist->buttonURL2 = $buttonURL2;
-            $pendinglist->buttonURL3 = $buttonURL3;
-            $pendinglist->img1 = $img1;
-            $pendinglist->img2 = $img2;
-            $pendinglist->save();
+			echo $subject;
+			echo $text1;
+			echo $text2;
+			echo $text3;
+			echo $text4;
 			
 			//$entry = pendinglist::all()->first();
 
