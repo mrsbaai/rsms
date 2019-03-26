@@ -101,14 +101,15 @@
 
 
                 <div class="text-right">
+				<a id = "sendTest" target="_BLANK" class="btn btn-lg btn-success btn-send" href="" value="Send a test">
                     <input type="submit" class="btn btn-lg btn-success btn-send" value="Make Pending List">
                 </div>
             {{ Form::close() }}
 			
 			
-                <div class="text-right">
-                    <a id = "sendTest" target="_BLANK" class="btn btn-lg btn-success btn-send" href="" value="Send a test">
-                </div>
+
+                    
+           
         </div>
     </div>
 
