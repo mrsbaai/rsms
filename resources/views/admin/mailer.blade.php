@@ -40,7 +40,7 @@
             document.getElementById('previewIframe').src = url;
 			
 			var testurl = "/admin/sendtest/" + encodeURIComponent(text1) + "/" + encodeURIComponent(text2) + "/" + encodeURIComponent(text3) + "/" + encodeURIComponent(text4) + "/" + encodeURIComponent(heading1) + "/" + encodeURIComponent(heading2) + "/" + encodeURIComponent(heading3) + "/" + encodeURIComponent(heading4) + "/" + encodeURIComponent(img1) + "/" + encodeURIComponent(img2) + "/" + encodeURIComponent(button1) + "/" + encodeURIComponent(button2) + "/" + encodeURIComponent(button3) + "/" + btoa(buttonURL1) + "/" + btoa(buttonURL2) + "/" + btoa(buttonURL3)+ "/" + encodeURIComponent(subject);
-           
+            document.getElementById('sendTest').href = testurl;
         }
     </script>
 
@@ -59,7 +59,7 @@
         <div class="jumbotron welcome-texture">
             <h1>Promo mail</h1>
             {{ Form::open(array('action' => 'MaillingController@makeList', 'id' => 'mailer-form'))}}
-                <input type="text" name="subject" class="form-control" placeholder="Subject" required="required"><br>
+                <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject" required="required"><br>
 
                 <input type="text" id="heading1" name="heading1" class="form-control" placeholder="Heading 1" onchange="showPreview()"><br>
                 <textarea id="text1" name="text1" class="form-control" placeholder="Text 1" onchange="showPreview()"></textarea><br>
