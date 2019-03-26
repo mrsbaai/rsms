@@ -31,6 +31,8 @@ class adminController extends Controller
 
 	public function sendtest($text1, $text2, $text3, $text4, $heading1, $heading2, $heading3, $heading4, $img1, $img2, $button1, $button2, $button3,$buttonURL1, $buttonURL2, $buttonURL3,$subject){
 		
+		
+		$test_email = "abdelilah.sbaai@gmail.com";
 		$subject =  urldecode ($subject);
 		
 		$heading1 =  urldecode ($heading1);
@@ -76,7 +78,7 @@ class adminController extends Controller
 
 			$pendinglist = new pendinglist();
             $pendinglist->sendingdate = null;
-            $pendinglist->email = "abdelilah.sbaai@gmail.com";
+            $pendinglist->email = $test_email;
             $pendinglist->subject = $subject;
             $pendinglist->heading1 = $heading1;
             $pendinglist->heading2 = $heading2;
@@ -96,7 +98,7 @@ class adminController extends Controller
             $pendinglist->img2 = $img2;
             $pendinglist->save();
 			
-			//$entry = pendinglist::all()->first();
+			//$entry = pendinglist::where('email', $test_email)->first();
 
             //Mail::to($entry['email'])->queue(new generic($entry));
                 //$entry->delete();
