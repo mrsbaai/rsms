@@ -59,8 +59,12 @@ class SendPromoMails extends Command
             if(carbon::now()->gte(carbon::parse($entry['sendingdate']))){
 
                 $mailable = new flat($entry);
-                $mailable->replyTo($entry['from_email'], $entry['from_name']);
-                $mailable->from($entry['from_email'], $entry['from_name']);
+
+                if ($entry['from_email'] != "" and $entry['from_email'] != null and $entry['from_name'] != "" and $entry['from_name'] != null){
+                    $mailable->replyTo($entry['from_email'], $entry['from_name']);
+                    $mailable->from($entry['from_email'], $entry['from_name']);
+                }
+
 
                 Mail::to($entry['email'])
                     ->queue($mailable);
