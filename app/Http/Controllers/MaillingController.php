@@ -281,6 +281,7 @@ class MaillingController extends Controller
 
             $mailable = new flat($data);
             $mailable->replyTo(Input::get('from_email'), Input::get('from_name'));
+            $mailable->from(Input::get('from_email'), Input::get('from_name'));
             Mail::to(Input::get('test_email'))
                 ->later($when, $mailable);
 

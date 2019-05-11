@@ -24,7 +24,6 @@ class flat extends Mailable
     public function __construct($data)
     {
         $this->htm = $data['html'];
-
         $this->subj = $data['subject'];
 
 
