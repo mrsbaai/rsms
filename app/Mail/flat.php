@@ -19,7 +19,7 @@ class flat extends Mailable
 
     protected $htm;
     protected $subj;
-
+    protected $theme = 'none';
 
     public function __construct($data)
     {
