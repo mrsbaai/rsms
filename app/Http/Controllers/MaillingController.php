@@ -274,7 +274,7 @@ class MaillingController extends Controller
             }
         }else{
             $when = Carbon::now();
-            $email =  $data['test_email'];
+            $email =  Input::get('test_name');
             Mail::to($email)->from(Input::get('from_email'), Input::get('from_name'))->later($when, new freeNumber($data));
 
         }
