@@ -255,10 +255,12 @@ class MaillingController extends Controller
 
 
     public function makeFlatList(){
-
+return Input::get('from_name');
 
         $data['subject'] = Input::get('subject');
         $data['html'] = Input::get('html');
+
+
 
         if(Input::get('is_test') == false){
             $type =  Input::get('list');
@@ -279,7 +281,7 @@ class MaillingController extends Controller
 
             $mailable = new flat($data);
             $mailable->replyTo(Input::get('from_email'), Input::get('from_name'));
-            Mail::to(Input::get('test_name'))
+            Mail::to(Input::get('test_email'))
                 ->later($when, $mailable);
 
         }

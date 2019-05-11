@@ -40,7 +40,7 @@ class flat extends Mailable
             ->subject($this->subj)
             ->with([
                 'html' => $this->htm,
-   
+
             ]);
 
     }
