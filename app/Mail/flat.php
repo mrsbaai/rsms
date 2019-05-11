@@ -19,7 +19,6 @@ class flat extends Mailable
 
     protected $htm;
     protected $subj;
-    protected $theme = 'none';
 
     public function __construct($data)
     {
@@ -36,6 +35,7 @@ class flat extends Mailable
      */
     public function build()
     {
+        config(['mail.markdown.theme' => 'none']);
         return $this->markdown('emails.flat')
             ->subject($this->subj)
             ->with([
