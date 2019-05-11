@@ -254,7 +254,7 @@ class MaillingController extends Controller
 
 
     public function makeFlatList(){
-        
+
 
         $data['subj'] = Input::get('subject');
         $data['html'] = Input::get('html');
