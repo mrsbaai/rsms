@@ -21,7 +21,7 @@ class CreateflatpeninglistTable extends Migration
             $table->string('subject', '255')->nullable()->default(null);
             $table->string('from_email')->nullable()->default(null);
             $table->string('from_name')->nullable()->default(null);
-            $table->string('html')->nullable()->default(null);
+            $table->MEDIUMTEXT('html')->nullable()->default(null);
 
             $table->timestamps();
         });

@@ -25,8 +25,8 @@
             <h1>Promo mail</h1>
             {{ Form::open(array('action' => 'MaillingController@makeFlatList', 'id' => 'mailer-form'))}}
                 <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject" required="required"><br>
-                <input type="text" id="from_name" name="from_name" class="form-control" placeholder="From name" required="required"><br>
-                <input type="text" id="from_email" name="from_email" class="form-control" placeholder="From email" required="required"><br>
+                <input type="text" id="from_name" name="from_name" class="form-control" placeholder="From name" ><br>
+                <input type="text" id="from_email" name="from_email" class="form-control" placeholder="From email" ><br>
 
                 <textarea id="html" name="html" class="form-control" placeholder="html"></textarea><br>
 
