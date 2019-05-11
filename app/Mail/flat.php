@@ -17,7 +17,8 @@ class flat extends Mailable
      * @return void
      */
 
-    protected $html;
+    protected $htm;
+    protected $subj;
 
 
     public function __construct($data)
