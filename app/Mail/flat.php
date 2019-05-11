@@ -25,7 +25,7 @@ class flat extends Mailable
         $this->htm = $data['html'];
 
         $this->subj = $data['subject'];
-        $this->email = $data['email'];
+
 
     }
 
@@ -40,7 +40,7 @@ class flat extends Mailable
             ->subject($this->subj)
             ->with([
                 'html' => $this->htm,
-                'email' => $this->email
+   
             ]);
 
     }
