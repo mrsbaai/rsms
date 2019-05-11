@@ -24,6 +24,7 @@ return array(
     'CreateSubscribersTable' => $baseDir . '/database/migrations/2017_02_10_145922_CreateSubscribersTable.php',
     'CreateSuppressionListTable' => $baseDir . '/database/migrations/2017_07_12_122534_CreateSuppressionListTable.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2017_01_30_185643_CreateUsersTable.php',
+    'CreateflatpeninglistTable' => $baseDir . '/database/migrations/2019_05_11_180037_createflatpeninglistTable.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'DivisionByZeroError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
     'Error' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/Error.php',

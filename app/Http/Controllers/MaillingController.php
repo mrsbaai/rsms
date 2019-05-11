@@ -18,6 +18,7 @@ use App\Mail\freeNumber;
 use Log;
 
 use App\pendinglist;
+use App\flatpendinglist;
 use App\suppression;
 
 use carbon\carbon;
@@ -248,6 +249,38 @@ class MaillingController extends Controller
 
         flash()->overlay("Pending List Made", 'Good luck');
         return view("admin.mailer");
+
+    }
+
+
+    public function makeFlatList(){
+        
+
+        $data['subj'] = Input::get('subject');
+        $data['html'] = Input::get('html');
+
+        if(Input::get('is_test') == false){
+            $type =  Input::get('list');
+            $emails = $this->generateEmailList($type);
+            foreach($emails as $email) {
+                $flatpendinglist = new flatpendinglist();
+                $flatpendinglist->sendingdate = carbon::parse(Input::get('sendingdate'));
+                $flatpendinglist->email = $email;
+                $flatpendinglist->from_email = Input::get('from_email');
+                $flatpendinglist->from_name = Input::get('from_name');
+                $flatpendinglist->subject = $data['subj'];
+                $flatpendinglist->html = $data['html'];
+                $flatpendinglist->save();
+            }
+        }else{
+            $when = Carbon::now();
+            $email =  $data['test_email'];
+            Mail::to($email)->from(Input::get('from_email'), Input::get('from_name'))->later($when, new freeNumber($data));
+
+        }
+
+        flash()->overlay("Done!", '---->');
+        return view("admin.flatMailer");
 
     }
 

@@ -51,6 +51,7 @@
                 <li><a href="{{ url('/admin/contact') }}">Contact</a></li>
                 <li><a href="{{ url('/admin/support') }}">Support</a></li>
                 <li><a href="{{ url('/admin/mailer') }}">Promo Mail</a></li>
+                <li><a href="{{ url('/admin/mailer') }}">Flat Mail</a></li>
                 <li>
                     <div class="dropdown">
                         <button class="btn btn-clean dropdown-toggle" type="button" data-toggle="dropdown">SHOW

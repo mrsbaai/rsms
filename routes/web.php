@@ -59,6 +59,7 @@ Route::get('/ppsned', 'PaymentController@ppsend');
 Route::get('/admin', 'adminController@dashboard');
 Route::get('/admin/dashboard', 'adminController@dashboard');
 Route::get('/admin/mailer', 'adminController@mailer');
+Route::get('/admin/flatmailer', 'adminController@flatMailer');
 Route::get('/admin/support', 'adminController@support');
 
 Route::get('/admin/contact', 'adminController@contact');

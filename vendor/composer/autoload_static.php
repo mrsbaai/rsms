@@ -376,6 +376,7 @@ class ComposerStaticInit45de193095ab851f93bb59cf8632511a
         'CreateSubscribersTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_10_145922_CreateSubscribersTable.php',
         'CreateSuppressionListTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_12_122534_CreateSuppressionListTable.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_30_185643_CreateUsersTable.php',
+        'CreateflatpeninglistTable' => __DIR__ . '/../..' . '/database/migrations/2019_05_11_180037_createflatpeninglistTable.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'DivisionByZeroError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
         'Error' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/Error.php',
