@@ -271,7 +271,7 @@ class MaillingController extends Controller
                 $flatpendinglist->email = $email;
                 $flatpendinglist->from_email = Input::get('from_email');
                 $flatpendinglist->from_name = Input::get('from_name');
-                $flatpendinglist->subject = $data['subj'];
+                $flatpendinglist->subject = $data['subject'];
                 $flatpendinglist->html = $data['html'];
                 $flatpendinglist->save();
             }
