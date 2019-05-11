@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\flat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -274,8 +275,12 @@ class MaillingController extends Controller
             }
         }else{
             $when = Carbon::now();
-            $email =  Input::get('test_name');
-            Mail::to($email)->from(Input::get('from_email'), Input::get('from_name'))->later($when, new freeNumber($data));
+
+
+            $mailable = new flat($data);
+            $mailable->replyTo(Input::get('from_email'), Input::get('from_name'));
+            Mail::to(Input::get('test_name'))
+                ->later($when, $mailable);
 
         }
 
