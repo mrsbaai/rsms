@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\flatpendinglist;
+use App\Mail\flat;
 use Illuminate\Console\Command;
 use carbon\carbon;
 use App\pendinglist;
@@ -46,6 +48,23 @@ class SendPromoMails extends Command
             if(carbon::now()->gte(carbon::parse($entry['sendingdate']))){
 
                 Mail::to($entry['email'])->queue(new generic($entry));
+                $this->info($entry['subject'] . " -> " . $entry['email']  . "\n");
+                $entry->delete();
+            }
+
+        }
+
+        $flatpendinglist = flatpendinglist::all();
+        foreach($flatpendinglist as $entry){
+            if(carbon::now()->gte(carbon::parse($entry['sendingdate']))){
+
+                $mailable = new flat($entry);
+                $mailable->replyTo($entry['from_email'], $entry['from_name']);
+                $mailable->from($entry['from_email'], $entry['from_name']);
+
+                Mail::to($entry['email'])
+                    ->queue($mailable);
+
                 $this->info($entry['subject'] . " -> " . $entry['email']  . "\n");
                 $entry->delete();
             }
