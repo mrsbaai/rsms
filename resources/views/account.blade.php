@@ -122,6 +122,55 @@
     </div>
 
 
+    <div class="container width-fix col-sm-12">
+        <div class="jumbotron welcome-texture">
+            <h3>A Simple Callback Service</h3>
+            <p>Set up a Callback URL above. A request will be sent for each received SMS message. The request parameters are sent via a GET to your Callback URL.</p>
+            <p>The request parameters sent via a GET to your URL include the following parameters:</p>
+
+            <div class="container-fluid no-padding ">
+                <div class=" col-lg-3 col-md-3 ">
+                </div>
+                <div class="col-lg-6 col-md-6  no-padding ">
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                <th>sender</th>
+                                <td>Sender number Ex: 1234567890</td>
+                            </tr>
+                            <tr>
+                                <th>receiver</th>
+                                <td>Recipient number Ex: 1234567890</td>
+                            </tr>
+                            <tr>
+                                <th>message</th>
+                                <td>Content of the message</td>
+                            </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </div>
+                <div class=" col-lg-3 col-md-3 ">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
 
 @stop
 

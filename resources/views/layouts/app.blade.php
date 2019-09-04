@@ -48,7 +48,6 @@
                     <li><a href="{{ url('/inbox') }}">Inbox</a></li>
                     <li><a href="{{ url('/numbers') }}">Numbers</a></li>
                     <li><a href="{{ url('/account') }}">Account</a></li>
-                    <li><a href="{{ url('/api') }}">Api</a></li>
                     <li><a href="{{ url('/support') }}">Support</a></li>
 
 
@@ -66,7 +65,6 @@
                     <li><a href="/pricing">Pricing</a></li>
                     <li><a href="/contact">Contact</a></li>
                     <li><a href="/faqs">Faqs</a></li>
-                    <li><a href="{{ url('/api') }}">Api</a></li>
                     <li><a href="{{ url('/login') }}">Login</a></li>
                     <li><a href="{{ url('/register') }}">Register</a></li>
                 @endif
