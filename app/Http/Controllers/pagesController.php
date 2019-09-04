@@ -136,7 +136,7 @@ class pagesController extends Controller
     }
     Public function faqs(){
         //return "Updating";
-        return view('faqs2');
+        return view('faqs');
     }
     Public function recover(){
         return view('recover');
