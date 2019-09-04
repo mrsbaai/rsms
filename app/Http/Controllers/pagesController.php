@@ -135,7 +135,8 @@ class pagesController extends Controller
         return view('pricing');
     }
     Public function faqs(){
-        return view('faqs');
+        return "Updating";
+        //return view('faqs');
     }
     Public function recover(){
         return view('recover');
