@@ -136,7 +136,7 @@ class pagesController extends Controller
     }
     Public function faqs(){
         //return "Updating";
-        return view('faqs');
+        return view('faqs_2');
     }
     Public function recover(){
         return view('recover');
@@ -144,7 +144,7 @@ class pagesController extends Controller
 
 
     public function api(){
-        return view('api');
+        return view('api_2');
     }
     Public Function showMessages($number){
         if (Auth::check()){
