@@ -21,6 +21,8 @@
                     <p>You can use one of the demo numbers from the home page, or register a free account and buy private numbers. </p>
                     <p><b>Where can I read inbound messages?</b></p>
                     <p>For the demo phone numbers, inbound messages are shown on the home page. If you have private numbers you need to login to your account to see inbound messages</p>
+                    <p><b>Can I integrate this in my website?</b></p>
+                    <p>Yes, we have a simple callback service.</p>
                     <p><b>How to get more information?</b></p>
                     <p>If you have any question or concerns it's simple - just <a href="/contact">Contact Us</a>.</p>
 
