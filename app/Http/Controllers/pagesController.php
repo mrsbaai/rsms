@@ -136,7 +136,7 @@ class pagesController extends Controller
     }
     Public function faqs(){
         //return "Updating";
-        return view('faqs_2');
+        return view('faqs');
     }
     Public function recover(){
         return view('recover');
@@ -144,7 +144,7 @@ class pagesController extends Controller
 
 
     public function api(){
-        return view('api_2');
+        return view('api');
     }
     Public Function showMessages($number){
         if (Auth::check()){
@@ -154,7 +154,7 @@ class pagesController extends Controller
             $messageController = new messagesController();
             $messages = $messageController->getPublicMessages($number);
             $lastMessage =  $messages[0]['id'];
-            return view('home_number_inbox_2')->with('current', $number)->with('messages', $messages)->with('lastMessage', $lastMessage);
+            return view('home_number_inbox')->with('current', $number)->with('messages', $messages)->with('lastMessage', $lastMessage);
         }
     }
 
