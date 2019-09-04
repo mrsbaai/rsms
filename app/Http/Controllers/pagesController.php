@@ -154,7 +154,7 @@ class pagesController extends Controller
             $messageController = new messagesController();
             $messages = $messageController->getPublicMessages($number);
             $lastMessage =  $messages[0]['id'];
-            return view('home_number_inbox')->with('current', $number)->with('messages', $messages)->with('lastMessage', $lastMessage);
+            return view('home_number_inbox_2')->with('current', $number)->with('messages', $messages)->with('lastMessage', $lastMessage);
         }
     }
 
