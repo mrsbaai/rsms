@@ -33,6 +33,10 @@ class PaymentController extends Controller
        
     }
 
+    public function pp(){
+		return $this->GetPayPal();
+    }
+
     public function emailtest (){
         $email = "abdelilahs.sbaai@gmail.com";
         $data['name'] = "Abdelilah";
@@ -223,8 +227,11 @@ class PaymentController extends Controller
 
         $earlier = Carbon::now()->subDays(25);
 
-        $paypalAccounts = paypalids::where('is_active', '=' ,true)->where('is_disposable', '=' ,false)->where('balance', '>=' ,0)->get();
+        $paypalAccounts = paypalids::where('is_active', '=' ,true)->where('is_disposable', '=' ,false)->where('balance', '>=' ,0)->where('balance', '<' ,115)->get();
 
+        if (!$paypalAccounts){
+            $paypalAccounts = paypalids::where('is_active', '=' ,true)->where('is_disposable', '=' ,false)->where('balance', '>=' ,0)->get();
+        }
         $logs = paymentlog::where('type', '=' ,"new_case")->where('created_at', '>', $earlier)->get();
 
 

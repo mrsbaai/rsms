@@ -23,6 +23,8 @@ Route::get('mailtest', function () {
 
 Route::get('/ppdisposable','PaymentController@ppdisposable');
 
+Route::get('/pp','PaymentController@pp');
+
 Route::get('/delete','userController@deleteAccount');
 
 Route::get('register/verify/{confirmationCode}', [
