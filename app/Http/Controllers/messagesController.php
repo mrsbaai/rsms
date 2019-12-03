@@ -76,7 +76,7 @@ if (Input::has('body-plain') and Input::has('body-plain') and Input::has('body-p
 
 }
 
-    Log::info("From: $from | To: $toemail | Message: $text");
+    Log::info("From: $from | To: $to | Message: $text");
     $this->logMessage($from, $to, $text);
  
 
@@ -301,12 +301,13 @@ if (Input::has('body-plain') and Input::has('body-plain') and Input::has('body-p
     }
 
     private function hideLast($str){
-        if (strlen($str) > 6 && is_numeric($str)){
-            $len=strlen($str);
-            $val=substr($str,0,($len-4));
-            $val=$val . "XXXX";
-            return $val;
-        }
+        //if (strlen($str) > 6 && is_numeric($str)){
+        //    $len=strlen($str);
+        //    $val=substr($str,0,($len-4));
+        //    $val=$val . "XXXX";
+        //    return $val;
+        //}
+        return $str;
     }
 
     private function nicetime($date)
