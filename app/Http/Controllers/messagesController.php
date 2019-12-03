@@ -57,6 +57,9 @@ class messagesController extends Controller
 
     }
 
+    public function textnow(){
+    Log::info($_REQUEST);
+    }
 
     public function genericLogSMS($from = null,$to = null,$text = null){
 
