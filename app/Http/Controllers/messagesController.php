@@ -78,7 +78,7 @@ if (Input::has('body-plain') and Input::has('body-plain') and Input::has('body-p
 
 }
 
-    Log::info("From: $from | To: $to | Message: $text");
+
     $this->logMessage($from, $to, $text);
  
 
