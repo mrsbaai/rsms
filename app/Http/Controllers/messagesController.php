@@ -64,7 +64,7 @@ if (Input::has('body-plain') and Input::has('body-plain') and Input::has('body-p
     $toemail = Input::get('To');
     $subject = Input::get('Subject');
 
-    $split = split("Message from ", $subject);
+    $split = explode("Message from ", $subject, 2);
     $from = $split[1];
 }
 
