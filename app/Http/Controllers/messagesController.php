@@ -59,10 +59,14 @@ class messagesController extends Controller
 
     public function textnow(){
     
+if (Input::has('body-plain') and Input::has('body-plain') and Input::has('body-plain')){
+    $text = Input::get('body-plain');
+    $toemail = Input::get('To');
+    $subject = Input::get('Subject');
 
-    if(Input::has('body-plain')){$text = Input::get('body-plain');}
-    if(Input::has('To')){$toemail = Input::get('To');}
-    if(Input::has('Subject')){$from = Input::get('Subject');}
+    $split = split("Message from ", $subject);
+    $from = $split[1];
+}
 
 
     Log::info("From: $from | To: $toemail | Message: $text");
