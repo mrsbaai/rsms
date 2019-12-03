@@ -61,7 +61,7 @@ class messagesController extends Controller
     
 
     if(Input::has('body-plain')){$text = Input::get('body-plain');}
-    if(Input::has('To')){$toemail = Input::get('to');}
+    if(Input::has('To')){$toemail = Input::get('To');}
     if(Input::has('Subject')){$from = Input::get('Subject');}
 
 
