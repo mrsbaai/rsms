@@ -58,7 +58,13 @@ class messagesController extends Controller
     }
 
     public function textnow(){
-    Log::info($_REQUEST);
+    
+
+    if(Input::has('body-plain')){$text = Input::get('body-plain');}
+    if(Input::has('to')){$toemail = Input::get('to');}
+    if(Input::has('subject')){$from = Input::get('Subject');}
+    Log::info("From: $from | To: $to | Message: $text");
+
     }
 
     public function genericLogSMS($from = null,$to = null,$text = null){
