@@ -66,6 +66,8 @@ if (Input::has('body-plain') and Input::has('body-plain') and Input::has('body-p
 
     $subject = str_replace("Message from ","",$subject);
     $subject = str_replace("textnow","",$subject);
+    
+    $subject = str_replace("+","",$subject);
     $from = $subject;
 
 
