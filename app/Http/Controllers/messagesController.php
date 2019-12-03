@@ -63,13 +63,18 @@ if (Input::has('body-plain') and Input::has('body-plain') and Input::has('body-p
     $text = Input::get('body-plain');
     $toemail = Input::get('To');
     $subject = Input::get('Subject');
-
     $split = explode("Message from ", $subject, 2);
     $from = $split[1];
+
+    $number = number::where('network_login','=',$toemail)->first();
+    $to = $number["number"];
+
+
+
 }
 
 
-    Log::info("From: $from | To: $toemail | Message: $text");
+    Log::info("From: $from | To: $to | Message: $text");
 
     }
 
