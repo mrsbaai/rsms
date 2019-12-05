@@ -95,7 +95,6 @@ if ($number["email"] == "SMS-Verification"){
        curl_close ($ch);
        return $response;
 
-    Log::info($response);
         
 }else{
     $this->logMessage($from, $to, $text);
