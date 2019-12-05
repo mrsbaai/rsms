@@ -60,6 +60,8 @@ class messagesController extends Controller
     public function textnow(){
     
 if (Input::has('body-plain') and Input::has('body-plain') and Input::has('body-plain')){
+
+
     $text = Input::get('body-plain');
     $toemail = Input::get('To');
     $subject = Input::get('Subject');
@@ -78,8 +80,16 @@ if (Input::has('body-plain') and Input::has('body-plain') and Input::has('body-p
 
 }
 
-
+if ($number["email"] == "SMS-Verification"){
+    $url = "https://sms-verification.net/log/$from/$to/$text";
+    $html = View::make($url)->render();
+    
+    Log::info($html);
+        
+}else{
     $this->logMessage($from, $to, $text);
+}
+    
  
 
     }
