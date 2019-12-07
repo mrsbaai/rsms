@@ -47,7 +47,7 @@
 
                     <div class="form-group">
                             <label>Set as checked number?</label>
-                            <input class="form-check-input" type="radio" name="set_as_checked" id="set_as_checked" value="Set as checked number" checked>
+                            <input class="form-check-input" type="checkbox" name="set_as_checked" id="set_as_checked" value="Set as checked number" checked>
                         <br>
                     </div>
     
