@@ -511,7 +511,7 @@ class adminController extends Controller
 
     
     public function addNumbers(){
-        return view('admin.addnumbers');
+        return view('admin.addNumber');
     }
 
     
