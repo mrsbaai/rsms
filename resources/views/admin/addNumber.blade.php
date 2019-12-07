@@ -14,7 +14,7 @@
         <div class="jumbotron welcome-texture">
             <h3>Add Numbers</h3>
 
-            {{ Form::open(array('action' => 'adminController@giveNumbers', 'id' => 'add-form'))}}
+            {{ Form::open(array('action' => 'adminController@doAddNumber', 'id' => 'add-number-form'))}}
             <div class="container-fluid no-padding ">
                 <div class=" col-lg-3 col-md-3 ">
                 </div>
