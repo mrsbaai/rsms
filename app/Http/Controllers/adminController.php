@@ -114,6 +114,8 @@ class adminController extends Controller
             $records = paypalids::all();
             $columns =  array("email", "balance", "is_active", "notes", "is_disposable", "paypalid");
             $data = $this->formatData($records,$columns);
+
+
             return view('admin.dashboard')->with('rows', $data['rows'])->with('columns', $data['columns']);
 
         }else{
@@ -505,6 +507,32 @@ class adminController extends Controller
 
     public function give(){
         return view('admin.give');
+    }
+
+    
+    public function addNumbers(){
+        return view('admin.addnumbers');
+    }
+
+    
+    public function doAddNumber(){
+
+        $number = new number();
+
+        $number->number = Input::get('number');
+        $number->network_login = Input::get('user');
+        $number->network_password = Input::get('password');
+        $number->network = Input::get('network');
+        if (Input::get('set_as_checked') == true){
+            $number->last_checked = carbon::now();
+        }
+        
+        $number->save();
+
+        flash()->overlay('Number Added ;)', 'Nice!');
+
+        return $this->addNumbers();
+
     }
 
     public function addCoupon(){

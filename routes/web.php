@@ -82,6 +82,9 @@ Route::get('/admin/support/delete/{id}', 'adminController@deleteEmail');
 Route::get('/admin/give', 'adminController@give');
 Route::post('/admin/give', 'adminController@giveNumbers');
 
+Route::get('/admin/addnumbers', 'adminController@addNumbers');
+Route::post('/admin/addnumbers', 'adminController@doAddNumber');
+
 Route::get('/admin/blacklists', 'adminController@blacklists');
 
 Route::get('/admin/coupon', 'adminController@coupon');

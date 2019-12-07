@@ -70,6 +70,7 @@
                         <button class="btn btn-clean dropdown-toggle" type="button" data-toggle="dropdown">EDIT
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
+                            <li><a href="{{ url('/admin/addnumbers') }}">Add Numbers</a></li>
                             <li><a href="{{ url('/admin/give') }}">Give Numbers</a></li>
                             <li><a href="{{ url('/admin/coupon') }}">Make Coupon</a></li>
                         </ul>
