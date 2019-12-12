@@ -521,7 +521,7 @@ class adminController extends Controller
 
         $number->number = Input::get('number');
         $number->network_login = Input::get('user');
-        $number->network_password = Input::get('password');
+        $number->network_password = Input::get('pwd');
         $number->network = Input::get('network');
         if (Input::get('set_as_checked') == true){
             $number->last_checked = carbon::now();
