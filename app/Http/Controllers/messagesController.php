@@ -58,48 +58,51 @@ class messagesController extends Controller
     }
 
     public function textnow(){
-    
-if (Input::has('body-plain') and Input::has('body-plain') and Input::has('body-plain')){
+        Log::info($_REQUEST->json()->all());
+        
+        if (Input::has('body-plain') and Input::has('To') and Input::has('Subject')){
 
 
-    $text = Input::get('body-plain');
-    $toemail = Input::get('To');
-    $subject = Input::get('Subject');
+            $text = Input::get('body-plain');
+            $toemail = Input::get('To');
+            $subject = Input::get('Subject');
 
-    $subject = str_replace("Message from ","",$subject);
-    $subject = str_replace("textnow","",$subject);
-    
-    $subject = str_replace("+","",$subject);
-    $from = $subject;
-
-
-    $number = number::where('network_login','=',$toemail)->first();
-    $to = $number["number"];
+            $subject = str_replace("Message from ","",$subject);
+            $subject = str_replace("textnow","",$subject);
+            
+            $subject = str_replace("+","",$subject);
+            $from = $subject;
 
 
-
-}
-
-if ($number["email"] == "SMS-Verification"){
-    $url = "https://sms-verification.net/log/$from/$to/$text";
+            $number = number::where('network_login','=',$toemail)->first();
+            $to = $number["number"];
 
 
-  
-       $ch = curl_init();
-       curl_setopt($ch, CURLOPT_URL, $url);
-       curl_setopt($ch, CURLOPT_POST, 0);
-       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  
-       $response = curl_exec ($ch);
-       $err = curl_error($ch);  //if you need
-       curl_close ($ch);
-       return $response;
+
+        }
+
+
+
+        if ($number["email"] == "SMS-Verification"){
+            $url = "https://sms-verification.net/log/$from/$to/$text";
+
 
         
-}else{
-    $this->logMessage($from, $to, $text);
-}
-    
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        
+            $response = curl_exec ($ch);
+            $err = curl_error($ch);  //if you need
+            curl_close ($ch);
+            return $response;
+
+                
+        }else{
+            $this->logMessage($from, $to, $text);
+        }
+            
  
 
     }
