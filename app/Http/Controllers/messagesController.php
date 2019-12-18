@@ -58,7 +58,7 @@ class messagesController extends Controller
     }
 
     public function textnow(){
-        Log::info($_REQUEST->json()->all());
+        Log::info($_REQUEST);
         
         if (Input::has('body-plain') and Input::has('To') and Input::has('Subject')){
 
