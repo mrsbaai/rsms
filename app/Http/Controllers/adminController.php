@@ -332,11 +332,11 @@ class adminController extends Controller
     
     public function addtextnow(){
 
-        $bytes = openssl_random_pseudo_bytes(2);
 
-
+        $chars = "abcdefghijklmnKLMNOPQRSTUVWXYZ0123456789-_@?!";
+        $password =  substr(str_shuffle($chars),0,8);
         $email = "ddd@ss.ff";
-        $password =  bin2hex($bytes);
+
         return view('numbersadmin.addTextnow')->with('email', $email)->with('password', $password);
     }
 
