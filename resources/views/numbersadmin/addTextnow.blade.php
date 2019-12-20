@@ -12,7 +12,7 @@
 
     <div class="container width-fix col-sm-12">
         <div class="jumbotron welcome-texture">
-            <h3>Add Numbers</h3>
+            <h3>New Textnow Number</h3>
 
             {{ Form::open(array('action' => 'adminController@doAddNumber', 'id' => 'add-number-form'))}}
             <div class="container-fluid no-padding ">
