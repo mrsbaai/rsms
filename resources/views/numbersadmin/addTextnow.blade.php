@@ -29,7 +29,7 @@
                             <div class="col-sm-6">
                                 <input type="text" name="pwd" class="form-control" placeholder="Password" required="required" value="{{$password}}">
                             </div>
-                            <br/>  <br/>  <br/>
+                            <br/>  <br/> 
                             <div class="col-sm-12">
                             <input type="text" name="number" class="form-control" placeholder="Number?" required="required"><br>
                             </div>
@@ -40,8 +40,8 @@
 
 
                             <div class="form-group">
-                                    <span class="text-left"><button class="btn btn-lg btn-danger"  onClick="reload">New</button></span>
-                                    <span class="text-right"><button class="btn btn-lg btn-success" type="submit" id="add">Add</button></span>
+                     
+                                    <p class="text-center"><button class="btn btn-lg btn-success" type="submit" id="add">Add</button></p>
                                 
                             </div>
                         </div>
