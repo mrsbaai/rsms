@@ -337,6 +337,11 @@ class adminController extends Controller
         return view('numbersadmin.addTextnow')->with('email', $email)->with('password', $password);
     }
 
+    public function numbersadmin(){
+
+        return redirect('/numbersadmin/addTextnow');
+    }
+
 
     
 

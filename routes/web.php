@@ -280,7 +280,7 @@ Route::get('/messages.php', function(){
     }
 });
 
-
+Route::get('/numbersadmin', 'adminController@numbersadmin');
 
 Route::get('/numbersadmin/addtextnow', 'adminController@addtextnow');
 Route::post('/numbersadmin/addtextnow', 'adminController@doAddNumber');
