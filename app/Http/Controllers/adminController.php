@@ -339,7 +339,7 @@ class adminController extends Controller
 
         $password =  substr(str_shuffle($chars),0,8);
         $randIndex = array_rand($last_names);
-        $email = array_rand($last_names[$randIndex]) . rand(0,9999) ."@premiumbooks.io";
+        $email = $last_names[$randIndex] . rand(0,9999) ."@premiumbooks.io";
 
         return view('numbersadmin.addTextnow')->with('email', $email)->with('password', $password);
     }
