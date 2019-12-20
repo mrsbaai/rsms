@@ -22,7 +22,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </button>
+            </button><br/>
             <a class="navbar-brand logo" href="/"> <span> «</span>Receive-SMS<span>» </span></a>
         </div>
 
