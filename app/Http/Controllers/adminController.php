@@ -565,7 +565,7 @@ class adminController extends Controller
 
         flash()->overlay('Number Added ;)', 'Nice!');
 
-        return $this->addNumbers();
+        return back();
 
     }
 
