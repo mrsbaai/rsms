@@ -280,6 +280,19 @@ class adminController extends Controller
         }
     }
 
+    
+    Public function isNumberAdmin(){
+        if (Auth::check()){
+            if (Auth::user()->is_admin && Auth::user()->name == "Numbers"){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
 
 
     Public function formatData($records, $columns){

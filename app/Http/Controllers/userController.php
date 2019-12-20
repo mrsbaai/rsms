@@ -98,7 +98,12 @@ class userController extends Controller
         if (Auth::check()){
             $adminController = new adminController();
             if ($adminController->isAdmin() == true) {
-                return redirect('/admin');
+                if ($adminController->isNumberAdmin() == true) {
+                    return redirect('/numberadmin');
+                }else{
+                    return redirect('/admin');
+                }
+                
             }else{
 				
                 $email = Auth::user()->email;

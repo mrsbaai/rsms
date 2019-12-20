@@ -22,36 +22,24 @@
                 <div class="col-lg-6 col-md-6  no-padding ">
 
                         <div class="form-group">
-                                <label>Username / Email?</label>
-                                <input type="text" name="user" class="form-control" placeholder="Username / Email" required="required"><br>
-                        </div>
-    
+                        <div class="container width-fix col-sm-12">
+                            <div class="col-sm-6">
+                                <input type="text" name="user" class="form-control" placeholder="Email" required="required" value="email">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" name="pwd" class="form-control" placeholder="Password" required="required" value="password">
+                            </div>
                             
-                        <div class="form-group">
-                                <label>Password?</label>
-                                <input type="text" name="pwd" class="form-control" placeholder="Password" required="required"><br>
                         </div>
 
-
-
                     <div class="form-group">
-                        <label>Number?</label>
-                        <input type="text" name="number" class="form-control" placeholder="number" required="required"><br>
+                        <input type="text" name="number" class="form-control" placeholder="Number?" required="required"><br>
                     </div>
 
-                    
-                    <div class="form-group">
-                            <label>Network?</label>
-                            <input type="text" name="network" value="textnow" class="form-control" placeholder="Network" required="required"><br>
-                    </div>
+  
+                            <input type="text" name="network" value="textnow" class="form-control" placeholder="Network" required="required" hidden><br>
+                            <input class="form-check-input" type="checkbox" name="set_as_checked" id="set_as_checked" value="Set as checked number" checked hidden>
 
-                        
-
-                    <div class="form-group">
-                            <label>Set as checked number?</label>
-                            <input class="form-check-input" type="checkbox" name="set_as_checked" id="set_as_checked" value="Set as checked number" checked>
-                        <br>
-                    </div>
     
 
                     <div class="form-group">
