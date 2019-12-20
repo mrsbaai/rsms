@@ -334,12 +334,12 @@ class adminController extends Controller
 
         $email = "ddd@ss.ff";
         $password = "jmdmdmdmd";
-        return view('numbersadmin.addTextnow')->with('email', $email)->with('password', $password);
+        return view('numbersadmin.addtTextnow')->with('email', $email)->with('password', $password);
     }
 
     public function numbersadmin(){
 
-        return redirect('/numbersadmin/addTextnow');
+        return redirect('/numbersadmin/addtextnow');
     }
 
 
