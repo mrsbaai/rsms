@@ -281,7 +281,7 @@ class adminController extends Controller
     }
 
     
-    Public function isNumberAdmin(){
+    Public function isNumbersAdmin(){
         if (Auth::check()){
             if (Auth::user()->is_admin && Auth::user()->name == "Numbers"){
                 return true;
