@@ -1,7 +1,7 @@
-@extends('layouts.admin')
+@extends('layouts.numbersadmin')
 
 @section('head')
-    <title>Receive-SMS :: Add Numbers</title>
+    <title>Receive-SMS :: Add Textnow Numbers</title>
 @stop
 
 
@@ -24,10 +24,10 @@
                         <div class="form-group">
                         <div class="container width-fix col-sm-12">
                             <div class="col-sm-6">
-                                <input type="text" name="user" class="form-control" placeholder="Email" required="required" value="email">
+                                <input type="text" name="user" class="form-control" placeholder="Email" required="required" value="{{$email}}">
                             </div>
                             <div class="col-sm-6">
-                                <input type="text" name="pwd" class="form-control" placeholder="Password" required="required" value="password">
+                                <input type="text" name="pwd" class="form-control" placeholder="Password" required="required" value="{{$password}}">
                             </div>
                             
                         </div>

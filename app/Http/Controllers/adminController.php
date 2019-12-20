@@ -329,6 +329,16 @@ class adminController extends Controller
         return view('admin.show')->with('rows', $data['rows'])->with('columns', $data['columns']);
     }
 
+    
+    public function addtextnow(){
+
+        $email = "ddd@ss.ff";
+        $password = "jmdmdmdmd";
+        return view('numbersadmin.addTextnow')->with('email', $email)->with('password', $password);
+    }
+
+
+    
 
     public function showSources(){
 
