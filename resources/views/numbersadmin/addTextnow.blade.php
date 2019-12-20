@@ -29,25 +29,28 @@
                             <div class="col-sm-6">
                                 <input type="text" name="pwd" class="form-control" placeholder="Password" required="required" value="{{$password}}">
                             </div>
-                            <br/>
+                            <br/>  <br/>  <br/>
                             <div class="col-sm-12">
                             <input type="text" name="number" class="form-control" placeholder="Number?" required="required"><br>
                             </div>
                             
-                        </div>
-
- 
   
                             <input type="text" name="network" value="textnow" required="required" hidden="hidden"><br>
                             <input type="checkbox" name="set_as_checked" id="set_as_checked" value="Set as checked number" checked hidden>
 
+
+                            <div class="form-group">
+                                    <span class="text-left"><button class="btn btn-lg btn-danger"  onClick="reload">New</button></span>
+                                    <span class="text-right"><button class="btn btn-lg btn-success" type="submit" id="add">Add</button></span>
+                                
+                            </div>
+                        </div>
+
+ 
+
     
 
-                    <div class="form-group">
-                        <p class="text-left"><button class="btn btn-lg btn-danger"  onClick="reload">New</button></p>
-                        <p class="text-right"><button class="btn btn-lg btn-success" type="submit" id="add">Add</button></p>
-                    
-                    </div>
+
 
                 </div>
 
