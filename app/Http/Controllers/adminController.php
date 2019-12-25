@@ -112,7 +112,7 @@ class adminController extends Controller
 
         if ($this->isAdmin()){
             $records = paypalids::all();
-            $columns =  array("email", "balance", "is_active", "notes", "is_disposable", "paypalid");
+            $columns =  array("email", "total", "balance", "is_active", "notes", "is_disposable", "paypalid");
             $data = $this->formatData($records,$columns);
 
 
