@@ -227,7 +227,7 @@ class PaymentController extends Controller
 
         $earlier = Carbon::now()->subDays(25);
 
-        $paypalAccounts = paypalids::where('is_active', '=' ,true)->where('is_disposable', '=' ,false)->where('balance', '>=' ,0)->where('balance', '<' ,115)->get();
+        $paypalAccounts = paypalids::where('is_active', '=' ,true)->where('is_disposable', '=' ,false)->where('balance', '>=' ,0)->where('total', '<' ,110)->get();
 
         if (!$paypalAccounts){
             $paypalAccounts = paypalids::where('is_active', '=' ,true)->where('is_disposable', '=' ,false)->where('balance', '>=' ,0)->get();
@@ -518,7 +518,12 @@ class PaymentController extends Controller
 					$oldBalance = $toPaypalId['balance'];
 					$newBalance = $oldBalance + $payedAmount;
 					paypalids::where('email', "=", $accountId)->update(['balance' => $newBalance]);
-					
+                    
+                    $oldTotal = $toPaypalId['total'];
+					$newTotal = $oldTotal + $payedAmount;
+                    paypalids::where('email', "=", $accountId)->update(['total' => $newTotal]);
+                    
+
 					if ($fromPaypalId){
 						$senderOldBalance = $fromPaypalId['balance'];
 						$senderNewBalance = $senderOldBalance - $amountNoFee;

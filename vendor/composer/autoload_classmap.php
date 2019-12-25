@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddPaidToUsers' => $baseDir . '/database/migrations/2017_10_07_064407_add_paid_to_users.php',
+    'AddTotalToPaypalidsTable' => $baseDir . '/database/migrations/2019_12_25_122606_addTotalToPaypalidsTable.php',
     'ArithmeticError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
     'AssertionError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
     'CouponsSeeder' => $baseDir . '/database/seeds/CouponsSeeder.php',
