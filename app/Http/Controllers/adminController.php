@@ -570,7 +570,7 @@ class adminController extends Controller
         
         $number->save();
 
-        flash()->overlay('Number: $num Added ;)', 'Nice!');
+        flash()->overlay('Number: ' . $num . ' Added!', '+1');
 
         return back();
 
