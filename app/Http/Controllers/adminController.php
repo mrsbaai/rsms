@@ -556,7 +556,7 @@ class adminController extends Controller
     public function doAddNumber(){
 
         $num = Input::get('number');
-        preg_replace('/[^0-9]/', '', $num);
+        $num = preg_replace('/[^0-9]/', '', $num);
         if ($num[0] <> "1"){$num = "1" . $num;}
         $number = new number();
 
