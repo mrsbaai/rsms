@@ -133,7 +133,7 @@
                 <div class="col-lg-4 col-md-4  no-padding ">
                     <div class="form-group">
                         <label>How many numbers?</label>
-                        <input id="amount" name="amount" oninput="getPrice()" class="form-control" type="number" value="1" min="-10" max="{{$max}}" />
+                        <input id="amount" name="amount" oninput="getPrice()" class="form-control" type="number" value="1" min="1" max="{{$max}}" />
                     </div>
 
                     <div class="form-group">

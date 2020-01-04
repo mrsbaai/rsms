@@ -203,9 +203,13 @@ class userController extends Controller
 
     public function addNumbers (Request $request) {
 
+        
+
         if(Input::has('confirmed-amount')){
+            if (Input::has('confirmed-amount') < 1){return back();}
             return $this->doAddNumbers(Input::get('confirmed-amount'));
         }else{
+            if (Input::get('amount') < 1){return back();}
             $amount = Input::get('amount');
             $PaymentController = new PaymentController();
             $price = "$" . $PaymentController->getPrice($amount,1);
@@ -236,7 +240,7 @@ class userController extends Controller
 
 
     public function doAddNumbers($amount){
-
+        if ($amount < 1){return back();}
         $PaymentController = new PaymentController();
         $price = $PaymentController->getPrice($amount,1);
         $balance = Auth::user()->balance;
