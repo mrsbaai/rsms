@@ -728,7 +728,7 @@ class adminController extends Controller
 
 
 
-        return $this->support();
+        return back();
     }
 
     public function send(){
