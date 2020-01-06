@@ -31,14 +31,8 @@
                             <tbody>
                             @foreach($rows as $id => $array)
                                 <tr>
-									<td style="width: 50px;">
-									@if ($array['1'])
-									Support: 
-									@else
-									Contact: 
-									@endif
-									</td>
-                                    <td class="lead">{{$array['3']}}<br><br>{{$array['6']}}</td>
+
+                                    <td class="lead" style="max-width: 300px;">{{$array['3']}}<br><br>{{$array['6']}}</td>
                                     <td>
                                         {{ Form::open(array('action' => 'adminController@sendResponse', 'id' => 'mailer-form'))}}
                                         <input type="hidden" name="email" value="{{$array['5']}}">
