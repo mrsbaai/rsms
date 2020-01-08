@@ -232,7 +232,7 @@ class PaymentController extends Controller
         if (!$paypalAccounts){
             $paypalAccounts = paypalids::where('is_active', '=' ,true)->where('is_disposable', '=' ,false)->where('balance', '>=' ,0)->get();
         }
-        $logs = paymentlog::where('type', '=' ,"new_case")->where('created_at', '>', $earlier)->get();
+        $logs = paymentlog::where('status', '=' ,"Reversed")->where('created_at', '>', $earlier)->get();
 
 
         $ids = array();
