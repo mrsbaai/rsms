@@ -153,7 +153,7 @@ class adminController extends Controller
 		
 
 
-		$casesCount = count(paymentlog::all()->where('userEmail',$email)->where('type','new_case'));
+		$casesCount = count(paymentlog::all()->where('userEmail',$email)->where('status','Reversed'));
 		
 		$payeerCount = count($succsess);
 		$paypalCount = count($completed);
