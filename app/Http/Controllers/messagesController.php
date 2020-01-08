@@ -101,6 +101,7 @@ class messagesController extends Controller
                 
         }else{
             $this->logMessage($from, $to, $text);
+            $this->sendCallback($from,$to,$text);
         }
             
  
