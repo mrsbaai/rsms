@@ -172,7 +172,7 @@ class messagesController extends Controller
         $user = user::where('email','=', $number['email'])->first();
 
         if ($user['callback_url'] <> null and $user['callback_url'] <> ""){
-            $url = $user['callback_url'] . "?sender=" . $from . "&receiver=" . $to . "&message=" . $message;
+            $url = $user['callback_url'] . "?sender=" . $from . "&receiver=" . $to . "&message=" . urldecode($message);
          
             $curlSession = curl_init();
 
@@ -188,6 +188,8 @@ class messagesController extends Controller
             curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
 
             $ret = curl_exec($curlSession);
+
+            Log::info($ret);
             curl_close($curlSession);
 
         }
