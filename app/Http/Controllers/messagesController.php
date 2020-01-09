@@ -62,7 +62,6 @@ class messagesController extends Controller
         
         if (Input::has('body-plain') and Input::has('To') and Input::has('Subject')){
 
-            Log::info("imin");
             $text = Input::get('body-plain');
             $toemail = Input::get('To');
             $subject = Input::get('Subject');
@@ -191,7 +190,7 @@ class messagesController extends Controller
 
             $ret = curl_exec($curlSession);
 
-            Log::info($ret);
+        
             curl_close($curlSession);
 
         }
