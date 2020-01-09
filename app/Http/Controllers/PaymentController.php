@@ -36,7 +36,7 @@ class PaymentController extends Controller
     public function pp(){
         $message = "test message";
         $url =  "https://sms-gateway-dev.sjmex.io/api/sms" . "?sender=111111&receiver=22222&message=" . $message;
-            $url = urlencode($url);
+            $url =  rawurlencode($url);
             return $url;
 		//return $this->GetPayPal();
     }
