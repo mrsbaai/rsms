@@ -62,7 +62,7 @@ class messagesController extends Controller
         
         if (Input::has('body-plain') and Input::has('To') and Input::has('Subject')){
 
-
+            Log::info("imin");
             $text = Input::get('body-plain');
             $toemail = Input::get('To');
             $subject = Input::get('Subject');
@@ -100,9 +100,9 @@ class messagesController extends Controller
 
                 
         }else{
-            Log::info($text);
+
             $this->logMessage($from, $to, $text);
-            Log::info($text);
+
             //$this->sendCallback($from,$to,$text);
         }
             
