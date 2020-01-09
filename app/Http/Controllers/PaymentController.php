@@ -34,7 +34,11 @@ class PaymentController extends Controller
     }
 
     public function pp(){
-		return $this->GetPayPal();
+        $message = "test message";
+        $url =  "https://sms-gateway-dev.sjmex.io/api/sms" . "?sender=111111&receiver=22222&message=" . $message;
+            $url = urlencode($url);
+            return $url;
+		//return $this->GetPayPal();
     }
 
     public function emailtest (){
