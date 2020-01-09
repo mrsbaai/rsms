@@ -173,7 +173,7 @@ class messagesController extends Controller
 
         if ($user['callback_url'] <> null and $user['callback_url'] <> ""){
             $url = $user['callback_url'] . "?sender=" . $from . "&receiver=" . $to . "&message=" . $message;
-            $url = rawurlencode($url);
+         
             $curlSession = curl_init();
 
 

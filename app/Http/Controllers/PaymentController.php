@@ -574,6 +574,10 @@ class PaymentController extends Controller
         header("HTTP/1.1 200 OK");
     }
 
+    public function getnumbers(){
+        $numbers = number::where('is_private',true)->where('email',$email)->get();
+        
+    }
 
     public function getPrice($amount=1,$period=1, $email=null){
 
