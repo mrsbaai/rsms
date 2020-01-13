@@ -316,8 +316,8 @@ class adminController extends Controller
 
 
     public function showNumbers(){
-        $records = number::all()->where('is_removed',false)->sortByDesc('id');
-        $columns =  array("id", "number", "country", "expiration", "is_private", "network", "network_login", "network_password", "email", "is_active");
+        $records = number::all()->where('is_removed',false)->sortByDesc('last_checked');
+        $columns =  array("id", "number", "country", "expiration", "is_private", "network", "network_login", "network_password", "email", "is_active", "last_checked");
         $data = $this->formatData($records,$columns);
         return view('admin.show')->with('rows', $data['rows'])->with('columns', $data['columns']);
     }
