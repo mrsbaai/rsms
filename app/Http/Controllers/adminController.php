@@ -114,7 +114,7 @@ class adminController extends Controller
             $records = paypalids::all();
             $columns =  array("email", "total", "balance", "is_active", "notes", "is_disposable", "paypalid");
             $data = $this->formatData($records,$columns);
-
+return $data;
 
             return view('admin.dashboard')->with('rows', $data['rows'])->with('columns', $data['columns']);
 
