@@ -116,7 +116,7 @@ class adminController extends Controller
             $data = $this->formatData($records,$columns);
 
             foreach ($data['rows'] as $row) {
-                echo $row[0];
+                echo count(paymentlog::all()->where('accountId',$row[0])->where('status','Reversed')) . "<br/>";
             }
     return;
 
