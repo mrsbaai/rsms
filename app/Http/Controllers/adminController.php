@@ -115,10 +115,12 @@ class adminController extends Controller
             $columns =  array("email", "total", "balance", "is_active", "notes", "is_disposable", "paypalid");
             $data = $this->formatData($records,$columns);
 
+            $i = 0;
             foreach ($data['rows'] as $row) {
                 $count = count(paymentlog::all()->where('accountId',$row[0])->where('status','Reversed'));
-                return $data['rows'][1];
-                $data['rows'][1] = $row[1] ."(" . $count . " Reversed)";
+    
+                $data['rows'][$i][1] = $row[1] ."(" . $count . " Reversed)";
+                $i = $i + 1;
             }
 
 
