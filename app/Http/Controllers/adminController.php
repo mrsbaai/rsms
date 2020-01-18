@@ -117,7 +117,7 @@ class adminController extends Controller
 
             foreach ($data['rows'] as $row) {
                 $count = count(paymentlog::all()->where('accountId',$row[0])->where('status','Reversed'));
-                $data['rows'][1] = $data['rows'][1] ."(" . $count . " Reversed)";
+                $data['rows'][1] = $row[1] ."(" . $count . " Reversed)";
             }
 
 
