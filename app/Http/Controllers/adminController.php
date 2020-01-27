@@ -135,7 +135,7 @@ class adminController extends Controller
             fclose($file);
         };
 
-        return Response()->download($callback, 200, $headers);
+        return Response::download($callback, 200, $headers);
 
     }
     Public function dashboard(){
