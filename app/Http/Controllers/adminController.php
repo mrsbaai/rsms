@@ -108,11 +108,11 @@ class adminController extends Controller
 		
     }
     public function numbersarray(){
-        return number::all()->pluck('number')->toJson();
+        return number::all()->pluck('number')->toArray();
     }
 
     public function textnowloginsarray(){
-        return number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toJson();
+        return number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toArray();
     }
     Public function dashboard(){
 
