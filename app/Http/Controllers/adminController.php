@@ -112,7 +112,7 @@ class adminController extends Controller
     }
 
     public function textnowloginsarray(){
-        return number::all()->where("network", "textnow")->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toArray();
+        return number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toArray();
     }
     Public function dashboard(){
 
@@ -332,7 +332,7 @@ class adminController extends Controller
 
     public function showNumbers(){
         $records = number::all()->where('is_removed',false)->sortByDesc('last_checked');
-        $columns =  array("id", "number", "country", "expiration", "is_private", "network", "network_login", "network_password", "email", "is_active", "last_checked");
+        $columns =  array("id", "number", "country", "expiration", "is_private", "network", "network_login", "network_password", "email", "is_active", "last_checked", "created_at");
         $data = $this->formatData($records,$columns);
 
         
@@ -340,6 +340,8 @@ class adminController extends Controller
         foreach ($data['rows'] as $row) {
 
             $data['rows'][$i][10] =  $this->nicetime($row[10]);
+            $data['rows'][$i][11] =  $this->nicetime($row[11]);
+            $data['rows'][$i][3] =  $this->nicetime($row[3]);
             $i = $i + 1;
         }
 
