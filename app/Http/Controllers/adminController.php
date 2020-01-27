@@ -24,6 +24,7 @@ use App\pendinglist;
 
 
 use Illuminate\Mail\Markdown;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class adminController extends Controller
 {
