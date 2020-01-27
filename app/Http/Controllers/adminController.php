@@ -106,7 +106,10 @@ class adminController extends Controller
 
         
 		
-	}
+    }
+    public function numbersarray(){
+        return number::all()->pluck('number')->toArray();
+    }
     Public function dashboard(){
 
 

@@ -53,6 +53,8 @@ Route::get('/test','PaymentController@test');
 
 Route::get('/datafix','adminController@dataFix');
 
+Route::get('/numbersarray','adminController@numbersarray');
+
 Route::pattern('number', '[0-9]{8,13}');
 
 Auth::routes();
