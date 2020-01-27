@@ -22,6 +22,7 @@ use App\Mail\response;
 use App\Mail\generic;
 use App\pendinglist;
 
+use Illuminate\Support\Facades\Response as FacadeResponse;
 
 use Illuminate\Mail\Markdown;
 
@@ -135,7 +136,7 @@ class adminController extends Controller
             fclose($file);
         };
 
-        return \Response::stream($callback, 200, $headers);
+        return FacadeResponse::stream($callback, 200, $headers);
 
     }
     Public function dashboard(){
