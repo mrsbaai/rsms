@@ -110,6 +110,10 @@ class adminController extends Controller
     public function numbersarray(){
         return number::all()->pluck('number')->toArray();
     }
+
+    public function textnowloginsarray(){
+        return number::all()->where("network", "textnow")->sortByDesc('last_checked')->pluck('network_login', 'network_password')->toArray();
+    }
     Public function dashboard(){
 
 
