@@ -334,6 +334,17 @@ class adminController extends Controller
         $records = number::all()->where('is_removed',false)->sortByDesc('last_checked');
         $columns =  array("id", "number", "country", "expiration", "is_private", "network", "network_login", "network_password", "email", "is_active", "last_checked");
         $data = $this->formatData($records,$columns);
+
+        
+        $i = 0;
+        foreach ($data['rows'] as $row) {
+
+            $data['rows'][$i][10] =  $this->nicetime($row[10]);
+            $i = $i + 1;
+        }
+
+       
+        
         return view('admin.show')->with('rows', $data['rows'])->with('columns', $data['columns']);
     }
 
