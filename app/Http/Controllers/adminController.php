@@ -24,7 +24,6 @@ use App\pendinglist;
 
 
 use Illuminate\Mail\Markdown;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class adminController extends Controller
 {
@@ -114,27 +113,7 @@ class adminController extends Controller
 
     public function textnowloginsarray(){
 
-        $csv_data = number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toArray();
-
-                
-        return new StreamedResponse(
-            function () use ($csv_data) {
-                // A resource pointer to the output stream for writing the CSV to
-                $handle = fopen('php://output', 'w');
-                foreach ($csv_data as $row) {
-                    // Loop through the data and write each entry as a new row in the csv
-                    fputcsv($handle, $row);
-                }
-
-                fclose($handle);
-            },
-            200,
-            [
-                'Content-type'        => 'text/csv',
-                'Content-Disposition' => 'attachment; filename=members.csv'
-            ]
-        );
-
+        return number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toArray();
 
     }
     Public function dashboard(){
