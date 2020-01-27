@@ -21,7 +21,7 @@ use App\Mail\numbersReady;
 use App\Mail\response;
 use App\Mail\generic;
 use App\pendinglist;
-
+use stream;
 
 use Illuminate\Mail\Markdown;
 
@@ -134,7 +134,7 @@ class adminController extends Controller
             }
             fclose($file);
         };
-        return Response::streamDownload($callback, 200, $headers);
+        return Response::stream($callback, 200, $headers);
 
     }
     Public function dashboard(){
