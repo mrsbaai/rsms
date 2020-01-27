@@ -121,7 +121,7 @@ class adminController extends Controller
             "Expires" => "0"
         );
     
-        $logins = number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->get();
+        $logins = number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login');
         $columns = array('network_login', 'network_password');
     
         $callback = function() use ($logins, $columns)
