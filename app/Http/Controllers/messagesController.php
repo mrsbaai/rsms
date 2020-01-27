@@ -36,7 +36,7 @@ class messagesController extends Controller
             }
 
             // check if number verification
-            if (strpos($text,"RSMSCODE-") === false){
+            if (strpos($text,"test-") === false){
                 // check if not spam
                 if ($this->isSpam($from,$to,$text) == false){
                     $message = new message();
