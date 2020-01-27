@@ -113,7 +113,7 @@ class adminController extends Controller
 
     public function textnowloginsarray(){
 
-        return number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toArray();
+        return number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login');
 
     }
     Public function dashboard(){
