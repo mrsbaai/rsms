@@ -136,7 +136,7 @@ class adminController extends Controller
             fclose($file);
         };
 
-        return FacadeResponse::download($callback, 200, $headers);
+        return $callback;
 
     }
     Public function dashboard(){
