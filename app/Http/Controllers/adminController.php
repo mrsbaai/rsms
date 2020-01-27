@@ -114,29 +114,8 @@ class adminController extends Controller
 
     public function textnowloginsarray(){
 
-        $headers = array(
-            "Content-type" => "text/csv",
-            "Content-Disposition" => "attachment; filename=logins.csv",
-            "Pragma" => "no-cache",
-            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
-            "Expires" => "0"
-        );
-    
-        $logins = number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login');
-        $columns = array('network_login', 'network_password');
-    
-        $callback = function() use ($logins, $columns)
-        {
-            $file = fopen('php://output', 'w');
-            fputcsv($file, $columns);
-    
-            foreach($logins as $login) {
-                fputcsv($file, array($login->network_login, $login->network_password));
-            }
-            fclose($file);
-        };
 
-        return $callback;
+        return number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->$request->toArray();
 
     }
     Public function dashboard(){
