@@ -129,10 +129,10 @@ class adminController extends Controller
 
     public function textnowloginsarray(){
 
-        $results = number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toArray();
+        $results = number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login');
 
 foreach ($results as $line) {
-    echo $line[0] . " -> ". $line[1] . "<br>";
+    echo $line. "<br>";
   }
        //return response($this->array2csv($results))
 
