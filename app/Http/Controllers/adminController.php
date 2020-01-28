@@ -107,6 +107,17 @@ class adminController extends Controller
         
 		
     }
+
+    private function array2csv($fields, $delimiter = ",", $enclosure = '"', $escape_char = "@")
+    {
+        $buffer = fopen('php://temp', 'r+');
+        fputcsv($buffer, $fields, $delimiter, $enclosure, $escape_char);
+        rewind($buffer);
+        $csv = fgets($buffer);
+        fclose($buffer);
+        return $csv;
+    }
+    
     public function numbersarray(){
         return number::all()->pluck('number')->toArray();
     }
@@ -115,17 +126,7 @@ class adminController extends Controller
 
         $results = number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toArray();
 
-        $filename = 'userData.csv';       
-        header("Content-type: text/csv");       
-        header("Content-Disposition: attachment; filename=$filename");       
-        $output = fopen("php://output", "w");       
-        $header = array_keys($results[0]);       
-        fputcsv($output, $header);       
-        foreach($results as $row)       
-        {  
-             fputcsv($output, $row);  
-        }       
-        fclose($output);    
+       return array2csv($results);
         //return view('admin.flat')->with('value',$value);
     }
     Public function dashboard(){
