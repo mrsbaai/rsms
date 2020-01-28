@@ -113,18 +113,9 @@ class adminController extends Controller
 
     public function textnowloginsarray(){
 
-        $value = number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login');
-        return Excel::create('Filename', function($excel) use ($value) {
-    
-            $excel->setTitle('TitleBandai');
-            $excel->sheet('FirstSheet', function($sheet) use($value) {
-                $sheet->fromArray($value);
-            });
+        $value = number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toJson();
 
-    
-        })->export('csv');
-
-        
+        return view('admin.fkat')->with('value',$value);
     }
     Public function dashboard(){
 
