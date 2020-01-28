@@ -14,6 +14,10 @@ class ReCaptcha
         $validator
     ) {
         try {
+            if (app()->environment('testing')) {
+                return true;
+            }
+
             $client = new Client();
 
             $response = $client->post(

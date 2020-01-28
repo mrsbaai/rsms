@@ -34,7 +34,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * @return string The type of the value
+     * @return string|null The type of the value
      */
     public function getType()
     {
@@ -58,12 +58,14 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
         if (Stub::TYPE_RESOURCE === $item->type) {
             return $item->class.' resource';
         }
+
+        return null;
     }
 
     /**
-     * @param bool $recursive Whether values should be resolved recursively or not
+     * @param array|bool $recursive Whether values should be resolved recursively or not
      *
-     * @return string|int|float|bool|array|null|Data[] A native representation of the original value
+     * @return string|int|float|bool|array|Data[]|null A native representation of the original value
      */
     public function getValue($recursive = false)
     {
@@ -79,7 +81,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
             return $item->value;
         }
 
-        $children = $item->position ? $this->data[$item->position] : array();
+        $children = $item->position ? $this->data[$item->position] : [];
 
         foreach ($children as $k => $v) {
             if ($recursive && !($v = $this->getStub($v)) instanceof Stub) {
@@ -125,8 +127,10 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
         if (null !== $data = $this->seek($key)) {
             $item = $this->getStub($data->data[$data->position][$data->key]);
 
-            return $item instanceof Stub || array() === $item ? $data : $item;
+            return $item instanceof Stub || [] === $item ? $data : $item;
         }
+
+        return null;
     }
 
     public function __isset($key)
@@ -182,7 +186,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
      *
      * @param int $maxDepth The max dumped depth level
      *
-     * @return self A clone of $this
+     * @return static
      */
     public function withMaxDepth($maxDepth)
     {
@@ -197,7 +201,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
      *
      * @param int $maxItemsPerDepth The max number of items dumped per depth level
      *
-     * @return self A clone of $this
+     * @return static
      */
     public function withMaxItemsPerDepth($maxItemsPerDepth)
     {
@@ -212,7 +216,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
      *
      * @param bool $useRefHandles False to hide global ref. handles
      *
-     * @return self A clone of $this
+     * @return static
      */
     public function withRefHandles($useRefHandles)
     {
@@ -227,7 +231,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
      *
      * @param string|int $key The key to seek to
      *
-     * @return self|null A clone of $this or null if the key is not set
+     * @return static|null Null if the key is not set
      */
     public function seek($key)
     {
@@ -237,9 +241,9 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
             $item = $item->value;
         }
         if (!($item = $this->getStub($item)) instanceof Stub || !$item->position) {
-            return;
+            return null;
         }
-        $keys = array($key);
+        $keys = [$key];
 
         switch ($item->type) {
             case Stub::TYPE_OBJECT:
@@ -252,14 +256,14 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
             case Stub::TYPE_RESOURCE:
                 break;
             default:
-                return;
+                return null;
         }
 
         $data = null;
         $children = $this->data[$item->position];
 
         foreach ($keys as $key) {
-            if (isset($children[$key]) || array_key_exists($key, $children)) {
+            if (isset($children[$key]) || \array_key_exists($key, $children)) {
                 $data = clone $this;
                 $data->key = $key;
                 $data->position = $item->position;
@@ -275,7 +279,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function dump(DumperInterface $dumper)
     {
-        $refs = array(0);
+        $refs = [0];
         $this->dumpItem($dumper, new Cursor(), $refs, $this->data[$this->position][$this->key]);
     }
 
@@ -295,7 +299,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
         $firstSeen = true;
 
         if (!$item instanceof Stub) {
-            $cursor->attr = array();
+            $cursor->attr = [];
             $type = \gettype($item);
             if ($item && 'array' === $type) {
                 $item = $this->getStub($item);
@@ -336,10 +340,10 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
                     if ($cut >= 0) {
                         $cut += \count($children);
                     }
-                    $children = array();
+                    $children = [];
                 }
             } else {
-                $children = array();
+                $children = [];
             }
             switch ($item->type) {
                 case Stub::TYPE_STRING:
