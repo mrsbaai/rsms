@@ -124,11 +124,11 @@ class adminController extends Controller
     }
     
     public function numbersarray(){
-        return number::all()->pluck('number')->toArray();
+        $results = number::all()->pluck('number')->toArray();
 
         $numbers = "";
 
-        foreach ($numbers as $number) {
+        foreach ($results as $number) {
             $numbers = $numbers . $number . "," . "\r\n";
 
 
