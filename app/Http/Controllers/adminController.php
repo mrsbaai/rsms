@@ -125,6 +125,24 @@ class adminController extends Controller
     
     public function numbersarray(){
         return number::all()->pluck('number')->toArray();
+
+        $numbers = "";
+
+        foreach ($numbers as $number) {
+            $numbers = $numbers . $number . "," . "\r\n";
+
+
+        }
+      
+       return response($numbers) 
+       ->header('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
+       ->header('Content-type', 'text/csv')
+       ->header('Content-Disposition' , 'attachment; filename=numbers.csv')
+       ->header('Expires', '0')
+       ->header('Pragma', 'public')
+
+       ;
+
     }
 
     public function textnowloginsarray(){
