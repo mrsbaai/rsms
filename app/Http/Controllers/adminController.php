@@ -126,7 +126,13 @@ class adminController extends Controller
 
         $results = number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toArray();
 
-       return response($this->array2csv($results));
+       return response($this->array2csv($results))
+       ->header('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
+       ->header('Content-type', 'text/csv')
+       ->header('Content-Disposition' , 'attachment; filename=galleries.csv')
+       ->header('Expires', '0')
+       ->header('Pragma', 'public')
+       ;
         //return view('admin.flat')->with('value',$value);
     }
     Public function dashboard(){
