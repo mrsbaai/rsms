@@ -129,9 +129,9 @@ class adminController extends Controller
 
     public function textnowloginsarray(){
 
-        $results = number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toJson();
-
-       return response($this->array2csv($results))
+        $results = number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toArray();
+print_r($results);
+       //return response($this->array2csv($results))
 
        ;
         //return view('admin.flat')->with('value',$value);
