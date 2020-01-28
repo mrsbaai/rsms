@@ -140,9 +140,14 @@ class adminController extends Controller
         }
       
        return response($logins) 
+       ->header('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
+       ->header('Content-type', 'text/csv')
+       ->header('Content-Disposition' , 'attachment; filename=logins.csv')
+       ->header('Expires', '0')
+       ->header('Pragma', 'public')
 
        ;
-        //return view('admin.flat')->with('value',$value);
+
     }
     Public function dashboard(){
 
