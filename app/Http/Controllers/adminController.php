@@ -114,10 +114,10 @@ class adminController extends Controller
 
         foreach ($list as $line) {
             fputcsv($buffer, $line);
-          }
+        }
           
 
-        rewind($buffer);
+    
         $csv = fgets($buffer);
         fclose($buffer);
         return $csv;
@@ -137,8 +137,8 @@ class adminController extends Controller
         array_push($logins, array( $user , $pass));
 
         }
-        print_r($logins);
-       //return response($this->array2csv($logins))
+
+       return response($this->array2csv($logins))
 
        ;
         //return view('admin.flat')->with('value',$value);
