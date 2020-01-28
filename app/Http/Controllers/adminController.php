@@ -113,9 +113,9 @@ class adminController extends Controller
 
     public function textnowloginsarray(){
 
-        $value = number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toJson();
+        return number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toJson();
 
-        return view('admin.fkat')->with('value',$value);
+        //return view('admin.flat')->with('value',$value);
     }
     Public function dashboard(){
 
