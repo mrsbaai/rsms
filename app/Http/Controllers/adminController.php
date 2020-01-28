@@ -137,7 +137,8 @@ class adminController extends Controller
         array_push($logins, array( $user , $pass));
 
         }
-       return response($this->array2csv($logins))
+        print_r($logins);
+       //return response($this->array2csv($logins))
 
        ;
         //return view('admin.flat')->with('value',$value);
