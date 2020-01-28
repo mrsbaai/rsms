@@ -108,7 +108,7 @@ class adminController extends Controller
 		
     }
 
-    private function array2csv($fields, $delimiter = ",", $enclosure = '"', $escape_char = "@")
+    private function array2csv($fields, $delimiter = ",", $enclosure = '"', $escape_char = "/")
     {
         $buffer = fopen('php://temp', 'r+');
         fputcsv($buffer, $fields, $delimiter, $enclosure, $escape_char);
