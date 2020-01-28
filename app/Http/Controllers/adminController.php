@@ -113,8 +113,19 @@ class adminController extends Controller
 
     public function textnowloginsarray(){
 
-        return number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toArray();
+        $results = number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toArray();
 
+        $filename = 'userData.csv';       
+        header("Content-type: text/csv");       
+        header("Content-Disposition: attachment; filename=$filename");       
+        $output = fopen("php://output", "w");       
+        $header = array_keys($results[0]);       
+        fputcsv($output, $header);       
+        foreach($results as $row)       
+        {  
+             fputcsv($output, $row);  
+        }       
+        fclose($output);    
         //return view('admin.flat')->with('value',$value);
     }
     Public function dashboard(){
