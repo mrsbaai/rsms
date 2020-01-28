@@ -128,10 +128,17 @@ class adminController extends Controller
 
         $numbers = "";
 
+        $i = 0;
         foreach ($results as $number) {
-            $numbers = $numbers . $number . "," . "\r\n";
 
+            $numbers = $numbers . $number . ",";
+            $i = $i + 1;
+            if ($i == 25){
+                $numbers = $numbers . "\r\n";
+                $i = 0;
+            }
 
+            
         }
       
        return response($numbers) 
