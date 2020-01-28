@@ -35,11 +35,11 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
     protected $indentPad = '  ';
     protected $flags;
 
-    private $charset = '';
+    private $charset;
 
     /**
      * @param callable|resource|string|null $output  A line dumper callable, an opened stream or an output path, defaults to static::$defaultOutput
-     * @param string|null                   $charset The default character encoding to use for non-UTF8 strings
+     * @param string                        $charset The default character encoding to use for non-UTF8 strings
      * @param int                           $flags   A bit field of static::DUMP_* constants to fine tune dumps representation
      */
     public function __construct($output = null, $charset = null, $flags = 0)
@@ -73,7 +73,7 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
                 $output = fopen($output, 'wb');
             }
             $this->outputStream = $output;
-            $this->lineDumper = [$this, 'echoLine'];
+            $this->lineDumper = array($this, 'echoLine');
         }
 
         return $prev;
@@ -154,8 +154,6 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
                 setlocale(LC_NUMERIC, $locale);
             }
         }
-
-        return null;
     }
 
     /**
@@ -187,13 +185,13 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
     /**
      * Converts a non-UTF-8 string to UTF-8.
      *
-     * @param string|null $s The non-UTF-8 string to convert
+     * @param string $s The non-UTF-8 string to convert
      *
-     * @return string|null The string converted to UTF-8
+     * @return string The string converted to UTF-8
      */
     protected function utf8Encode($s)
     {
-        if (null === $s || preg_match('//u', $s)) {
+        if (preg_match('//u', $s)) {
             return $s;
         }
 

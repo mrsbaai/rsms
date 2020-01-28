@@ -13,12 +13,9 @@ namespace Symfony\Component\Debug\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LogLevel;
-use Psr\Log\NullLogger;
 use Symfony\Component\Debug\BufferingLogger;
 use Symfony\Component\Debug\ErrorHandler;
 use Symfony\Component\Debug\Exception\SilencedErrorContext;
-use Symfony\Component\Debug\Tests\Fixtures\ErrorHandlerThatUsesThePreviousOne;
-use Symfony\Component\Debug\Tests\Fixtures\LoggerThatSetAnErrorHandler;
 
 /**
  * ErrorHandlerTest.
@@ -41,13 +38,13 @@ class ErrorHandlerTest extends TestCase
             $this->assertSame($handler, ErrorHandler::register($newHandler, false));
             $h = set_error_handler('var_dump');
             restore_error_handler();
-            $this->assertSame([$handler, 'handleError'], $h);
+            $this->assertSame(array($handler, 'handleError'), $h);
 
             try {
                 $this->assertSame($newHandler, ErrorHandler::register($newHandler, true));
                 $h = set_error_handler('var_dump');
                 restore_error_handler();
-                $this->assertSame([$newHandler, 'handleError'], $h);
+                $this->assertSame(array($newHandler, 'handleError'), $h);
             } catch (\Exception $e) {
             }
 
@@ -70,19 +67,19 @@ class ErrorHandlerTest extends TestCase
 
     public function testErrorGetLast()
     {
-        $logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
         $handler = ErrorHandler::register();
+        $logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
         $handler->setDefaultLogger($logger);
         $handler->screamAt(E_ALL);
 
         try {
             @trigger_error('Hello', E_USER_WARNING);
-            $expected = [
+            $expected = array(
                 'type' => E_USER_WARNING,
                 'message' => 'Hello',
                 'file' => __FILE__,
                 'line' => __LINE__ - 5,
-            ];
+            );
             $this->assertSame($expected, error_get_last());
         } catch (\Exception $e) {
             restore_error_handler();
@@ -143,30 +140,31 @@ class ErrorHandlerTest extends TestCase
     public function testDefaultLogger()
     {
         try {
-            $logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
             $handler = ErrorHandler::register();
 
-            $handler->setDefaultLogger($logger, E_NOTICE);
-            $handler->setDefaultLogger($logger, [E_USER_NOTICE => LogLevel::CRITICAL]);
+            $logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
 
-            $loggers = [
-                E_DEPRECATED => [null, LogLevel::INFO],
-                E_USER_DEPRECATED => [null, LogLevel::INFO],
-                E_NOTICE => [$logger, LogLevel::WARNING],
-                E_USER_NOTICE => [$logger, LogLevel::CRITICAL],
-                E_STRICT => [null, LogLevel::WARNING],
-                E_WARNING => [null, LogLevel::WARNING],
-                E_USER_WARNING => [null, LogLevel::WARNING],
-                E_COMPILE_WARNING => [null, LogLevel::WARNING],
-                E_CORE_WARNING => [null, LogLevel::WARNING],
-                E_USER_ERROR => [null, LogLevel::CRITICAL],
-                E_RECOVERABLE_ERROR => [null, LogLevel::CRITICAL],
-                E_COMPILE_ERROR => [null, LogLevel::CRITICAL],
-                E_PARSE => [null, LogLevel::CRITICAL],
-                E_ERROR => [null, LogLevel::CRITICAL],
-                E_CORE_ERROR => [null, LogLevel::CRITICAL],
-            ];
-            $this->assertSame($loggers, $handler->setLoggers([]));
+            $handler->setDefaultLogger($logger, E_NOTICE);
+            $handler->setDefaultLogger($logger, array(E_USER_NOTICE => LogLevel::CRITICAL));
+
+            $loggers = array(
+                E_DEPRECATED => array(null, LogLevel::INFO),
+                E_USER_DEPRECATED => array(null, LogLevel::INFO),
+                E_NOTICE => array($logger, LogLevel::WARNING),
+                E_USER_NOTICE => array($logger, LogLevel::CRITICAL),
+                E_STRICT => array(null, LogLevel::WARNING),
+                E_WARNING => array(null, LogLevel::WARNING),
+                E_USER_WARNING => array(null, LogLevel::WARNING),
+                E_COMPILE_WARNING => array(null, LogLevel::WARNING),
+                E_CORE_WARNING => array(null, LogLevel::WARNING),
+                E_USER_ERROR => array(null, LogLevel::CRITICAL),
+                E_RECOVERABLE_ERROR => array(null, LogLevel::CRITICAL),
+                E_COMPILE_ERROR => array(null, LogLevel::CRITICAL),
+                E_PARSE => array(null, LogLevel::CRITICAL),
+                E_ERROR => array(null, LogLevel::CRITICAL),
+                E_CORE_ERROR => array(null, LogLevel::CRITICAL),
+            );
+            $this->assertSame($loggers, $handler->setLoggers(array()));
         } finally {
             restore_error_handler();
             restore_exception_handler();
@@ -178,14 +176,14 @@ class ErrorHandlerTest extends TestCase
         try {
             $handler = ErrorHandler::register();
             $handler->throwAt(0, true);
-            $this->assertFalse($handler->handleError(0, 'foo', 'foo.php', 12, []));
+            $this->assertFalse($handler->handleError(0, 'foo', 'foo.php', 12, array()));
 
             restore_error_handler();
             restore_exception_handler();
 
             $handler = ErrorHandler::register();
             $handler->throwAt(3, true);
-            $this->assertFalse($handler->handleError(4, 'foo', 'foo.php', 12, []));
+            $this->assertFalse($handler->handleError(4, 'foo', 'foo.php', 12, array()));
 
             restore_error_handler();
             restore_exception_handler();
@@ -193,7 +191,7 @@ class ErrorHandlerTest extends TestCase
             $handler = ErrorHandler::register();
             $handler->throwAt(3, true);
             try {
-                $handler->handleError(4, 'foo', 'foo.php', 12, []);
+                $handler->handleError(4, 'foo', 'foo.php', 12, array());
             } catch (\ErrorException $e) {
                 $this->assertSame('Parse Error: foo', $e->getMessage());
                 $this->assertSame(4, $e->getSeverity());
@@ -206,14 +204,14 @@ class ErrorHandlerTest extends TestCase
 
             $handler = ErrorHandler::register();
             $handler->throwAt(E_USER_DEPRECATED, true);
-            $this->assertFalse($handler->handleError(E_USER_DEPRECATED, 'foo', 'foo.php', 12, []));
+            $this->assertFalse($handler->handleError(E_USER_DEPRECATED, 'foo', 'foo.php', 12, array()));
 
             restore_error_handler();
             restore_exception_handler();
 
             $handler = ErrorHandler::register();
             $handler->throwAt(E_DEPRECATED, true);
-            $this->assertFalse($handler->handleError(E_DEPRECATED, 'foo', 'foo.php', 12, []));
+            $this->assertFalse($handler->handleError(E_DEPRECATED, 'foo', 'foo.php', 12, array()));
 
             restore_error_handler();
             restore_exception_handler();
@@ -233,12 +231,12 @@ class ErrorHandlerTest extends TestCase
             $logger
                 ->expects($this->once())
                 ->method('log')
-                ->willReturnCallback($warnArgCheck)
+                ->will($this->returnCallback($warnArgCheck))
             ;
 
             $handler = ErrorHandler::register();
             $handler->setDefaultLogger($logger, E_USER_DEPRECATED);
-            $this->assertTrue($handler->handleError(E_USER_DEPRECATED, 'foo', 'foo.php', 12, []));
+            $this->assertTrue($handler->handleError(E_USER_DEPRECATED, 'foo', 'foo.php', 12, array()));
 
             restore_error_handler();
             restore_exception_handler();
@@ -261,7 +259,7 @@ class ErrorHandlerTest extends TestCase
             $logger
                 ->expects($this->once())
                 ->method('log')
-                ->willReturnCallback($logArgCheck)
+                ->will($this->returnCallback($logArgCheck))
             ;
 
             $handler = ErrorHandler::register();
@@ -283,10 +281,6 @@ class ErrorHandlerTest extends TestCase
 
     public function testHandleUserError()
     {
-        if (\PHP_VERSION_ID >= 70400) {
-            $this->markTestSkipped('PHP 7.4 allows __toString to throw exceptions');
-        }
-
         try {
             $handler = ErrorHandler::register();
             $handler->throwAt(0, true);
@@ -321,14 +315,12 @@ class ErrorHandlerTest extends TestCase
         $logger
             ->expects($this->once())
             ->method('log')
-            ->willReturnCallback($logArgCheck)
+            ->will($this->returnCallback($logArgCheck))
         ;
 
         $handler = new ErrorHandler();
         $handler->setDefaultLogger($logger);
-        @$handler->handleError(E_USER_DEPRECATED, 'Foo deprecation', __FILE__, __LINE__, []);
-
-        restore_error_handler();
+        @$handler->handleError(E_USER_DEPRECATED, 'Foo deprecation', __FILE__, __LINE__, array());
     }
 
     /**
@@ -337,10 +329,11 @@ class ErrorHandlerTest extends TestCase
     public function testHandleException()
     {
         try {
-            $logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
             $handler = ErrorHandler::register();
 
             $exception = new \Exception('foo');
+
+            $logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
 
             $logArgCheck = function ($level, $message, $context) {
                 $this->assertSame('Uncaught Exception: foo', $message);
@@ -351,7 +344,7 @@ class ErrorHandlerTest extends TestCase
             $logger
                 ->expects($this->exactly(2))
                 ->method('log')
-                ->willReturnCallback($logArgCheck)
+                ->will($this->returnCallback($logArgCheck))
             ;
 
             $handler->setDefaultLogger($logger, E_ERROR);
@@ -389,12 +382,12 @@ class ErrorHandlerTest extends TestCase
                 ->expects($this->exactly(2))
                 ->method('log')
                 ->withConsecutive(
-                    [$this->equalTo(LogLevel::WARNING), $this->equalTo('Dummy log')],
-                    [$this->equalTo(LogLevel::DEBUG), $this->equalTo('User Warning: Silenced warning')]
+                    array($this->equalTo(LogLevel::WARNING), $this->equalTo('Dummy log')),
+                    array($this->equalTo(LogLevel::DEBUG), $this->equalTo('User Warning: Silenced warning'))
                 )
             ;
 
-            $handler->setDefaultLogger($logger, [E_USER_WARNING => LogLevel::WARNING]);
+            $handler->setDefaultLogger($logger, array(E_USER_WARNING => LogLevel::WARNING));
 
             ErrorHandler::stackErrors();
             @trigger_error('Silenced warning', E_USER_WARNING);
@@ -411,27 +404,27 @@ class ErrorHandlerTest extends TestCase
         $bootLogger = new BufferingLogger();
         $handler = new ErrorHandler($bootLogger);
 
-        $loggers = [
-            E_DEPRECATED => [$bootLogger, LogLevel::INFO],
-            E_USER_DEPRECATED => [$bootLogger, LogLevel::INFO],
-            E_NOTICE => [$bootLogger, LogLevel::WARNING],
-            E_USER_NOTICE => [$bootLogger, LogLevel::WARNING],
-            E_STRICT => [$bootLogger, LogLevel::WARNING],
-            E_WARNING => [$bootLogger, LogLevel::WARNING],
-            E_USER_WARNING => [$bootLogger, LogLevel::WARNING],
-            E_COMPILE_WARNING => [$bootLogger, LogLevel::WARNING],
-            E_CORE_WARNING => [$bootLogger, LogLevel::WARNING],
-            E_USER_ERROR => [$bootLogger, LogLevel::CRITICAL],
-            E_RECOVERABLE_ERROR => [$bootLogger, LogLevel::CRITICAL],
-            E_COMPILE_ERROR => [$bootLogger, LogLevel::CRITICAL],
-            E_PARSE => [$bootLogger, LogLevel::CRITICAL],
-            E_ERROR => [$bootLogger, LogLevel::CRITICAL],
-            E_CORE_ERROR => [$bootLogger, LogLevel::CRITICAL],
-        ];
+        $loggers = array(
+            E_DEPRECATED => array($bootLogger, LogLevel::INFO),
+            E_USER_DEPRECATED => array($bootLogger, LogLevel::INFO),
+            E_NOTICE => array($bootLogger, LogLevel::WARNING),
+            E_USER_NOTICE => array($bootLogger, LogLevel::WARNING),
+            E_STRICT => array($bootLogger, LogLevel::WARNING),
+            E_WARNING => array($bootLogger, LogLevel::WARNING),
+            E_USER_WARNING => array($bootLogger, LogLevel::WARNING),
+            E_COMPILE_WARNING => array($bootLogger, LogLevel::WARNING),
+            E_CORE_WARNING => array($bootLogger, LogLevel::WARNING),
+            E_USER_ERROR => array($bootLogger, LogLevel::CRITICAL),
+            E_RECOVERABLE_ERROR => array($bootLogger, LogLevel::CRITICAL),
+            E_COMPILE_ERROR => array($bootLogger, LogLevel::CRITICAL),
+            E_PARSE => array($bootLogger, LogLevel::CRITICAL),
+            E_ERROR => array($bootLogger, LogLevel::CRITICAL),
+            E_CORE_ERROR => array($bootLogger, LogLevel::CRITICAL),
+        );
 
-        $this->assertSame($loggers, $handler->setLoggers([]));
+        $this->assertSame($loggers, $handler->setLoggers(array()));
 
-        $handler->handleError(E_DEPRECATED, 'Foo message', __FILE__, 123, []);
+        $handler->handleError(E_DEPRECATED, 'Foo message', __FILE__, 123, array());
 
         $logs = $bootLogger->cleanLogs();
 
@@ -447,14 +440,14 @@ class ErrorHandlerTest extends TestCase
         $this->assertSame(123, $exception->getLine());
         $this->assertSame(E_DEPRECATED, $exception->getSeverity());
 
-        $bootLogger->log(LogLevel::WARNING, 'Foo message', ['exception' => $exception]);
+        $bootLogger->log(LogLevel::WARNING, 'Foo message', array('exception' => $exception));
 
         $mockLogger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
         $mockLogger->expects($this->once())
             ->method('log')
-            ->with(LogLevel::WARNING, 'Foo message', ['exception' => $exception]);
+            ->with(LogLevel::WARNING, 'Foo message', array('exception' => $exception));
 
-        $handler->setLoggers([E_DEPRECATED => [$mockLogger, LogLevel::WARNING]]);
+        $handler->setLoggers(array(E_DEPRECATED => array($mockLogger, LogLevel::WARNING)));
     }
 
     /**
@@ -470,7 +463,7 @@ class ErrorHandlerTest extends TestCase
         $mockLogger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
         $mockLogger->expects($this->once())
             ->method('log')
-            ->with(LogLevel::CRITICAL, 'Uncaught Exception: Foo message', ['exception' => $exception]);
+            ->with(LogLevel::CRITICAL, 'Uncaught Exception: Foo message', array('exception' => $exception));
 
         $handler->setExceptionHandler(function () use ($handler, $mockLogger) {
             $handler->setDefaultLogger($mockLogger);
@@ -485,15 +478,16 @@ class ErrorHandlerTest extends TestCase
     public function testHandleFatalError()
     {
         try {
-            $logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
             $handler = ErrorHandler::register();
 
-            $error = [
+            $error = array(
                 'type' => E_PARSE,
                 'message' => 'foo',
                 'file' => 'bar',
                 'line' => 123,
-            ];
+            );
+
+            $logger = $this->getMockBuilder('Psr\Log\LoggerInterface')->getMock();
 
             $logArgCheck = function ($level, $message, $context) {
                 $this->assertEquals('Fatal Parse Error: foo', $message);
@@ -504,7 +498,7 @@ class ErrorHandlerTest extends TestCase
             $logger
                 ->expects($this->once())
                 ->method('log')
-                ->willReturnCallback($logArgCheck)
+                ->will($this->returnCallback($logArgCheck))
             ;
 
             $handler->setDefaultLogger($logger, E_PARSE);
@@ -526,7 +520,7 @@ class ErrorHandlerTest extends TestCase
      */
     public function testHandleErrorException()
     {
-        $exception = new \Error("Class 'IReallyReallyDoNotExistAnywhereInTheRepositoryISwear' not found");
+        $exception = new \Error("Class 'Foo' not found");
 
         $handler = new ErrorHandler();
         $handler->setExceptionHandler(function () use (&$args) {
@@ -536,7 +530,7 @@ class ErrorHandlerTest extends TestCase
         $handler->handleException($exception);
 
         $this->assertInstanceOf('Symfony\Component\Debug\Exception\ClassNotFoundException', $args[0]);
-        $this->assertStringStartsWith("Attempted to load class \"IReallyReallyDoNotExistAnywhereInTheRepositoryISwear\" from the global namespace.\nDid you forget a \"use\" statement", $args[0]->getMessage());
+        $this->assertStringStartsWith("Attempted to load class \"Foo\" from the global namespace.\nDid you forget a \"use\" statement", $args[0]->getMessage());
     }
 
     /**
@@ -559,16 +553,16 @@ class ErrorHandlerTest extends TestCase
 
             $handler->setDefaultLogger($logger, E_ERROR);
 
-            $error = [
+            $error = array(
                 'type' => E_ERROR + 0x1000000, // This error level is used by HHVM for fatal errors
                 'message' => 'foo',
                 'file' => 'bar',
                 'line' => 123,
-                'context' => [123],
-                'backtrace' => [456],
-            ];
+                'context' => array(123),
+                'backtrace' => array(456),
+            );
 
-            \call_user_func_array([$handler, 'handleError'], $error);
+            \call_user_func_array(array($handler, 'handleError'), $error);
             $handler->handleFatalError($error);
         } finally {
             restore_error_handler();
@@ -577,70 +571,16 @@ class ErrorHandlerTest extends TestCase
     }
 
     /**
+     * @expectedException \Exception
      * @group no-hhvm
      */
     public function testCustomExceptionHandler()
     {
-        $this->expectException('Exception');
         $handler = new ErrorHandler();
         $handler->setExceptionHandler(function ($e) use ($handler) {
             $handler->handleException($e);
         });
 
         $handler->handleException(new \Exception());
-    }
-
-    /**
-     * @dataProvider errorHandlerWhenLoggingProvider
-     */
-    public function testErrorHandlerWhenLogging($previousHandlerWasDefined, $loggerSetsAnotherHandler, $nextHandlerIsDefined)
-    {
-        try {
-            if ($previousHandlerWasDefined) {
-                set_error_handler('count');
-            }
-
-            $logger = $loggerSetsAnotherHandler ? new LoggerThatSetAnErrorHandler() : new NullLogger();
-
-            $handler = ErrorHandler::register();
-            $handler->setDefaultLogger($logger);
-
-            if ($nextHandlerIsDefined) {
-                $handler = ErrorHandlerThatUsesThePreviousOne::register();
-            }
-
-            @trigger_error('foo', E_USER_DEPRECATED);
-            @trigger_error('bar', E_USER_DEPRECATED);
-
-            $this->assertSame([$handler, 'handleError'], set_error_handler('var_dump'));
-
-            if ($logger instanceof LoggerThatSetAnErrorHandler) {
-                $this->assertCount(2, $logger->cleanLogs());
-            }
-
-            restore_error_handler();
-
-            if ($previousHandlerWasDefined) {
-                restore_error_handler();
-            }
-
-            if ($nextHandlerIsDefined) {
-                restore_error_handler();
-            }
-        } finally {
-            restore_error_handler();
-            restore_exception_handler();
-        }
-    }
-
-    public function errorHandlerWhenLoggingProvider()
-    {
-        foreach ([false, true] as $previousHandlerWasDefined) {
-            foreach ([false, true] as $loggerSetsAnotherHandler) {
-                foreach ([false, true] as $nextHandlerIsDefined) {
-                    yield [$previousHandlerWasDefined, $loggerSetsAnotherHandler, $nextHandlerIsDefined];
-                }
-            }
-        }
     }
 }

@@ -28,7 +28,7 @@ class StaticPrefixCollection
     /**
      * @var array[]|StaticPrefixCollection[]
      */
-    private $items = [];
+    private $items = array();
 
     /**
      * @var int
@@ -68,7 +68,7 @@ class StaticPrefixCollection
             // When a prefix is exactly the same as the base we move up the match start position.
             // This is needed because otherwise routes that come afterwards have higher precedence
             // than a possible regular expression, which goes against the input order sorting.
-            $this->items[] = [$prefix, $route];
+            $this->items[] = array($prefix, $route);
             $this->matchStart = \count($this->items);
 
             return;
@@ -96,7 +96,7 @@ class StaticPrefixCollection
 
         // No optimised case was found, in this case we simple add the route for possible
         // grouping when new routes are added.
-        $this->items[] = [$prefix, $route];
+        $this->items[] = array($prefix, $route);
     }
 
     /**
@@ -106,7 +106,7 @@ class StaticPrefixCollection
      * @param string                       $prefix
      * @param mixed                        $route
      *
-     * @return StaticPrefixCollection|null
+     * @return null|StaticPrefixCollection
      */
     private function groupWithItem($item, $prefix, $route)
     {
@@ -114,13 +114,13 @@ class StaticPrefixCollection
         $commonPrefix = $this->detectCommonPrefix($prefix, $itemPrefix);
 
         if (!$commonPrefix) {
-            return null;
+            return;
         }
 
         $child = new self($commonPrefix);
 
         if ($item instanceof self) {
-            $child->items = [$item];
+            $child->items = array($item);
         } else {
             $child->addRoute($item[0], $item[1]);
         }

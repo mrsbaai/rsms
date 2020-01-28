@@ -35,7 +35,7 @@ class ChainCacheClearerTest extends TestCase
             ->expects($this->once())
             ->method('clear');
 
-        $chainClearer = new ChainCacheClearer([$clearer]);
+        $chainClearer = new ChainCacheClearer(array($clearer));
         $chainClearer->clear(self::$cacheDir);
     }
 

@@ -63,7 +63,7 @@ class SymfonyStyle extends OutputStyle
      */
     public function block($messages, $type = null, $style = null, $prefix = ' ', $padding = false, $escape = true)
     {
-        $messages = \is_array($messages) ? array_values($messages) : [$messages];
+        $messages = \is_array($messages) ? array_values($messages) : array($messages);
 
         $this->autoPrependBlock();
         $this->writeln($this->createBlock($messages, $type, $style, $prefix, $padding, $escape));
@@ -76,10 +76,10 @@ class SymfonyStyle extends OutputStyle
     public function title($message)
     {
         $this->autoPrependBlock();
-        $this->writeln([
+        $this->writeln(array(
             sprintf('<comment>%s</>', OutputFormatter::escapeTrailingBackslash($message)),
             sprintf('<comment>%s</>', str_repeat('=', Helper::strlenWithoutDecoration($this->getFormatter(), $message))),
-        ]);
+        ));
         $this->newLine();
     }
 
@@ -89,10 +89,10 @@ class SymfonyStyle extends OutputStyle
     public function section($message)
     {
         $this->autoPrependBlock();
-        $this->writeln([
+        $this->writeln(array(
             sprintf('<comment>%s</>', OutputFormatter::escapeTrailingBackslash($message)),
             sprintf('<comment>%s</>', str_repeat('-', Helper::strlenWithoutDecoration($this->getFormatter(), $message))),
-        ]);
+        ));
         $this->newLine();
     }
 
@@ -117,7 +117,7 @@ class SymfonyStyle extends OutputStyle
     {
         $this->autoPrependText();
 
-        $messages = \is_array($message) ? array_values($message) : [$message];
+        $messages = \is_array($message) ? array_values($message) : array($message);
         foreach ($messages as $message) {
             $this->writeln(sprintf(' %s', $message));
         }
@@ -355,9 +355,7 @@ class SymfonyStyle extends OutputStyle
         $chars = substr(str_replace(PHP_EOL, "\n", $this->bufferedOutput->fetch()), -2);
 
         if (!isset($chars[0])) {
-            $this->newLine(); //empty history, so we should start with a new line.
-
-            return;
+            return $this->newLine(); //empty history, so we should start with a new line.
         }
         //Prepend new line for each non LF chars (This means no blank line was output before)
         $this->newLine(2 - substr_count($chars, "\n"));
@@ -378,14 +376,14 @@ class SymfonyStyle extends OutputStyle
         // Preserve the last 4 chars inserted (PHP_EOL on windows is two chars) in the history buffer
         return array_map(function ($value) {
             return substr($value, -4);
-        }, array_merge([$this->bufferedOutput->fetch()], (array) $messages));
+        }, array_merge(array($this->bufferedOutput->fetch()), (array) $messages));
     }
 
     private function createBlock($messages, $type = null, $style = null, $prefix = ' ', $padding = false, $escape = false)
     {
         $indentLength = 0;
         $prefixLength = Helper::strlenWithoutDecoration($this->getFormatter(), $prefix);
-        $lines = [];
+        $lines = array();
 
         if (null !== $type) {
             $type = sprintf('[%s] ', $type);

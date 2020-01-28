@@ -20,7 +20,7 @@ class IcuResFileDumperTest extends TestCase
     public function testFormatCatalogue()
     {
         $catalogue = new MessageCatalogue('en');
-        $catalogue->add(['foo' => 'bar']);
+        $catalogue->add(array('foo' => 'bar'));
 
         $dumper = new IcuResFileDumper();
 

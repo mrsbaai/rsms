@@ -119,10 +119,10 @@ class ProfilerListener implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return [
-            KernelEvents::RESPONSE => ['onKernelResponse', -100],
+        return array(
+            KernelEvents::RESPONSE => array('onKernelResponse', -100),
             KernelEvents::EXCEPTION => 'onKernelException',
-            KernelEvents::TERMINATE => ['onKernelTerminate', -1024],
-        ];
+            KernelEvents::TERMINATE => array('onKernelTerminate', -1024),
+        );
     }
 }

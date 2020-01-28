@@ -82,7 +82,6 @@ class MethodDefinitionPass implements Pass
 
     private function renderMethodBody($method, $config)
     {
-        /** @var \ReflectionMethod $method */
         $invoke = $method->isStatic() ? 'static::_mockery_handleStaticMethodCall' : '$this->_mockery_handleMethodCall';
         $body = <<<BODY
 {
@@ -103,9 +102,6 @@ BODY;
             for ($i = 0; $i < $paramCount; ++$i) {
                 $param = $params[$i];
                 if (strpos($param, '&') !== false) {
-                    if (($stripDefaultValue = strpos($param, '=')) !== false) {
-                        $param = trim(substr($param, 0, $stripDefaultValue));
-                    }
                     $body .= <<<BODY
 if (\$argc > $i) {
     \$argv[$i] = {$param};
@@ -115,7 +111,6 @@ BODY;
                 }
             }
         } else {
-            /** @var \ReflectionParameter[] $params */
             $params = array_values($method->getParameters());
             $paramCount = count($params);
             for ($i = 0; $i < $paramCount; ++$i) {

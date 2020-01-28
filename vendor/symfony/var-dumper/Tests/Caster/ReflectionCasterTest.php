@@ -37,7 +37,7 @@ ReflectionClass {
 %A]
   constants: array:3 [
     "IS_IMPLICIT_ABSTRACT" => 16
-    "IS_EXPLICIT_ABSTRACT" => %d
+    "IS_EXPLICIT_ABSTRACT" => 32
     "IS_FINAL" => %d
   ]
   properties: array:%d [
@@ -85,34 +85,6 @@ EOTXT
         );
     }
 
-    public function testFromCallableClosureCaster()
-    {
-        if (\defined('HHVM_VERSION_ID')) {
-            $this->markTestSkipped('Not for HHVM.');
-        }
-        $var = [
-            (new \ReflectionMethod($this, __FUNCTION__))->getClosure($this),
-            (new \ReflectionMethod(__CLASS__, 'tearDownAfterClass'))->getClosure(),
-        ];
-
-        $this->assertDumpMatchesFormat(
-            <<<EOTXT
-array:2 [
-  0 => Symfony\Component\VarDumper\Tests\Caster\ReflectionCasterTest::testFromCallableClosureCaster {
-    this: Symfony\Component\VarDumper\Tests\Caster\ReflectionCasterTest { …}
-    file: "%sReflectionCasterTest.php"
-    line: "%d to %d"
-  }
-  1 => %sTestCase::tearDownAfterClass {
-    file: "%sTestCase.php"
-    line: "%d to %d"
-  }
-]
-EOTXT
-            , $var
-        );
-    }
-
     public function testClosureCasterExcludingVerbosity()
     {
         $var = function () {};
@@ -129,7 +101,7 @@ EOTXT;
 
     public function testReflectionParameter()
     {
-        $var = new \ReflectionParameter(reflectionParameterFixture::class, 0);
+        $var = new \ReflectionParameter(__NAMESPACE__.'\reflectionParameterFixture', 0);
 
         $this->assertDumpMatchesFormat(
             <<<'EOTXT'
@@ -251,7 +223,7 @@ array:2 [
 EODUMP;
 
         $r = new \ReflectionGenerator($generator);
-        $this->assertDumpMatchesFormat($expectedDump, [$r, $r->getExecutingGenerator()]);
+        $this->assertDumpMatchesFormat($expectedDump, array($r, $r->getExecutingGenerator()));
 
         foreach ($generator as $v) {
         }

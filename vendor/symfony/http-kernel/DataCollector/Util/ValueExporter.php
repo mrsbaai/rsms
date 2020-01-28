@@ -50,7 +50,7 @@ class ValueExporter
 
             $indent = str_repeat('  ', $depth);
 
-            $a = [];
+            $a = array();
             foreach ($value as $k => $v) {
                 if (\is_array($v)) {
                     $deep = true;

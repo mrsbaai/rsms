@@ -36,7 +36,7 @@ class OutputFormatterStyleStack
      */
     public function reset()
     {
-        $this->styles = [];
+        $this->styles = array();
     }
 
     /**

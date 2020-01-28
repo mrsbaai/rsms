@@ -32,13 +32,13 @@ class CliDumperTest extends TestCase
         $dumper = new CliDumper('php://output');
         $dumper->setColors(false);
         $cloner = new VarCloner();
-        $cloner->addCasters([
+        $cloner->addCasters(array(
             ':stream' => function ($res, $a) {
                 unset($a['uri'], $a['wrapper_data']);
 
                 return $a;
             },
-        ]);
+        ));
         $data = $cloner->cloneVar($var);
 
         ob_start();
@@ -119,11 +119,11 @@ EOTXT
         $dumper->setColors(false);
         $cloner = new VarCloner();
 
-        $var = [
-            'array' => ['a', 'b'],
+        $var = array(
+            'array' => array('a', 'b'),
             'string' => 'hello',
             'multiline string' => "this\nis\na\multiline\nstring",
-        ];
+        );
 
         $dump = $dumper->dump($cloner->cloneVar($var), true);
 
@@ -179,7 +179,7 @@ array:3 [
 
 EOTXT;
 
-        yield [$expected, CliDumper::DUMP_COMMA_SEPARATOR];
+        yield array($expected, CliDumper::DUMP_COMMA_SEPARATOR);
 
         $expected = <<<'EOTXT'
 array:3 [
@@ -198,7 +198,7 @@ array:3 [
 
 EOTXT;
 
-        yield [$expected, CliDumper::DUMP_TRAILING_COMMA];
+        yield array($expected, CliDumper::DUMP_TRAILING_COMMA);
     }
 
     /**
@@ -261,7 +261,7 @@ EOTXT
 
     public function testObjectCast()
     {
-        $var = (object) [1 => 1];
+        $var = (object) array(1 => 1);
         $var->{1} = 2;
 
         if (\PHP_VERSION_ID >= 70200) {
@@ -322,10 +322,10 @@ EOTXT
         putenv('DUMP_LIGHT_ARRAY=1');
         putenv('DUMP_STRING_LENGTH=1');
 
-        $var = [
+        $var = array(
             range(1, 3),
-            ['foo', 2 => 'bar'],
-        ];
+            array('foo', 2 => 'bar'),
+        );
 
         $this->assertDumpEquals(
             <<<EOTXT
@@ -362,22 +362,22 @@ EOTXT
         $dumper = new CliDumper();
         $dumper->setColors(false);
         $cloner = new VarCloner();
-        $cloner->addCasters([
+        $cloner->addCasters(array(
             ':stream' => function ($res, $a) {
                 unset($a['wrapper_data']);
 
                 return $a;
             },
-        ]);
-        $cloner->addCasters([
+        ));
+        $cloner->addCasters(array(
             ':stream' => eval('return function () use ($twig) {
                 try {
-                    $twig->render([]);
+                    $twig->render(array());
                 } catch (\Twig\Error\RuntimeError $e) {
                     throw $e->getPrevious();
                 }
             };'),
-        ]);
+        ));
         $ref = (int) $out;
 
         $data = $cloner->cloneVar($out);
@@ -419,7 +419,7 @@ EOTXT
 
     public function testRefsInProperties()
     {
-        $var = (object) ['foo' => 'foo'];
+        $var = (object) array('foo' => 'foo');
         $var->bar = &$var->foo;
 
         $dumper = new CliDumper();
@@ -580,12 +580,12 @@ EOTXT
         }
 
         $var = function &() {
-            $var = [];
+            $var = array();
             $var[] = &$var;
 
             return $var;
         };
 
-        return [$var(), $GLOBALS, &$GLOBALS];
+        return array($var(), $GLOBALS, &$GLOBALS);
     }
 }

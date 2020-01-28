@@ -381,14 +381,6 @@ class CarbonPeriod implements Iterator, Countable
     }
 
     /**
-     * Remove all macros.
-     */
-    public static function resetMacros()
-    {
-        static::$macros = array();
-    }
-
-    /**
      * Register macros from a mixin object.
      *
      * @param object $mixin
@@ -1003,7 +995,7 @@ class CarbonPeriod implements Iterator, Countable
      * Returns true when current date is valid, false if it is not, or static::END_ITERATION
      * when iteration should be stopped.
      *
-     * @return bool|string
+     * @return bool|static::END_ITERATION
      */
     protected function validateCurrentDate()
     {

@@ -17,9 +17,7 @@ use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\ArrayDimFetch;
 use PhpParser\Node\Expr\ArrayItem;
 use PhpParser\Node\Expr\Assign;
-use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Expr\List_;
-use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\PropertyFetch;
 use PhpParser\Node\Expr\Variable;
 use Psy\Exception\ParseErrorException;
@@ -101,12 +99,14 @@ class ListPass extends CodeCleanerPass
     {
         $value = ($item instanceof ArrayItem) ? $item->value : $item;
 
-        while ($value instanceof ArrayDimFetch || $value instanceof PropertyFetch) {
-            $value = $value->var;
+        if ($value instanceof Variable) {
+            return true;
         }
 
-        // We just kind of give up if it's a method call. We can't tell if it's
-        // valid via static analysis.
-        return $value instanceof Variable || $value instanceof MethodCall || $value instanceof FuncCall;
+        if ($value instanceof ArrayDimFetch || $value instanceof PropertyFetch) {
+            return isset($value->var) && $value->var instanceof Variable;
+        }
+
+        return false;
     }
 }

@@ -34,7 +34,7 @@ class CacheWarmerAggregateTest extends TestCase
         $warmer
             ->expects($this->once())
             ->method('warmUp');
-        $aggregate = new CacheWarmerAggregate([$warmer]);
+        $aggregate = new CacheWarmerAggregate(array($warmer));
         $aggregate->warmUp(self::$cacheDir);
     }
 
@@ -62,7 +62,7 @@ class CacheWarmerAggregateTest extends TestCase
             ->expects($this->once())
             ->method('warmUp');
         $aggregate = new CacheWarmerAggregate();
-        $aggregate->setWarmers([$warmer]);
+        $aggregate->setWarmers(array($warmer));
         $aggregate->warmUp(self::$cacheDir);
     }
 
@@ -76,7 +76,7 @@ class CacheWarmerAggregateTest extends TestCase
             ->expects($this->once())
             ->method('warmUp');
 
-        $aggregate = new CacheWarmerAggregate([$warmer]);
+        $aggregate = new CacheWarmerAggregate(array($warmer));
         $aggregate->enableOptionalWarmers();
         $aggregate->warmUp(self::$cacheDir);
     }
@@ -87,12 +87,12 @@ class CacheWarmerAggregateTest extends TestCase
         $warmer
             ->expects($this->once())
             ->method('isOptional')
-            ->willReturn(true);
+            ->will($this->returnValue(true));
         $warmer
             ->expects($this->never())
             ->method('warmUp');
 
-        $aggregate = new CacheWarmerAggregate([$warmer]);
+        $aggregate = new CacheWarmerAggregate(array($warmer));
         $aggregate->warmUp(self::$cacheDir);
     }
 

@@ -33,11 +33,11 @@ class NamedMockTest extends MockeryTestCase
     /** @test */
     public function itCreatesPassesFurtherArgumentsJustLikeMock()
     {
-        $mock = Mockery::namedMock("Mockery\Dave456", "DateTimeZone", array(
+        $mock = Mockery::namedMock("Mockery\Dave456", "DateTime", array(
             "getDave" => "dave"
         ));
 
-        $this->assertInstanceOf("DateTimeZone", $mock);
+        $this->assertInstanceOf("DateTime", $mock);
         $this->assertEquals("dave", $mock->getDave());
     }
 

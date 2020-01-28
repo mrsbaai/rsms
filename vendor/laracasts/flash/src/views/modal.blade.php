@@ -1,4 +1,4 @@
-<div id="flash-overlay-modal" class="modal fade {{ isset($modalClass) ? $modalClass : '' }}">
+<div id="flash-overlay-modal" class="modal fade {{ $modalClass or '' }}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

@@ -11,11 +11,11 @@ class __TwigTemplate_VarDumperFixture_u75a09 extends Twig\Template
             parent::__construct($env);
         }
         $this->parent = false;
-        $this->blocks = [];
+        $this->blocks = array();
         $this->path = $path;
     }
 
-    protected function doDisplay(array $context, array $blocks = [])
+    protected function doDisplay(array $context, array $blocks = array())
     {
         // line 2
         throw new \Exception('Foobar');
@@ -28,7 +28,7 @@ class __TwigTemplate_VarDumperFixture_u75a09 extends Twig\Template
 
     public function getDebugInfo()
     {
-        return [20 => 1, 21 => 2];
+        return array(20 => 1, 21 => 2);
     }
 
     public function getSourceContext()

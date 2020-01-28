@@ -31,7 +31,7 @@ abstract class AbstractProxy
     /**
      * Gets the session.save_handler name.
      *
-     * @return string|null
+     * @return string
      */
     public function getSaveHandlerName()
     {

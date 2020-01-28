@@ -23,7 +23,7 @@ class KernelForTest extends Kernel
 
     public function registerBundles()
     {
-        return [];
+        return array();
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
@@ -33,10 +33,5 @@ class KernelForTest extends Kernel
     public function isBooted()
     {
         return $this->booted;
-    }
-
-    public function getProjectDir()
-    {
-        return __DIR__;
     }
 }

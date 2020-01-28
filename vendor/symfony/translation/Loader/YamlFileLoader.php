@@ -45,10 +45,6 @@ class YamlFileLoader extends FileLoader
             throw new InvalidResourceException(sprintf('Error parsing YAML, invalid file "%s"', $resource), 0, $e);
         }
 
-        if (null !== $messages && !\is_array($messages)) {
-            throw new InvalidResourceException(sprintf('Unable to load file "%s".', $resource));
-        }
-
-        return $messages ?: [];
+        return $messages;
     }
 }

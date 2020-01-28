@@ -48,28 +48,34 @@ class PdoSessionHandlerTest extends TestCase
         return $pdo;
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     */
     public function testWrongPdoErrMode()
     {
-        $this->expectException('InvalidArgumentException');
         $pdo = $this->getMemorySqlitePdo();
         $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_SILENT);
 
-        new PdoSessionHandler($pdo);
+        $storage = new PdoSessionHandler($pdo);
     }
 
+    /**
+     * @expectedException \RuntimeException
+     */
     public function testInexistentTable()
     {
-        $this->expectException('RuntimeException');
-        $storage = new PdoSessionHandler($this->getMemorySqlitePdo(), ['db_table' => 'inexistent_table']);
+        $storage = new PdoSessionHandler($this->getMemorySqlitePdo(), array('db_table' => 'inexistent_table'));
         $storage->open('', 'sid');
         $storage->read('id');
         $storage->write('id', 'data');
         $storage->close();
     }
 
+    /**
+     * @expectedException \RuntimeException
+     */
     public function testCreateTableTwice()
     {
-        $this->expectException('RuntimeException');
         $storage = new PdoSessionHandler($this->getMemorySqlitePdo());
         $storage->createTable();
     }
@@ -141,7 +147,7 @@ class PdoSessionHandlerTest extends TestCase
         $stream = $this->createStream($content);
 
         $pdo->prepareResult->expects($this->once())->method('fetchAll')
-            ->willReturn([[$stream, 42, time()]]);
+            ->will($this->returnValue(array(array($stream, 42, time()))));
 
         $storage = new PdoSessionHandler($pdo);
         $result = $storage->read('foo');
@@ -154,7 +160,7 @@ class PdoSessionHandlerTest extends TestCase
         if (\defined('HHVM_VERSION')) {
             $this->markTestSkipped('PHPUnit_MockObject cannot mock the PDOStatement class on HHVM. See https://github.com/sebastianbergmann/phpunit-mock-objects/pull/289');
         }
-        if (filter_var(ini_get('session.use_strict_mode'), FILTER_VALIDATE_BOOLEAN)) {
+        if (ini_get('session.use_strict_mode')) {
             $this->markTestSkipped('Strict mode needs no locking for new sessions.');
         }
 
@@ -171,14 +177,14 @@ class PdoSessionHandlerTest extends TestCase
         $exception = null;
 
         $selectStmt->expects($this->atLeast(2))->method('fetchAll')
-            ->willReturnCallback(function () use (&$exception, $stream) {
-                return $exception ? [[$stream, 42, time()]] : [];
-            });
+            ->will($this->returnCallback(function () use (&$exception, $stream) {
+                return $exception ? array(array($stream, 42, time())) : array();
+            }));
 
         $insertStmt->expects($this->once())->method('execute')
-            ->willReturnCallback(function () use (&$exception) {
+            ->will($this->returnCallback(function () use (&$exception) {
                 throw $exception = new \PDOException('', '23');
-            });
+            }));
 
         $storage = new PdoSessionHandler($pdo);
         $result = $storage->read('foo');
@@ -324,33 +330,33 @@ class PdoSessionHandlerTest extends TestCase
     public function testUrlDsn($url, $expectedDsn, $expectedUser = null, $expectedPassword = null)
     {
         $storage = new PdoSessionHandler($url);
-        $reflection = new \ReflectionClass(PdoSessionHandler::class);
 
-        foreach (['dsn' => $expectedDsn, 'username' => $expectedUser, 'password' => $expectedPassword] as $property => $expectedValue) {
-            if (!isset($expectedValue)) {
-                continue;
-            }
-            $property = $reflection->getProperty($property);
-            $property->setAccessible(true);
-            $this->assertSame($expectedValue, $property->getValue($storage));
+        $this->assertAttributeEquals($expectedDsn, 'dsn', $storage);
+
+        if (null !== $expectedUser) {
+            $this->assertAttributeEquals($expectedUser, 'username', $storage);
+        }
+
+        if (null !== $expectedPassword) {
+            $this->assertAttributeEquals($expectedPassword, 'password', $storage);
         }
     }
 
     public function provideUrlDsnPairs()
     {
-        yield ['mysql://localhost/test', 'mysql:host=localhost;dbname=test;'];
-        yield ['mysql://localhost:56/test', 'mysql:host=localhost;port=56;dbname=test;'];
-        yield ['mysql2://root:pwd@localhost/test', 'mysql:host=localhost;dbname=test;', 'root', 'pwd'];
-        yield ['postgres://localhost/test', 'pgsql:host=localhost;dbname=test;'];
-        yield ['postgresql://localhost:5634/test', 'pgsql:host=localhost;port=5634;dbname=test;'];
-        yield ['postgres://root:pwd@localhost/test', 'pgsql:host=localhost;dbname=test;', 'root', 'pwd'];
-        yield 'sqlite relative path' => ['sqlite://localhost/tmp/test', 'sqlite:tmp/test'];
-        yield 'sqlite absolute path' => ['sqlite://localhost//tmp/test', 'sqlite:/tmp/test'];
-        yield 'sqlite relative path without host' => ['sqlite:///tmp/test', 'sqlite:tmp/test'];
-        yield 'sqlite absolute path without host' => ['sqlite3:////tmp/test', 'sqlite:/tmp/test'];
-        yield ['sqlite://localhost/:memory:', 'sqlite::memory:'];
-        yield ['mssql://localhost/test', 'sqlsrv:server=localhost;Database=test'];
-        yield ['mssql://localhost:56/test', 'sqlsrv:server=localhost,56;Database=test'];
+        yield array('mysql://localhost/test', 'mysql:host=localhost;dbname=test;');
+        yield array('mysql://localhost:56/test', 'mysql:host=localhost;port=56;dbname=test;');
+        yield array('mysql2://root:pwd@localhost/test', 'mysql:host=localhost;dbname=test;', 'root', 'pwd');
+        yield array('postgres://localhost/test', 'pgsql:host=localhost;dbname=test;');
+        yield array('postgresql://localhost:5634/test', 'pgsql:host=localhost;port=5634;dbname=test;');
+        yield array('postgres://root:pwd@localhost/test', 'pgsql:host=localhost;dbname=test;', 'root', 'pwd');
+        yield 'sqlite relative path' => array('sqlite://localhost/tmp/test', 'sqlite:tmp/test');
+        yield 'sqlite absolute path' => array('sqlite://localhost//tmp/test', 'sqlite:/tmp/test');
+        yield 'sqlite relative path without host' => array('sqlite:///tmp/test', 'sqlite:tmp/test');
+        yield 'sqlite absolute path without host' => array('sqlite3:////tmp/test', 'sqlite:/tmp/test');
+        yield array('sqlite://localhost/:memory:', 'sqlite::memory:');
+        yield array('mssql://localhost/test', 'sqlsrv:server=localhost;Database=test');
+        yield array('mssql://localhost:56/test', 'sqlsrv:server=localhost,56;Database=test');
     }
 
     private function createStream($content)
@@ -388,7 +394,7 @@ class MockPdo extends \PDO
         return parent::getAttribute($attribute);
     }
 
-    public function prepare($statement, $driverOptions = [])
+    public function prepare($statement, $driverOptions = array())
     {
         return \is_callable($this->prepareResult)
             ? \call_user_func($this->prepareResult, $statement, $driverOptions)

@@ -11,7 +11,7 @@ $int = 42;
 $float = 42.42;
 $str = 'foobar';
 $object = new StdClass();
-$array = ['foo', 'bar'];
+$array = array('foo', 'bar');
 $resource = tmpfile();
 $null = null;
 $bool = true;
@@ -19,7 +19,7 @@ $bool = true;
 $anotherint = 42;
 $refcount2 = &$anotherint;
 
-$var = [
+$var = array(
     'int' => $int,
     'float' => $float,
     'str' => $str,
@@ -29,7 +29,7 @@ $var = [
     'null' => $null,
     'bool' => $bool,
     'refcount' => &$refcount2,
-];
+);
 
 var_dump(symfony_zval_info('int', $var));
 var_dump(symfony_zval_info('float', $var));

@@ -26,7 +26,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 abstract class AbstractSessionListener implements EventSubscriberInterface
 {
-    private $sessionUsageStack = [];
+    private $sessionUsageStack = array();
 
     public function onKernelRequest(GetResponseEvent $event)
     {
@@ -56,7 +56,6 @@ abstract class AbstractSessionListener implements EventSubscriberInterface
 
         if ($session instanceof Session ? $session->getUsageIndex() !== end($this->sessionUsageStack) : $session->isStarted()) {
             $event->getResponse()
-                ->setExpires(new \DateTime())
                 ->setPrivate()
                 ->setMaxAge(0)
                 ->headers->addCacheControlDirective('must-revalidate');
@@ -75,12 +74,12 @@ abstract class AbstractSessionListener implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return [
-            KernelEvents::REQUEST => ['onKernelRequest', 128],
+        return array(
+            KernelEvents::REQUEST => array('onKernelRequest', 128),
             // low priority to come after regular response listeners, same as SaveSessionListener
-            KernelEvents::RESPONSE => ['onKernelResponse', -1000],
-            KernelEvents::FINISH_REQUEST => ['onFinishRequest'],
-        ];
+            KernelEvents::RESPONSE => array('onKernelResponse', -1000),
+            KernelEvents::FINISH_REQUEST => array('onFinishRequest'),
+        );
     }
 
     /**

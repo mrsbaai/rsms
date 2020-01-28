@@ -28,7 +28,7 @@ class CommandTester
     private $command;
     private $input;
     private $output;
-    private $inputs = [];
+    private $inputs = array();
     private $statusCode;
 
     public function __construct(Command $command)
@@ -50,7 +50,7 @@ class CommandTester
      *
      * @return int The command exit code
      */
-    public function execute(array $input, array $options = [])
+    public function execute(array $input, array $options = array())
     {
         // set the command name automatically if the application requires
         // this argument and no command name was passed
@@ -58,12 +58,13 @@ class CommandTester
             && (null !== $application = $this->command->getApplication())
             && $application->getDefinition()->hasArgument('command')
         ) {
-            $input = array_merge(['command' => $this->command->getName()], $input);
+            $input = array_merge(array('command' => $this->command->getName()), $input);
         }
 
         $this->input = new ArrayInput($input);
-        // Use an in-memory input stream even if no inputs are set so that QuestionHelper::ask() does not rely on the blocking STDIN.
-        $this->input->setStream(self::createStream($this->inputs));
+        if ($this->inputs) {
+            $this->input->setStream(self::createStream($this->inputs));
+        }
 
         if (isset($options['interactive'])) {
             $this->input->setInteractive($options['interactive']);
@@ -87,10 +88,6 @@ class CommandTester
      */
     public function getDisplay($normalize = false)
     {
-        if (null === $this->output) {
-            throw new \RuntimeException('Output not initialized, did you execute the command before requesting the display?');
-        }
-
         rewind($this->output->getStream());
 
         $display = stream_get_contents($this->output->getStream());
@@ -151,10 +148,7 @@ class CommandTester
     {
         $stream = fopen('php://memory', 'r+', false);
 
-        foreach ($inputs as $input) {
-            fwrite($stream, $input.PHP_EOL);
-        }
-
+        fwrite($stream, implode(PHP_EOL, $inputs));
         rewind($stream);
 
         return $stream;

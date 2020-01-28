@@ -22,24 +22,29 @@ use Webmozart\Assert\Assert;
 /**
  * Reflection class for a {@}var tag in a Docblock.
  */
-class Var_ extends TagWithType implements Factory\StaticMethod
+class Var_ extends BaseTag implements Factory\StaticMethod
 {
+    /** @var string */
+    protected $name = 'var';
+
+    /** @var Type */
+    private $type;
+
     /** @var string */
     protected $variableName = '';
 
     /**
-     * @param string $variableName
-     * @param Type $type
+     * @param string      $variableName
+     * @param Type        $type
      * @param Description $description
      */
     public function __construct($variableName, Type $type = null, Description $description = null)
     {
         Assert::string($variableName);
 
-        $this->name = 'var';
         $this->variableName = $variableName;
-        $this->type = $type;
-        $this->description = $description;
+        $this->type         = $type;
+        $this->description  = $description;
     }
 
     /**
@@ -54,17 +59,14 @@ class Var_ extends TagWithType implements Factory\StaticMethod
         Assert::stringNotEmpty($body);
         Assert::allNotNull([$typeResolver, $descriptionFactory]);
 
-        list($firstPart, $body) = self::extractTypeFromBody($body);
-        $parts = preg_split('/(\s+)/Su', $body, 2, PREG_SPLIT_DELIM_CAPTURE);
-        $type = null;
+        $parts        = preg_split('/(\s+)/Su', $body, 3, PREG_SPLIT_DELIM_CAPTURE);
+        $type         = null;
         $variableName = '';
 
         // if the first item that is encountered is not a variable; it is a type
-        if ($firstPart && (strlen($firstPart) > 0) && ($firstPart[0] !== '$')) {
-            $type = $typeResolver->resolve($firstPart, $context);
-        } else {
-            // first part is not a type; we should prepend it to the parts array for further processing
-            array_unshift($parts, $firstPart);
+        if (isset($parts[0]) && (strlen($parts[0]) > 0) && ($parts[0][0] !== '$')) {
+            $type = $typeResolver->resolve(array_shift($parts), $context);
+            array_shift($parts);
         }
 
         // if the next item starts with a $ or ...$ it must be the variable name
@@ -90,6 +92,16 @@ class Var_ extends TagWithType implements Factory\StaticMethod
     public function getVariableName()
     {
         return $this->variableName;
+    }
+
+    /**
+     * Returns the variable's type or null if unknown.
+     *
+     * @return Type|null
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**

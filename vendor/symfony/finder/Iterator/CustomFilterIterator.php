@@ -21,7 +21,7 @@ namespace Symfony\Component\Finder\Iterator;
  */
 class CustomFilterIterator extends FilterIterator
 {
-    private $filters = [];
+    private $filters = array();
 
     /**
      * @param \Iterator  $iterator The Iterator to filter

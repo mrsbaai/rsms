@@ -58,7 +58,7 @@ class ArgumentMetadata
      *
      * The type is the PHP class in 5.5+ and additionally the basic type in PHP 7.0+.
      *
-     * @return string|null
+     * @return string
      */
     public function getType()
     {

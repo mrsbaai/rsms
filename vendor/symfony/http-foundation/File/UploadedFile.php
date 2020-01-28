@@ -214,26 +214,13 @@ class UploadedFile extends File
      */
     public static function getMaxFilesize()
     {
-        $sizePostMax = self::parseFilesize(ini_get('post_max_size'));
-        $sizeUploadMax = self::parseFilesize(ini_get('upload_max_filesize'));
+        $iniMax = strtolower(ini_get('upload_max_filesize'));
 
-        return min($sizePostMax ?: PHP_INT_MAX, $sizeUploadMax ?: PHP_INT_MAX);
-    }
-
-    /**
-     * Returns the given size from an ini value in bytes.
-     *
-     * @return int The given size in bytes
-     */
-    private static function parseFilesize($size)
-    {
-        if ('' === $size) {
-            return 0;
+        if ('' === $iniMax) {
+            return PHP_INT_MAX;
         }
 
-        $size = strtolower($size);
-
-        $max = ltrim($size, '+');
+        $max = ltrim($iniMax, '+');
         if (0 === strpos($max, '0x')) {
             $max = \intval($max, 16);
         } elseif (0 === strpos($max, '0')) {
@@ -242,7 +229,7 @@ class UploadedFile extends File
             $max = (int) $max;
         }
 
-        switch (substr($size, -1)) {
+        switch (substr($iniMax, -1)) {
             case 't': $max *= 1024;
             // no break
             case 'g': $max *= 1024;
@@ -262,7 +249,7 @@ class UploadedFile extends File
      */
     public function getErrorMessage()
     {
-        static $errors = [
+        static $errors = array(
             UPLOAD_ERR_INI_SIZE => 'The file "%s" exceeds your upload_max_filesize ini directive (limit is %d KiB).',
             UPLOAD_ERR_FORM_SIZE => 'The file "%s" exceeds the upload limit defined in your form.',
             UPLOAD_ERR_PARTIAL => 'The file "%s" was only partially uploaded.',
@@ -270,7 +257,7 @@ class UploadedFile extends File
             UPLOAD_ERR_CANT_WRITE => 'The file "%s" could not be written on disk.',
             UPLOAD_ERR_NO_TMP_DIR => 'File could not be uploaded: missing temporary directory.',
             UPLOAD_ERR_EXTENSION => 'File upload was stopped by a PHP extension.',
-        ];
+        );
 
         $errorCode = $this->error;
         $maxFilesize = UPLOAD_ERR_INI_SIZE === $errorCode ? self::getMaxFilesize() / 1024 : 0;

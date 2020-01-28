@@ -26,8 +26,8 @@ class LazyLoadingFragmentHandler extends FragmentHandler
     /**
      * @deprecated since version 3.3, to be removed in 4.0
      */
-    private $rendererIds = [];
-    private $initialized = [];
+    private $rendererIds = array();
+    private $initialized = array();
 
     /**
      * @param ContainerInterface $container    A container
@@ -38,7 +38,7 @@ class LazyLoadingFragmentHandler extends FragmentHandler
     {
         $this->container = $container;
 
-        parent::__construct($requestStack, [], $debug);
+        parent::__construct($requestStack, array(), $debug);
     }
 
     /**
@@ -59,7 +59,7 @@ class LazyLoadingFragmentHandler extends FragmentHandler
     /**
      * {@inheritdoc}
      */
-    public function render($uri, $renderer = 'inline', array $options = [])
+    public function render($uri, $renderer = 'inline', array $options = array())
     {
         // BC 3.x, to be removed in 4.0
         if (isset($this->rendererIds[$renderer])) {

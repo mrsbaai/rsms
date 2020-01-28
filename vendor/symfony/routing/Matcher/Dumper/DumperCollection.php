@@ -28,12 +28,12 @@ class DumperCollection implements \IteratorAggregate
     /**
      * @var DumperCollection[]|DumperRoute[]
      */
-    private $children = [];
+    private $children = array();
 
     /**
      * @var array
      */
-    private $attributes = [];
+    private $attributes = array();
 
     /**
      * Returns the children routes and collections.
@@ -120,7 +120,7 @@ class DumperCollection implements \IteratorAggregate
      */
     public function hasAttribute($name)
     {
-        return \array_key_exists($name, $this->attributes);
+        return array_key_exists($name, $this->attributes);
     }
 
     /**

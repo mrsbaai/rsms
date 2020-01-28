@@ -25,18 +25,18 @@ class ProcessBuilder
 {
     private $arguments;
     private $cwd;
-    private $env = [];
+    private $env = array();
     private $input;
     private $timeout = 60;
     private $options;
     private $inheritEnv = true;
-    private $prefix = [];
+    private $prefix = array();
     private $outputDisabled = false;
 
     /**
      * @param string[] $arguments An array of arguments
      */
-    public function __construct(array $arguments = [])
+    public function __construct(array $arguments = array())
     {
         $this->arguments = $arguments;
     }
@@ -48,7 +48,7 @@ class ProcessBuilder
      *
      * @return static
      */
-    public static function create(array $arguments = [])
+    public static function create(array $arguments = array())
     {
         return new static($arguments);
     }
@@ -78,7 +78,7 @@ class ProcessBuilder
      */
     public function setPrefix($prefix)
     {
-        $this->prefix = \is_array($prefix) ? $prefix : [$prefix];
+        $this->prefix = \is_array($prefix) ? $prefix : array($prefix);
 
         return $this;
     }
@@ -103,7 +103,7 @@ class ProcessBuilder
     /**
      * Sets the working directory.
      *
-     * @param string|null $cwd The working directory
+     * @param null|string $cwd The working directory
      *
      * @return $this
      */
@@ -135,7 +135,7 @@ class ProcessBuilder
      * defined environment variable.
      *
      * @param string      $name  The variable name
-     * @param string|null $value The variable value
+     * @param null|string $value The variable value
      *
      * @return $this
      */

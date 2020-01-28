@@ -1,10 +1,6 @@
 # Change Log
 
-## 0.9.11 (2019-02-12)
-
-* Set property values on all related mocks #944
-
-## 0.9.4 (2015-04-02)
+## 0.9.4 (XXXX-XX-XX)
 
 * `shouldIgnoreMissing` will respect global `allowMockingNonExistentMethods`
   config

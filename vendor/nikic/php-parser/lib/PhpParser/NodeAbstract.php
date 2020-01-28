@@ -2,6 +2,8 @@
 
 namespace PhpParser;
 
+use PhpParser\Node;
+
 abstract class NodeAbstract implements Node, \JsonSerializable
 {
     protected $attributes;
@@ -157,11 +159,11 @@ abstract class NodeAbstract implements Node, \JsonSerializable
     }
 
     public function getAttribute(string $key, $default = null) {
-        if (array_key_exists($key, $this->attributes)) {
+        if (!array_key_exists($key, $this->attributes)) {
+            return $default;
+        } else {
             return $this->attributes[$key];
         }
-
-        return $default;
     }
 
     public function getAttributes() : array {

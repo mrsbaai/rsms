@@ -31,7 +31,7 @@ abstract class AbstractOperation implements OperationInterface
     protected $result;
 
     /**
-     * @var array|null The domains affected by this operation
+     * @var null|array The domains affected by this operation
      */
     private $domains;
 
@@ -39,20 +39,21 @@ abstract class AbstractOperation implements OperationInterface
      * This array stores 'all', 'new' and 'obsolete' messages for all valid domains.
      *
      * The data structure of this array is as follows:
-     *
-     *     [
-     *         'domain 1' => [
-     *             'all' => [...],
-     *             'new' => [...],
-     *             'obsolete' => [...]
-     *         ],
-     *         'domain 2' => [
-     *             'all' => [...],
-     *             'new' => [...],
-     *             'obsolete' => [...]
-     *         ],
-     *         ...
-     *     ]
+     * ```php
+     * array(
+     *     'domain 1' => array(
+     *         'all' => array(...),
+     *         'new' => array(...),
+     *         'obsolete' => array(...)
+     *     ),
+     *     'domain 2' => array(
+     *         'all' => array(...),
+     *         'new' => array(...),
+     *         'obsolete' => array(...)
+     *     ),
+     *     ...
+     * )
+     * ```
      *
      * @var array The array that stores 'all', 'new' and 'obsolete' messages
      */
@@ -70,7 +71,7 @@ abstract class AbstractOperation implements OperationInterface
         $this->source = $source;
         $this->target = $target;
         $this->result = new MessageCatalogue($source->getLocale());
-        $this->messages = [];
+        $this->messages = array();
     }
 
     /**

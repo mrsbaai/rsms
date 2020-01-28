@@ -21,6 +21,7 @@ use Psy\ExecutionLoop\ProcessForker;
 use Psy\ExecutionLoop\RunkitReloader;
 use Psy\Input\ShellInput;
 use Psy\Input\SilentInput;
+use Psy\Output\ShellOutput;
 use Psy\TabCompletion\Matcher;
 use Psy\VarDumper\PresenterAware;
 use Symfony\Component\Console\Application;
@@ -46,7 +47,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class Shell extends Application
 {
-    const VERSION = 'v0.9.12';
+    const VERSION = 'v0.9.8';
 
     const PROMPT      = '>>> ';
     const BUFF_PROMPT = '... ';
@@ -72,7 +73,6 @@ class Shell extends Application
     private $autoCompleter;
     private $matchers = [];
     private $commandsMatcher;
-    private $lastExecSuccess = true;
 
     /**
      * Create a new Psy Shell.
@@ -371,7 +371,7 @@ class Shell extends Application
 
         do {
             // reset output verbosity (in case it was altered by a subcommand)
-            $this->output->setVerbosity(OutputInterface::VERBOSITY_VERBOSE);
+            $this->output->setVerbosity(ShellOutput::VERBOSITY_VERBOSE);
 
             $input = $this->readline();
 
@@ -930,7 +930,7 @@ class Shell extends Application
 
         // Incremental flush
         if ($out !== '' && !$isCleaning) {
-            $this->output->write($out, false, OutputInterface::OUTPUT_RAW);
+            $this->output->write($out, false, ShellOutput::OUTPUT_RAW);
             $this->outputWantsNewline = (\substr($out, -1) !== "\n");
             $this->stdoutBuffer .= $out;
         }
@@ -963,8 +963,6 @@ class Shell extends Application
      */
     public function writeReturnValue($ret)
     {
-        $this->lastExecSuccess = true;
-
         if ($ret instanceof NoReturnValue) {
             return;
         }
@@ -988,22 +986,9 @@ class Shell extends Application
      */
     public function writeException(\Exception $e)
     {
-        $this->lastExecSuccess = false;
         $this->context->setLastException($e);
         $this->output->writeln($this->formatException($e));
         $this->resetCodeBuffer();
-    }
-
-    /**
-     * Check whether the last exec was successful.
-     *
-     * Returns true if a return value was logged rather than an exception.
-     *
-     * @return bool
-     */
-    public function getLastExecSuccess()
-    {
-        return $this->lastExecSuccess;
     }
 
     /**

@@ -19,7 +19,7 @@ use Symfony\Component\Console\Exception\InvalidOptionException;
  *
  * Usage:
  *
- *     $input = new ArrayInput(['command' => 'foo:bar', 'foo' => 'bar', '--bar' => 'foobar']);
+ *     $input = new ArrayInput(array('name' => 'foo', '--bar' => 'foobar'));
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
@@ -39,15 +39,13 @@ class ArrayInput extends Input
      */
     public function getFirstArgument()
     {
-        foreach ($this->parameters as $param => $value) {
-            if ($param && \is_string($param) && '-' === $param[0]) {
+        foreach ($this->parameters as $key => $value) {
+            if ($key && '-' === $key[0]) {
                 continue;
             }
 
             return $value;
         }
-
-        return null;
     }
 
     /**
@@ -105,9 +103,9 @@ class ArrayInput extends Input
      */
     public function __toString()
     {
-        $params = [];
+        $params = array();
         foreach ($this->parameters as $param => $val) {
-            if ($param && \is_string($param) && '-' === $param[0]) {
+            if ($param && '-' === $param[0]) {
                 if (\is_array($val)) {
                     foreach ($val as $v) {
                         $params[] = $param.('' != $v ? '='.$this->escapeToken($v) : '');
@@ -116,7 +114,7 @@ class ArrayInput extends Input
                     $params[] = $param.('' != $val ? '='.$this->escapeToken($val) : '');
                 }
             } else {
-                $params[] = \is_array($val) ? implode(' ', array_map([$this, 'escapeToken'], $val)) : $this->escapeToken($val);
+                $params[] = \is_array($val) ? implode(' ', array_map(array($this, 'escapeToken'), $val)) : $this->escapeToken($val);
             }
         }
 
@@ -134,7 +132,7 @@ class ArrayInput extends Input
             }
             if (0 === strpos($key, '--')) {
                 $this->addLongOption(substr($key, 2), $value);
-            } elseif (0 === strpos($key, '-')) {
+            } elseif ('-' === $key[0]) {
                 $this->addShortOption(substr($key, 1), $value);
             } else {
                 $this->addArgument($key, $value);

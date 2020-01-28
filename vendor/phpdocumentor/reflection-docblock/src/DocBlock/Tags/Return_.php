@@ -22,11 +22,15 @@ use Webmozart\Assert\Assert;
 /**
  * Reflection class for a {@}return tag in a Docblock.
  */
-final class Return_ extends TagWithType implements Factory\StaticMethod
+final class Return_ extends BaseTag implements Factory\StaticMethod
 {
+    protected $name = 'return';
+
+    /** @var Type */
+    private $type;
+
     public function __construct(Type $type, Description $description = null)
     {
-        $this->name = 'return';
         $this->type = $type;
         $this->description = $description;
     }
@@ -43,12 +47,22 @@ final class Return_ extends TagWithType implements Factory\StaticMethod
         Assert::string($body);
         Assert::allNotNull([$typeResolver, $descriptionFactory]);
 
-        list($type, $description) = self::extractTypeFromBody($body);
+        $parts = preg_split('/\s+/Su', $body, 2);
 
-        $type = $typeResolver->resolve($type, $context);
-        $description = $descriptionFactory->create($description, $context);
+        $type = $typeResolver->resolve(isset($parts[0]) ? $parts[0] : '', $context);
+        $description = $descriptionFactory->create(isset($parts[1]) ? $parts[1] : '', $context);
 
         return new static($type, $description);
+    }
+
+    /**
+     * Returns the type section of the variable.
+     *
+     * @return Type
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     public function __toString()

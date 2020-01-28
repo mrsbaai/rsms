@@ -58,8 +58,8 @@ class ComparatorTest extends TestCase
 
     public function getTestData()
     {
-        return [
-            ['<', '1000', ['500', '999'], ['1000', '1500']],
-        ];
+        return array(
+            array('<', '1000', array('500', '999'), array('1000', '1500')),
+        );
     }
 }

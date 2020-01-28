@@ -20,8 +20,8 @@ use Symfony\Component\DependencyInjection\Extension\Extension as BaseExtension;
  */
 abstract class Extension extends BaseExtension
 {
-    private $classes = [];
-    private $annotatedClasses = [];
+    private $classes = array();
+    private $annotatedClasses = array();
 
     /**
      * Gets the classes to cache.

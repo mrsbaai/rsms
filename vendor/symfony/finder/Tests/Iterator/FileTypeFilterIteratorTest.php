@@ -29,7 +29,7 @@ class FileTypeFilterIteratorTest extends RealIteratorTestCase
 
     public function getAcceptData()
     {
-        $onlyFiles = [
+        $onlyFiles = array(
             'test.py',
             'foo/bar.tmp',
             'test.php',
@@ -37,20 +37,20 @@ class FileTypeFilterIteratorTest extends RealIteratorTestCase
             '.foo/.bar',
             '.foo/bar',
             'foo bar',
-        ];
+        );
 
-        $onlyDirectories = [
+        $onlyDirectories = array(
             '.git',
             'foo',
             'toto',
             'toto/.git',
             '.foo',
-        ];
+        );
 
-        return [
-            [FileTypeFilterIterator::ONLY_FILES, $this->toAbsolute($onlyFiles)],
-            [FileTypeFilterIterator::ONLY_DIRECTORIES, $this->toAbsolute($onlyDirectories)],
-        ];
+        return array(
+            array(FileTypeFilterIterator::ONLY_FILES, $this->toAbsolute($onlyFiles)),
+            array(FileTypeFilterIterator::ONLY_DIRECTORIES, $this->toAbsolute($onlyDirectories)),
+        );
     }
 }
 

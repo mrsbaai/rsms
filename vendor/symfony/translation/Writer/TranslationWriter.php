@@ -23,7 +23,7 @@ use Symfony\Component\Translation\MessageCatalogue;
  */
 class TranslationWriter implements TranslationWriterInterface
 {
-    private $dumpers = [];
+    private $dumpers = array();
 
     /**
      * Adds a dumper to the writer.
@@ -71,7 +71,7 @@ class TranslationWriter implements TranslationWriterInterface
      *
      * @throws InvalidArgumentException
      */
-    public function write(MessageCatalogue $catalogue, $format, $options = [])
+    public function write(MessageCatalogue $catalogue, $format, $options = array())
     {
         if (!isset($this->dumpers[$format])) {
             throw new InvalidArgumentException(sprintf('There is no dumper associated with format "%s".', $format));

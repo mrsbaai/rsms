@@ -24,46 +24,35 @@ use Symfony\Component\HttpFoundation\Cookie;
  */
 class CookieTest extends TestCase
 {
-    public function namesWithSpecialCharacters()
+    public function invalidNames()
     {
-        return [
-            [',MyName'],
-            [';MyName'],
-            [' MyName'],
-            ["\tMyName"],
-            ["\rMyName"],
-            ["\nMyName"],
-            ["\013MyName"],
-            ["\014MyName"],
-        ];
+        return array(
+            array(''),
+            array(',MyName'),
+            array(';MyName'),
+            array(' MyName'),
+            array("\tMyName"),
+            array("\rMyName"),
+            array("\nMyName"),
+            array("\013MyName"),
+            array("\014MyName"),
+        );
     }
 
     /**
-     * @dataProvider namesWithSpecialCharacters
+     * @dataProvider invalidNames
+     * @expectedException \InvalidArgumentException
      */
-    public function testInstantiationThrowsExceptionIfRawCookieNameContainsSpecialCharacters($name)
+    public function testInstantiationThrowsExceptionIfCookieNameContainsInvalidCharacters($name)
     {
-        $this->expectException('InvalidArgumentException');
-        new Cookie($name, null, 0, null, null, null, false, true);
+        new Cookie($name);
     }
 
     /**
-     * @dataProvider namesWithSpecialCharacters
+     * @expectedException \InvalidArgumentException
      */
-    public function testInstantiationSucceedNonRawCookieNameContainsSpecialCharacters($name)
-    {
-        $this->assertInstanceOf(Cookie::class, new Cookie($name));
-    }
-
-    public function testInstantiationThrowsExceptionIfCookieNameIsEmpty()
-    {
-        $this->expectException('InvalidArgumentException');
-        new Cookie('');
-    }
-
     public function testInvalidExpiration()
     {
-        $this->expectException('InvalidArgumentException');
         new Cookie('MyCookie', 'foo', 'bar');
     }
 
@@ -132,7 +121,7 @@ class CookieTest extends TestCase
         $cookie = new Cookie('foo', 'bar', $value);
         $expire = strtotime($value);
 
-        $this->assertEqualsWithDelta($expire, $cookie->getExpiresTime(), 1, '->getExpiresTime() returns the expire date');
+        $this->assertEquals($expire, $cookie->getExpiresTime(), '->getExpiresTime() returns the expire date', 1);
     }
 
     public function testGetDomain()

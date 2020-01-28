@@ -28,10 +28,7 @@ use Symfony\Component\VarDumper\Cloner\VarCloner;
  */
 abstract class DataCollector implements DataCollectorInterface, \Serializable
 {
-    /**
-     * @var array|Data
-     */
-    protected $data = [];
+    protected $data = array();
 
     /**
      * @var ValueExporter
@@ -45,15 +42,12 @@ abstract class DataCollector implements DataCollectorInterface, \Serializable
 
     public function serialize()
     {
-        $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 2);
-        $isCalledFromOverridingMethod = isset($trace[1]['function'], $trace[1]['object']) && 'serialize' === $trace[1]['function'] && $this === $trace[1]['object'];
-
-        return $isCalledFromOverridingMethod ? $this->data : serialize($this->data);
+        return serialize($this->data);
     }
 
     public function unserialize($data)
     {
-        $this->data = \is_array($data) ? $data : unserialize($data);
+        $this->data = unserialize($data);
     }
 
     /**
@@ -117,7 +111,7 @@ abstract class DataCollector implements DataCollectorInterface, \Serializable
      */
     protected function getCasters()
     {
-        return [
+        return array(
             '*' => function ($v, array $a, Stub $s, $isNested) {
                 if (!$v instanceof Stub) {
                     foreach ($a as $k => $v) {
@@ -129,6 +123,6 @@ abstract class DataCollector implements DataCollectorInterface, \Serializable
 
                 return $a;
             },
-        ];
+        );
     }
 }

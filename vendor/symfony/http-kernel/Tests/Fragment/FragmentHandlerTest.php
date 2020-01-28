@@ -32,29 +32,35 @@ class FragmentHandlerTest extends TestCase
         $this->requestStack
             ->expects($this->any())
             ->method('getCurrentRequest')
-            ->willReturn(Request::create('/'))
+            ->will($this->returnValue(Request::create('/')))
         ;
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     */
     public function testRenderWhenRendererDoesNotExist()
     {
-        $this->expectException('InvalidArgumentException');
         $handler = new FragmentHandler($this->requestStack);
         $handler->render('/', 'foo');
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     */
     public function testRenderWithUnknownRenderer()
     {
-        $this->expectException('InvalidArgumentException');
         $handler = $this->getHandler($this->returnValue(new Response('foo')));
 
         $handler->render('/', 'bar');
     }
 
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage Error when rendering "http://localhost/" (Status code is 404).
+     */
     public function testDeliverWithUnsuccessfulResponse()
     {
-        $this->expectException('RuntimeException');
-        $this->expectExceptionMessage('Error when rendering "http://localhost/" (Status code is 404).');
         $handler = $this->getHandler($this->returnValue(new Response('foo', 404)));
 
         $handler->render('/', 'foo');
@@ -62,18 +68,18 @@ class FragmentHandlerTest extends TestCase
 
     public function testRender()
     {
-        $handler = $this->getHandler($this->returnValue(new Response('foo')), ['/', Request::create('/'), ['foo' => 'foo', 'ignore_errors' => true]]);
+        $handler = $this->getHandler($this->returnValue(new Response('foo')), array('/', Request::create('/'), array('foo' => 'foo', 'ignore_errors' => true)));
 
-        $this->assertEquals('foo', $handler->render('/', 'foo', ['foo' => 'foo']));
+        $this->assertEquals('foo', $handler->render('/', 'foo', array('foo' => 'foo')));
     }
 
-    protected function getHandler($returnValue, $arguments = [])
+    protected function getHandler($returnValue, $arguments = array())
     {
         $renderer = $this->getMockBuilder('Symfony\Component\HttpKernel\Fragment\FragmentRendererInterface')->getMock();
         $renderer
             ->expects($this->any())
             ->method('getName')
-            ->willReturn('foo')
+            ->will($this->returnValue('foo'))
         ;
         $e = $renderer
             ->expects($this->any())
@@ -82,7 +88,7 @@ class FragmentHandlerTest extends TestCase
         ;
 
         if ($arguments) {
-            \call_user_func_array([$e, 'with'], $arguments);
+            \call_user_func_array(array($e, 'with'), $arguments);
         }
 
         $handler = new FragmentHandler($this->requestStack);

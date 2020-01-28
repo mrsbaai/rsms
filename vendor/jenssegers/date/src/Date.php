@@ -5,7 +5,6 @@ namespace Jenssegers\Date;
 use Carbon\Carbon;
 use DateInterval;
 use DateTimeZone;
-use ReflectionMethod;
 use Symfony\Component\Translation\Loader\ArrayLoader;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -104,30 +103,23 @@ class Date extends Carbon
      * Alias for diffForHumans.
      *
      * @param  Date $since
-     * @param  bool $syntax  Removes time difference modifiers ago, after, etc
-     * @param  bool $short   (Carbon 2 only) displays short format of time units
-     * @param  int  $parts   (Carbon 2 only) maximum number of parts to display (default value: 1: single unit)
-     * @param  int  $options (Carbon 2 only) human diff options
+     * @param  bool $absolute Removes time difference modifiers ago, after, etc
      * @return string
      */
-    public function ago($since = null, $syntax = null, $short = false, $parts = 1, $options = null)
+    public function ago($since = null, $absolute = false)
     {
-        return $this->diffForHumans($since, $syntax, $short, $parts, $options);
+        return $this->diffForHumans($since, $absolute);
     }
 
     /**
      * Alias for diffForHumans.
      *
      * @param  Date $since
-     * @param  bool $syntax  Removes time difference modifiers ago, after, etc
-     * @param  bool $short   (Carbon 2 only) displays short format of time units
-     * @param  int  $parts   (Carbon 2 only) maximum number of parts to display (default value: 1: single unit)
-     * @param  int  $options (Carbon 2 only) human diff options
      * @return string
      */
-    public function until($since = null, $syntax = null, $short = false, $parts = 1, $options = null)
+    public function until($since = null)
     {
-        return $this->ago($since, $syntax, $short, $parts, $options);
+        return $this->ago($since);
     }
 
     /**
@@ -207,9 +199,9 @@ class Date extends Carbon
     /**
      * Gets the timespan between this date and another date.
      *
-     * @param  Date|int $time
+     * @param  Date $time
      * @param  string|DateTimeZone $timezone
-     * @return string
+     * @return int
      */
     public function timespan($time = null, $timezone = null)
     {
@@ -255,11 +247,9 @@ class Date extends Carbon
      * Adds an amount of days, months, years, hours, minutes and seconds to a Date object.
      *
      * @param DateInterval|string $interval
-     * @param int                 $value (only effective if using Carbon 2)
-     * @param bool|null           $overflow (only effective if using Carbon 2)
      * @return Date|bool
      */
-    public function add($interval, $value = 1, $overflow = null)
+    public function add($interval)
     {
         if (is_string($interval)) {
             // Check for ISO 8601
@@ -270,23 +260,16 @@ class Date extends Carbon
             }
         }
 
-        $method = new ReflectionMethod(parent::class, 'add');
-        $result = $method->getNumberOfRequiredParameters() === 1
-            ? parent::add($interval)
-            : parent::add($interval, $value, $overflow);
-
-        return $result ? $this : false;
+        return parent::add($interval) ? $this : false;
     }
 
     /**
      * Subtracts an amount of days, months, years, hours, minutes and seconds from a DateTime object.
      *
      * @param DateInterval|string $interval
-     * @param int                 $value (only effective if using Carbon 2)
-     * @param bool|null           $overflow (only effective if using Carbon 2)
      * @return Date|bool
      */
-    public function sub($interval, $value = 1, $overflow = null)
+    public function sub($interval)
     {
         if (is_string($interval)) {
             // Check for ISO 8601
@@ -297,12 +280,7 @@ class Date extends Carbon
             }
         }
 
-        $method = new ReflectionMethod(parent::class, 'sub');
-        $result = $method->getNumberOfRequiredParameters() === 1
-            ? parent::sub($interval)
-            : parent::sub($interval, $value, $overflow);
-
-        return $result ? $this : false;
+        return parent::sub($interval) ? $this : false;
     }
 
     /**
@@ -399,7 +377,7 @@ class Date extends Carbon
      * @param  string $time
      * @return string
      */
-    public static function translateTimeString($time, $from = null, $to = null, $mode = -1)
+    public static function translateTimeString($time)
     {
         // Don't run translations for english.
         if (static::getLocale() == 'en') {

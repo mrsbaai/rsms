@@ -38,15 +38,15 @@ class EventDataCollector extends DataCollector implements LateDataCollectorInter
      */
     public function collect(Request $request, Response $response, \Exception $exception = null)
     {
-        $this->data = [
-            'called_listeners' => [],
-            'not_called_listeners' => [],
-        ];
+        $this->data = array(
+            'called_listeners' => array(),
+            'not_called_listeners' => array(),
+        );
     }
 
     public function reset()
     {
-        $this->data = [];
+        $this->data = array();
 
         if ($this->dispatcher instanceof TraceableEventDispatcherInterface) {
             if (!method_exists($this->dispatcher, 'reset')) {

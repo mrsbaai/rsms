@@ -54,7 +54,7 @@ class EnvParametersResource implements SelfCheckingResourceInterface, \Serializa
      */
     public function getResource()
     {
-        return ['prefix' => $this->prefix, 'variables' => $this->variables];
+        return array('prefix' => $this->prefix, 'variables' => $this->variables);
     }
 
     /**
@@ -65,21 +65,15 @@ class EnvParametersResource implements SelfCheckingResourceInterface, \Serializa
         return $this->findVariables() === $this->variables;
     }
 
-    /**
-     * @internal
-     */
     public function serialize()
     {
-        return serialize(['prefix' => $this->prefix, 'variables' => $this->variables]);
+        return serialize(array('prefix' => $this->prefix, 'variables' => $this->variables));
     }
 
-    /**
-     * @internal
-     */
     public function unserialize($serialized)
     {
         if (\PHP_VERSION_ID >= 70000) {
-            $unserialized = unserialize($serialized, ['allowed_classes' => false]);
+            $unserialized = unserialize($serialized, array('allowed_classes' => false));
         } else {
             $unserialized = unserialize($serialized);
         }
@@ -90,7 +84,7 @@ class EnvParametersResource implements SelfCheckingResourceInterface, \Serializa
 
     private function findVariables()
     {
-        $variables = [];
+        $variables = array();
 
         foreach ($_SERVER as $key => $value) {
             if (0 === strpos($key, $this->prefix)) {

@@ -19,15 +19,16 @@ use Symfony\Component\Console\Exception\InvalidArgumentException;
 class TableCell
 {
     private $value;
-    private $options = [
+    private $options = array(
         'rowspan' => 1,
         'colspan' => 1,
-    ];
+    );
 
     /**
      * @param string $value
+     * @param array  $options
      */
-    public function __construct($value = '', array $options = [])
+    public function __construct($value = '', array $options = array())
     {
         if (is_numeric($value) && !\is_string($value)) {
             $value = (string) $value;

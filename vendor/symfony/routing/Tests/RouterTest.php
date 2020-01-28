@@ -30,27 +30,29 @@ class RouterTest extends TestCase
 
     public function testSetOptionsWithSupportedOptions()
     {
-        $this->router->setOptions([
+        $this->router->setOptions(array(
             'cache_dir' => './cache',
             'debug' => true,
             'resource_type' => 'ResourceType',
-        ]);
+        ));
 
         $this->assertSame('./cache', $this->router->getOption('cache_dir'));
         $this->assertTrue($this->router->getOption('debug'));
         $this->assertSame('ResourceType', $this->router->getOption('resource_type'));
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage The Router does not support the following options: "option_foo", "option_bar"
+     */
     public function testSetOptionsWithUnsupportedOptions()
     {
-        $this->expectException('InvalidArgumentException');
-        $this->expectExceptionMessage('The Router does not support the following options: "option_foo", "option_bar"');
-        $this->router->setOptions([
+        $this->router->setOptions(array(
             'cache_dir' => './cache',
             'option_foo' => true,
             'option_bar' => 'baz',
             'resource_type' => 'ResourceType',
-        ]);
+        ));
     }
 
     public function testSetOptionWithSupportedOption()
@@ -60,17 +62,21 @@ class RouterTest extends TestCase
         $this->assertSame('./cache', $this->router->getOption('cache_dir'));
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage The Router does not support the "option_foo" option
+     */
     public function testSetOptionWithUnsupportedOption()
     {
-        $this->expectException('InvalidArgumentException');
-        $this->expectExceptionMessage('The Router does not support the "option_foo" option');
         $this->router->setOption('option_foo', true);
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage The Router does not support the "option_foo" option
+     */
     public function testGetOptionWithUnsupportedOption()
     {
-        $this->expectException('InvalidArgumentException');
-        $this->expectExceptionMessage('The Router does not support the "option_foo" option');
         $this->router->getOption('option_foo', true);
     }
 
@@ -82,7 +88,7 @@ class RouterTest extends TestCase
 
         $this->loader->expects($this->once())
             ->method('load')->with('routing.yml', 'ResourceType')
-            ->willReturn($routeCollection);
+            ->will($this->returnValue($routeCollection));
 
         $this->assertSame($routeCollection, $this->router->getRouteCollection());
     }
@@ -96,17 +102,17 @@ class RouterTest extends TestCase
 
         $this->loader->expects($this->once())
             ->method('load')->with('routing.yml', null)
-            ->willReturn(new RouteCollection());
+            ->will($this->returnValue(new RouteCollection()));
 
         $this->assertInstanceOf('Symfony\\Component\\Routing\\Matcher\\UrlMatcher', $this->router->getMatcher());
     }
 
     public function provideMatcherOptionsPreventingCaching()
     {
-        return [
-            ['cache_dir'],
-            ['matcher_cache_class'],
-        ];
+        return array(
+            array('cache_dir'),
+            array('matcher_cache_class'),
+        );
     }
 
     /**
@@ -118,17 +124,17 @@ class RouterTest extends TestCase
 
         $this->loader->expects($this->once())
             ->method('load')->with('routing.yml', null)
-            ->willReturn(new RouteCollection());
+            ->will($this->returnValue(new RouteCollection()));
 
         $this->assertInstanceOf('Symfony\\Component\\Routing\\Generator\\UrlGenerator', $this->router->getGenerator());
     }
 
     public function provideGeneratorOptionsPreventingCaching()
     {
-        return [
-            ['cache_dir'],
-            ['generator_cache_class'],
-        ];
+        return array(
+            array('cache_dir'),
+            array('generator_cache_class'),
+        );
     }
 
     public function testMatchRequestWithUrlMatcherInterface()

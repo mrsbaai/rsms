@@ -34,7 +34,7 @@ final class ArgumentResolver implements ArgumentResolverInterface
      */
     private $argumentValueResolvers;
 
-    public function __construct(ArgumentMetadataFactoryInterface $argumentMetadataFactory = null, $argumentValueResolvers = [])
+    public function __construct(ArgumentMetadataFactoryInterface $argumentMetadataFactory = null, $argumentValueResolvers = array())
     {
         $this->argumentMetadataFactory = $argumentMetadataFactory ?: new ArgumentMetadataFactory();
         $this->argumentValueResolvers = $argumentValueResolvers ?: self::getDefaultArgumentValueResolvers();
@@ -45,7 +45,7 @@ final class ArgumentResolver implements ArgumentResolverInterface
      */
     public function getArguments(Request $request, $controller)
     {
-        $arguments = [];
+        $arguments = array();
 
         foreach ($this->argumentMetadataFactory->createArgumentMetadata($controller) as $metadata) {
             foreach ($this->argumentValueResolvers as $resolver) {
@@ -83,12 +83,12 @@ final class ArgumentResolver implements ArgumentResolverInterface
 
     public static function getDefaultArgumentValueResolvers()
     {
-        return [
+        return array(
             new RequestAttributeValueResolver(),
             new RequestValueResolver(),
             new SessionValueResolver(),
             new DefaultValueResolver(),
             new VariadicValueResolver(),
-        ];
+        );
     }
 }

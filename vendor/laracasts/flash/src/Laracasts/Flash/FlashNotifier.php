@@ -2,12 +2,8 @@
 
 namespace Laracasts\Flash;
 
-use Illuminate\Support\Traits\Macroable;
-
 class FlashNotifier
 {
-    use Macroable;
-
     /**
      * The session store.
      *

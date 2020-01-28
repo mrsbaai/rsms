@@ -21,6 +21,6 @@ class CustomRouteCompiler extends RouteCompiler
      */
     public static function compile(Route $route)
     {
-        return new CustomCompiledRoute('', '', [], []);
+        return new CustomCompiledRoute('', '', array(), array());
     }
 }
