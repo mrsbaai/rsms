@@ -126,7 +126,7 @@ class adminController extends Controller
 
         $results = number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toArray();
 
-       return array2csv($results);
+       return $this->array2csv($results);
         //return view('admin.flat')->with('value',$value);
     }
     Public function dashboard(){
