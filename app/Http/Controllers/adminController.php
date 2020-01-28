@@ -134,15 +134,12 @@ class adminController extends Controller
         $logins = array();
 
         foreach ($results as $user=>$pass) {
-        array_push($logins, array( $user , $pass));
+            $text =  $user . "," . $pass;
+            echo nl2br(e($text));
 
         }
       
-       return response($this->array2csv($logins))       ->header('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
-       ->header('Content-type', 'text/csv')
-       ->header('Content-Disposition' , 'attachment; filename=galleries.csv')
-       ->header('Expires', '0')
-       ->header('Pragma', 'public')
+       //return response($this->array2csv($logins)) 
 
        ;
         //return view('admin.flat')->with('value',$value);
