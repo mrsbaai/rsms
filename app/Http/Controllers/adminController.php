@@ -131,15 +131,15 @@ class adminController extends Controller
 
         $results = number::all()->where("network", "textnow")->where("is_private", true)->sortByDesc('last_checked')->pluck('network_password', 'network_login')->toArray();
 
-        $logins = array();
+        $logins = "";
 
         foreach ($results as $user=>$pass) {
-            $text =  $user . "," . $pass;
-            echo nl2br($text);
+            $logins = $logins . $user . "," . $pass . "\r\n";
+
 
         }
       
-       //return response($this->array2csv($logins)) 
+       return response($logins) 
 
        ;
         //return view('admin.flat')->with('value',$value);
