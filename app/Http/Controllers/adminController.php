@@ -113,11 +113,12 @@ class adminController extends Controller
         $buffer = fopen('php://temp', 'r+');
 
         foreach ($list as $line) {
+            echo "s";
             fputcsv($buffer, $line);
         }
           
 
-    
+        rewind($buffer);
         $csv = fgets($buffer);
         fclose($buffer);
         return $csv;
@@ -137,7 +138,7 @@ class adminController extends Controller
         array_push($logins, array( $user , $pass));
 
         }
-
+      
        return response($this->array2csv($logins))
 
        ;
