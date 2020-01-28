@@ -135,7 +135,7 @@ class adminController extends Controller
 
         foreach ($results as $user=>$pass) {
             $text =  $user . "," . $pass;
-            echo nl2br(e($text));
+            echo nl2br($text);
 
         }
       
