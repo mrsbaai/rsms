@@ -893,8 +893,8 @@ public function verifyiim(){
 
     $code = "";
 
-    $code = $code . "URL GOTO=https://www.textnow.com/messaging" . "\r\n";
-    $code = $code . "EVENT TYPE=MOUSEDOWN SELECTOR=\"#newText\" BUTTON=0" . "\r\n";
+    $code = $code . "URL GOTO=https://www.textnow.com/messaging" . PHP_EOL;
+    $code = $code . "EVENT TYPE=MOUSEDOWN SELECTOR=\"#newText\" BUTTON=0" . PHP_EOL;
 
     return $code;
 }
