@@ -5,7 +5,6 @@
          var macroCode = '';
          macroCode += 'VERSION BUILD=10021450\n';
          macroCode += 'URL GOTO=https://www.marketwatch.com/investing/index/djia\n';
-         macroCode += 'SAVEAS TYPE=HTM FOLDER=C:\\Users\\DES\\Documents\\DJIA FILE={{!NOW:ddmmyyyy}}\n';
 
          function launchMacro()
             {
