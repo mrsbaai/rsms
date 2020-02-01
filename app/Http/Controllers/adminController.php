@@ -889,5 +889,15 @@ class adminController extends Controller
     return "$difference $periods[$j] {$tense}";
 }
 
+public function verifyiim(){
+
+    $code = "";
+
+    $code = $code . "URL GOTO=https://www.textnow.com/messaging" . "\r\n";
+    $code = $code . "EVENT TYPE=MOUSEDOWN SELECTOR=\"#newText\" BUTTON=0" . "\r\n";
+
+    return $code;
+}
+
 
 }
