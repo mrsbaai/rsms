@@ -128,6 +128,11 @@ Route::get('/', function(){
     }
 });
 
+
+Route::get('/phpiii', function(){
+    phpinfo();
+});
+
 Route::get('/home', 'pagesController@home');
 
 Route::get('/subscribed', 'pagesController@home');
