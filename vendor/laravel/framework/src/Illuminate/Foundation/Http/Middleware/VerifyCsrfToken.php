@@ -8,6 +8,7 @@ use Illuminate\Foundation\Application;
 use Symfony\Component\HttpFoundation\Cookie;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Session\TokenMismatchException;
+use Log;
 
 class VerifyCsrfToken
 {
@@ -133,6 +134,7 @@ class VerifyCsrfToken
      */
     protected function getTokenFromRequest($request)
     {
+        Log::info("im inside");
         $token = $request->input('_token') ?: $request->header('X-CSRF-TOKEN');
 
         if (! $token && $header = $request->header('X-XSRF-TOKEN')) {
