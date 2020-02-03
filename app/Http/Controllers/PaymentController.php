@@ -431,10 +431,10 @@ class PaymentController extends Controller
 
 
     public function paypalIPN(){
-
+        Log::info("im inside");
         $ipn = new PaypalIPN();
 
-        Log::info("im inside");
+        
 
         $verified = $ipn->verifyIPN();
 
