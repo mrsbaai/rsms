@@ -910,6 +910,9 @@ public function verifyiim(){
     $macro = $macro . 'TAG POS=1 TYPE=span ATTR=CLASS:uikit-text<sp>uikit-text--micro<sp>uikit-text--danger&&TXT:* EXTRACT=TXT' . '\r\n'; 
     //$macro = $macro . 'PROMPT {{!EXTRACT}}' . '\r\n'; 
 
+    $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(9)>DIV>DIV>DIV>DIV:nth-of-type(3)>DIV>INPUT" BUTTON=0' . '\r\n'; 
+    $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(9)>DIV>DIV>DIV>DIV:nth-of-type(3)>DIV:nth-of-type(2)" BUTTON=0' . '\r\n'; 
+
     // send an sms
     $macro = $macro . 'EVENT TYPE=MOUSEDOWN SELECTOR="#newText" BUTTON=0' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEMOVE SELECTOR="#newText" POINT="(360,37)"' . '\r\n'; 
