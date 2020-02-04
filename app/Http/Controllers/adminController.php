@@ -893,6 +893,7 @@ public function verifyiim(){
 
     $username = "peterson813@premiumbooks.io";
     $password = "a7K-fUji";
+    $smsmessage = "test6";
     $macro = '';
 
     $macro = $macro . 'SET !ERRORIGNORE YES' . '\r\n'; 
@@ -927,7 +928,7 @@ public function verifyiim(){
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(3)" BUTTON=0' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(4)>TEXTAREA" BUTTON=0' . '\r\n'; 
     $macro = $macro . 'WAIT SECONDS=3' . '\r\n'; 
-    $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(4)>TEXTAREA" CHARS="test6"' . '\r\n'; 
+    $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(4)>TEXTAREA" CHARS="'. $smsmessage . '"' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(3)" BUTTON=0' . '\r\n'; 
 
 
