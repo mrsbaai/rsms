@@ -891,12 +891,13 @@ class adminController extends Controller
 
 public function verifyiim(){
 
-    $code = "";
+    $code = '';
 
-    $code = $code . "URL GOTO=https://www.textnow.com/messaging";
-    $code = $code . "EVENT TYPE=MOUSEDOWN SELECTOR=\"#newText\" BUTTON=0";
+    $code = $code . 'URL GOTO=https://google.com' . '\n';
+    $code = $code . 'URL GOTO=https://yahoo.com' . '\n';
 
-    return view("admin.macro");
+
+    return view("admin.macro")->with('code',$code);
 }
 
 

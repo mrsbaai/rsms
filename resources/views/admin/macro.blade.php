@@ -2,9 +2,7 @@
    <body onload="window.setTimeout('document.getElementById(\'criimlaunch\').click();', 1000);">
 
       <script>
-         var macroCode = '';
-         macroCode += 'VERSION BUILD=10021450\n';
-         macroCode += 'URL GOTO=https://www.marketwatch.com/investing/index/djia\n';
+         var macroCode = '{{ $code }}';
 
          function launchMacro()
             {
