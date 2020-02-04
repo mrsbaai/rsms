@@ -893,20 +893,22 @@ public function verifyiim(){
 
     $macro = '';
 
-    $macro = $macro . 'VERSION BUILD=1005 RECORDER=CR' . '\r\n'; 
-    $macro = $macro . 'URL GOTO=https://www.textnow.com/login' . '\r\n'; 
+    $macro = $macro . 'SET !ERRORIGNORE YES' . '\r\n'; 
+    $macro = $macro . 'SET !EXTRACT_TEST_POPUP NO' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-username" POINT="(294,196)"' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEUP POINT="(294,196)"' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="#txt-username" BUTTON=0' . '\r\n'; 
-    $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-username" CHARS="testddd"' . '\r\n'; 
+    $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-username" CHARS="email"' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-password" BUTTON=0' . '\r\n'; 
-    $macro = $macro . 'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-password" POINT="(294,196)"' . '\r\n'; 
-    $macro = $macro . 'EVENT TYPE=MOUSEUP POINT="(294,250)"' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="#txt-password" BUTTON=0' . '\r\n'; 
-    $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-password" CHARS="passsssssssssssssssssss"' . '\r\n'; 
+    $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-password" CHARS="pass"' . '\r\n'; 
     $macro = $macro . 'SET !ENCRYPTION NO' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0' . '\r\n'; 
+    $macro = $macro . 'SET !EXTRACT NULL' . '\r\n'; 
+    $macro = $macro . 'TAG POS=1 TYPE=span ATTR=CLASS:uikit-text<sp>uikit-text--micro<sp>uikit-text--danger&&TXT:* EXTRACT=TXT' . '\r\n'; 
+    $macro = $macro . 'PROMPT {{!EXTRACT}}' . '\r\n'; 
+    $macro = $macro . 'URL GOTO=https://google.com' . '\r\n'; 
 
 
     return view("admin.macro")->with('code',$macro);
