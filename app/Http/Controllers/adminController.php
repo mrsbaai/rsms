@@ -891,19 +891,22 @@ class adminController extends Controller
 
 public function verifyiim(){
 
+    $username = "peterson813@premiumbooks.io";
+    $password = "a7K-fUji";
     $macro = '';
 
     $macro = $macro . 'SET !ERRORIGNORE YES' . '\r\n'; 
     $macro = $macro . 'SET !EXTRACT_TEST_POPUP NO' . '\r\n'; 
+    $macro = $macro . 'URL GOTO=https://www.textnow.com/logout' . '\r\n'; 
     $macro = $macro . 'URL GOTO=https://www.textnow.com/login' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-username" POINT="(294,196)"' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEUP POINT="(294,196)"' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="#txt-username" BUTTON=0' . '\r\n'; 
-    $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-username" CHARS="barrera938@premiumbooks.io"' . '\r\n'; 
+    $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-username" CHARS="$username"' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-password" BUTTON=0' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="#txt-password" BUTTON=0' . '\r\n'; 
-    $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-password" CHARS="VSR9aU3h"' . '\r\n'; 
+    $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-password" CHARS="$password"' . '\r\n'; 
     $macro = $macro . 'SET !ENCRYPTION NO' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0' . '\r\n'; 
     $macro = $macro . 'SET !EXTRACT NULL' . '\r\n'; 
@@ -924,7 +927,7 @@ public function verifyiim(){
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(3)" BUTTON=0' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(4)>TEXTAREA" BUTTON=0' . '\r\n'; 
     $macro = $macro . 'WAIT SECONDS=3' . '\r\n'; 
-    $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(4)>TEXTAREA" CHARS="test5"' . '\r\n'; 
+    $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(4)>TEXTAREA" CHARS="test6"' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(3)" BUTTON=0' . '\r\n'; 
 
 
