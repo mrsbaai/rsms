@@ -913,7 +913,8 @@ public function verifyiim(){
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(9)>DIV>DIV>DIV>DIV:nth-of-type(3)>DIV>INPUT" BUTTON=0' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(9)>DIV>DIV>DIV>DIV:nth-of-type(3)>DIV:nth-of-type(2)" BUTTON=0' . '\r\n'; 
 
-    // send an sms
+    // send an smsµ
+    $macro = $macro . 'WAIT SECONDS=2' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEDOWN SELECTOR="#newText" BUTTON=0' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEMOVE SELECTOR="#newText" POINT="(360,37)"' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEUP POINT="(360,37)"' . '\r\n'; 
@@ -922,6 +923,7 @@ public function verifyiim(){
     $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#text-input" CHARS="12075718781"' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(3)" BUTTON=0' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(4)>TEXTAREA" BUTTON=0' . '\r\n'; 
+    $macro = $macro . 'WAIT SECONDS=3' . '\r\n'; 
     $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(4)>TEXTAREA" CHARS="test5"' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(3)" BUTTON=0' . '\r\n'; 
 
