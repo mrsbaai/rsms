@@ -895,6 +895,7 @@ public function verifyiim(){
 
     $macro = $macro . 'SET !ERRORIGNORE YES' . '\r\n'; 
     $macro = $macro . 'SET !EXTRACT_TEST_POPUP NO' . '\r\n'; 
+    $macro = $macro . 'URL GOTO=https://www.textnow.com/login' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-username" POINT="(294,196)"' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEUP POINT="(294,196)"' . '\r\n'; 
