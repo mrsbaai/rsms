@@ -2,7 +2,7 @@
    <body onload="window.setTimeout('document.getElementById(\'criimlaunch\').click();', 1000);">
 
       <script>
-         var macroCode = '{{ $code }}';
+         var macroCode = '{!! $code !!}';
 
          function launchMacro()
             {
