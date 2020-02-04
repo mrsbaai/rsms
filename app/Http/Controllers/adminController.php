@@ -894,7 +894,7 @@ public function verifyiim(){
     $macro = '';
 
     $macro = $macro . 'SET !ERRORIGNORE YES' . '\r\n'; 
-    //$macro = $macro . 'SET !EXTRACT_TEST_POPUP NO' . '\r\n'; 
+    $macro = $macro . 'SET !EXTRACT_TEST_POPUP NO' . '\r\n'; 
     $macro = $macro . 'URL GOTO=https://www.textnow.com/login' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-username" POINT="(294,196)"' . '\r\n'; 
@@ -919,7 +919,7 @@ public function verifyiim(){
     $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#text-input" CHARS="19894473419"' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(3)" BUTTON=0' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(4)>TEXTAREA" BUTTON=0' . '\r\n'; 
-    $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(4)>TEXTAREA" CHARS="test2"' . '\r\n'; 
+    $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(4)>TEXTAREA" CHARS="test5"' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(3)" BUTTON=0' . '\r\n'; 
 
 
