@@ -891,13 +891,25 @@ class adminController extends Controller
 
 public function verifyiim(){
 
-    $code = '';
+    $macro = '';
 
-    $code = $code . 'URL GOTO=https://google.com' . '\n';
-    $code = $code . 'URL GOTO=https://yahoo.com' . '\n';
+    $macro .=  'VERSION BUILD=1005 RECORDER=CR' + "\r\n"; 
+    $macro .=  'URL GOTO=https://www.textnow.com/login' + "\r\n"; 
+    $macro .=  'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0' + "\r\n"; 
+    $macro .=  'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-username" POINT="(294,196)"' + "\r\n"; 
+    $macro .=  'EVENT TYPE=MOUSEUP POINT="(294,196)"' + "\r\n"; 
+    $macro .=  'EVENT TYPE=CLICK SELECTOR="#txt-username" BUTTON=0' + "\r\n"; 
+    $macro .=  'EVENTS TYPE=KEYPRESS SELECTOR="#txt-username" CHARS="testddd"' + "\r\n"; 
+    $macro .=  'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-password" BUTTON=0' + "\r\n"; 
+    $macro .=  'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-password" POINT="(294,196)"' + "\r\n"; 
+    $macro .=  'EVENT TYPE=MOUSEUP POINT="(294,250)"' + "\r\n"; 
+    $macro .=  'EVENT TYPE=CLICK SELECTOR="#txt-password" BUTTON=0' + "\r\n"; 
+    $macro .=  'EVENTS TYPE=KEYPRESS SELECTOR="#txt-password" CHARS="passsssssssssssssssssss"' + "\r\n"; 
+    $macro .=  'SET !ENCRYPTION NO' + "\r\n"; 
+    $macro .=  'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0' + "\r\n"; 
 
 
-    return view("admin.macro")->with('code',$code);
+    return view("admin.macro")->with('code',$macro);
 }
 
 
