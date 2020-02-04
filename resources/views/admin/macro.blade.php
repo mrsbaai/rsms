@@ -29,7 +29,7 @@
          }
       </script>
 
-      <a id="criimlaunch" href="javascript:launchMacro();">Launch iMacros</a>
+      <a id="criimlaunch" href="javascript:launchMacro();">.</a>
 
    </body>
 </html>
