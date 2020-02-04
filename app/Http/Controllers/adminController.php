@@ -903,10 +903,10 @@ public function verifyiim(){
     $macro = $macro . 'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-username" POINT="(294,196)"' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEUP POINT="(294,196)"' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="#txt-username" BUTTON=0' . '\r\n'; 
-    $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-username" CHARS="$username"' . '\r\n'; 
+    $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-username" CHARS="'. $username . '"' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-password" BUTTON=0' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="#txt-password" BUTTON=0' . '\r\n'; 
-    $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-password" CHARS="$password"' . '\r\n'; 
+    $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-password" CHARS="'. $password . '"' . '\r\n'; 
     $macro = $macro . 'SET !ENCRYPTION NO' . '\r\n'; 
     $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0' . '\r\n'; 
     $macro = $macro . 'SET !EXTRACT NULL' . '\r\n'; 
