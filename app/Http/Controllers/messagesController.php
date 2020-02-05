@@ -152,8 +152,18 @@ class messagesController extends Controller
     }
 
     public function test(){
-         return strpos_array("bbbb", $this->SmsForTest());
+        return $this->strpos_arr("bbbb", $this->SmsForTest());
+    }
+       
+    
 
+
+    private function strpos_arr($haystack, $needle) {
+        if(!is_array($needle)) $needle = array($needle);
+        foreach($needle as $what) {
+            if(($pos = strpos($haystack, $what))!==false) return true;
+        }
+        return false;
     }
 
     public function logMessage($from, $to, $text){
