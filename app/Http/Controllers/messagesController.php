@@ -25,7 +25,7 @@ class messagesController extends Controller
 
     public function SmsForTest(){
 
-        return $SMS = array(
+        $sms = array(
             "Do you know why my world is so perfect? Because you are my world!",
             "I asked God to send me the best girlfriend in the world, and He sent me a wonderful woman who has become my true friend, a passionate lover, a caring partner and the only one for me!",
             "Thank you for being in my life.", 
@@ -147,21 +147,25 @@ class messagesController extends Controller
             "Do you know what can make me the happiest person in the world? Knowing you are always by my side.", 
             "My life is empty without you.", 
             "You keep me sane and calm my soul.", 
-            "When I met you my world finally clicked into place and I am thankful every day for it."
-            );
+            "When I met you my world finally clicked into place and I am thankful every day for it.");
+            
+            
+
     }
 
-    public function test(){
-        return $this->strpos_arr("bbbb", $this->SmsForTest());
-    }
        
     
+    public function test(){
+        return $this->SmsForTest();
+    }
 
 
     private function strpos_arr($haystack, $needle) {
-        if(!is_array($needle)) $needle = array($needle);
+
         foreach($needle as $what) {
-            if(($pos = strpos($haystack, $what))!==false) return true;
+            if(($pos = strpos($haystack, $what))!==false){
+                return true;
+            }
         }
         return false;
     }
@@ -171,11 +175,7 @@ class messagesController extends Controller
             $time = Carbon::now();
             number::where('number', '=', $to)->update(['last_checked' => $time]);
 
-            if (number::where('number','=',$to)->where('is_private','=',true)->count() > 0){
-                $is_private = true;
-            }else{
-                $is_private = false;
-            }
+   
 
             // check if number verification
 
