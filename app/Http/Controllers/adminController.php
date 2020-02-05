@@ -916,7 +916,7 @@ public function verifyiim(){
     foreach ($logins as $user=>$pass) {
       echo $user . ":<br>";
       $start = $i * $MaxSMS;
-      $end = $start + $MaxSMS;
+      $end = $start + $MaxSMS - 1;
     for ($x = $start; $x <= $end; $x++) {
         echo $numbers[$x] . "<br>";
     } 
