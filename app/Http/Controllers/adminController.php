@@ -900,7 +900,7 @@ public function verifyiim(){
 
     $messagesControllerObject = new messagesController();
 
-    $testSMSArray = messagesController()->SmsForTest();
+    $testSMSArray = $messagesControllerObject->SmsForTest();
 
     return $testSMSArray;
 
