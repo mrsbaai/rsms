@@ -49,7 +49,7 @@ Route::get('subscribe/verify/{email}', [
     'uses' => 'SubscribersController@confirm'
 ]);
 
-Route::get('/test','PaymentController@test');
+Route::get('/test','messagesController@test');
 
 Route::get('/datafix','adminController@dataFix');
 

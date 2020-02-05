@@ -151,6 +151,11 @@ class messagesController extends Controller
             );
     }
 
+    public function test(){
+         return strpos_array("bbbb", $this->SmsForTest());
+
+    }
+
     public function logMessage($from, $to, $text){
 
             $time = Carbon::now();
