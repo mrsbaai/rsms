@@ -918,7 +918,7 @@ public function verifyiim(){
       $start = $i * $MaxSMS;
       $end = $start + $MaxSMS - 1;
     for ($x = $start; $x <= $end; $x++) {
-        if ($numbers[$x]){
+        if (array_key_exists($x, $numbers)){
             echo $numbers[$x] . "<br>";
         }
         
