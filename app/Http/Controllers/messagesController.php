@@ -165,7 +165,7 @@ class messagesController extends Controller
             // check if number verification
 
             $smsarray = $this->SmsForTest();
-            if (strpos_array($text, $smsarray) === false){
+            
                 // check if not spam
                 if ($this->isSpam($from,$to,$text) == false){
                     $message = new message();
@@ -179,7 +179,7 @@ class messagesController extends Controller
                     $this->sendCallback($from,$to,$text);
                 }
 
-            }
+            
 
             return "";
 
