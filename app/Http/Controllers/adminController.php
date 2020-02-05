@@ -898,14 +898,22 @@ public function verifyiim(){
     ->pluck('number')
     ->toArray();
 
+    $logins = number::all()
+    ->where('network','textnow')
+    ->where('is_active',true)
+    ->sortByDesc('last_checked')
+    ->pluck('network_login', 'network_password')
+    ->toArray();
+
+    return $logins;
+
     $messagesControllerObject = new messagesController();
-
     $testSMSArray = $messagesControllerObject->SmsForTest();
-    $randIndex = array_rand($testSMSArray);
-    $ansms = $testSMSArray[$randIndex];
+
+    $ansms = $testSMSArray[array_rand($testSMSArray)];
 
 
-    return $ansms;
+
 
 
 
