@@ -897,7 +897,12 @@ public function verifyiim(){
     ->sortBy('last_checked')
     ->pluck('number')
     ->toArray();
-return $numbers;
+
+    $messagesControllerObject = new messagesController();
+
+    $testSMSArray = messagesController()->SmsForTest();
+
+    return $testSMSArray;
 
 
 
