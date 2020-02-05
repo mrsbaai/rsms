@@ -918,26 +918,26 @@ public function verifyiim(){
     $i = 0;
     foreach ($logins as $username=>$password) {
         // login
-        $macro = $macro . 'SET !ERRORIGNORE YES' . '\r\n'; 
-        $macro = $macro . 'SET !EXTRACT_TEST_POPUP NO' . '\r\n'; 
-        $macro = $macro . 'URL GOTO=https://www.textnow.com/logout' . '\r\n'; 
-        $macro = $macro . 'URL GOTO=https://www.textnow.com/login' . '\r\n'; 
-        $macro = $macro . 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0' . '\r\n'; 
-        $macro = $macro . 'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-username" POINT="(294,196)"' . '\r\n'; 
-        $macro = $macro . 'EVENT TYPE=MOUSEUP POINT="(294,196)"' . '\r\n'; 
-        $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="#txt-username" BUTTON=0' . '\r\n'; 
-        $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-username" CHARS="'. $username . '"' . '\r\n'; 
-        $macro = $macro . 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-password" BUTTON=0' . '\r\n'; 
-        $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="#txt-password" BUTTON=0' . '\r\n'; 
-        $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-password" CHARS="'. $password . '"' . '\r\n'; 
-        $macro = $macro . 'SET !ENCRYPTION NO' . '\r\n'; 
-        $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0' . '\r\n'; 
-        $macro = $macro . 'SET !EXTRACT NULL' . '\r\n'; 
-        $macro = $macro . 'TAG POS=1 TYPE=span ATTR=CLASS:uikit-text<sp>uikit-text--micro<sp>uikit-text--danger&&TXT:* EXTRACT=TXT' . '\r\n'; 
-        //$macro = $macro . 'PROMPT {{!EXTRACT}}' . '\r\n'; 
+        $macro = $macro . 'SET !ERRORIGNORE YES' . '<br>'; 
+        $macro = $macro . 'SET !EXTRACT_TEST_POPUP NO' . '<br>'; 
+        $macro = $macro . 'URL GOTO=https://www.textnow.com/logout' . '<br>'; 
+        $macro = $macro . 'URL GOTO=https://www.textnow.com/login' . '<br>'; 
+        $macro = $macro . 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0' . '<br>'; 
+        $macro = $macro . 'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-username" POINT="(294,196)"' . '<br>'; 
+        $macro = $macro . 'EVENT TYPE=MOUSEUP POINT="(294,196)"' . '<br>'; 
+        $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="#txt-username" BUTTON=0' . '<br>'; 
+        $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-username" CHARS="'. $username . '"' . '<br>'; 
+        $macro = $macro . 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-password" BUTTON=0' . '<br>'; 
+        $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="#txt-password" BUTTON=0' . '<br>'; 
+        $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-password" CHARS="'. $password . '"' . '<br>'; 
+        $macro = $macro . 'SET !ENCRYPTION NO' . '<br>'; 
+        $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0' . '<br>'; 
+        $macro = $macro . 'SET !EXTRACT NULL' . '<br>'; 
+        $macro = $macro . 'TAG POS=1 TYPE=span ATTR=CLASS:uikit-text<sp>uikit-text--micro<sp>uikit-text--danger&&TXT:* EXTRACT=TXT' . '<br>'; 
+        //$macro = $macro . 'PROMPT {{!EXTRACT}}' . '<br>'; 
     
-        $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(9)>DIV>DIV>DIV>DIV:nth-of-type(3)>DIV>INPUT" BUTTON=0' . '\r\n'; 
-        $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(9)>DIV>DIV>DIV>DIV:nth-of-type(3)>DIV:nth-of-type(2)" BUTTON=0' . '\r\n'; 
+        $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(9)>DIV>DIV>DIV>DIV:nth-of-type(3)>DIV>INPUT" BUTTON=0' . '<br>'; 
+        $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(9)>DIV>DIV>DIV>DIV:nth-of-type(3)>DIV:nth-of-type(2)" BUTTON=0' . '<br>'; 
      
 
       $start = $i * $MaxSMS;
@@ -946,18 +946,18 @@ public function verifyiim(){
         if (array_key_exists($x, $numbers)){
             // send sms to this number
             $smsmessage = $testSMSArray[array_rand($testSMSArray)];
-            $macro = $macro . 'WAIT SECONDS=2' . '\r\n'; 
-            $macro = $macro . 'EVENT TYPE=MOUSEDOWN SELECTOR="#newText" BUTTON=0' . '\r\n'; 
-            $macro = $macro . 'EVENT TYPE=MOUSEMOVE SELECTOR="#newText" POINT="(360,37)"' . '\r\n'; 
-            $macro = $macro . 'EVENT TYPE=MOUSEUP POINT="(360,37)"' . '\r\n'; 
-            $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="#newText" BUTTON=0' . '\r\n'; 
-            $macro = $macro . 'EVENT TYPE=KEYPRESS SELECTOR="#recipientsView>DIV>DIV>INPUT" KEY=17' . '\r\n'; 
-            $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#text-input" CHARS="'. $numbers[$x] . '"' . '\r\n'; 
-            $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(3)" BUTTON=0' . '\r\n'; 
-            $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(4)>TEXTAREA" BUTTON=0' . '\r\n'; 
-            $macro = $macro . 'WAIT SECONDS=3' . '\r\n'; 
-            $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(4)>TEXTAREA" CHARS="'. $smsmessage . '"' . '\r\n'; 
-            $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(3)" BUTTON=0' . '\r\n';   
+            $macro = $macro . 'WAIT SECONDS=2' . '<br>'; 
+            $macro = $macro . 'EVENT TYPE=MOUSEDOWN SELECTOR="#newText" BUTTON=0' . '<br>'; 
+            $macro = $macro . 'EVENT TYPE=MOUSEMOVE SELECTOR="#newText" POINT="(360,37)"' . '<br>'; 
+            $macro = $macro . 'EVENT TYPE=MOUSEUP POINT="(360,37)"' . '<br>'; 
+            $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="#newText" BUTTON=0' . '<br>'; 
+            $macro = $macro . 'EVENT TYPE=KEYPRESS SELECTOR="#recipientsView>DIV>DIV>INPUT" KEY=17' . '<br>'; 
+            $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="#text-input" CHARS="'. $numbers[$x] . '"' . '<br>'; 
+            $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(3)" BUTTON=0' . '<br>'; 
+            $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(4)>TEXTAREA" BUTTON=0' . '<br>'; 
+            $macro = $macro . 'WAIT SECONDS=3' . '<br>'; 
+            $macro = $macro . 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(4)>TEXTAREA" CHARS="'. $smsmessage . '"' . '<br>'; 
+            $macro = $macro . 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(3)" BUTTON=0' . '<br>';   
         }
         
     } 
