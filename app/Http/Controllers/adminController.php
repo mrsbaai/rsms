@@ -912,7 +912,7 @@ public function verifyiim(){
 
     print_r($numbers);
     echo "<br>----------------------------------------------<br>";
-    $i = 1;
+    $i = 0;
     foreach ($logins as $user=>$pass) {
       echo $user . ":<br>";
       $start = $i * $MaxSMS;
