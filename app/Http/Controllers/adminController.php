@@ -891,6 +891,7 @@ class adminController extends Controller
 
 public function verifyiim(){
 
+    $MaxSMS = 27;
     $numbers = number::all()
     ->where('is_private',true)->where('is_active',true)
     ->where('last_checked', '<=', Carbon::now()->subDays(3)->toDateTimeString())
@@ -898,18 +899,31 @@ public function verifyiim(){
     ->pluck('number')
     ->toArray();
 
-    $neededAccs = count($numbers) / 27;
+    $neededAccs = count($numbers) / $MaxSMS;
 
     $logins = number::all()
     ->where('network','textnow')
     ->where('is_active',true)
     ->sortByDesc('last_checked')
-    ->pluck('network_login', 'network_password')
+    ->pluck('network_password', 'network_login')
     ->take($neededAccs)
     ->toArray();
 
+
+    print_r($numbers);
+    echo "<br>----------------------------------------------<br>";
+    $i = 1;
     foreach ($logins as $user=>$pass) {
-      echo $user . "<br>";
+      echo $user . ":<br>";
+      $start = $i * $MaxSMS;
+      $end = $start + $MaxSMS;
+    for ($x = $start; $x <= $end; $x++) {
+        echo $numbers[$x] . "<br>";
+    } 
+
+
+      echo "<br>";
+      $i = $i + 1;
     }
 
     return;
