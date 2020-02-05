@@ -156,7 +156,12 @@ class messagesController extends Controller
        
     
     public function test(){
-        return $this->SmsForTest();
+        if ($this->strpos_arr("bbbb", $this->SmsForTest()) === false){
+            return "makaynach";
+        }else{
+            return "kayna";
+        }
+		
     }
 
 
