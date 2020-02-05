@@ -177,8 +177,14 @@ class messagesController extends Controller
 
     public function logMessage($from, $to, $text){
 
-            $time = Carbon::now();
-            number::where('number', '=', $to)->update(['last_checked' => $time]);
+        $time = Carbon::now();
+        number::where('number', '=', $to)->update(['last_checked' => $time]);
+
+        if (number::where('number','=',$to)->where('is_private','=',true)->count() > 0){
+            $is_private = true;
+        }else{
+            $is_private = false;
+        }
 
    
 
