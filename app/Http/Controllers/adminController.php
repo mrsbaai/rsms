@@ -899,7 +899,7 @@ public function verifyiim(){
     ->pluck('number')
     ->toArray();
 
-    $neededAccs = count($numbers) / $MaxSMS + 1;
+    $neededAccs = (count($numbers) / $MaxSMS) + 1;
 
     $logins = number::all()
     ->where('network','textnow')
