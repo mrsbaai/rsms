@@ -891,6 +891,17 @@ class adminController extends Controller
 
 public function verifyiim(){
 
+    $numbers = number::all()
+    ->where('is_private',true)->where('is_active',true)
+    ->where('last_checked', '>=', Carbon::now()->subDays(3)->toDateTimeString())
+    ->sortBy('last_checked')
+    ->pluck('number')
+    ->toArray();
+return $numbers;
+
+
+
+
     $username = "peterson813@premiumbooks.io";
     $password = "a7K-fUji";
     $smsmessage = "test6";
