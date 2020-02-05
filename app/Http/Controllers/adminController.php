@@ -898,14 +898,21 @@ public function verifyiim(){
     ->pluck('number')
     ->toArray();
 
+    $neededAccs = count($numbers) / 27;
+
     $logins = number::all()
     ->where('network','textnow')
     ->where('is_active',true)
     ->sortByDesc('last_checked')
     ->pluck('network_login', 'network_password')
+    ->take($neededAccs)
     ->toArray();
 
-    return $logins;
+    foreach ($logins as $user=>$pass) {
+      echo $user . "<br>";
+    }
+
+    return;
 
     $messagesControllerObject = new messagesController();
     $testSMSArray = $messagesControllerObject->SmsForTest();
