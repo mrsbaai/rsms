@@ -901,8 +901,11 @@ public function verifyiim(){
     $messagesControllerObject = new messagesController();
 
     $testSMSArray = $messagesControllerObject->SmsForTest();
+    $randIndex = array_rand($testSMSArray);
+    $ansms = $testSMSArray[$randIndex];
 
-    return $testSMSArray;
+
+    return $ansms;
 
 
 
