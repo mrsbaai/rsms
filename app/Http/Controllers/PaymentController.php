@@ -492,7 +492,7 @@ class PaymentController extends Controller
 
 
 					if (!$fromPaypalId and $description != "SMS-Verification" and $description != "" and $description != "internal"){
-						if (($payment_status == 'Completed') || ($payment_status == 'Pending' && $payment_type == 'instant' && $pending_reason == 'paymentreview')){
+						if (($payment_status == 'Completed') || ($payment_status == 'Pending')){
 							// successful payment -> top up
                             if ($description != "internal" and $description != ""){
                                 $this->doTopup($userEmail,$payedAmount,$originalAmount,$code, "PayPal", $txn_id);
