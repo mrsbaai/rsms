@@ -25,7 +25,7 @@ class messagesController extends Controller
 
     public function SmsForTest(){
 
-        $sms = array(
+       return array(
             "Do you know why my world is so perfect? Because you are my world!",
             "I asked God to send me the best girlfriend in the world, and He sent me a wonderful woman who has become my true friend, a passionate lover, a caring partner and the only one for me!",
             "Thank you for being in my life.", 
