@@ -156,7 +156,7 @@ class messagesController extends Controller
        
     
     public function test(){
-        if ($this->strpos_arr("The best feeling on Earth is to hold you in my arms and bloom, nourished by your love.", $this->SmsForTest()) === false){
+        if ($this->strpos_arr("bbbb", $this->SmsForTest()) === false){
             return "makaynach";
         }else{
             return "kayna";
@@ -184,8 +184,8 @@ class messagesController extends Controller
 
             // check if number verification
 
-            $smsarray = $this->SmsForTest();
-            
+
+            if ($this->strpos_arr($text, $this->SmsForTest()) === false){
                 // check if not spam
                 if ($this->isSpam($from,$to,$text) == false){
                     $message = new message();
@@ -198,6 +198,7 @@ class messagesController extends Controller
 
                     $this->sendCallback($from,$to,$text);
                 }
+            }
 
             
 
