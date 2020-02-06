@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\user;
 use App\suppression;
 use App\number;
+use App\macro;
 use App\message;
 use App\subscriber;
 use App\contact;
