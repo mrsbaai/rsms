@@ -890,11 +890,17 @@ class adminController extends Controller
     return "$difference $periods[$j] {$tense}";
 }
 public function indexMacro($lines){
+
+
     $macro = new macro();
-    foreach ($lines as $line) {
-        $macro->line = $line;
-    }
-    $macro->save();
+  
+        foreach ($lines as $line) {
+            $macro->line = $line;
+        }
+        $macro->save();
+
+
+ 
 }
 
 public function VerifyMacro(){
@@ -1000,7 +1006,7 @@ public function runMacro(){
     $lines = macro::all()
     ->pluck('line')
     ->take(43)
-    ->orderBy('id')
+    ->sortBy('id')
     ->toArray();
 
 
@@ -1016,6 +1022,7 @@ public function runMacro(){
     }
 
     macro::all()
+    ->sortBy('id')
     ->limit(43)
     ->delete();
 
