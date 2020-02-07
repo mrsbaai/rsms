@@ -1000,6 +1000,7 @@ public function runMacro(){
     $lines = macro::all()
     ->pluck('line')
     ->take(43)
+    ->orderBy('id')
     ->toArray();
 
 
@@ -1009,12 +1010,14 @@ public function runMacro(){
     $macro = $macro . 'TAB T=1' . '\r\n'; 
     $macro = $macro . 'CLOSEALLOTHERS' . '\r\n'; 
 
-    for ($x = 0; $x <= 42; $x++) {
 
-    }
     foreach ($lines as $line) {
         $macro = $macro . $line . '\r\n';
     }
+
+    macro::all()
+    ->limit(43)
+    ->delete();
 
     $macro = $macro . 'TAB OPEN' . '\r\n'; 
     $macro = $macro . 'TAB T=2' . '\r\n'; 
