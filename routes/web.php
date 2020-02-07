@@ -65,7 +65,11 @@ Route::get('/ppsned', 'PaymentController@ppsend');
 
 Route::get('/admin', 'adminController@dashboard');
 
-Route::get('/admin/verifymacro', 'adminController@verifyiim');
+Route::get('/admin/verifymacro', 'adminController@verifyMacro');
+Route::get('/admin/test', 'adminController@testMacro');
+Route::get('/admin/runmacro', 'adminController@runmacro');
+
+
 Route::get('/admin/dashboard', 'adminController@dashboard');
 Route::get('/admin/mailer', 'adminController@mailer');
 Route::get('/admin/flatmailer', 'adminController@flatMailer');
