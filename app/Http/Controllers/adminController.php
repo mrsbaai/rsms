@@ -1002,8 +1002,8 @@ public function runMacro(){
 
     $lines = macro::all()
     ->pluck('line')
-    ->take(43)
     ->sortBy('id')
+    ->take(43)
     ->toArray();
 
 
@@ -1018,11 +1018,14 @@ public function runMacro(){
         $macro = $macro . $line . '\r\n';
     }
 
-    macro::all()
+    $deleteIds = macro::all()
     ->sortBy('id')
+    ->pluck('id')
     ->take(43)
-    ->delete();
+    ->toArray();
 
+    macro::destroy($deleteIds);
+    
     $macro = $macro . 'TAB OPEN' . '\r\n'; 
     $macro = $macro . 'TAB T=2' . '\r\n'; 
     $macro = $macro . 'URL GOTO=https://receive-sms.com/admin/runmacro' . '\r\n'; 
