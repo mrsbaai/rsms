@@ -1022,6 +1022,7 @@ public function runMacro(){
 
 
     foreach ($lines as $line) {
+        echo $line;
         $macro = $macro . $line . '\r\n';
     }
 
