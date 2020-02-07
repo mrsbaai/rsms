@@ -984,7 +984,7 @@ public function testMacro(){
 
     for ($x = 0; $x <= 150; $x++) {
 
-            array_push($macro, 'URL GOTO=https://www.google.com/search?q=' . $i); 
+            array_push($macro, 'URL GOTO=https://www.receive-sms.com/search?q=' . $i); 
            
         $i = $i + 1;
     } 
