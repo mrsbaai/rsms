@@ -968,7 +968,7 @@ public function VerifyMacro(){
     }
 
     $this->indexMacro($macro);
-    return $this->runMacro($macro);
+    return $this->runMacro(true);
 
 
 }
@@ -988,13 +988,13 @@ public function testMacro(){
 
 
     $this->indexMacro($macro);
-    return $this->runMacro($macro);
+    return $this->runMacro(true);
     
 
 }
 
 
-public function runMacro(){
+public function runMacro($isFirst = false){
 
     $lines = macro::all()
     ->sortBy('id')
@@ -1013,9 +1013,7 @@ public function runMacro(){
     $macro = '';
     $macro = $macro . 'SET !ERRORIGNORE YES' . '\r\n'; 
     $macro = $macro . 'SET !EXTRACT_TEST_POPUP NO'. '\r\n'; 
-    $macro = $macro . 'WAIT SECONDS=2' . '\r\n'; 
-    $macro = $macro . 'TAB T=1' . '\r\n'; 
-    $macro = $macro . 'TAB CLOSEALLOTHERS' . '\r\n'; 
+    if ($isFirst === false){$macro = $macro . 'TAB CLOSE'. '\r\n'; }
 
 
     
@@ -1023,8 +1021,6 @@ public function runMacro(){
         $macro = $macro . $line . '\r\n';
     }
 
-
-    
     $macro = $macro . 'TAB OPEN' . '\r\n'; 
     $macro = $macro . 'TAB T=2' . '\r\n'; 
     $macro = $macro . 'URL GOTO=https://receive-sms.com/admin/runmacro' . '\r\n'; 
