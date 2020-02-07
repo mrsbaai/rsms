@@ -980,9 +980,9 @@ public function testMacro(){
     $i = 0;
 
     for ($x = 0; $x <= 150; $x++) {
-        if (array_key_exists($x, $numbers)){
+
             array_push($macro, 'URL GOTO=https://www.google.com/search?q=' . $i); 
-           }
+           
         $i = $i + 1;
     } 
       
