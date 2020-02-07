@@ -889,16 +889,6 @@ class adminController extends Controller
 
     return "$difference $periods[$j] {$tense}";
 }
-public function indexMacro($lines){
-        macro::truncate();
-        
-        foreach ($lines as $line) {
-            $macro = new macro();
-            $macro->line = $line;
-            $macro->save();
-        }
-        
-}
 
 public function VerifyMacro(){
     $messagesControllerObject = new messagesController();
@@ -971,7 +961,7 @@ public function VerifyMacro(){
       $i = $i + 1;
     }
 
-    $this->indexMacro($macro);
+
     $this->runMacro($macro);
     return;
 
@@ -991,32 +981,28 @@ public function testMacro(){
       
 
 
-    $this->indexMacro($macro);
+
     $this->runMacro($macro);
     return;
 
 }
 
 
-public function runMacro(){
+public function runMacro($codes){
+
+    macro::truncate();
+        
+    foreach ($codes as $code) {
+        $macro = new macro();
+        $macro->line = $code;
+        $macro->save();
+    }
 
     $lines = macro::all()
     ->pluck('line')
     ->sortBy('id')
     ->take(43)
     ->toArray();
-
-
-    $macro = '';
-    $macro = $macro . 'SET !ERRORIGNORE YES' . '\r\n'; 
-    $macro = $macro . 'SET !EXTRACT_TEST_POPUP NO'. '\r\n'; 
-    $macro = $macro . 'TAB T=1' . '\r\n'; 
-    $macro = $macro . 'CLOSEALLOTHERS' . '\r\n'; 
-
-
-    foreach ($lines as $line) {
-        $macro = $macro . $line . '\r\n';
-    }
 
     $deleteIds = macro::all()
     ->sortBy('id')
@@ -1025,7 +1011,17 @@ public function runMacro(){
     ->toArray();
 
     macro::destroy($deleteIds);
-    
+
+    $macro = '';
+    $macro = $macro . 'SET !ERRORIGNORE YES' . '\r\n'; 
+    $macro = $macro . 'SET !EXTRACT_TEST_POPUP NO'. '\r\n'; 
+    $macro = $macro . 'TAB T=1' . '\r\n'; 
+    $macro = $macro . 'CLOSEALLOTHERS' . '\r\n'; 
+
+    foreach ($lines as $line) {
+        $macro = $macro . $line . '\r\n';
+    }
+
     $macro = $macro . 'TAB OPEN' . '\r\n'; 
     $macro = $macro . 'TAB T=2' . '\r\n'; 
     $macro = $macro . 'URL GOTO=https://receive-sms.com/admin/runmacro' . '\r\n'; 
