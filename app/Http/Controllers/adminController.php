@@ -999,13 +999,13 @@ public function runMacro($isFirst = false){
     $lines = macro::all()
     ->sortBy('id')
     ->pluck('line')
-    ->take(42)
+    ->take(5)
     ->toArray();
 
     $deleteIds = macro::all()
     ->sortBy('id')
     ->pluck('id')
-    ->take(42)
+    ->take(5)
     ->toArray();
 
     macro::destroy($deleteIds);
