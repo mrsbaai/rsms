@@ -929,6 +929,7 @@ public function VerifyMacro(){
     foreach ($logins as $username=>$password) {
         // login
         array_push($macro, 'URL GOTO=https://www.textnow.com/logout'); 
+        array_push($macro, 'WAIT SECONDS=3'); 
         array_push($macro, 'URL GOTO=https://www.textnow.com/login'); 
         array_push($macro, 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0'); 
         array_push($macro, 'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-username" POINT="(294,196)"'); 
