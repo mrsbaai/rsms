@@ -972,8 +972,8 @@ public function VerifyMacro(){
     }
 
     $this->indexMacro($macro);
-    $this->runMacro($macro);
-    return;
+    return $this->runMacro($macro);
+
 
 }
 
@@ -992,8 +992,8 @@ public function testMacro(){
 
 
     $this->indexMacro($macro);
-    $this->runMacro($macro);
-    return;
+    return $this->runMacro($macro);
+    
 
 }
 
@@ -1022,7 +1022,6 @@ public function runMacro(){
 
 
     foreach ($lines as $line) {
-        echo $line;
         $macro = $macro . $line . '\r\n';
     }
 
@@ -1032,7 +1031,7 @@ public function runMacro(){
     $macro = $macro . 'TAB T=2' . '\r\n'; 
     $macro = $macro . 'URL GOTO=https://receive-sms.com/admin/runmacro' . '\r\n'; 
 
-return $macro;
+
     return view("admin.macro")->with('code',$macro);
 }
 
