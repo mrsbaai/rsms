@@ -1011,8 +1011,10 @@ public function runMacro(){
     $macro = '';
     $macro = $macro . 'SET !ERRORIGNORE YES' . '\r\n'; 
     $macro = $macro . 'SET !EXTRACT_TEST_POPUP NO'. '\r\n'; 
+    $macro = $macro . 'WAIT SECONDS=2' . '\r\n'; 
     $macro = $macro . 'TAB T=1' . '\r\n'; 
-    $macro = $macro . 'WAIT SECONDS=1' . '\r\n'; 
+    $macro = $macro . 'TAB CLOSEALLOTHERS' . '\r\n'; 
+
 
     
     foreach ($lines as $line) {
