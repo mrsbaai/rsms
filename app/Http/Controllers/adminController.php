@@ -1019,7 +1019,7 @@ public function runMacro(){
 
     macro::all()
     ->sortBy('id')
-    ->limit(43)
+    ->take(43)
     ->delete();
 
     $macro = $macro . 'TAB OPEN' . '\r\n'; 
