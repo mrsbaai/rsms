@@ -489,6 +489,7 @@ class ComposerStaticInit45de193095ab851f93bb59cf8632511a
         'CouponsSeeder' => __DIR__ . '/../..' . '/database/seeds/CouponsSeeder.php',
         'CreateContactsTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_07_141643_CreateContactsTable.php',
         'CreateCouponsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_29_162712_CreateCouponsTable.php',
+        'CreateMacrosTable' => __DIR__ . '/../..' . '/database/migrations/2020_02_06_151547_CreateMacrosTable.php',
         'CreateMessagesTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_30_185553_CreateMessagesTable.php',
         'CreateNumbersTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_30_185717_CreateNumbersTable.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_10_141553_create_password_resets_table.php',
