@@ -942,9 +942,7 @@ public function VerifyMacro(){
         //array_push($macro, 'SET !EXTRACT NULL'); 
         //array_push($macro, 'TAG POS=1 TYPE=span ATTR=CLASS:uikit-text<sp>uikit-text--micro<sp>uikit-text--danger&&TXT:* EXTRACT=TXT'); 
         //array_push($macro, 'PROMPT {{!EXTRACT}}'); 
-        array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(9)>DIV>DIV>DIV>DIV:nth-of-type(3)>DIV>INPUT" BUTTON=0'); 
-        array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(9)>DIV>DIV>DIV>DIV:nth-of-type(3)>DIV:nth-of-type(2)" BUTTON=0'); 
-            
+     
 
       $start = $i * $MaxSMS;
       $end = $start + $MaxSMS - 1;
@@ -961,7 +959,7 @@ public function VerifyMacro(){
             array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="#text-input" CHARS="'. $numbers[$x] . '"'); 
             array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(3)" BUTTON=0'); 
             array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(4)>TEXTAREA" BUTTON=0'); 
-            array_push($macro, 'WAIT SECONDS=2'); 
+            array_push($macro, 'WAIT SECONDS=4'); 
             array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(4)>TEXTAREA" CHARS="'. $smsmessage . '"'); 
             array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(3)" BUTTON=0');   
         }
