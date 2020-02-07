@@ -1001,8 +1001,8 @@ public function testMacro(){
 public function runMacro(){
 
     $lines = macro::all()
-    ->pluck('line')
     ->sortBy('id')
+    ->pluck('line')
     ->take(43)
     ->toArray();
 
