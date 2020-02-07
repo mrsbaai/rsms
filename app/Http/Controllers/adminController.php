@@ -992,7 +992,6 @@ public function testMacro(){
 
 
     $this->indexMacro($macro);
-    return;
     $this->runMacro($macro);
     return;
 
@@ -1007,6 +1006,7 @@ public function runMacro(){
     ->sortBy('id')
     ->toArray();
 
+    return $lines;
 
     $macro = '';
     $macro = $macro . 'SET !ERRORIGNORE YES' . '\r\n'; 
