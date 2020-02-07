@@ -951,13 +951,15 @@ public function VerifyMacro(){
         if (array_key_exists($x, $numbers)){
             // send sms to this number
             $smsmessage = $testSMSArray[array_rand($testSMSArray)];
-            array_push($macro, 'WAIT SECONDS=2'); 
+            array_push($macro, 'WAIT SECONDS=4'); 
             array_push($macro, 'EVENT TYPE=MOUSEDOWN SELECTOR="#newText" BUTTON=0'); 
             array_push($macro, 'EVENT TYPE=MOUSEMOVE SELECTOR="#newText" POINT="(360,37)"'); 
             array_push($macro, 'EVENT TYPE=MOUSEUP POINT="(360,37)"'); 
             array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#newText" BUTTON=0'); 
             array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#recipientsView>DIV>DIV>INPUT" KEY=17'); 
+            array_push($macro, 'WAIT SECONDS=2'); 
             array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="#text-input" CHARS="'. $numbers[$x] . '"'); 
+            array_push($macro, 'WAIT SECONDS=2'); 
             array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(3)" BUTTON=0'); 
             array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV>DIV>DIV>FORM>DIV:nth-of-type(4)>TEXTAREA" BUTTON=0'); 
             array_push($macro, 'WAIT SECONDS=4'); 
