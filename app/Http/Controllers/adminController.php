@@ -930,18 +930,12 @@ public function VerifyMacro(){
         // login
         array_push($macro, 'URL GOTO=https://www.textnow.com/logout'); 
         array_push($macro, 'URL GOTO=https://www.textnow.com/login'); 
-        array_push($macro, 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0'); 
-        array_push($macro, 'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-username" POINT="(294,196)"'); 
-        array_push($macro, 'EVENT TYPE=MOUSEUP POINT="(294,196)"'); 
-        array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#txt-username" BUTTON=0'); 
         array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-username" CHARS="'. $username . '"'); 
-        array_push($macro, 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-password" BUTTON=0'); 
-        array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#txt-password" BUTTON=0'); 
         array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-password" CHARS="'. $password . '"'); 
         array_push($macro, 'SET !ENCRYPTION NO'); 
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0'); 
-        array_push($macro, 'SET !EXTRACT NULL'); 
-        array_push($macro, 'TAG POS=1 TYPE=span ATTR=CLASS:uikit-text<sp>uikit-text--micro<sp>uikit-text--danger&&TXT:* EXTRACT=TXT'); 
+        //array_push($macro, 'SET !EXTRACT NULL'); 
+        //array_push($macro, 'TAG POS=1 TYPE=span ATTR=CLASS:uikit-text<sp>uikit-text--micro<sp>uikit-text--danger&&TXT:* EXTRACT=TXT'); 
         //array_push($macro, 'PROMPT {{!EXTRACT}}'); 
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(9)>DIV>DIV>DIV>DIV:nth-of-type(3)>DIV>INPUT" BUTTON=0'); 
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(9)>DIV>DIV>DIV>DIV:nth-of-type(3)>DIV:nth-of-type(2)" BUTTON=0'); 
@@ -1019,7 +1013,7 @@ public function runMacro(){
     $macro = $macro . 'SET !EXTRACT_TEST_POPUP NO'. '\r\n'; 
     $macro = $macro . 'TAB T=1' . '\r\n'; 
     $macro = $macro . 'WAIT SECONDS=1' . '\r\n'; 
-    $macro = $macro . 'TAB CLOSEALLOTHERS' . '\r\n'; 
+
     
     foreach ($lines as $line) {
         $macro = $macro . $line . '\r\n';
