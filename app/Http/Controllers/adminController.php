@@ -988,7 +988,7 @@ public function testMacro(){
         $i = $i + 1;
     } 
       
-    
+    return;
 
     $this->indexMacro($macro);
     $this->runMacro($macro);
