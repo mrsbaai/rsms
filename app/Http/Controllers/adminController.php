@@ -892,10 +892,9 @@ class adminController extends Controller
 public function indexMacro($lines){
 
         $macro = new macro();
-        foreach ($lines as $line) {
-            $macro->line = $line;
+            $macro->line = $lines;
             $macro->save();
-        }
+        
         
 }
 
