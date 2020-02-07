@@ -1003,13 +1003,13 @@ public function runMacro(){
     $lines = macro::all()
     ->sortBy('id')
     ->pluck('line')
-    ->take(43)
+    ->take(42)
     ->toArray();
 
     $deleteIds = macro::all()
     ->sortBy('id')
     ->pluck('id')
-    ->take(43)
+    ->take(42)
     ->toArray();
 
     macro::destroy($deleteIds);
@@ -1018,9 +1018,9 @@ public function runMacro(){
     $macro = $macro . 'SET !ERRORIGNORE YES' . '\r\n'; 
     $macro = $macro . 'SET !EXTRACT_TEST_POPUP NO'. '\r\n'; 
     $macro = $macro . 'TAB T=1' . '\r\n'; 
+    $macro = $macro . 'WAIT SECONDS=1' . '\r\n'; 
     $macro = $macro . 'TAB CLOSEALLOTHERS' . '\r\n'; 
-
-
+    
     foreach ($lines as $line) {
         $macro = $macro . $line . '\r\n';
     }

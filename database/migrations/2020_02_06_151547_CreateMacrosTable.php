@@ -16,7 +16,7 @@ class CreateMacrosTable extends Migration
         {
             Schema::create('macros', function (Blueprint $table) {
                 $table->increments('id');
-                $table->longText('line'); 
+                $table->longText('line')->nullable(); 
                 $table->timestamps();
             });
         }
