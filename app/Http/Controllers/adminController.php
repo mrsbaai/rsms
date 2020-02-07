@@ -1006,7 +1006,10 @@ public function runMacro(){
     ->sortBy('id')
     ->toArray();
 
-    return $lines;
+    echo "in";
+    print_r($lines);
+
+    return ;
 
     $macro = '';
     $macro = $macro . 'SET !ERRORIGNORE YES' . '\r\n'; 
