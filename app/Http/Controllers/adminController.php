@@ -928,16 +928,20 @@ public function VerifyMacro(){
     $i = 0;
     foreach ($logins as $username=>$password) {
         // login
-        array_push($macro, 'URL GOTO=https://www.textnow.com/logout'); 
         array_push($macro, 'WAIT SECONDS=3'); 
-        array_push($macro, 'URL GOTO=https://www.textnow.com/login'); 
+        array_push($macro, 'URL GOTO=https://www.textnow.com/logout'); 
+        array_push($macro, 'WAIT SECONDS=5'); 
+        array_push($macro, 'URL GOTO=https://www.textnow.com/login');
+        array_push($macro, 'WAIT SECONDS=5');  
         array_push($macro, 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0'); 
         array_push($macro, 'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-username" POINT="(294,196)"'); 
         array_push($macro, 'EVENT TYPE=MOUSEUP POINT="(294,196)"'); 
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#txt-username" BUTTON=0'); 
         array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-username" CHARS="'. $username . '"'); 
+        array_push($macro, 'WAIT SECONDS=3'); 
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#txt-password" BUTTON=0'); 
         array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-password" CHARS="'. $password . '"'); 
+        array_push($macro, 'WAIT SECONDS=2'); 
         array_push($macro, 'SET !ENCRYPTION NO'); 
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0'); 
         //array_push($macro, 'SET !EXTRACT NULL'); 
