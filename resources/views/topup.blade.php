@@ -87,7 +87,7 @@
                 <div class="row">
                     <h3>Top-up Your Balance</h3>
 
-                    <div style="color:red; font-size:50%;">(PayPal payments are temporarily unavailable.)</div>
+                    <div style="color:red; font-size:60%;">(PayPal payments are temporarily unavailable.)</div>
                    
                     <br/>
                     {{ Form::open(array('action' => 'PaymentController@RedirectToPayment', 'id' => 'topup-form'))}}
