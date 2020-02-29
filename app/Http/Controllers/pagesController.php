@@ -34,7 +34,7 @@ class pagesController extends Controller
             $messageController = new messagesController();
             $messages = $messageController->getPublicMessages(null);
             $lastMessage =  $messages[0]['id'];
-            $numbers = number::all()->where('is_private',false);
+            $numbers = number::all()->where('is_private',false)->where('is_active',true);
 
             return view('home')->with('numbers', $numbers)->with('messages', $messages)->with('lastMessage', $lastMessage);
         }
@@ -50,7 +50,7 @@ class pagesController extends Controller
             $messageController = new messagesController();
             $messages = $messageController->getPublicMessages(null,$tag);
             $lastMessage =  $messages[0]['id'];
-            $numbers = number::all()->where('is_private',false);
+            $numbers = number::all()->where('is_private',false)->where('is_active',true);;
 
             return view('showTag')->with('numbers', $numbers)->with('tag', $tag)->with('messages', $messages)->with('lastMessage', $lastMessage);
         }

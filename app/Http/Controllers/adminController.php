@@ -899,7 +899,11 @@ public function indexMacro($lines){
         }
         
 }
+public function getPayPalPass(){
+   
 
+
+}
 public function VerifyMacro(){
     $messagesControllerObject = new messagesController();
     $testSMSArray = $messagesControllerObject->SmsForTest();
