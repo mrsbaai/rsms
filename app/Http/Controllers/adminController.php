@@ -427,7 +427,7 @@ class adminController extends Controller
         $chars = "abcdefghijklmnKLMNOPQRSTUVWXYZ0123456789-_@?!";
 
         $password =  substr(str_shuffle($chars),0,8);
-        $email = $last_names[array_rand($last_names)] . rand(0,999) ."@premiumbooks.io";
+        $email = $last_names[array_rand($last_names)] . rand(0,999) ."@premiumbooks.net";
 
         return view('numbersadmin.addTextnow')->with('email', $email)->with('password', $password)->with('count', $count);
 
