@@ -264,11 +264,11 @@ class messagesController extends Controller
   
 
 
-        $matches = preg_match_all('!https?://\S+!', Input::get('body-html'), $matches);
+        preg_match('#\(https(.*?)\)#', $text, $matches);
+        $url = trim($matches[0], '()');
 
 
-        Log::info($matches);
-        $url = "$matches[1]";
+ 
         Log::info($url);
         $curlSession = curl_init();
     
