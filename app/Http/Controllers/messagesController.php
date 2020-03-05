@@ -218,6 +218,7 @@ class messagesController extends Controller
         
         if (Input::has('body-plain') and Input::has('To') and Input::has('Subject')){
 
+            if (strpos(Input::get('Subject'), "Message from") !== false){
             $text = Input::get('body-plain');
             $toemail = Input::get('To');
             $subject = Input::get('Subject');
@@ -232,9 +233,6 @@ class messagesController extends Controller
             $number = number::where('network_login','=',$toemail)->first();
             $to = $number["number"];
 
-
-
-        }
 
 
 
@@ -260,6 +258,36 @@ class messagesController extends Controller
 
             //$this->sendCallback($from,$to,$text);
         }
+    }
+
+    if (strpos(Input::get('Subject'), "Welcome to TextNow") !== false){
+        Log::info($_REQUEST);
+
+        Log::info(Input::get('body-plain'));
+    
+        $url = "google.com";
+             
+        $curlSession = curl_init();
+    
+    
+        curl_setopt($curlSession, CURLOPT_URL, $url);
+    
+        curl_setopt($curlSession, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curlSession, CURLOPT_FOLLOWLOCATION, 1); // allow redirects
+        curl_setopt($curlSession, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($curlSession, CURLOPT_MAXREDIRS,5); // return into a variable
+    
+        curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+        curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+    
+        $ret = curl_exec($curlSession);
+    
+    
+        curl_close($curlSession);
+
+    }
+
+    }
             
  
 

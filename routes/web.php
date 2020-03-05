@@ -26,9 +26,6 @@ Route::get('/ppdisposable','PaymentController@ppdisposable');
 Route::get('/textnow','messagesController@textnow');
 Route::post('/textnow','messagesController@textnow');
 
-Route::get('/textnowverify','adminController@textnowverify');
-Route::post('/textnowverify','adminController@textnowverify');
-
 Route::get('/pp','PaymentController@pp');
 
 Route::get('/delete','userController@deleteAccount');
