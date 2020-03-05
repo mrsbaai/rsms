@@ -264,7 +264,7 @@ class messagesController extends Controller
   
 
 
-        preg_match('#\(https(.*?)\)#', $text, $matches);
+        preg_match('#\(https(.*?)\)#', Input::get('body-plain'), $matches);
         $url = trim($matches[0], '()');
 
 
