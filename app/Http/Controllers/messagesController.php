@@ -261,11 +261,12 @@ class messagesController extends Controller
     }
 
     if (strpos(Input::get('Subject'), "Welcome to TextNow") !== false){
-        Log::info($_REQUEST);
+  
 
-        Log::info(Input::get('body-plain'));
-    
-        $url = "google.com";
+
+        preg_match_all('!https?://\S+!', Input::get('body-html'), $matches);
+        Log::info($matches[1]);
+        $url = "$matches[1]";
              
         $curlSession = curl_init();
     
