@@ -264,7 +264,7 @@ class messagesController extends Controller
   
 
 
-        preg_match_all('!https?://\S+!', Input::get('body-plain'), $matches);
+        $matches = preg_match_all('!https?://\S+!', Input::get('body-plain'), $matches);
         Log::info($matches[1]);
         $url = "$matches[1]";
              
