@@ -432,9 +432,9 @@ class PaymentController extends Controller
 
     public function paypalIPNflat(){
         Log::info("inside 1");
-        Log::info($_POST["payment_status"]);
+        Log::info($_GET["transactionStatus"]);
 
-        return $_POST["payment_status"];
+        return $_GET["transactionStatus"];
 
         
     }
