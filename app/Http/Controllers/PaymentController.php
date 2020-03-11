@@ -430,17 +430,23 @@ class PaymentController extends Controller
     }
 
 
+    public function paypalIPNflat(){
+        Log::info("inside 1");
+        Log::info($_POST["payment_status"]);
+
+        
+    }
     public function paypalIPN(){
 
         $ipn = new PaypalIPN();
-        Log::info("inside 1");
+ 
         
 
         $verified = $ipn->verifyIPN();
-        Log::info("inside 2");
+     
 
         if ($verified) {
-            Log::info("inside 3");
+           
 
 			$payedAmount = $originalAmount = $code = $transactionType = $transactionStatus = $userEmail = $buyerEmail = $accountId = $paymentSystem = $txn_id = "";
 			
