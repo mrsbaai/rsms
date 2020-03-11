@@ -174,6 +174,8 @@ Route::post('/ipn/payza','PaymentController@payzaIPN');
 Route::post('/ipn/paypal','PaymentController@paypalIPN');
 Route::post('/ipn/paypal/flat','PaymentController@paypalIPNflat');
 
+Route::get('/ipn/paypal/flat','PaymentController@paypalIPNflat');
+
 Route::post('/ipn/smsver','PaymentController@paypalIPN');
 Route::post('/ipn/payeer','PaymentController@payeerIPN');
 
