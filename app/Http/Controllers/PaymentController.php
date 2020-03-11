@@ -434,6 +434,8 @@ class PaymentController extends Controller
         Log::info("inside 1");
         Log::info($_POST["payment_status"]);
 
+        return $_POST["payment_status"];
+
         
     }
     public function paypalIPN(){
