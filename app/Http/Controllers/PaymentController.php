@@ -446,6 +446,11 @@ class PaymentController extends Controller
             $paymentSystem =  $_GET["paymentSystem"];
             $txn_id =  $_GET["txn_id"];
             $description =  $_GET["description"];
+            
+            $mc_fee =  $_GET["mc_fee"];
+            $payment_status =  $_GET["payment_status"];
+            $payment_type =  $_GET["payment_type"];
+            $pending_reason =  $_GET["pending_reason"];
 
 			
 			$checkLog = paymentlog::where('operation_id', $txn_id)->first();
