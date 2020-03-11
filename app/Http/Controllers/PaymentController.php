@@ -431,10 +431,105 @@ class PaymentController extends Controller
 
 
     public function paypalIPNflat(){
-        Log::info("inside 1");
-        Log::info($_GET["transactionStatus"]);
 
-        return $_GET["transactionStatus"];
+     
+           
+
+            $payedAmount =  $_GET["payedAmount"];
+            $originalAmount = $_GET["originalAmount"];
+            $code = $_GET["code"];
+            $transactionType =  $_GET["transactionType"];
+            $transactionStatus =  $_GET["transactionStatus"];
+            $userEmail =  $_GET["userEmail"];
+            $buyerEmail = $_GET["buyerEmail"];
+            $accountId =  $_GET["accountId"];
+            $paymentSystem =  $_GET["paymentSystem"];
+            $txn_id =  $_GET["txn_id"];
+            $description =  $_GET["description"];
+
+			
+			$checkLog = paymentlog::where('operation_id', $txn_id)->first();
+			if ($checkLog !== null) {
+				Log::error("PayPal operation: $txn_id Already exist");
+				return;
+			}
+
+
+
+			if ($description == "SMS-Verification"){
+				$originalAmount = $payedAmount;
+				$userEmail = $buyerEmail;
+				$code = "SMS-Verification";
+			}else{
+			
+				
+				if ($description != "internal"){
+				
+				
+					$originalAmount = $this->getDescriptionVariables("originalAmount",$description);
+					$userEmail = $this->getDescriptionVariables("userEmail",$description);
+					$code = $this->getDescriptionVariables("code",$description);
+					
+					if(!$this->valid_email($userEmail)) {
+						Log::error("User email: $userEmail Not Valid");
+						return;
+					}
+					
+				}
+				
+					
+					$toPaypalId = paypalids::where('email',$accountId)->first();
+					$fromPaypalId =  paypalids::where('email',$buyerEmail)->first();
+
+
+					if (!$fromPaypalId and $description != "SMS-Verification" and $description != "" and $description != "internal"){
+						if (($payment_status == 'Completed') || ($payment_status == 'Pending')){
+							// successful payment -> top up
+                            if ($description != "internal" and $description != ""){
+                                $this->doTopup($userEmail,$payedAmount,$originalAmount,$code, "PayPal", $txn_id);
+                            }
+
+				 
+						}
+					}
+
+
+			}
+			
+
+
+            // loging the event
+			$amountNoFee = $payedAmount;
+            if ($payedAmount > 0){
+                $payedAmount = $payedAmount - $mc_fee;
+            }
+
+            $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, "PayPal",$txn_id);
+
+			// Update balance
+
+				$oldBalance = $newBalance = $senderOldBalance = $senderNewBalance = "";
+
+				if ($transactionStatus == "Completed" or $transactionStatus == "Reversed" or $transactionStatus == "Canceled_Reversal"){
+					$oldBalance = $toPaypalId['balance'];
+					$newBalance = $oldBalance + $payedAmount;
+					paypalids::where('email', "=", $accountId)->update(['balance' => $newBalance]);
+                    
+                    $oldTotal = $toPaypalId['total'];
+					$newTotal = $oldTotal + $payedAmount;
+                    paypalids::where('email', "=", $accountId)->update(['total' => $newTotal]);
+                    
+
+					if ($fromPaypalId){
+						$senderOldBalance = $fromPaypalId['balance'];
+						$senderNewBalance = $senderOldBalance - $amountNoFee;
+						paypalids::where('email', "=", $buyerEmail)->update(['balance' => $senderNewBalance]);
+					}
+					
+				}
+	
+			// notify
+			$this->notify($oldBalance, $newBalance, "PayPal", $transactionType, $transactionStatus, $buyerEmail, $accountId, $payedAmount, $code, $senderOldBalance, $senderNewBalance);
 
         
     }
