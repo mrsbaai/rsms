@@ -428,7 +428,7 @@ class adminController extends Controller
         $i = 0;
         foreach ($data['rows'] as $row) {
             echo $row[5] . "<br>";
-            $user = user::all()->where('email',$row[5])->first();        
+            //$user = user::all()->where('email',$row[5])->first();        
 
             //$data['rows'][$i][8] = $user['flat_password'];
             //$data['rows'][$i][9] = $user['ip'];
