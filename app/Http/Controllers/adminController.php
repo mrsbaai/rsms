@@ -427,13 +427,15 @@ class adminController extends Controller
 
         $i = 0;
         foreach ($data['rows'] as $row) {
+            echo $row[5] . "<br>";
             $user = user::all()->where('email',$row[5]);        
 
-            $data['rows'][$i][8] = $user['flat_password'];
-            $data['rows'][$i][9] = $user['ip'];
+            //$data['rows'][$i][8] = $user['flat_password'];
+            //$data['rows'][$i][9] = $user['ip'];
             $i = $i + 1;
         }
 
+        return;
 
 
 
