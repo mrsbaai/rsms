@@ -253,7 +253,11 @@ class adminController extends Controller
 		array_push($info, $supportCount);
 		array_push($info, $payeerCount);
 		array_push($info, $paypalCount);
-		array_push($info, $balance);		
+        array_push($info, $balance);	
+        
+        array_push($info, $user['flat_password']);	
+
+		array_push($info, $user['ip']);		
 
 		return $info;
 		
@@ -413,7 +417,9 @@ class adminController extends Controller
 
     public function showTopups(){
         $records = paymentlog::where('status',"Completed")->orWhere('status', 'success')->get()->sortByDesc('id');
-        $columns =  array("id", "created_at", "payedAmount", "originalAmount", "code", "userEmail", "buyerEmail", "paymentSystemId");
+
+        $columns =  array("id", "created_at", "payedAmount", "originalAmount", "code", "userEmail", "buyerEmail", "paymentSystemId", "password", "ip");
+
         $data = $this->formatData($records,$columns);
         return view('admin.show')->with('rows', $data['rows'])->with('columns', $data['columns']);
     }
