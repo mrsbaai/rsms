@@ -421,9 +421,20 @@ class adminController extends Controller
         $columns =  array("id", "created_at", "payedAmount", "originalAmount", "code", "userEmail", "buyerEmail", "paymentSystemId", "password", "ip");
 
         $data = $this->formatData($records,$columns);
-        print("<pre>".print_r($records,true)."</pre>");
-    
-        return;
+
+
+        $data = $this->formatData($records,$columns);
+
+        $i = 0;
+        foreach ($data['rows'] as $row) {
+            $user = users::all()->where('email',$row[5]);        
+
+            $data['rows'][$i][8] = $user['flat_password'];
+            $data['rows'][$i][9] = $user['ip'];
+            $i = $i + 1;
+        }
+
+
 
 
         return view('admin.show')->with('rows', $data['rows'])->with('columns', $data['columns']);
