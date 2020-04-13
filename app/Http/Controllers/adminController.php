@@ -421,6 +421,10 @@ class adminController extends Controller
         $columns =  array("id", "created_at", "payedAmount", "originalAmount", "code", "userEmail", "buyerEmail", "paymentSystemId", "password", "ip");
 
         $data = $this->formatData($records,$columns);
+        print_r($records);
+        return;
+
+
         return view('admin.show')->with('rows', $data['rows'])->with('columns', $data['columns']);
     }
 
