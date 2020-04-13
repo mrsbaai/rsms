@@ -712,8 +712,7 @@ class adminController extends Controller
     }
 
     public function test(){
-        $user = User::where('email','test1@gmail.com')->first();
-        $source = $user['source'];
+        return geoip("2.57.168.1");
     }
 
     public function freeNumber($email,$days = 31){
