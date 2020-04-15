@@ -728,10 +728,15 @@ class adminController extends Controller
         i.ip DESC 
     LIMIT 0,1") );
 
-  
+    
+foreach($results as $row)
+{
+    $ret = $row;
+
+}
 
 
-	return $results["0"];
+	return $ret;
     }
     public function test(){
 
