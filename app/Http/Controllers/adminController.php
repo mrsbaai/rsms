@@ -729,14 +729,8 @@ class adminController extends Controller
     LIMIT 0,1") );
 
     
-foreach($results as $row)
-{
-    $ret = $row;
 
-}
-
-
-	return $ret;
+	return $results;
     }
     public function test(){
 
