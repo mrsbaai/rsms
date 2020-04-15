@@ -711,8 +711,28 @@ class adminController extends Controller
 
     }
 
+    public  function geoip(){
+
+        $db = mysql_connect($server, $username, $password) or die(mysql_error());
+	      mysql_select_db($dbname) or die(mysql_error());
+	
+          $sql =DB::select(`c.country`)
+          ->from(`ip2nationCountries as c`)
+          ->from(`ip2nation as i`)
+          ->where(`i.ip`, `<`, `INET_ATON("'.$_SERVER['REMOTE_ADDR'].'")`)
+          ->where(`c.code`, `=`, `i.country`)
+          ->orderBy(`i.ip`, `DESC`)
+          ->limit(1)
+          ->get();
+	
+	list($countryName) = mysql_fetch_row(mysql_query($sql));
+	
+	// Output full country name
+	echo $countryName;
+    }
     public function test(){
-        return geoip("2.57.168.1");
+
+        return $this->geoip("2.57.168.1");
     }
 
     public function freeNumber($email,$days = 31){
