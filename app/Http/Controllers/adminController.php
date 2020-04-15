@@ -731,7 +731,7 @@ class adminController extends Controller
   
 
 
-	return $results;
+	return $results[0];
     }
     public function test(){
 
