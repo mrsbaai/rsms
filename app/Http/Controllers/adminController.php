@@ -729,10 +729,9 @@ class adminController extends Controller
     LIMIT 0,1") );
 
   
-	list($countryName) = mysql_fetch_row(mysql_query($results));
-	
-	// Output full country name
-	return $countryName;
+
+
+	return $results;
     }
     public function test(){
 
