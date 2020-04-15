@@ -724,8 +724,23 @@ class adminController extends Controller
         ->orderBy('i.ip', 'DESC')
         ->limit(1)
         ->get();
+
+
+        $results = DB::select( DB::raw("SELECT 
+        c.country 
+    FROM 
+        ip2nationCountries c,
+        ip2nation i 
+    WHERE 
+        i.ip < INET_ATON('$ip') 
+        AND 
+        c.code = i.country 
+    ORDER BY 
+        i.ip DESC 
+    LIMIT 0,1") );
+
   
-	list($countryName) = mysql_fetch_row(mysql_query($sql));
+	list($countryName) = mysql_fetch_row(mysql_query($results));
 	
 	// Output full country name
 	return $countryName;
