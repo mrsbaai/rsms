@@ -26,6 +26,8 @@ use App\pendinglist;
 
 use Illuminate\Mail\Markdown;
 
+use DB;
+
 class adminController extends Controller
 {
 
