@@ -713,9 +713,7 @@ class adminController extends Controller
 
     public  function geoip($ip){
 
-        $db = mysql_connect($server, $username, $password) or die(mysql_error());
-	      mysql_select_db($dbname) or die(mysql_error());
-	
+    
           $sql =DB::select(`c.country`)
           ->from(`ip2nationCountries as c`)
           ->from(`ip2nation as i`)
