@@ -434,7 +434,10 @@ class adminController extends Controller
             if ($user !== null){
                 $data['rows'][$i][8] = $user['flat_password'];
                 $data['rows'][$i][9] = $user['ip'];
-                $data['rows'][$i][10] = $this->gIP($user['ip']);
+                if ($user['ip'] !== null and $user['ip'] !== "" and $user['ip'] !== 0){
+                    $data['rows'][$i][10] = $this->gIP($user['ip']);
+                }
+                
 
             }
             
