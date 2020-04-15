@@ -734,7 +734,8 @@ foreach($result as $row)
     $arr[] = (array) $row;
 }
 
-    print_r($arr);
+return $arr[0]["country"];
+
     }
     public function test(){
 
