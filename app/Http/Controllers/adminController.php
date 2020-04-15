@@ -716,11 +716,11 @@ class adminController extends Controller
     public  function ge($ip){
 
     
-        $sql =DB::select('c.country')
-        ->from('ip2nationCountries as c')
+        $sql =DB::select('b.country')
+        ->from('ip2nationCountries as b')
         ->from('ip2nation as i')
         ->where('i.ip', '<', 'INET_ATON('. $ip .')')
-        ->where('c.code', '=', 'i.country')
+        ->where('b.code', '=', 'i.country')
         ->orderBy('i.ip', 'DESC')
         ->limit(1)
         ->get();
