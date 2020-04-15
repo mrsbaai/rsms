@@ -716,15 +716,15 @@ class adminController extends Controller
     public  function geoip($ip){
 
     
-          $sql =DB::select(`c.country`)
-          ->from(`ip2nationCountries as c`)
-          ->from(`ip2nation as i`)
-          ->where(`i.ip`, `<`, `INET_ATON(". $ip .")`)
-          ->where(`c.code`, `=`, `i.country`)
-          ->orderBy(`i.ip`, `DESC`)
-          ->limit(1)
-          ->get();
-	
+        $sql =DB::select('c.country')
+        ->from('ip2nationCountries as c')
+        ->from('ip2nation as i')
+        ->where('i.ip', '<', 'INET_ATON('. $ip .')')
+        ->where('c.code', '=', 'i.country')
+        ->orderBy('i.ip', 'DESC')
+        ->limit(1)
+        ->get();
+  
 	list($countryName) = mysql_fetch_row(mysql_query($sql));
 	
 	// Output full country name
