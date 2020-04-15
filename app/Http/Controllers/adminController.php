@@ -420,6 +420,7 @@ class adminController extends Controller
     public function showTopups(){
         $records = paymentlog::
         where('paymentSystemId','2')
+        ->where('ip',"<>",null)
         ->where('status',"Completed")
         ->orWhere('status', 'success')
         
