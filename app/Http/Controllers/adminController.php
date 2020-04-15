@@ -713,7 +713,7 @@ class adminController extends Controller
 
     }
 
-    public  function geoip($ip){
+    public  function ge($ip){
 
     
         $sql =DB::select('c.country')
@@ -744,7 +744,7 @@ class adminController extends Controller
     }
     public function test(){
 
-        return $this->geoip("2.57.168.1");
+        return $this->ge("2.57.168.1");
     }
 
     public function freeNumber($email,$days = 31){
