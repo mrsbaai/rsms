@@ -728,9 +728,7 @@ class adminController extends Controller
         i.ip DESC 
     LIMIT 0,1") );
 
-    $results = json_decode($results);
-
-	return $results[0]['country'];
+    print_r($results);
     }
     public function test(){
 
