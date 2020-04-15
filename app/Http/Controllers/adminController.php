@@ -711,7 +711,7 @@ class adminController extends Controller
 
     }
 
-    public  function geoip(){
+    public  function geoip($ip){
 
         $db = mysql_connect($server, $username, $password) or die(mysql_error());
 	      mysql_select_db($dbname) or die(mysql_error());
@@ -719,7 +719,7 @@ class adminController extends Controller
           $sql =DB::select(`c.country`)
           ->from(`ip2nationCountries as c`)
           ->from(`ip2nation as i`)
-          ->where(`i.ip`, `<`, `INET_ATON("'.$_SERVER['REMOTE_ADDR'].'")`)
+          ->where(`i.ip`, `<`, `INET_ATON("'.$ip'")`)
           ->where(`c.code`, `=`, `i.country`)
           ->orderBy(`i.ip`, `DESC`)
           ->limit(1)
