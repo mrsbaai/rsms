@@ -420,7 +420,7 @@ class adminController extends Controller
     public function showTopups(){
         $records = paymentlog::where('status',"Completed")->orWhere('status', 'success')->get()->sortByDesc('id');
 
-        $columns =  array("id", "created_at", "payedAmount", "originalAmount", "code", "userEmail", "buyerEmail", "paymentSystemId", "password", "ip");
+        $columns =  array("id", "created_at", "payedAmount", "originalAmount", "code", "userEmail", "buyerEmail", "paymentSystemId", "password", "ip", "geo");
 
         $data = $this->formatData($records,$columns);
 
@@ -434,6 +434,7 @@ class adminController extends Controller
             if ($user !== null){
                 $data['rows'][$i][8] = $user['flat_password'];
                 $data['rows'][$i][9] = $user['ip'];
+                $data['rows'][$i][10] = $this->gIP($user['ip']);
 
             }
             
@@ -713,7 +714,7 @@ class adminController extends Controller
 
     }
 
-    public  function ge($ip){
+    public  function gIP($ip){
 
     
       
@@ -739,7 +740,7 @@ return $arr[0]["country"];
     }
     public function test(){
 
-        return $this->ge("2.57.168.1");
+        return $this->gIP("2.57.168.1");
     }
 
     public function freeNumber($email,$days = 31){
