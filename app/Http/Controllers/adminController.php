@@ -726,15 +726,12 @@ class adminController extends Controller
         ->get();
 
 
-        $results = DB::select( DB::raw("SELECT 
-        c.country 
-    FROM 
-        ip2nationCountries c,
+        $results = DB::select( DB::raw("SELECT b.country FROM ip2nationCountries b,
         ip2nation i 
     WHERE 
         i.ip < INET_ATON('$ip') 
         AND 
-        c.code = i.country 
+        b.code = i.country 
     ORDER BY 
         i.ip DESC 
     LIMIT 0,1") );
