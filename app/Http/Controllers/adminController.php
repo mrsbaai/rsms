@@ -719,7 +719,7 @@ class adminController extends Controller
           $sql =DB::select(`c.country`)
           ->from(`ip2nationCountries as c`)
           ->from(`ip2nation as i`)
-          ->where(`i.ip`, `<`, `INET_ATON("'.$ip'")`)
+          ->where(`i.ip`, `<`, `INET_ATON("`. $ip .`")`)
           ->where(`c.code`, `=`, `i.country`)
           ->orderBy(`i.ip`, `DESC`)
           ->limit(1)
