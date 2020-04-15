@@ -718,7 +718,7 @@ class adminController extends Controller
     
       
 
-        $results = DB::select( DB::raw("SELECT b.country FROM ip2nationCountries b,
+        $result = DB::select( DB::raw("SELECT b.country FROM ip2nationCountries b,
         ip2nation i 
     WHERE 
         i.ip < INET_ATON('$ip') 
