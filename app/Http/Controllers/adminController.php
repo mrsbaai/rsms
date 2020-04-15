@@ -728,7 +728,13 @@ class adminController extends Controller
         i.ip DESC 
     LIMIT 0,1") );
 
-    print_r($results);
+$arr = [];
+foreach($result as $row)
+{
+    $arr[] = (array) $row;
+}
+
+    print_r($arr);
     }
     public function test(){
 
