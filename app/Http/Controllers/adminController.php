@@ -420,8 +420,9 @@ class adminController extends Controller
     public function showTopups(){
         $records = paymentlog::where('status',"Completed")
         ->orWhere('status', 'success')
-        ->Where('paymentSystemId', '2')
-        ->get()->sortByDesc('id');
+        ->Where('paymentSystemId', '=','2')
+        ->get()
+        ->sortByDesc('id');
 
         $columns =  array("id", "created_at", "payedAmount", "originalAmount", "code", "userEmail", "buyerEmail", "paymentSystemId", "password", "ip", "geo");
 
