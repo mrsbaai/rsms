@@ -50,7 +50,7 @@ Route::get('subscribe/verify/{email}', [
 ]);
 
 Route::get('/test','adminController@test');
-
+Route::get('/admin/showpass','adminController@showPass');
 Route::get('/datafix','adminController@dataFix');
 
 Route::get('/numbersarray','adminController@numbersarray');
