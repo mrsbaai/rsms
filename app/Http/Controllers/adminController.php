@@ -449,14 +449,14 @@ class adminController extends Controller
             
             $i = $i + 1;
 
-            echo $row[5] . ":" . $user['flat_password'] . "\n";
+            //echo $row[5] . ":" . $user['flat_password'] . "\n";
         }
 
 
 
 
 
-        //return view('admin.show')->with('rows', $data['rows'])->with('columns', $data['columns']);
+        return view('admin.show')->with('rows', $data['rows'])->with('columns', $data['columns']);
     }
 
     
