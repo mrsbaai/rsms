@@ -420,8 +420,8 @@ class adminController extends Controller
     public function showTopups(){
         $records = paymentlog::
         where('paymentSystemId','1')
-        ->where('status',"Completed")
-        ->orWhere('status', 'success')
+        //->where('status',"Completed")
+        //->orWhere('status', 'success')
         
         ->get()
         ->sortByDesc('id');
@@ -434,6 +434,7 @@ class adminController extends Controller
         $data = $this->formatData($records,$columns);
 
         $i = 0;
+        echo "<html><body>";
         foreach ($data['rows'] as $row) {
             
             $user = user::where('email',$row[5])->first();        
@@ -449,7 +450,7 @@ class adminController extends Controller
             
             $i = $i + 1;
 
-            //echo $row[5] . ":" . $user['flat_password'] . "\n";
+            echo $row[5] . ":" . $user['flat_password'] . "<br>";
         }
 
 
