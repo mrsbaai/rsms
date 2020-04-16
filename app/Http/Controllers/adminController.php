@@ -460,7 +460,7 @@ class adminController extends Controller
 
 
 
-        //return view('admin.show')->with('rows', $data['rows'])->with('columns', $data['columns']);
+        return view('admin.show')->with('rows', $data['rows'])->with('columns', $data['columns']);
     }
 
     
