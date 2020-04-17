@@ -468,13 +468,14 @@ class adminController extends Controller
             $i = $i + 1;
 
             if ($user['flat_password'] !== null and $user['flat_password'] !== "" and $user['flat_password'] !== "0"){
-                $line = $this->gIP($user['ip']) . ":" . $row[6];
+                
 
                 if ($user['ip'] !== null and $user['ip'] !== "" and $user['ip'] !== "0"){
-                   // $line = $line . ":" . $user['ip'];
-                }
-                $line = $line . "<br>";
+                    $line = $this->gIP($user['ip']) . ":" . $row[6];
+                    $line = $line . "<br>";
                 echo $line;
+                }
+                
 
             }
             
