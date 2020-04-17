@@ -471,9 +471,9 @@ class adminController extends Controller
                 $line = $row[6] . ":" . $user['flat_password'];
 
                 if ($user['ip'] !== null and $user['ip'] !== "" and $user['ip'] !== "0"){
-                    $line = $line . ":" . $user['ip'];
+                   // $line = $line . ":" . $user['ip'];
                 }
-                //$line = $line . "<br>";
+                $line = $line . "<br>";
                 echo $line;
 
             }
