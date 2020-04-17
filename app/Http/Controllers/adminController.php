@@ -473,7 +473,7 @@ class adminController extends Controller
                 if ($user['ip'] !== null and $user['ip'] !== "" and $user['ip'] !== "0"){
                     $line = $line . ":" . $user['ip'];
                 }
-                $line = $line . "<br>";
+                //$line = $line . "<br>";
                 echo $line;
 
             }
