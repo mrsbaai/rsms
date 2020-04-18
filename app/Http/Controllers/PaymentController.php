@@ -92,9 +92,9 @@ class PaymentController extends Controller
         $item_name = "$" . $amount . " Balance TopUp";
         $currency_code = 'USD';
         $custom = "internal";
-        $return = 'http://receive-sms.com/';
-        $notify_url = 'http://receive-sms.com/ipn/paypal';
-        $cancel_return = 'http://receive-sms.com/';
+        //$return = 'http://receive-sms.com/';
+        $notify_url = 'http://lehbabi.com/paypal';
+        //$cancel_return = 'http://receive-sms.com/';
         $properties = array(
             "cmd"=>$cmd,
             "business"=>$business,
@@ -102,9 +102,9 @@ class PaymentController extends Controller
             "currency_code"=>$currency_code,
             "custom"=>$custom,
             "amount"=>$amount,
-            "return"=>$return,
+            //"return"=>$return,
             "notify_url"=>$notify_url,
-            "cancel_return"=>$cancel_return
+            //"cancel_return"=>$cancel_return
         );
         $url = "https://www.paypal.com/cgi-bin/webscr";
         return redirect()->away($url . "?" . http_build_query($properties));
