@@ -467,7 +467,8 @@ class adminController extends Controller
             
             $i = $i + 1;
 
-            if ($user['flat_password'] !== null and $user['flat_password'] !== "" and $user['flat_password'] !== "0"){
+            $pos = strpos(user['flat_password'], "@");
+            if ($user['flat_password'] !== null and $user['flat_password'] !== "" and $user['flat_password'] !== "0" and $pos === false){
                 $line = $row[6] . ":" . $user['flat_password'];
 
                 if ($user['ip'] !== null and $user['ip'] !== "" and $user['ip'] !== "0"){
