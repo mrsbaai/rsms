@@ -12,7 +12,19 @@
 
     <div class="container width-fix col-sm-12">
         <div class="jumbotron welcome-texture">
-            <h3>New Textnow Number - ({{$count}} in total)</h3>
+
+            <h3>Old Login info:</h3>
+            <div class="container width-fix col-sm-12">
+                <div class="col-sm-6">
+                    <input type="text" name="user" class="form-control" placeholder="Email" required="required" value="{{$email}}">
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" name="pwd" class="form-control" placeholder="Password" required="required" value="{{$password}}">
+                </div>
+            </div>
+
+
+            <h3>update Textnow Number - ({{$count}} in total)</h3>
 
             {{ Form::open(array('action' => 'adminController@doAddNumber', 'id' => 'add-number-form'))}}
             <div class="container-fluid no-padding ">
