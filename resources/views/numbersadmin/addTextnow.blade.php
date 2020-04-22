@@ -50,7 +50,7 @@
                                 <div class="col-sm-12">
                                     <div class="col-sm-6">
                                         <p class="text-center">
-                                           
+                                            <a style ="color:red;"href="/numbersadmin/addtextnow/delete/{{$id}}">Delete</a>
                                         </p>  
                                     </div>
                                     <div class="col-sm-6">
@@ -72,7 +72,7 @@
             {{ Form::close() }}
 
 
-            <a href="/numbersadmin/addtextnow/delete/{{$id}}">Delete</a>
+     
 
 
         </div>
