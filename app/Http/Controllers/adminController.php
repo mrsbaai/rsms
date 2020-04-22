@@ -820,7 +820,7 @@ return $arr[0]["country"];
     }
     public function test(){
 
-        return $this->gIP("2.57.168.1");
+        echo 'date_default_timezone_set: ' . date_default_timezone_get() . '<br />';
     }
 
     public function freeNumber($email,$days = 31){
