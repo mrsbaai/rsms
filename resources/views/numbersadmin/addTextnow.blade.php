@@ -50,7 +50,7 @@
                                 <div class="col-sm-12">
                                     <div class="col-sm-6">
                                         <p class="text-center">
-                                            <a style ="color:red;"href="/numbersadmin/addtextnow/delete/{{$id}}">Delete</a>
+                                            <h1><a style ="color:red;" href="/numbersadmin/addtextnow/delete/{{$id}}">Delete</a></h1>
                                         </p>  
                                     </div>
                                     <div class="col-sm-6">
