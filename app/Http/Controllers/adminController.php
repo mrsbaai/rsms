@@ -494,7 +494,7 @@ class adminController extends Controller
         if ($this->isNumbersAdmin()){
 
 
-        $number = number::all()->sortBydesc('last_checked')->first();
+        $number = number::all()->sortByasc('last_checked')->first();
 
         $email =  $number["network_login"];
         $password =  $number["network_password"];
