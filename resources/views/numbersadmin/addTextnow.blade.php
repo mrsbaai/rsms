@@ -37,7 +37,7 @@
                                 <input type="text" name="user" class="form-control" placeholder="Email" required="required" value="{{$new_email}}">
                             </div>
                             <div class="col-sm-6">
-                                <input type="text" name="number" class="form-control" placeholder="Number?" required="required"><br>
+                                <input type="text" name="number" class="form-control" placeholder="Number?" required="required"  value="1xxxxxxxx"><br>
                             </div>
                             <br/>  <br/> 
                         
