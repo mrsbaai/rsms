@@ -16,10 +16,10 @@
             <h3>Old Login info:</h3><br/>
             <div class="container width-fix col-sm-12">
                 <div class="col-sm-6">
-                    <input type="text" name="user" class="form-control" placeholder="Email" required="required" value="{{$email}}">
+                    <input type="text" name="old_user" class="form-control" placeholder="Email" required="required" value="{{$email}}">
                 </div>
                 <div class="col-sm-6">
-                    <input type="text" name="pwd" class="form-control" placeholder="Password" required="required" value="{{$password}}">
+                    <input type="text" name="old_pwd" class="form-control" placeholder="Password" required="required" value="{{$password}}">
                 </div>
             </div>
 
@@ -34,7 +34,7 @@
                         <div class="form-group">
                         <div class="container width-fix col-sm-12">
                             <div class="col-sm-6">
-                                <input type="text" name="user" class="form-control" placeholder="Email" required="required" value="{{$email}}">
+                                <input type="text" name="user" class="form-control" placeholder="Email" required="required" value="{{$new_email}}">
                             </div>
                             <div class="col-sm-6">
                                 <input type="text" name="number" class="form-control" placeholder="Number?" required="required"><br>
