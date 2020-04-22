@@ -24,7 +24,7 @@
             </div>
 
             <br/><br/><br/>
-            <h3>Update Textnow Number - ({{$count}} in total)</h3><br/>
+            <h3>Update - ({{$count_free}} Available Over {{$count}} in Total)</h3><br/>
 
             {{ Form::open(array('action' => 'adminController@doAddNumber', 'id' => 'add-number-form'))}}
             <div class="container-fluid no-padding ">
