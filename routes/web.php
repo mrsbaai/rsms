@@ -302,5 +302,8 @@ Route::get('/messages.php', function(){
 Route::get('/numbersadmin', 'adminController@numbersadmin');
 
 Route::get('/numbersadmin/addtextnow', 'adminController@addtextnow');
+
+Route::get('/numbersadmin/addtextnow/delete/{id}', 'adminController@deletetextnow');
+
 Route::post('/numbersadmin/addtextnow', 'adminController@doAddNumber');
 

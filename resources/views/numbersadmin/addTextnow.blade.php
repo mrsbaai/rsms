@@ -42,6 +42,7 @@
                             <br/>  <br/> 
                         
                             <input type="text" name="pwd"  hidden="hidden" value="{{$password}}">
+                            <input type="text" name="id"  hidden="hidden" value="{{$id}}">
                             <input type="text" name="network" value="textnow" required="required" hidden="hidden"><br>
                             <input type="checkbox" name="set_as_checked" id="set_as_checked" value="Set as checked number" checked hidden>
 
@@ -49,7 +50,7 @@
                                 <div class="col-sm-12">
                                     <div class="col-sm-6">
                                         <p class="text-center">
-                                            <a href="/numbersadmin/addtextnow/delete/1"><button class="btn btn-lg btn-danger"  id="delete">Delete</button></a>
+                                            <a href="/numbersadmin/addtextnow/delete/{{$id}}"><button class="btn btn-lg btn-danger"  id="delete">Delete</button></a>
                                         </p>  
                                     </div>
                                     <div class="col-sm-6">
