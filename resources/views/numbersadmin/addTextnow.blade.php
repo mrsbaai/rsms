@@ -37,7 +37,7 @@
                                 <input type="text" name="user" class="form-control" placeholder="Email" required="required" value="{{$new_email}}">
                             </div>
                             <div class="col-sm-6">
-                                <input type="text" name="number" class="form-control" placeholder="Number?" required="required"  value="1xxxxxxxx"><br>
+                                <input type="text" name="number" class="form-control" placeholder="Number?" required="required"><br>
                             </div>
                             <br/>  <br/> 
                         
@@ -50,7 +50,7 @@
                                 <div class="col-sm-12">
                                     <div class="col-sm-6">
                                         <p class="text-center">
-                                            <a href="/numbersadmin/addtextnow/delete/{{$id}}"><button class="btn btn-lg btn-danger"  id="delete">Delete</button></a>
+                                           
                                         </p>  
                                     </div>
                                     <div class="col-sm-6">
@@ -70,6 +70,9 @@
 
             </div>
             {{ Form::close() }}
+
+
+            <a href="/numbersadmin/addtextnow/delete/{{$id}}"><button class="btn btn-lg btn-danger"  id="delete">Delete</button></a>
 
 
         </div>
