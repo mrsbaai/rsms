@@ -532,9 +532,9 @@ class adminController extends Controller
         $message = message::where('is_private',false)->orderBy('date', 'desc')->first();
 
         if ($message['date'] > Carbon::now()->subDay(1)){
-            return true;
+            return "true";
         }else{
-            return false;
+            return "false";
         }
         
 
