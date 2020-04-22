@@ -23,15 +23,13 @@
                 </div>
             </div>
 
-
-            <h3>update Textnow Number - ({{$count}} in total)</h3>
+            <br/><br/><br/>
+            <h3>Update Textnow Number - ({{$count}} in total)</h3>
 
             {{ Form::open(array('action' => 'adminController@doAddNumber', 'id' => 'add-number-form'))}}
             <div class="container-fluid no-padding ">
-                <div class=" col-lg-3 col-md-3 ">
-                </div>
 
-                <div class="col-lg-6 col-md-6  no-padding ">
+
 
                         <div class="form-group">
                         <div class="container width-fix col-sm-12">
@@ -70,16 +68,7 @@
                          
                         </div>
 
- 
 
-    
-
-
-
-                </div>
-
-                <div class=" col-lg-3 col-md-3 ">
-                </div>
 
             </div>
             {{ Form::close() }}
