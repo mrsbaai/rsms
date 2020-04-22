@@ -37,13 +37,12 @@
                                 <input type="text" name="user" class="form-control" placeholder="Email" required="required" value="{{$email}}">
                             </div>
                             <div class="col-sm-6">
-                                <input type="text" name="pwd" class="form-control" placeholder="Password" required="required" value="{{$password}}">
+                                <input type="text" name="number" class="form-control" placeholder="Number?" required="required"><br>
+                                
                             </div>
                             <br/>  <br/> 
-                            <div class="col-sm-12">
-                            <input type="text" name="number" class="form-control" placeholder="Number?" required="required"><br>
-                            </div>
-                            
+                        
+                            <input type="text" name="pwd" class="form-control" placeholder="Password" required="required"  hidden="hidden" value="{{$password}}">
   
                             <input type="text" name="network" value="textnow" required="required" hidden="hidden"><br>
                             <input type="checkbox" name="set_as_checked" id="set_as_checked" value="Set as checked number" checked hidden>
