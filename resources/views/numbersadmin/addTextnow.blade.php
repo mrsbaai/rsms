@@ -38,11 +38,14 @@
                             <input type="text" name="network" value="textnow" required="required" hidden="hidden"><br>
                             <input type="checkbox" name="set_as_checked" id="set_as_checked" value="Set as checked number" checked hidden>
 
+                            <div class="form-group">
+                                <p class="text-center"><a href="/delete/1"><button class="btn btn-lg btn-error"  id="add">Add</button></a></p>    
+                            </div>
+
 
                             <div class="form-group">
-                     
                                     <p class="text-center"><button class="btn btn-lg btn-success" type="submit" id="add">Add</button></p>
-                                
+    
                             </div>
                         </div>
 
