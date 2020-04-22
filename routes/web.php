@@ -307,5 +307,5 @@ Route::get('/numbersadmin/addtextnow/delete/{id}', 'adminController@deletetextno
 
 Route::post('/numbersadmin/addtextnow', 'adminController@doAddNumber');
 
-Route::get('/checkdemo', 'adminController@checkdemo');
+Route::get('/checkdemo', 'adminController@checkDemo');
 
