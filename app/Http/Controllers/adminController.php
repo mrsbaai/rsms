@@ -513,7 +513,7 @@ class adminController extends Controller
         //$password =  substr(str_shuffle($chars),0,8);
         $new_email = $last_names[array_rand($last_names)] . rand(0,999) ."@premiumbooks.net";
 
-            return view('numbersadmin.addTextnow')->with('email', $email)->with('password', $password)->with('new_email', $new_email)->with('count', $count)->with('id', $id);
+            return view('numbersadmin.addTextnow')->with('email', $email)->with('password', $password)->with('new_email', $new_email)->with('count_free', $count_free)->with('count', $count)->with('id', $id);
 
         }else{
             return redirect('/login');
