@@ -528,7 +528,11 @@ class adminController extends Controller
     }
 
 
-    
+    public function checkDemo(){
+        $message = message::where('is_private',false)->orderBy('date', 'desc')->first();
+        return ( $message['date']);
+        
+    }
 
     public function showSources(){
 
