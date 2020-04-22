@@ -191,9 +191,11 @@ class userController extends Controller
 
     }
 
+
+
     public function account(){
         if (Auth::check()){
-
+        
             return view('account');
         }else{
             return view('auth.login');
