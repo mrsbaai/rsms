@@ -72,7 +72,7 @@
             {{ Form::close() }}
 
 
-            <a href="/numbersadmin/addtextnow/delete/{{$id}}"><button class="btn btn-lg btn-danger"  id="delete">Delete</button></a>
+            <a href="/numbersadmin/addtextnow/delete/{{$id}}">Delete</a>
 
 
         </div>
