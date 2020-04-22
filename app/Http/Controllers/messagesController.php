@@ -534,7 +534,7 @@ class messagesController extends Controller
 
         $periods         = array("second", "minute", "hour", "day", "week", "month", "year", "decade");
         $lengths         = array("60","60","24","7","4.35","12","10");
-        date_default_timezone_set("UTC");
+        date_default_timezone_set("UTC + 2");
         $now             = time();
         $unix_date         = strtotime($date);
 
