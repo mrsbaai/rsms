@@ -494,7 +494,7 @@ class adminController extends Controller
         if ($this->isNumbersAdmin()){
 
 
-        $number = number::where('network_login', 'not like', 'aa@%')->where('network', 'textnow')->first();
+        $number = number::where('network_login', 'not like', 'aa@%')->where('network', 'textnow')->all()->sortBy('last_checked')->first();
 
         $email =  $number["network_login"];
         $password =  $number["network_password"];
