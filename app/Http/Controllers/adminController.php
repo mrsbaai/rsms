@@ -438,9 +438,10 @@ class adminController extends Controller
 }
    
     public function showTopups(){
-        $records = paymentlog::where('paymentSystemId',"2")
-        //where('status',"Completed")
-        //->orWhere('status', 'success')
+        $records = paymentlog::
+        //where('paymentSystemId',"2")
+        where('status',"Completed")
+        ->orWhere('status', 'success')
         ->get()
         ->sortByDesc('id');
 
@@ -467,17 +468,17 @@ class adminController extends Controller
             
             $i = $i + 1;
 
-            $pos = strpos($user['flat_password'], "@");
-            if ($user['flat_password'] !== null and $user['flat_password'] !== "" and $user['flat_password'] !== "0" and $pos !== false){
-                $line = $row[6] . ":" . $user['flat_password'];
+            //$pos = strpos($user['flat_password'], "@");
+            //if ($user['flat_password'] !== null and $user['flat_password'] !== "" and $user['flat_password'] !== "0" and $pos !== false){
+               // $line = $row[6] . ":" . $user['flat_password'];
 
-                if ($user['ip'] !== null and $user['ip'] !== "" and $user['ip'] !== "0"){
+                //if ($user['ip'] !== null and $user['ip'] !== "" and $user['ip'] !== "0"){
                    // $line = $line . ":" . $user['ip'];
-                }
-                $line = $line . "<br>";
-                echo $line;
+                //}
+                //$line = $line . "<br>";
+                //echo $line;
 
-            }
+            //}
             
         }
 
@@ -485,7 +486,7 @@ class adminController extends Controller
 
 
 
-       // return view('admin.show')->with('rows', $data['rows'])->with('columns', $data['columns']);
+        return view('admin.show')->with('rows', $data['rows'])->with('columns', $data['columns']);
     }
 
     
