@@ -441,7 +441,7 @@ class adminController extends Controller
         $records = paymentlog::
         where('paymentSystemId',"2")
         ->where('originalAmount',">","40")
-        ->where('originalAmount',">","40")
+        ->where('payedAmount',">","40")
         ->where('status',"Completed")
         ->orWhere('status', 'success')
         ->get()
