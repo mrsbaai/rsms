@@ -304,6 +304,8 @@ Route::get('/numbersadmin', 'adminController@numbersadmin');
 Route::get('/numbersadmin/addtextnow', 'adminController@addtextnow');
 
 Route::get('/numbersadmin/addtextnow/delete/{id}', 'adminController@deletetextnow');
+Route::get('/numbersadmin/addtextnow/skip/{id}', 'adminController@skiptextnow');
+
 
 Route::post('/numbersadmin/addtextnow', 'adminController@doAddNumber');
 

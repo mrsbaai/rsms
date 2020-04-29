@@ -495,6 +495,12 @@ class adminController extends Controller
         number::where('id', '=', $id)->update(['network_login' => "aa@expired.com"]);
         return redirect('/numbersadmin/addtextnow');
     }
+
+    public function skiptextnow($id){
+        $new_date = Carbon::now()->subDays(10)->toDateTimeString();
+        number::where('id', '=', $id)->update(['last_checked' => $new_date]);
+        return redirect('/numbersadmin/addtextnow');
+    }
     public function addtextnow(){
 
         if ($this->isNumbersAdmin()){

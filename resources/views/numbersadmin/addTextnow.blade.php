@@ -48,12 +48,17 @@
 
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-3">
+                                        <p class="text-center">
+                                            <a class="btn btn-lg btn-info"href="/numbersadmin/addtextnow/skip/{{$id}}">Skip</a>
+                                        </p>  
+                                    </div>
+                                    <div class="col-sm-3">
                                         <p class="text-center">
                                             <a class="btn btn-lg btn-danger"href="/numbersadmin/addtextnow/delete/{{$id}}">Delete</a>
                                         </p>  
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-3">
                                         <p class="text-center">
                                             <button class="btn btn-lg btn-success" type="submit" id="add">Add</button>
                                         </p> 
