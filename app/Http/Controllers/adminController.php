@@ -442,7 +442,7 @@ class adminController extends Controller
         //where('paymentSystemId',"2")
         //->where('originalAmount',">","40")
         where('status',"Completed")
-        //->orWhere('status', 'success')
+        ->orWhere('status', 'success')
         ->get()
         ->sortByDesc('id');
 
