@@ -1154,6 +1154,27 @@ public function testMacro(){
 
 }
 
+
+public function updateNumbersMacro(){
+    $macro = array();
+
+    $i = 0;
+
+    for ($x = 0; $x <= 150; $x++) {
+
+            array_push($macro, 'URL GOTO=https://www.receive-sms.com/search?q=' . $i); 
+           
+        $i = $i + 1;
+    } 
+      
+
+
+    $this->indexMacro($macro);
+    return $this->runMacro(true);
+    
+
+}
+
 public function runMacro($isFirst = false){
 
     $lines = macro::all()
