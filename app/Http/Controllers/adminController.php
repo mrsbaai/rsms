@@ -537,28 +537,31 @@ class adminController extends Controller
 
 
     public function isDemoNeedUpdate(){
-        $message = message::where('is_private',false)->orderBy('date', 'desc')->first();
 
-        if ($message['date'] < Carbon::now()->subDay(1)){
-            number::where('is_private', false)->update(['is_private' => true]);
+        $count_free = number::where('network', 'textnow')->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('last_checked', '>', Carbon::now()->subDays(3)->toDateTimeString())->count();
+        if ($count_free > 10){
+            $message = message::where('is_private',false)->orderBy('date', 'desc')->first();
+
+            if ($message['date'] < Carbon::now()->subDay(1)){
+                number::where('is_private', false)->update(['is_private' => true]);
+        
+                $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(3);
+                $expiration = Carbon::now()->addMonth(20)->addDays(10);
     
-            $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(3);
-            $expiration = Carbon::now()->addMonth(20)->addDays(10);
-
-            foreach ($numbers as $number) {
-                $number = number::where('id', '=', $number['id'])->first();
-                number::where('id', '=', $number['id'])->update(['is_private' => false]);
-                number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
-                message::where('receiver', $number['number'])->delete();
+                foreach ($numbers as $number) {
+                    $number = number::where('id', '=', $number['id'])->first();
+                    number::where('id', '=', $number['id'])->update(['is_private' => false]);
+                    number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+                    message::where('receiver', $number['number'])->delete();
+                }
+    
+                $Simplepush = new Simplepush;
+                $Simplepush->send("W6T4J9", "Demo numbers updated", "Demo numbers updated", "Demo numbers updated");
+        
+        
             }
 
-            $Simplepush = new Simplepush;
-            $Simplepush->send("W6T4J9", "Demo numbers updated", "Demo numbers updated", "Demo numbers updated");
-    
-    
-        }
-        
-        
+        }         
     }
 
     public function showSources(){
