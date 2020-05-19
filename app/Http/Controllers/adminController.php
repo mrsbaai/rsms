@@ -768,17 +768,17 @@ class adminController extends Controller
         $id = Input::get('id');
         $num = preg_replace('/[^0-9]/', '', $num);
         if ($num[0] <> "1"){$num = "1" . $num;}
-        $number = new number();
-
-        $number->number = $num;
-        $number->network_login = Input::get('user');
-        $number->network_password = Input::get('pwd');
-        $number->network = "textnow";
-        $number->last_checked = carbon::now();
-
-        $number->save();
-
-        number::where('id', '=', $id)->update(['network_login' => "aa@expired.com"]);
+        if (is_numeric($num)){
+            $number = new number();
+            $number->number = $num;
+            $number->network_login = Input::get('user');
+            $number->network_password = Input::get('pwd');
+            $number->network = "textnow";
+            $number->last_checked = carbon::now();
+            $number->save();
+            number::where('id', '=', $id)->update(['network_login' => "aa@expired.com"]);
+        }
+        
         
         return "";
 
