@@ -1201,6 +1201,8 @@ public function updateNumbersMacro(){
 
 
     array_push($macro, 'URL GOTO=https://www.textnow.com/login');
+    array_push($macro, 'SET !TIMEOUT_STEP 120');
+    array_push($macro, 'TAG POS=1 TYPE=DIV ATTR=CLASS:"*antigate_solver*solved*"');
     array_push($macro, 'WAIT SECONDS=5');  
     array_push($macro, 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0'); 
     array_push($macro, 'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-username" POINT="(294,196)"'); 
