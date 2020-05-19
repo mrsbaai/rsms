@@ -762,6 +762,28 @@ class adminController extends Controller
     }
 
     
+    public function updatenumber(){
+
+        $num = Input::get('number');
+        $id = Input::get('id');
+        $num = preg_replace('/[^0-9]/', '', $num);
+        if ($num[0] <> "1"){$num = "1" . $num;}
+        $number = new number();
+
+        $number->number = $num;
+        $number->network_login = Input::get('user');
+        $number->network_password = Input::get('pwd');
+        $number->network = "textnow";
+        $number->last_checked = carbon::now();
+
+        $number->save();
+
+        number::where('id', '=', $id)->update(['network_login' => "aa@expired.com"]);
+        
+        return "";
+
+    }
+
     public function doAddNumber(){
 
         $num = Input::get('number');
@@ -1156,17 +1178,61 @@ public function testMacro(){
 
 
 public function updateNumbersMacro(){
+
+
+    $number = number::where('network_login', 'not like', 'aa@%')->where('network', 'textnow')->get()->sortBy('last_checked')->first();
+
+
+    $last_names = array('abbott','acevedo','acosta','adams','adkins','aguilar','aguirre','albert','alexander','alford','allen','allison','alston','alvarado','alvarez','anderson','andrews','anthony','armstrong','arnold','ashley','atkins','atkinson','austin','avery','avila','ayala','ayers','bailey','baird','baker','baldwin','ball','ballard','banks','barber','barker','barlow','barnes','barnett','barr','barrera','barrett','barron','barry','bartlett','barton','bass','bates','battle','bauer','baxter','beach','bean','beard','beasley','beck','becker','bell','bender','benjamin','bennett','benson','bentley','benton','berg','berger','bernard','berry','best','bird','bishop','black','blackburn','blackwell','blair','blake','blanchard','blankenship','blevins','bolton','bond','bonner','booker','boone','booth','bowen','bowers','bowman','boyd','boyer','boyle','bradford','bradley','bradshaw','brady','branch','bray','brennan','brewer','bridges','briggs','bright','britt','brock','brooks','brown','browning','bruce','bryan','bryant','buchanan','buck','buckley','buckner','bullock','burch','burgess','burke','burks','burnett','burns','burris','burt','burton','bush','butler','byers','byrd','cabrera','cain','calderon','caldwell','calhoun','callahan','camacho','cameron','campbell','campos','cannon','cantrell','cantu','cardenas','carey','carlson','carney','carpenter','carr','carrillo','carroll','carson','carter','carver','case','casey','cash','castaneda','castillo','castro','cervantes','chambers','chan','chandler','chaney','chang','chapman','charles','chase','chavez','chen','cherry','christensen','christian','church','clark','clarke','clay','clayton','clements','clemons','cleveland','cline','cobb','cochran','coffey','cohen','cole','coleman','collier','collins','colon','combs','compton','conley','conner','conrad','contreras','conway','cook','cooke','cooley','cooper','copeland','cortez','cote','cotton','cox','craft','craig','crane','crawford','crosby','cross','cruz','cummings','cunningham','curry','curtis','dale','dalton','daniel','daniels','daugherty','davenport','david','davidson','davis','dawson','day','dean','decker','dejesus','delacruz','delaney','deleon','delgado','dennis','diaz','dickerson','dickson','dillard','dillon','dixon','dodson','dominguez','donaldson','donovan','dorsey','dotson','douglas','downs','doyle','drake','dudley','duffy','duke','duncan','dunlap','dunn','duran','durham','dyer','eaton','edwards','elliott','ellis','ellison','emerson','england','english','erickson','espinoza','estes','estrada','evans','everett','ewing','farley','farmer','farrell','faulkner','ferguson','fernandez','ferrell','fields','figueroa','finch','finley','fischer','fisher','fitzgerald','fitzpatrick','fleming','fletcher','flores','flowers','floyd','flynn','foley','forbes','ford','foreman','foster','fowler','fox','francis','franco','frank','franklin','franks','frazier','frederick','freeman','french','frost','fry','frye','fuentes','fuller','fulton','gaines','gallagher','gallegos','galloway','gamble','garcia','gardner','garner','garrett','garrison','garza','gates','gay','gentry','george','gibbs','gibson','gilbert','giles','gill','gillespie','gilliam','gilmore','glass','glenn','glover','goff','golden','gomez','gonzales','gonzalez','good','goodman','goodwin','gordon','gould','graham','grant','graves','gray','green','greene','greer','gregory','griffin','griffith','grimes','gross','guerra','guerrero','guthrie','gutierrez','guy','guzman','hahn','hale','haley','hall','hamilton','hammond','hampton','hancock','haney','hansen','hanson','hardin','harding','hardy','harmon','harper','harrell','harrington','harris','harrison','hart','hartman','harvey','hatfield','hawkins','hayden','hayes','haynes','hays','head','heath','hebert','henderson','hendricks','hendrix','henry','hensley','henson','herman','hernandez','herrera','herring','hess','hester','hewitt','hickman','hicks','higgins','hill','hines','hinton','hobbs','hodge','hodges','hoffman','hogan','holcomb','holden','holder','holland','holloway','holman','holmes','holt','hood','hooper','hoover','hopkins','hopper','horn','horne','horton','house','houston','howard','howe','howell','hubbard','huber','hudson','huff','huffman','hughes','hull','humphrey','hunt','hunter','hurley','hurst','hutchinson','hyde','ingram','irwin','jackson','jacobs','jacobson','james','jarvis','jefferson','jenkins','jennings','jensen','jimenez','johns','johnson','johnston','jones','jordan','joseph','joyce','joyner','juarez','justice','kane','kaufman','keith','keller','kelley','kelly','kemp','kennedy','kent','kerr','key','kidd','kim','king','kinney','kirby','kirk','kirkland','klein','kline','knapp','knight','knowles','knox','koch','kramer','lamb','lambert','lancaster','landry','lane','lang','langley','lara','larsen','larson','lawrence','lawson','le','leach','leblanc','lee','leon','leonard','lester','levine','levy','lewis','lindsay','lindsey','little','livingston','lloyd','logan','long','lopez','lott','love','lowe','lowery','lucas','luna','lynch','lynn','lyons','macdonald','macias','mack','madden','maddox','maldonado','malone','mann','manning','marks','marquez','marsh','marshall','martin','martinez','mason','massey','mathews','mathis','matthews','maxwell','may','mayer','maynard','mayo','mays','mcbride','mccall','mccarthy','mccarty','mcclain','mcclure','mcconnell','mccormick','mccoy','mccray','mccullough','mcdaniel','mcdonald','mcdowell','mcfadden','mcfarland','mcgee','mcgowan','mcguire','mcintosh','mcintyre','mckay','mckee','mckenzie','mckinney','mcknight','mclaughlin','mclean','mcleod','mcmahon','mcmillan','mcneil','mcpherson','meadows','medina','mejia','melendez','melton','mendez','mendoza','mercado','mercer','merrill','merritt','meyer','meyers','michael','middleton','miles','miller','mills','miranda','mitchell','molina','monroe','montgomery','montoya','moody','moon','mooney','moore','morales','moran','moreno','morgan','morin','morris','morrison','morrow','morse','morton','moses','mosley','moss','mueller','mullen','mullins','munoz','murphy','murray','myers','nash','navarro','neal','nelson','newman','newton','nguyen','nichols','nicholson','nielsen','nieves','nixon','noble','noel','nolan','norman','norris','norton','nunez','obrien','ochoa','oconnor','odom','odonnell','oliver','olsen','olson','oneal','oneil','oneill','orr','ortega','ortiz','osborn','osborne','owen','owens','pace','pacheco','padilla','page','palmer','park','parker','parks','parrish','parsons','pate','patel','patrick','patterson','patton','paul','payne','pearson','peck','pena','pennington','perez','perkins','perry','peters','petersen','peterson','petty','phelps','phillips','pickett','pierce','pittman','pitts','pollard','poole','pope','porter','potter','potts','powell','powers','pratt','preston','price','prince','pruitt','puckett','pugh','quinn','ramirez','ramos','ramsey','randall','randolph','rasmussen','ratliff','ray','raymond','reed','reese','reeves','reid','reilly','reyes','reynolds','rhodes','rice','rich','richard','richards','richardson','richmond','riddle','riggs','riley','rios','rivas','rivera','rivers','roach','robbins','roberson','roberts','robertson','robinson','robles','rocha','rodgers','rodriguez','rodriquez','rogers','rojas','rollins','roman','romero','rosa','rosales','rosario','rose','ross','roth','rowe','rowland','roy','ruiz','rush','russell','russo','rutledge','ryan','salas','salazar','salinas','sampson','sanchez','sanders','sandoval','sanford','santana','santiago','santos','sargent','saunders','savage','sawyer','schmidt','schneider','schroeder','schultz','schwartz','scott','sears','sellers','serrano','sexton','shaffer','shannon','sharp','sharpe','shaw','shelton','shepard','shepherd','sheppard','sherman','shields','short','silva','simmons','simon','simpson','sims','singleton','skinner','slater','sloan','small','smith','snider','snow','snyder','solis','solomon','sosa','soto','sparks','spears','spence','spencer','stafford','stanley','stanton','stark','steele','stein','stephens','stephenson','stevens','stevenson','stewart','stokes','stone','stout','strickland','strong','stuart','suarez','sullivan','summers','sutton','swanson','sweeney','sweet','sykes','talley','tanner','tate','taylor','terrell','terry','thomas','thompson','thornton','tillman','todd','torres','townsend','tran','travis','trevino','trujillo','tucker','turner','tyler','tyson','underwood','valdez','valencia','valentine','valenzuela','vance','vang','vargas','vasquez','vaughan','vaughn','vazquez','vega','velasquez','velazquez','velez','villarreal','vincent','vinson','wade','wagner','walker','wall','wallace','waller','walls','walsh','walter','walters','walton','ward','ware','warner','warren','washington','waters','watkins','watson','watts','weaver','webb','weber','webster','weeks','weiss','welch','wells','west','wheeler','whitaker','white','whitehead','whitfield','whitley','whitney','wiggins','wilcox','wilder','wiley','wilkerson','wilkins','wilkinson','william','williams','williamson','willis','wilson','winters','wise','witt','wolf','wolfe','wong','wood','woodard','woods','woodward','wooten','workman','wright','wyatt','wynn','yang','yates','york','young','zamora','zimmerman');
+    $chars = "abcdefghijklmnKLMNOPQRSTUVWXYZ0123456789-_@?!";
+
+    $username =  $number["network_login"];
+    $password =  $number["network_password"];
+    $numberid =  $number["id"];
+    $new_email = $last_names[array_rand($last_names)] . rand(0,999) ."@premiumbooks.net";
+    $first_name = $last_names[array_rand($last_names)];
+    $last_name = $last_names[array_rand($last_names)];
+    $valfix = "{{!EXTRACT}}";
+
+
     $macro = array();
 
     $i = 0;
 
-    for ($x = 0; $x <= 150; $x++) {
 
-            array_push($macro, 'URL GOTO=https://www.receive-sms.com/search?q=' . $i); 
-           
-        $i = $i + 1;
-    } 
-      
+    array_push($macro, 'URL GOTO=https://www.textnow.com/login');
+    array_push($macro, 'WAIT SECONDS=5');  
+    array_push($macro, 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0'); 
+    array_push($macro, 'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-username" POINT="(294,196)"'); 
+    array_push($macro, 'EVENT TYPE=MOUSEUP POINT="(294,196)"'); 
+    array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#txt-username" BUTTON=0'); 
+    array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-username" CHARS="'. $username . '"'); 
+    array_push($macro, 'WAIT SECONDS=3'); 
+    array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#txt-password" BUTTON=0'); 
+    array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-password" CHARS="'. $password . '"'); 
+    array_push($macro, 'WAIT SECONDS=2'); 
+    array_push($macro, 'SET !ENCRYPTION NO'); 
+    array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0'); 
+    array_push($macro, 'WAIT SECONDS=5');
+    array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
+    array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" CHARS="344"');
+    array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#enterAreaCodeForm>DIV>INPUT" KEY=39');
+    array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV:nth-of-type(2)>INPUT" BUTTON=0');
+    array_push($macro, 'SET !TIMEOUT_STEP 120');
+    array_push($macro, 'TAG POS=1 TYPE=DIV ATTR=CLASS:"*antigate_solver*solved*"');
+    array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#modal" BUTTON=0');
+    array_push($macro, 'WAIT SECONDS=1');
+    array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#settings-nav>DIV>IMG" BUTTON=0');
+    array_push($macro, 'WAIT SECONDS=1');
+    array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(2)>INPUT" CONTENT='. $first_name);
+    array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>INPUT" CONTENT='. $last_name);
+    array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(4)>INPUT" CONTENT='. $new_email);
+    array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(5)>BUTTON" BUTTON=0');
+    array_push($macro, 'SET !EXTRACT NULL'); 
+    array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>P:nth-of-type(2)" EXTRACT=TXT'); 
+    array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumber/' . $numberid . '/' . $valfix . '/' . $new_email . '/' . $password); 
+    array_push($macro, 'WAIT SECONDS=2');
+    array_push($macro, 'TAB CLOSE');
 
 
     $this->indexMacro($macro);
