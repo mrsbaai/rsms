@@ -497,7 +497,7 @@ class adminController extends Controller
     }
 
     public function skiptextnow($id){
-        $new_date = Carbon::now()->subDays(10)->toDateTimeString();
+        $new_date = Carbon::now()->subDays(2)->toDateTimeString();
         number::where('id', '=', $id)->update(['last_checked' => $new_date]);
         return redirect('/numbersadmin/addtextnow');
     }
@@ -777,6 +777,8 @@ class adminController extends Controller
             $number->last_checked = carbon::now();
             $number->save();
             number::where('id', '=', $id)->update(['network_login' => "aa@expired.com"]);
+        }else{
+            $this->skiptextnow($id);
         }
         
         
