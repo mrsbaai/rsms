@@ -37,7 +37,7 @@ Route::get('register/verify/{confirmationCode}', [
 
 Route::get('/fast/support/{id}', 'adminController@fastSupport');
 
-Route::get('/fast/support/{?id}', 'adminController@sendResponse');
+Route::get('/fast/support/{id?}', 'adminController@sendResponse');
 
 Route::post('unsubscribe','SubscribersController@unsubscribe');
 
@@ -66,7 +66,7 @@ Route::get('/ppsned', 'PaymentController@ppsend');
 Route::get('/admin', 'adminController@dashboard');
 
 Route::get('/admin/verifymacro', 'adminController@verifyMacro');
-Route::get('/admin/updatenumbersmacro/{?stage}/{?id}', 'adminController@updateNumbersMacro');
+Route::get('/admin/updatenumbersmacro/{stage?}/{id?}', 'adminController@updateNumbersMacro');
 Route::get('/admin/test', 'adminController@testMacro');
 Route::get('/admin/runmacro', 'adminController@runmacro');
 
