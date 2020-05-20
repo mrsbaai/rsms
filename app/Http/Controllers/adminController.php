@@ -1207,7 +1207,7 @@ public function updateNumbersMacro($stage=null,$id=null){
 
     if ($stage == null){
         array_push($macro, 'URL GOTO=https://www.textnow.com/login');
-        array_push($macro, 'WAIT SECONDS=5');  
+        array_push($macro, 'WAIT SECONDS=3');  
         array_push($macro, 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0'); 
         array_push($macro, 'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-username" POINT="(294,196)"'); 
         array_push($macro, 'EVENT TYPE=MOUSEUP POINT="(294,196)"'); 
@@ -1219,7 +1219,7 @@ public function updateNumbersMacro($stage=null,$id=null){
         array_push($macro, 'WAIT SECONDS=2'); 
         array_push($macro, 'SET !ENCRYPTION NO'); 
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0'); 
-        array_push($macro, 'WAIT SECONDS=5');
+        array_push($macro, 'WAIT SECONDS=10');
         array_push($macro, 'TAG POS=1 TYPE=SPAN ATTR=CLASS:*uikit-text--danger EXTRACT=txt');
         array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumbersmacro/' . $valfix . '/' . $numberid);
         $this->indexMacro($macro);
