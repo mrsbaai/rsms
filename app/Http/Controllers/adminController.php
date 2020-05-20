@@ -1252,7 +1252,8 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null){
         
     }else{
 
-        return "I'm deleting $id";
+        number::where('id', '=', $id)->update(['network_login' => "aa@expired.com"]);
+    
     }
         
 
