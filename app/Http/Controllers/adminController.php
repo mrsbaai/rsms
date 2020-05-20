@@ -1184,7 +1184,7 @@ public function testMacro(){
 
 public function updateNumbersMacro($stage=null,$id=null){
 
-
+return $stage;
     $number = number::where('network_login', 'not like', 'aa@%')->where('network', 'textnow')->get()->sortBy('last_checked')->first();
 
 
