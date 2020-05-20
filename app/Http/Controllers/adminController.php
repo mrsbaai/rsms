@@ -1255,6 +1255,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         $new_date = Carbon::now()->subDays(2)->toDateTimeString();
         number::where('id', '=', $id)->update(['last_checked' => $new_date]);
         //number::where('id', '=', $id)->update(['network_login' => "aa@expired.com"]);
+        return redirect('/admin/updatenumbersmacro/');
     
     }
         
