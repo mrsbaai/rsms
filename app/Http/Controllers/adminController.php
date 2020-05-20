@@ -1252,7 +1252,7 @@ public function updateNumbersMacro($stage=null,$id=null){
         
     }else{
 
-        return "I'm deleting $numberid";
+        return "I'm deleting $id";
     }
         
 
