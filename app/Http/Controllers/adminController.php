@@ -1182,7 +1182,7 @@ public function testMacro(){
 }
 
 
-public function updateNumbersMacro($stage="login",$id=null,$ret=null){
+public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null, $fix2=null, $fix3=null){
 
     $number = number::where('network_login', 'not like', 'aa@%')->where('network', 'textnow')->get()->sortBy('last_checked')->first();
 
@@ -1221,7 +1221,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null){
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0'); 
         array_push($macro, 'WAIT SECONDS=10');
         array_push($macro, 'TAG POS=1 TYPE=SPAN ATTR=CLASS:*uikit-text--danger EXTRACT=txt');
-        array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumbersmacro/2/' . $valfix . '/' . $numberid);
+        array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumbersmacro/2/' . $numberid . '/' . $valfix);
         $this->indexMacro($macro);
         return $this->runMacro(true);
 
