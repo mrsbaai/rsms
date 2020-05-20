@@ -1184,7 +1184,7 @@ public function testMacro(){
 
 public function updateNumbersMacro($stage="login",$id=null){
 
-
+return $stage;
     $number = number::where('network_login', 'not like', 'aa@%')->where('network', 'textnow')->get()->sortBy('last_checked')->first();
 
 
@@ -1227,7 +1227,7 @@ public function updateNumbersMacro($stage="login",$id=null){
 
     }
 
-    if ($stage == " " and $id !== null){
+    if ($stage == "" and $id !== null){
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
         array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" CHARS="' . rand(200,800) . '"');
         array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#enterAreaCodeForm>DIV>INPUT" KEY=39');
