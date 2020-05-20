@@ -1219,7 +1219,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'WAIT SECONDS=2'); 
         array_push($macro, 'SET !ENCRYPTION NO'); 
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0'); 
-        array_push($macro, 'WAIT SECONDS=10');
+        array_push($macro, 'WAIT SECONDS=20');
         array_push($macro, 'TAG POS=1 TYPE=SPAN ATTR=CLASS:*uikit-text--danger EXTRACT=txt');
         array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumbersmacro/2/' . $numberid . '/' . $valfix);
         $this->indexMacro($macro);
@@ -1255,7 +1255,11 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         $new_date = Carbon::now()->subDays(2)->toDateTimeString();
         number::where('id', '=', $id)->update(['last_checked' => $new_date]);
         //number::where('id', '=', $id)->update(['network_login' => "aa@expired.com"]);
-        return redirect('/admin/updatenumbersmacro/');
+        //return redirect('/admin/updatenumbersmacro/');
+        array_push($macro, 'TAB CLOSE');
+        array_push($macro, 'TAB CLOSE');
+        $this->indexMacro($macro);
+        return $this->runMacro(true);
     
     }
         
