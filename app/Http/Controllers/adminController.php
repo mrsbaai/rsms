@@ -1182,9 +1182,9 @@ public function testMacro(){
 }
 
 
-public function updateNumbersMacro($stage=null,$id=null){
+public function updateNumbersMacro($stage="login",$id=null){
 
-return $stage;
+
     $number = number::where('network_login', 'not like', 'aa@%')->where('network', 'textnow')->get()->sortBy('last_checked')->first();
 
 
@@ -1205,7 +1205,7 @@ return $stage;
     $i = 0;
 
 
-    if ($stage == null){
+    if ($stage == "login"){
         array_push($macro, 'URL GOTO=https://www.textnow.com/login');
         array_push($macro, 'WAIT SECONDS=3');  
         array_push($macro, 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0'); 
@@ -1227,7 +1227,7 @@ return $stage;
 
     }
 
-    if ($stage == "#EANF#"){
+    if ($stage == null){
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
         array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" CHARS="' . rand(200,800) . '"');
         array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#enterAreaCodeForm>DIV>INPUT" KEY=39');
