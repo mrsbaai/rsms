@@ -778,7 +778,10 @@ class adminController extends Controller
             $number->save();
             number::where('id', '=', $id)->update(['network_login' => "aa@expired.com"]);
         }else{
-            $this->skiptextnow($id);
+            $new_date = Carbon::now()->subDays(2)->toDateTimeString();
+            number::where('id', '=', $id)->update(['last_checked' => $new_date]);
+            //return redirect('/admin/updatenumbersmacro');
+    
         }
         
         
@@ -1179,7 +1182,7 @@ public function testMacro(){
 }
 
 
-public function updateNumbersMacro(){
+public function updateNumbersMacro($stage=null,$id=null){
 
 
     $number = number::where('network_login', 'not like', 'aa@%')->where('network', 'textnow')->get()->sortBy('last_checked')->first();
@@ -1202,44 +1205,57 @@ public function updateNumbersMacro(){
     $i = 0;
 
 
-    array_push($macro, 'URL GOTO=https://www.textnow.com/login');
-    array_push($macro, 'WAIT SECONDS=5');  
-    array_push($macro, 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0'); 
-    array_push($macro, 'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-username" POINT="(294,196)"'); 
-    array_push($macro, 'EVENT TYPE=MOUSEUP POINT="(294,196)"'); 
-    array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#txt-username" BUTTON=0'); 
-    array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-username" CHARS="'. $username . '"'); 
-    array_push($macro, 'WAIT SECONDS=3'); 
-    array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#txt-password" BUTTON=0'); 
-    array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-password" CHARS="'. $password . '"'); 
-    array_push($macro, 'WAIT SECONDS=2'); 
-    array_push($macro, 'SET !ENCRYPTION NO'); 
-    array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0'); 
-    array_push($macro, 'WAIT SECONDS=5');
-    array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
-    array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" CHARS="' . rand(200,800) . '"');
-    array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#enterAreaCodeForm>DIV>INPUT" KEY=39');
-    array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV:nth-of-type(2)>INPUT" BUTTON=0');
-    array_push($macro, 'SET !TIMEOUT_STEP 120');
-    array_push($macro, 'TAG POS=1 TYPE=DIV ATTR=CLASS:"*antigate_solver*solved*"');
-    array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#modal" BUTTON=0');
-    array_push($macro, 'WAIT SECONDS=1');
-    array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#settings-nav>DIV>IMG" BUTTON=0');
-    array_push($macro, 'WAIT SECONDS=1');
-    array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(2)>INPUT" CONTENT='. $first_name);
-    array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>INPUT" CONTENT='. $last_name);
-    array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(4)>INPUT" CONTENT='. $new_email);
-    array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(5)>BUTTON" BUTTON=0');
-    array_push($macro, 'SET !EXTRACT NULL'); 
-    array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>P:nth-of-type(2)" EXTRACT=TXT'); 
-    array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumber/' . $numberid . '/' . $valfix . '/' . $new_email . '/' . $password); 
-    array_push($macro, 'WAIT SECONDS=2');
-    array_push($macro, 'TAB CLOSE');
+    if ($stage == null){
+        array_push($macro, 'URL GOTO=https://www.textnow.com/login');
+        array_push($macro, 'WAIT SECONDS=5');  
+        array_push($macro, 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0'); 
+        array_push($macro, 'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-username" POINT="(294,196)"'); 
+        array_push($macro, 'EVENT TYPE=MOUSEUP POINT="(294,196)"'); 
+        array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#txt-username" BUTTON=0'); 
+        array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-username" CHARS="'. $username . '"'); 
+        array_push($macro, 'WAIT SECONDS=3'); 
+        array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#txt-password" BUTTON=0'); 
+        array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-password" CHARS="'. $password . '"'); 
+        array_push($macro, 'WAIT SECONDS=2'); 
+        array_push($macro, 'SET !ENCRYPTION NO'); 
+        array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0'); 
+        array_push($macro, 'WAIT SECONDS=5');
+        array_push($macro, 'TAG POS=1 TYPE=SPAN ATTR=CLASS:*uikit-text--danger EXTRACT=txt');
+        array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumbersmacro/' . $valfix . '/' . $numberid);
+        $this->indexMacro($macro);
+        return $this->runMacro(true);
 
+    }
 
-    $this->indexMacro($macro);
-    return $this->runMacro(true);
-    
+    if ($stage == "#EANF#"){
+        array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
+        array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" CHARS="' . rand(200,800) . '"');
+        array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#enterAreaCodeForm>DIV>INPUT" KEY=39');
+        array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV:nth-of-type(2)>INPUT" BUTTON=0');
+        array_push($macro, 'SET !TIMEOUT_STEP 120');
+        array_push($macro, 'TAG POS=1 TYPE=DIV ATTR=CLASS:"*antigate_solver*solved*"');
+        array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#modal" BUTTON=0');
+        array_push($macro, 'WAIT SECONDS=1');
+        array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#settings-nav>DIV>IMG" BUTTON=0');
+        array_push($macro, 'WAIT SECONDS=1');
+        array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(2)>INPUT" CONTENT='. $first_name);
+        array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>INPUT" CONTENT='. $last_name);
+        array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(4)>INPUT" CONTENT='. $new_email);
+        array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(5)>BUTTON" BUTTON=0');
+        array_push($macro, 'SET !EXTRACT NULL'); 
+        array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>P:nth-of-type(2)" EXTRACT=TXT'); 
+        array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumber/' . $numberid . '/' . $valfix . '/' . $new_email . '/' . $password); 
+        array_push($macro, 'WAIT SECONDS=2');
+        array_push($macro, 'TAB CLOSE');
+        $this->indexMacro($macro);
+        return $this->runMacro(true);
+        
+    }else{
+
+        return "I'm deleting $numberid";
+    }
+        
+
 
 }
 
