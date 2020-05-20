@@ -1182,9 +1182,9 @@ public function testMacro(){
 }
 
 
-public function updateNumbersMacro($stage="login",$id=null){
+public function updateNumbersMacro($stage="login",$id=null,$ret=null){
 
-return $stage;
+return $ret;
     $number = number::where('network_login', 'not like', 'aa@%')->where('network', 'textnow')->get()->sortBy('last_checked')->first();
 
 
@@ -1206,6 +1206,7 @@ return $stage;
 
 
     if ($stage == "login" and $id == null){
+    
         array_push($macro, 'URL GOTO=https://www.textnow.com/login');
         array_push($macro, 'WAIT SECONDS=3');  
         array_push($macro, 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0'); 
@@ -1221,13 +1222,13 @@ return $stage;
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0'); 
         array_push($macro, 'WAIT SECONDS=10');
         array_push($macro, 'TAG POS=1 TYPE=SPAN ATTR=CLASS:*uikit-text--danger EXTRACT=txt');
-        array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumbersmacro/' . $valfix . '/' . $numberid);
+        array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumbersmacro/2/' . $valfix . '/' . $numberid);
         $this->indexMacro($macro);
         return $this->runMacro(true);
 
     }
 
-    if ($stage == "" and $id !== null){
+    if ($stage == "2" and $id !== null){
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
         array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" CHARS="' . rand(200,800) . '"');
         array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#enterAreaCodeForm>DIV>INPUT" KEY=39');
