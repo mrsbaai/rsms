@@ -1294,10 +1294,11 @@ public function runMacro($isFirst = false){
         $macro = $macro . $line . '\r\n';
     }
 
-    $macro = $macro . 'TAB CLOSEALLOTHERS' . '\r\n';
-    $macro = $macro . 'TAB OPEN' . '\r\n'; 
-    $macro = $macro . 'TAB T=2' . '\r\n'; 
-    $macro = $macro . 'URL GOTO=https://receive-sms.com/admin/runmacro' . '\r\n'; 
+    //for large macros
+    //$macro = $macro . 'TAB CLOSEALLOTHERS' . '\r\n';
+    //$macro = $macro . 'TAB OPEN' . '\r\n'; 
+    //$macro = $macro . 'TAB T=2' . '\r\n'; 
+    //$macro = $macro . 'URL GOTO=https://receive-sms.com/admin/runmacro' . '\r\n'; 
 
 
     return view("admin.macro")->with('code',$macro);
