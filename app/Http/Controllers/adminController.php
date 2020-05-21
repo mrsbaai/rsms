@@ -1261,7 +1261,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'SET !VAR2 {{!EXTRACT}}');
 
         array_push($macro, 'PAUSE');
-        array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumber/' . $numberid . '/' . $val1 . '/' . $new_email . '/' . $password. '/' . $val2); 
+        array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumber/' . $numberid . '/' . $VAL1 . '/' . $new_email . '/' . $password. '/' . $VAL2); 
         array_push($macro, 'WAIT SECONDS=2');
         array_push($macro, 'TAB CLOSE');
         $this->indexMacro($macro);
