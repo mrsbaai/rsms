@@ -762,30 +762,29 @@ class adminController extends Controller
     }
 
     
-    public function updatenumber(){
+    public function updatenumber($id, $num, $user, $pwd){
 
-        $num = Input::get('number');
-        $id = Input::get('id');
+        str_replace("%20", "", $num);
         $num = preg_replace('/[^0-9]/', '', $num);
+        return $num;
         if ($num[0] <> "1"){$num = "1" . $num;}
         if (is_numeric($num)){
             $number = new number();
             $number->number = $num;
-            $number->network_login = Input::get('user');
-            $number->network_password = Input::get('pwd');
+            $number->network_login = $user;
+            $number->network_password = $pwd;
             $number->network = "textnow";
             $number->last_checked = carbon::now();
             $number->save();
             number::where('id', '=', $id)->update(['network_login' => "aa@expired.com"]);
+            return $num;
         }else{
             $new_date = Carbon::now()->subDays(2)->toDateTimeString();
             number::where('id', '=', $id)->update(['last_checked' => $new_date]);
             //return redirect('/admin/updatenumbersmacro');
+            return "";
     
-        }
-        
-        
-        return "";
+        }       
 
     }
 
@@ -793,6 +792,7 @@ class adminController extends Controller
 
         $num = Input::get('number');
         $id = Input::get('id');
+        str_replace("%20", "", $num);
         $num = preg_replace('/[^0-9]/', '', $num);
         if ($num[0] <> "1"){$num = "1" . $num;}
         $number = new number();
@@ -1243,11 +1243,15 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#settings-nav>DIV>IMG" BUTTON=0');
         array_push($macro, 'WAIT SECONDS=1');
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(2)>INPUT" CONTENT='. $first_name);
+        array_push($macro, 'WAIT SECONDS=2');
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>INPUT" CONTENT='. $last_name);
+        array_push($macro, 'WAIT SECONDS=2');
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(4)>INPUT" CONTENT='. $new_email);
+        array_push($macro, 'WAIT SECONDS=4');
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(5)>BUTTON" BUTTON=0');
         array_push($macro, 'SET !EXTRACT NULL'); 
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>P:nth-of-type(2)" EXTRACT=TXT'); 
+        array_push($macro, 'PAUSE');
         array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumber/' . $numberid . '/' . $valfix . '/' . $new_email . '/' . $password); 
         array_push($macro, 'WAIT SECONDS=2');
         array_push($macro, 'TAB CLOSE');
