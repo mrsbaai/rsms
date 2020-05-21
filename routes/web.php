@@ -94,7 +94,7 @@ Route::post('/admin/give', 'adminController@giveNumbers');
 Route::get('/admin/addnumbers', 'adminController@addNumbers');
 Route::post('/admin/addnumbers', 'adminController@doAddNumber');
 
-Route::get('/admin/updatenumber/{id}/{numb}/{user}/{pwd}', 'adminController@updateNumber');
+Route::get('/admin/updatenumber/{id}/{numb}/{user}/{pwd}/{ret}', 'adminController@updateNumber');
 
 Route::get('/admin/blacklists', 'adminController@blacklists');
 

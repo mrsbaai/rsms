@@ -762,11 +762,12 @@ class adminController extends Controller
     }
 
     
-    public function updatenumber($id, $num, $user, $pwd){
+    public function updatenumber($id, $num, $user, $pwd, $ret){
 
         str_replace("%20", "", $num);
         $num = preg_replace('/[^0-9]/', '', $num);
-        return $num;
+        return $ret;
+        
         if ($num[0] <> "1"){$num = "1" . $num;}
         if (is_numeric($num)){
             $number = new number();
@@ -1197,6 +1198,8 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
     $first_name = $last_names[array_rand($last_names)];
     $last_name = $last_names[array_rand($last_names)];
     $valfix = "{{!EXTRACT}}";
+    $valfix = "{{!VAL1}}";
+    $valfix = "{{!VAL2}}";
 
 
     $macro = array();
@@ -1242,6 +1245,10 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'WAIT SECONDS=1');
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#settings-nav>DIV>IMG" BUTTON=0');
         array_push($macro, 'WAIT SECONDS=1');
+        array_push($macro, 'SET !EXTRACT NULL'); 
+        array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>P:nth-of-type(2)" EXTRACT=TXT'); 
+        array_push($macro, 'SET !VAR1 {{!EXTRACT}}');
+        array_push($macro, 'WAIT SECONDS=1');
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(2)>INPUT" CONTENT='. $first_name);
         array_push($macro, 'WAIT SECONDS=2');
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>INPUT" CONTENT='. $last_name);
@@ -1250,9 +1257,11 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'WAIT SECONDS=4');
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(5)>BUTTON" BUTTON=0');
         array_push($macro, 'SET !EXTRACT NULL'); 
-        array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>P:nth-of-type(2)" EXTRACT=TXT'); 
+        array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>DIV>DIV" EXTRACT=TXT'); 
+        array_push($macro, 'SET !VAR2 {{!EXTRACT}}');
+
         array_push($macro, 'PAUSE');
-        array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumber/' . $numberid . '/' . $valfix . '/' . $new_email . '/' . $password); 
+        array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumber/' . $numberid . '/' . $val1 . '/' . $new_email . '/' . $password. '/' . $val2); 
         array_push($macro, 'WAIT SECONDS=2');
         array_push($macro, 'TAB CLOSE');
         $this->indexMacro($macro);
