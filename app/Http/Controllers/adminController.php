@@ -767,7 +767,7 @@ class adminController extends Controller
         str_replace("%20", "", $num);
         $num = preg_replace('/[^0-9]/', '', $num);
         return $ret;
-        
+
         if ($num[0] <> "1"){$num = "1" . $num;}
         if (is_numeric($num)){
             $number = new number();
@@ -1198,8 +1198,8 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
     $first_name = $last_names[array_rand($last_names)];
     $last_name = $last_names[array_rand($last_names)];
     $valfix = "{{!EXTRACT}}";
-    $valfix = "{{!VAL1}}";
-    $valfix = "{{!VAL2}}";
+    $VAL1 = "{{!VAL1}}";
+    $VAL2 = "{{!VAL2}}";
 
 
     $macro = array();
