@@ -762,30 +762,33 @@ class adminController extends Controller
     }
 
     
-    public function updatenumber($id, $num, $user, $pwd, $ret){
+    public function updatenumber($id, $num, $user, $pwd, $ret, $ret2){
 
-        str_replace("%20", "", $num);
-        $num = preg_replace('/[^0-9]/', '', $num);
-        return $ret;
+        if ($ret == "%20%20%20%20Your%20account%20information%20was%20successfully%20changed." and $ret2 == $user){
+            str_replace("%20", "", $num);
+            $num = preg_replace('/[^0-9]/', '', $num);
 
-        if ($num[0] <> "1"){$num = "1" . $num;}
-        if (is_numeric($num)){
-            $number = new number();
-            $number->number = $num;
-            $number->network_login = $user;
-            $number->network_password = $pwd;
-            $number->network = "textnow";
-            $number->last_checked = carbon::now();
-            $number->save();
-            number::where('id', '=', $id)->update(['network_login' => "aa@expired.com"]);
-            return $num;
-        }else{
-            $new_date = Carbon::now()->subDays(2)->toDateTimeString();
-            number::where('id', '=', $id)->update(['last_checked' => $new_date]);
-            //return redirect('/admin/updatenumbersmacro');
-            return "";
-    
-        }       
+            if ($num[0] <> "1"){$num = "1" . $num;}
+            if (is_numeric($num)){
+                $number = new number();
+                $number->number = $num;
+                $number->network_login = $user;
+                $number->network_password = $pwd;
+                $number->network = "textnow";
+                $number->last_checked = carbon::now();
+                $number->save();
+                number::where('id', '=', $id)->update(['network_login' => "aa@expired.com"]);
+                return $num;
+            }else{
+                $new_date = Carbon::now()->subDays(2)->toDateTimeString();
+                number::where('id', '=', $id)->update(['last_checked' => $new_date]);
+                //return redirect('/admin/updatenumbersmacro');
+                return "";
+        
+            }       
+
+        }
+        
 
     }
 
@@ -1200,6 +1203,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
     $valfix = "{{!EXTRACT}}";
     $VAL1 = "{{!VAL1}}";
     $VAL2 = "{{!VAL2}}";
+    $VAL3 = "{{!VAL3}}";
 
 
     $macro = array();
@@ -1259,9 +1263,12 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'SET !EXTRACT NULL'); 
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>DIV>DIV" EXTRACT=TXT'); 
         array_push($macro, 'SET !VAR2 {{!EXTRACT}}');
+        array_push($macro, 'SET !EXTRACT NULL'); 
+        array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(4)>INPUT" EXTRACT=TXT'); 
+        array_push($macro, 'SET !VAR3 {{!EXTRACT}}');
 
         array_push($macro, 'PAUSE');
-        array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumber/' . $numberid . '/' . $VAL1 . '/' . $new_email . '/' . $password. '/' . $VAL2); 
+        array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumber/' . $numberid . '/' . $VAL1 . '/' . $new_email . '/' . $password. '/' . $VAL2 . '/' . $VAL3); 
         array_push($macro, 'WAIT SECONDS=2');
         array_push($macro, 'TAB CLOSE');
         $this->indexMacro($macro);
