@@ -1237,7 +1237,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
 
     }
 
-    if ($stage == "2" and $ret == null and strpos($fix1, "textnow.com/messaging") !== false){
+    if ($stage == "2" and $ret == null and strpos($fix1, "messaging") !== false){
         array_push($macro, 'TAB CLOSE');
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
         array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" CHARS="' . rand(200,800) . '"');
