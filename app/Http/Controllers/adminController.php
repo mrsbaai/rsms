@@ -763,7 +763,7 @@ class adminController extends Controller
 
     
     public function updatenumber($id, $num, $user, $pwd, $ret, $ret2){
-
+echo $id . "<br/>" . $num . "<br/>" . $user . "<br/>" . $pwd . "<br/>" . $ret . "<br/>" . $ret2;
         if ($ret == "%20%20%20%20Your%20account%20information%20was%20successfully%20changed." and $ret2 == $user){
             str_replace("%20", "", $num);
             $num = preg_replace('/[^0-9]/', '', $num);
