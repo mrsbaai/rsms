@@ -763,7 +763,7 @@ class adminController extends Controller
 
     
     public function updatenumber($id, $num, $user, $pwd, $ret, $ret2){
-echo $id . "<br/>" . $num . "<br/>" . $user . "<br/>" . $pwd . "<br/>" . $ret . "<br/>" . $ret2;
+return $id . "<br/>" . $num . "<br/>" . $user . "<br/>" . $pwd . "<br/>" . $ret . "<br/>" . $ret2;
 
         if (strpos($ret, "successfully") !== false and $ret2 == $user){
             str_replace("%20", "", $num);
