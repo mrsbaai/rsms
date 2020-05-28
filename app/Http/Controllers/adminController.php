@@ -770,7 +770,7 @@ if ($ret2 == $user){
 
 
 }
-if ($ret == "Your account information was successfully changed." and $ret2 == $user){
+if ($ret == "Your account information was successfully changed."){
     "<br/> conditing 2";
 }
         if ($ret == "Your account information was successfully changed." and $ret2 == $user){
