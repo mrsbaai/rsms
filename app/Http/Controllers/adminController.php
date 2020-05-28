@@ -1201,8 +1201,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
     $first_name = $last_names[array_rand($last_names)];
     $last_name = $last_names[array_rand($last_names)];
     $valfix = "{{!EXTRACT}}";
-    $VAL1 = "{{!VAL1}}";
-    $VAL2 = "{{!VAL2}}";
+
 
 
     $macro = array();
@@ -1250,7 +1249,8 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'WAIT SECONDS=1');
         array_push($macro, 'SET !EXTRACT NULL'); 
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>P:nth-of-type(2)" EXTRACT=TXT'); 
-        array_push($macro, 'SET !VAR1 {{!EXTRACT}}');
+        array_push($macro, 'SET !URL1 https://receive-sms.com/admin/updatenumber/' . $numberid . '/'. $valfix);
+
         array_push($macro, 'WAIT SECONDS=1');
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(2)>INPUT" CONTENT='. $first_name);
         array_push($macro, 'WAIT SECONDS=2');
@@ -1260,12 +1260,16 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'WAIT SECONDS=4');
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(5)>BUTTON" BUTTON=0');
         array_push($macro, 'SET !EXTRACT NULL'); 
-        array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>DIV>DIV" EXTRACT=TXT'); 
-        array_push($macro, 'SET !VAR2 {{!EXTRACT}}');
+        array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>DIV>DIV" EXTRACT=TXT');
+
+        array_push($macro, 'ADD !URL1 ' . '/' . $new_email . '/' . $password .  '/' . $valfix);
+
         array_push($macro, 'SET !EXTRACT NULL'); 
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(4)>INPUT" EXTRACT=TXT'); 
+        array_push($macro, 'ADD !URL1 ' . '/' . $valfix);
         array_push($macro, 'PAUSE');
-        array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumber/' . $numberid . '/' . $VAL1 . '/' . $new_email . '/' . $password. '/' . $VAL2 . '/' . $valfix); 
+        array_push($macro, 'PROMPT {{!URL1}}'); 
+        array_push($macro, 'URL GOTO={{!URL1}}'); 
         array_push($macro, 'PAUSE');
         array_push($macro, 'WAIT SECONDS=20');
         array_push($macro, 'TAB CLOSE');
