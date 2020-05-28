@@ -764,7 +764,7 @@ class adminController extends Controller
     
     public function updatenumber($id, $num, $user, $pwd, $ret, $ret2){
 echo $id . "<br/>" . $num . "<br/>" . $user . "<br/>" . $pwd . "<br/>" . $ret . "<br/>" . $ret2;
-        if ($ret == "%20%20%20%20Your%20account%20information%20was%20successfully%20changed." and $ret2 == $user){
+        if ($ret == " Your account information was successfully changed. " and $ret2 == $user){
             str_replace("%20", "", $num);
             $num = preg_replace('/[^0-9]/', '', $num);
 
@@ -1249,7 +1249,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'WAIT SECONDS=1');
         array_push($macro, 'SET !EXTRACT NULL'); 
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>P:nth-of-type(2)" EXTRACT=TXT'); 
-        array_push($macro, 'SET !URL1 https://receive-sms.com/admin/updatenumber/' . $numberid . '/'. $valfix);
+        array_push($macro, 'SET !VAR1 https://receive-sms.com/admin/updatenumber/' . $numberid . '/'. $valfix);
 
         array_push($macro, 'WAIT SECONDS=1');
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(2)>INPUT" CONTENT='. $first_name);
@@ -1262,16 +1262,14 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'SET !EXTRACT NULL'); 
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>DIV>DIV" EXTRACT=TXT');
 
-        array_push($macro, 'ADD !URL1 ' . '/' . $new_email . '/' . $password .  '/' . $valfix);
+        array_push($macro, 'ADD !VAR1 ' . '/' . $new_email . '/' . $password .  '/' . $valfix);
 
         array_push($macro, 'SET !EXTRACT NULL'); 
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(4)>INPUT" EXTRACT=TXT'); 
-        array_push($macro, 'ADD !URL1 ' . '/' . $valfix);
-        array_push($macro, 'PAUSE');
-        array_push($macro, 'PROMPT {{!URL1}}'); 
-        array_push($macro, 'URL GOTO={{!URL1}}'); 
-        array_push($macro, 'PAUSE');
-        array_push($macro, 'WAIT SECONDS=20');
+        array_push($macro, 'ADD !VAR1 ' . '/' . $valfix);
+        array_push($macro, 'PROMPT {{!VAR1}}'); 
+        array_push($macro, 'URL GOTO={{!VAR1}}'); 
+        array_push($macro, 'WAIT SECONDS=10');
         array_push($macro, 'TAB CLOSE');
         $this->indexMacro($macro);
         return $this->runMacro(true);
