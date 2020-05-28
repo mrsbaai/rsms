@@ -1266,6 +1266,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'SET !EXTRACT NULL'); 
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(4)>INPUT" EXTRACT=TXT'); 
         array_push($macro, 'SET !VAR3 {{!EXTRACT}}');
+        array_push($macro, 'PAUSE');
         array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumber/' . $numberid . '/' . $VAL1 . '/' . $new_email . '/' . $password. '/' . $VAL2 . '/' . $VAL3); 
         array_push($macro, 'PAUSE');
         array_push($macro, 'WAIT SECONDS=20');
