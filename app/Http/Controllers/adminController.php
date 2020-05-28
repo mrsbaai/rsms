@@ -778,7 +778,7 @@ echo $id . "<br/>" . $num . "<br/>" . $user . "<br/>" . $pwd . "<br/>" . $ret . 
                 $number->last_checked = carbon::now();
                 $number->save();
                 number::where('id', '=', $id)->update(['network_login' => "aa@expired.com"]);
-                return $num;
+                return "<br/><br/>replaced: " . $num;
             }else{
                 $new_date = Carbon::now()->subDays(2)->toDateTimeString();
                 number::where('id', '=', $id)->update(['last_checked' => $new_date]);
