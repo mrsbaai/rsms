@@ -766,12 +766,12 @@ class adminController extends Controller
 echo $id . "<br/>" . $num . "<br/>" . $user . "<br/>" . $pwd . "<br/>" . $ret . "<br/>" . $ret2;
 
 if ($ret2 === $user){
-    "<br/> conditing 1";
+    echo "<br/> conditing 1";
 
 
 }
 if (strpos($ret, "successfully")){
-    "<br/> conditing 2";
+    echo "<br/> conditing 2";
 }
         if ($ret == "Your account information was successfully changed." and $ret2 == $user){
             str_replace("%20", "", $num);
