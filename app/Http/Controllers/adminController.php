@@ -1312,7 +1312,6 @@ public function runMacro($isFirst = false){
     //$macro = $macro . 'TAB T=2' . '\r\n'; 
     //$macro = $macro . 'URL GOTO=https://receive-sms.com/admin/runmacro' . '\r\n'; 
 
-return $macro;
     return view("admin.macro")->with('code',$macro);
 }
 
