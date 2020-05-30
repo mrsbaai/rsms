@@ -1189,7 +1189,6 @@ public function testMacro(){
 
 public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null, $fix2=null, $fix3=null){
 
-    return  $stage . "<br>" . $id . "<br>" . $ret . "<br>" . $fix1 . "<br>" . $fix2 . "<br>" . $fix3 . "<br>-----";
     $number = number::where('network_login', 'not like', 'aa@%')->where('network', 'textnow')->get()->sortBy('last_checked')->first();
 
 
@@ -1229,6 +1228,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'WAIT SECONDS=25');
         array_push($macro, 'SET !VAR1 {{!URLCURRENT}}');
         array_push($macro, 'TAG POS=1 TYPE=SPAN ATTR=CLASS:*uikit-text--danger EXTRACT=txt');
+        array_push($macro, 'SET !EXTRACT EVAL("\"{{!EXTRACT}}\".replace(\"#EANF#\", \"\");")');
         array_push($macro, 'TAB CLOSEALLOTHERS');
         array_push($macro, 'TAB OPEN');
         array_push($macro, 'TAB T=2');
@@ -1238,7 +1238,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
 
     }
 
-    if ($stage == "2" and $ret == null and strpos($fix1, "messaging") !== false){
+    if ($stage == "2" and $ret == "" and strpos($fix1, "messaging") !== false){
         array_push($macro, 'TAB CLOSE');
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
         array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" CHARS="' . rand(200,800) . '"');
