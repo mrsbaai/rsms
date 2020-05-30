@@ -1189,6 +1189,7 @@ public function testMacro(){
 
 public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null, $fix2=null, $fix3=null){
 
+    return  $stag . "<br>" . $id . "<br>" . $ret . "<br>" . $fix1 . "<br>" . $fix2 . "<br>" . $fix3 . "<br>-----";
     $number = number::where('network_login', 'not like', 'aa@%')->where('network', 'textnow')->get()->sortBy('last_checked')->first();
 
 
@@ -1277,7 +1278,6 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         
     }else{
         
-        return "inside";
         return $fix1;
 
         $new_date = Carbon::now()->subDays(2)->toDateTimeString();
