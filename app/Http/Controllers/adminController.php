@@ -1217,7 +1217,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'URL GOTO=https://www.textnow.com/login');
        
         array_push($macro, 'SET !VAR1 {{!URLCURRENT}}');
-        array_push($macro, 'SET !VAR1 EVAL(\'var s="{{!VAR1}}"; s.toUpperCase()\')');
+        array_push($macro, 'SET !VAR1 EVAL("var s=\"{{!VAR1}}\"; s.toUpperCase()")');
         array_push($macro, 'PROMPT {{!VAR1}}');
         
      
@@ -1308,7 +1308,7 @@ public function runMacro($isFirst = false){
 
     
     foreach ($lines as $line) {
-        $line =  str_replace("'","\'", $line);
+        $line =  str_replace('"','\"', $line);
         $macro = $macro . $line . '\r\n';
     }
 
