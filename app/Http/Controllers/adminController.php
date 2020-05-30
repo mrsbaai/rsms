@@ -1227,9 +1227,9 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0'); 
         array_push($macro, 'WAIT SECONDS=25');
         array_push($macro, 'SET !VAR1 {{!URLCURRENT}}');
-        array_push($macro, 'SET !VAR1 EVAL("\'{{!VAR1}}\'.replace(\'/\', \'\');")');
+        array_push($macro, 'SET !VAR1 EVAL("\'{{!VAR1}}\'.split(\'/\').join(\'\');")');
         array_push($macro, 'TAG POS=1 TYPE=SPAN ATTR=CLASS:*uikit-text--danger EXTRACT=txt');
-        array_push($macro, 'SET !EXTRACT EVAL("\'{{!EXTRACT}}\'.replace(\'#EANF#\', \'\');")');
+        //array_push($macro, 'SET !EXTRACT EVAL("\'{{!EXTRACT}}\'.replace(\'#EANF#\', \'\');")');
         array_push($macro, 'TAB CLOSEALLOTHERS');
         array_push($macro, 'TAB OPEN');
         array_push($macro, 'TAB T=2');
@@ -1330,7 +1330,7 @@ public function runMacro($isFirst = false){
     //$macro = $macro . 'TAB T=2' . '\r\n'; 
     //$macro = $macro . 'URL GOTO=https://receive-sms.com/admin/runmacro' . '\r\n'; 
 
-return $macro;
+//return $macro;
     return view("admin.macro")->with('code',$macro);
 }
 
