@@ -1308,6 +1308,7 @@ public function runMacro($isFirst = false){
 
     
     foreach ($lines as $line) {
+        $line =  str_replace("'","\'", $line);
         $macro = $macro . $line . '\r\n';
     }
 
