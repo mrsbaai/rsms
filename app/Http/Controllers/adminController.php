@@ -1212,11 +1212,16 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
     
     if ($stage == "login" and $id == null){
     
-        array_push($macro, 'SET !VAR1 EVAL("var randomNumber=Math.floor(Math.random()*10 + 1); randomNumber;")');
-        array_push($macro, 'URL GOTO=https://imacros.net/');
-        array_push($macro, 'WAIT SECONDS={{!VAR1}}');
 
 
+        array_push($macro, 'URL GOTO=https://www.textnow.com/login');
+       
+        array_push($macro, 'SET !VAR1 {{!URLCURRENT}}');
+        array_push($macro, 'SET !VAR1 EVAL("\'{{!VAR1}}\'.split(\'/\').join(\'\');")');
+        array_push($macro, 'PROMPT {{!VAR1}}');
+        
+     
+ 
         $this->indexMacro($macro);
         return $this->runMacro(true);
 
@@ -1311,6 +1316,7 @@ public function runMacro($isFirst = false){
     //$macro = $macro . 'TAB OPEN' . '\r\n'; 
     //$macro = $macro . 'TAB T=2' . '\r\n'; 
     //$macro = $macro . 'URL GOTO=https://receive-sms.com/admin/runmacro' . '\r\n'; 
+
 
     return view("admin.macro")->with('code',$macro);
 }
