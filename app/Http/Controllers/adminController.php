@@ -1233,7 +1233,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'TAB OPEN');
         array_push($macro, 'TAB T=2');
         array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumbersmacro/2/' . $numberid . '/' . $valfix . '/{{!VAR1}}');
-        
+        return $macro;
         $this->indexMacro($macro);
         return $this->runMacro(true);
 
