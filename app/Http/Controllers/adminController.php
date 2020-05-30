@@ -1276,6 +1276,8 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         return $this->runMacro(true);
         
     }else{
+        
+        return "inside";
         return $fix1;
 
         $new_date = Carbon::now()->subDays(2)->toDateTimeString();
