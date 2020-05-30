@@ -1215,11 +1215,28 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
 
 
         array_push($macro, 'URL GOTO=https://www.textnow.com/login');
-       
+        array_push($macro, 'WAIT SECONDS=3');  
+        array_push($macro, 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0'); 
+        array_push($macro, 'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-username" POINT="(294,196)"'); 
+        array_push($macro, 'EVENT TYPE=MOUSEUP POINT="(294,196)"'); 
+        array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#txt-username" BUTTON=0'); 
+        array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-username" CHARS="'. $username . '"'); 
+        array_push($macro, 'WAIT SECONDS=3'); 
+        array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#txt-password" BUTTON=0'); 
+        array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-password" CHARS="'. $password . '"'); 
+        array_push($macro, 'WAIT SECONDS=2'); 
+        array_push($macro, 'SET !ENCRYPTION NO'); 
+        array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0'); 
+        array_push($macro, 'WAIT SECONDS=25');
         array_push($macro, 'SET !VAR1 {{!URLCURRENT}}');
-        array_push($macro, 'SET !VAR1 EVAL("var s=\"{{!VAR1}}\"; s.toUpperCase()")');
-        array_push($macro, 'PROMPT {{!VAR1}}');
-        
+        array_push($macro, 'SET !VAR1 EVAL("\"{{!VAR1}}\".split(\"/\").join(\"\");")');
+        array_push($macro, 'TAG POS=1 TYPE=SPAN ATTR=CLASS:*uikit-text--danger EXTRACT=txt');
+        array_push($macro, 'SET !EXTRACT EVAL("\"{{!EXTRACT}}\".replace(\"#EANF#\", \"\");")');
+        array_push($macro, 'TAB CLOSEALLOTHERS');
+        array_push($macro, 'TAB OPEN');
+        array_push($macro, 'TAB T=2');
+        array_push($macro, 'URL GOTO=https://receive-sms.com/admin/updatenumbersmacro/2/' . $numberid . '/' . $valfix . '/{{!VAR1}}');
+ 
      
  
         $this->indexMacro($macro);
