@@ -1227,7 +1227,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'WAIT SECONDS=2'); 
         array_push($macro, 'SET !ENCRYPTION NO'); 
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0'); 
-        array_push($macro, 'WAIT SECONDS=25');
+        array_push($macro, 'WAIT SECONDS=120');
         array_push($macro, 'SET !VAR1 {{!URLCURRENT}}');
         array_push($macro, 'SET !VAR1 EVAL("\"{{!VAR1}}\".split(\"/\").join(\"\");")');
         array_push($macro, 'TAG POS=1 TYPE=SPAN ATTR=CLASS:*uikit-text--danger EXTRACT=txt');
