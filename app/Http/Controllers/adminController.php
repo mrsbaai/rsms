@@ -769,8 +769,9 @@ echo $id . "<br/>" . $num . "<br/>" . $user . "<br/>" . $pwd . "<br/>" . $ret . 
             str_replace("%20", "", $num);
             $num = preg_replace('/[^0-9]/', '', $num);
 
-            if ($num[0] <> "1"){$num = "1" . $num;}
+           
             if (is_numeric($num)){
+                if ($num[0] <> "1"){$num = "1" . $num;}
                 $number = new number();
                 $number->number = $num;
                 $number->network_login = $user;
