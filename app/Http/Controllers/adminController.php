@@ -1249,6 +1249,9 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
     }
 
     if ($stage == "2" and $ret == "no" and strpos($fix1, "messaging") !== false){
+
+        number::where('id', '=', $id)->update(['info' => 'LOGGED IN']);
+
         array_push($macro, 'TAB CLOSE');
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
         array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" CHARS="' . rand(200,800) . '"');
@@ -1270,7 +1273,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>INPUT" CONTENT='. $last_name);
         array_push($macro, 'WAIT SECONDS=2');
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(4)>INPUT" CONTENT='. $new_email);
-        array_push($macro, 'PAUSE');
+        //array_push($macro, 'PAUSE');
         array_push($macro, 'WAIT SECONDS=4');
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(5)>BUTTON" BUTTON=0');
         array_push($macro, 'SET !EXTRACT NULL'); 
