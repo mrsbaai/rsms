@@ -14,7 +14,7 @@ class AddInfoToNumbersTable extends Migration
     public function up()
     {
         Schema::table('numbers', function($table) {
-            $table->longText('info')->nullable()->default("OK");
+            $table->longText('info')->nullable()->default(null);
         });
        
     }

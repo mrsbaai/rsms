@@ -1220,9 +1220,6 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
 
         array_push($macro, 'URL GOTO=https://www.textnow.com/login');
         array_push($macro, 'WAIT SECONDS=3');  
-        array_push($macro, 'EVENT TYPE=MOUSEDOWN SELECTOR="#txt-username" BUTTON=0'); 
-        array_push($macro, 'EVENT TYPE=MOUSEMOVE SELECTOR="#txt-username" POINT="(294,196)"'); 
-        array_push($macro, 'EVENT TYPE=MOUSEUP POINT="(294,196)"'); 
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#txt-username" BUTTON=0'); 
         array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="#txt-username" CHARS="'. $username . '"'); 
         array_push($macro, 'WAIT SECONDS=3'); 
