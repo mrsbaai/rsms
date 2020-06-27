@@ -539,7 +539,7 @@ class adminController extends Controller
     public function isDemoNeedUpdate(){
 
         $count_free = number::where('network', 'textnow')->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('last_checked', '>', Carbon::now()->subDays(3)->toDateTimeString())->count();
-        if ($count_free > 10){
+        if ($count_free > 3){
             $message = message::where('is_private',false)->orderBy('date', 'desc')->first();
 echo("1");
             if ($message['date'] < Carbon::now()->subseconds(10)){
