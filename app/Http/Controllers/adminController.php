@@ -542,7 +542,7 @@ class adminController extends Controller
         if ($count_free > 10){
             $message = message::where('is_private',false)->orderBy('date', 'desc')->first();
 
-            if ($message['date'] < Carbon::now()->subMinutes(1)){
+            if ($message['date'] < Carbon::now()->subseconds(1)){
                 number::where('is_private', false)->update(['is_private' => true]);
         
                 $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(3);
