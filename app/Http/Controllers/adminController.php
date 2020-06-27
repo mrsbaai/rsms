@@ -541,8 +541,9 @@ class adminController extends Controller
         $count_free = number::where('network', 'textnow')->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('last_checked', '>', Carbon::now()->subDays(3)->toDateTimeString())->count();
         if ($count_free > 10){
             $message = message::where('is_private',false)->orderBy('date', 'desc')->first();
-
+echo("1");
             if ($message['date'] < Carbon::now()->subseconds(10)){
+                echo("2");
                 number::where('is_private', false)->update(['is_private' => true]);
         
                 $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(3);
