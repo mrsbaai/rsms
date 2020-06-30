@@ -125,7 +125,7 @@ class removeExpired extends Command
         if ($count_free > 3){
             $message = message::where('is_private',false)->orderBy('date', 'desc')->first();
 
-            if ($message['date'] < Carbon::now()->subDay(1)){
+            if ($message['date'] < Carbon::now()->subMinutes(120)){
                 number::where('is_private', false)->update(['is_private' => true]);
         
                 $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(3);
