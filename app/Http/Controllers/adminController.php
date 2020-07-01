@@ -868,7 +868,8 @@ return $arr[0]["country"];
     }
     public function test(){
 
-        echo 'date_default_timezone_set: ' . date_default_timezone_get() . '<br />';
+        echo "<pre>";
+print_r($GLOBALS);
     }
 
     public function freeNumber($email,$days = 31){
