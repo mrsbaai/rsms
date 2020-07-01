@@ -869,7 +869,7 @@ return $arr[0]["country"];
     public function test(){
 
         echo "<pre>";
-print_r($GLOBALS);
+print_r($SERVER);
     }
 
     public function freeNumber($email,$days = 31){
