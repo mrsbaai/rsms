@@ -446,7 +446,7 @@ class adminController extends Controller
         ->get()
         ->sortByDesc('id');
 
-        $columns =  array("id", "created_at", "payedAmount", "originalAmount", "code", "userEmail", "buyerEmail", "paymentSystemId", "password", "ip", "geo");
+        $columns =  array("id", "created_at", "payedAmount", "originalAmount", "code", "userEmail", "buyerEmail", "paymentSystemId", "password", "ip", "geo", "agent");
 
         $data = $this->formatData($records,$columns);
 
