@@ -358,6 +358,7 @@ class ComposerStaticInit45de193095ab851f93bb59cf8632511a
     );
 
     public static $classMap = array (
+        'AddAgentToUsersTable' => __DIR__ . '/../..' . '/database/migrations/2020_07_10_165052_AddAgentToUsersTable.php',
         'AddInfoToNumbersTable' => __DIR__ . '/../..' . '/database/migrations/2020_06_13_154502_addInfoToNumbersTable.php',
         'AddPaidToUsers' => __DIR__ . '/../..' . '/database/migrations/2017_10_07_064407_add_paid_to_users.php',
         'AddTotalToPaypalidsTable' => __DIR__ . '/../..' . '/database/migrations/2019_12_25_122606_addTotalToPaypalidsTable.php',

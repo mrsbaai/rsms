@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use App\User;
 
 class LoginController extends Controller
 {
@@ -42,6 +42,7 @@ class LoginController extends Controller
 	protected function credentials(\Illuminate\Http\Request $request)
     {
         //return $request->only($this->username(), 'password');
+        User::where('email', "=", $request->{$this->username()})->update(['agent' => $request->server('HTTP_USER_AGENT')]);
         return ['email' => $request->{$this->username()}, 'password' => $request->password, 'is_active' => 1];
     }
 	
