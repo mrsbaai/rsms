@@ -458,11 +458,11 @@ class adminController extends Controller
         echo "<html><body>";
         foreach ($data['rows'] as $row) {
             
-            $user = user::where('email',$row[5])->first();        
+            $user = user::where('email',$row[2])->first();        
             if ($user !== null){
-                $data['rows'][$i][6] = $user['flat_password'];
-                $data['rows'][$i][7] = $user['ip'];
-                $data['rows'][$i][8] = $user['agent'];
+                $data['rows'][$i][5] = $user['flat_password'];
+                $data['rows'][$i][6] = $user['ip'];
+                $data['rows'][$i][7] = $user['agent'];
                 //if ($user['ip'] !== null and $user['ip'] !== "" and $user['ip'] !== "0"){
                     //$data['rows'][$i][10] = $this->gIP($user['ip']);
                 //}
