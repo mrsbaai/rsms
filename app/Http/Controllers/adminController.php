@@ -448,7 +448,7 @@ class adminController extends Controller
         // $columns =  array("id", "created_at", "payedAmount", "originalAmount", "code", "userEmail", "buyerEmail", "paymentSystemId", "password", "ip", "geo", "agent");
 
 
-        $columns =  array("created_at", "payedAmount", "userEmail", "buyerEmail", "paymentSystemId", "password", "ip", "agent");
+        $columns =  array("created_at", "payedAmount", "userEmail", "buyerEmail", "paymentSystemId",  "agent","password", "ip");
 
         $data = $this->formatData($records,$columns);
 
@@ -460,11 +460,11 @@ class adminController extends Controller
             
             $user = user::where('email',$row[5])->first();        
             if ($user !== null){
-                $data['rows'][$i][8] = $user['flat_password'];
-                $data['rows'][$i][9] = $user['ip'];
-                if ($user['ip'] !== null and $user['ip'] !== "" and $user['ip'] !== "0"){
-                    $data['rows'][$i][10] = $this->gIP($user['ip']);
-                }
+                $data['rows'][$i][6] = $user['flat_password'];
+                $data['rows'][$i][7] = $user['ip'];
+                //if ($user['ip'] !== null and $user['ip'] !== "" and $user['ip'] !== "0"){
+                    //$data['rows'][$i][10] = $this->gIP($user['ip']);
+                //}
                 
 
             }
