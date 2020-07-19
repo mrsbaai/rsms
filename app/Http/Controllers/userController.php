@@ -91,7 +91,7 @@ class userController extends Controller
 }
 
 
-    public function inbox($number = null, $isResend = false, Request $request){
+    public function inbox($number = null, $isResend = false){
 
         if (!is_numeric($number)){
             $number = null;
