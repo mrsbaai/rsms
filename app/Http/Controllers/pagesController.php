@@ -67,7 +67,7 @@ class pagesController extends Controller
     }
 
 
-    Public function login($request){
+    Public function login(){
         if (Auth::check()){
             User::where('email', "=", $request->{Auth::user()->email})->update(['agent' => $request->server('HTTP_USER_AGENT')]);
             return view('inbox');
