@@ -92,7 +92,7 @@ class userController extends Controller
 
 
     public function inbox(Request $request, $number = null, $isResend = false){
-        return $request->server('HTTP_USER_AGENT');
+        User::where('email', "=", $request->{$this->username()})->update(['agent' => $request->server('HTTP_USER_AGENT')]);
         if (!is_numeric($number)){
             $number = null;
         }
