@@ -71,7 +71,7 @@
                                 OR
                             </div>
                         </div>
-
+                    </form>
                         <div class="form-group">
                             <div class="col-12">
                                 <a href="/register">
@@ -83,7 +83,7 @@
                             </div>
                         </div>
 
-                    </form>
+                    
 
                 </div>
             </div>
