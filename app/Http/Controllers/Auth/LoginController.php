@@ -42,7 +42,7 @@ class LoginController extends Controller
 	protected function credentials(\Illuminate\Http\Request $request)
     {
         //return $request->only($this->username(), 'password');
-        User::where('email', "=", $request->{$this->username()})->update(['agent' => $request->server('HTTP_USER_AGENT')]);
+        //User::where('email', "=", $request->{$this->username()})->update(['agent' => $request->server('HTTP_USER_AGENT')]);
         return ['email' => $request->{$this->username()}, 'password' => $request->password, 'is_active' => 1];
     }
 	
