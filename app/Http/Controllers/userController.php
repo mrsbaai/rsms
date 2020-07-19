@@ -92,11 +92,12 @@ class userController extends Controller
 
 
     public function inbox(Request $request, $number = null, $isResend = false){
-        User::where('email', "=", Auth::user()->email)->update(['agent' => $request->server('HTTP_USER_AGENT')]);
+       
         if (!is_numeric($number)){
             $number = null;
         }
         if (Auth::check()){
+            User::where('email', "=", Auth::user()->email)->update(['agent' => $request->server('HTTP_USER_AGENT')]);
             $adminController = new adminController();
 
             if ($adminController->isNumbersAdmin() == true) {
