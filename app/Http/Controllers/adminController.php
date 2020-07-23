@@ -545,6 +545,8 @@ class adminController extends Controller
         $count_free = number::where('network', 'textnow')->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('info', "<>", "no")->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
         $Simplepush->send("W6T4J9", "Available numbers", "Available numbers count: " . $count_free, "Available numbers");
 
+        return number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->where('info', "<>", "no")->sortBydesc('last_checked')->first();
+
         $demoNumbers = number::all()->where('is_private',false)->where('is_active',true)->sortBydesc('last_checked');
         foreach ($demoNumbers as $demoNumber) {
             if ($demoNumber['last_checked'] < Carbon::now()->subMinutes(120)){
@@ -552,7 +554,7 @@ class adminController extends Controller
                 if ($count_free > 1){
                     number::where('id', $demoNumber['id'])->update(['is_private' => true]);
 
-                    $newNumber = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->first();
+                    $newNumber = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->where('info', "<>", "no")->sortBydesc('last_checked')->first();
                     $expiration = Carbon::now()->addMonth(20)->addDays(10);  
                         number::where('id', '=', $newNumber['id'])->update(['is_private' => false]);
                         number::where('id', '=', $newNumber['id'])->update(['expiration' => $expiration]);
