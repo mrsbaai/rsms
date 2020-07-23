@@ -178,8 +178,8 @@ class userController extends Controller
     public function numbers(){
         if (Auth::check()){
             $email = Auth::user()->email;
-            $numbers = number::all()->where('is_private',true)->where('email',$email);
-            $avalableNumbers = number::all()->where('is_private',true)->where('email', null);
+            $numbers = number::all()->where('is_private',true)->where('active',true)->where('email',$email);
+            $avalableNumbers = number::all()->where('is_private',true)->where('active',true)->where('email', null);
             $max = count($avalableNumbers);
             if (count($numbers) == 0){
                 $noNumbers = true;

@@ -540,15 +540,15 @@ class adminController extends Controller
 
 
     public function isDemoNeedUpdate(){
-        
+
         $Simplepush = new Simplepush;
-        $count_free = number::where('network', 'textnow')->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('last_checked', '>', Carbon::now()->subDays(3)->toDateTimeString())->count();
+        $count_free = number::where('network', 'textnow')->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('info', "<>", "Username")->where('last_checked', '>', Carbon::now()->subDays(4)->toDateTimeString())->count();
         $Simplepush->send("W6T4J9", "Available numbers", "Available numbers count: " . $count_free, "Available numbers");
 
         $demoNumbers = number::all()->where('is_private',false)->where('is_active',true)->sortBydesc('last_checked');
         foreach ($demoNumbers as $demoNumber) {
             if ($demoNumber['last_checked'] < Carbon::now()->subMinutes(120)){
-                $count_free = number::where('network', 'textnow')->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('last_checked', '>', Carbon::now()->subDays(3)->toDateTimeString())->count();
+                $count_free = number::where('network', 'textnow')->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('info', "<>", "Username")->where('last_checked', '>', Carbon::now()->subDays(3)->toDateTimeString())->count();
                 if ($count_free > 1){
                     number::where('id', $demoNumber['id'])->update(['is_private' => true]);
 
@@ -1296,6 +1296,14 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         $new_date = Carbon::now()->subDays(2)->toDateTimeString();
         number::where('id', '=', $id)->update(['last_checked' => $new_date]);
         number::where('id', '=', $id)->update(['info' => $ret]);
+
+        if ($ret == "Username" or $ret == "This account has violated our terms of use, and the account and number are no longer available."){
+            $nr = number::where('id', '=', $id)->first();
+            if($nr['email'] == null or $nr['email'] == ""){
+                number::where('id', '=', $id)->delete();
+            }
+        }
+
         //number::where('id', '=', $id)->update(['network_login' => "aa@expired.com"]);
         //return redirect('/admin/updatenumbersmacro/');
         array_push($macro, 'TAB CLOSE');
