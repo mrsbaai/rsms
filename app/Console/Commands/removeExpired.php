@@ -15,7 +15,7 @@ use Mail;
 use App\Mail\topupNeeded;
 
 use App\Http\Controllers\PaymentController;
-
+use App\Http\Controllers\Simplepush;
 class removeExpired extends Command
 {
     /**
@@ -120,31 +120,40 @@ class removeExpired extends Command
 
         // check and update demo numbers
 
-        
+        $Simplepush = new Simplepush;
         $count_free = number::where('network', 'textnow')->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('last_checked', '>', Carbon::now()->subDays(3)->toDateTimeString())->count();
-        if ($count_free > 3){
-            $message = message::where('is_private',false)->orderBy('date', 'desc')->first();
+        $Simplepush->send("W6T4J9", "Available numbers", "Available numbers count: " . $count_free, "Available numbers");
 
-            if ($message['date'] < Carbon::now()->subMinutes(120)){
-                number::where('is_private', false)->update(['is_private' => true]);
-        
-                $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(3);
-                $expiration = Carbon::now()->addMonth(20)->addDays(10);
-    
-                foreach ($numbers as $number) {
-                    $number = number::where('id', '=', $number['id'])->first();
-                    number::where('id', '=', $number['id'])->update(['is_private' => false]);
-                    number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
-                    message::where('receiver', $number['number'])->delete();
+        $demoNumbers = number::all()->where('is_private',false)->where('is_active',true)->sortBydesc('last_checked');
+        foreach ($demoNumbers as $demoNumber) {
+            if ($demoNumber['last_checked'] < Carbon::now()->subMinutes(120)){
+                $count_free = number::where('network', 'textnow')->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('last_checked', '>', Carbon::now()->subDays(3)->toDateTimeString())->count();
+                if ($count_free > 1){
+                    number::where('id', $demoNumber['id'])->update(['is_private' => true]);
+
+                    $newNumber = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->first();
+                    $expiration = Carbon::now()->addMonth(20)->addDays(10);  
+                        number::where('id', '=', $newNumber['id'])->update(['is_private' => false]);
+                        number::where('id', '=', $newNumber['id'])->update(['expiration' => $expiration]);
+                        message::where('receiver', $newNumber['number'])->delete();
+                        $Simplepush->send("W6T4J9", "Demo number updated", "Old: " . $demoNumber['number'] . "- New: " . $newNumber['number'] . " - Avalable: " .  $count_free, "Demo number updated");
+                }else{
+                    $Simplepush->send("W6T4J9", "Update demo number problem", "Old: " . $demoNumber['number'] . "- last inbox: " . $demoNumber['last_checked'] , "No numbers in databaze warning");
                 }
-    
-                $Simplepush = new Simplepush;
-                $Simplepush->send("W6T4J9", "Demo numbers updated", "Demo numbers updated", "Demo numbers updated");
-        
-        
             }
+        }
+        
 
-        }     
+
+       
+        
+
+        
+        
+        
+            
+
+            
 
         return;
     }
