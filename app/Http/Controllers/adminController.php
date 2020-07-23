@@ -548,7 +548,9 @@ class adminController extends Controller
    
         $demoNumbers = number::all()->where('is_private',false)->where('is_active',true)->sortBydesc('last_checked');
         foreach ($demoNumbers as $demoNumber) {
+            echo $demoNumber['last_checked'] . "<br>";
             if ($demoNumber['last_checked'] < Carbon::now()->subMinutes(330)){
+                echo $demoNumber['last_checked'] . "<br>";
                 $count_free = number::where('network', 'textnow')->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('info', "<>", "no")->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
                 if ($count_free > 1){
                     number::where('id', $demoNumber['id'])->update(['is_private' => true]);
