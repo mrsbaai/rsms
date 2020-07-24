@@ -559,7 +559,7 @@ class adminController extends Controller
                 if ($count_free > 1){
                     number::where('id', $demoNumber['id'])->update(['is_private' => true]);
 
-                    $newNumber = number::where('network_login', 'not like', 'aa@%')->where('info', null)->where('email', null)->where('is_private', true)->where('is_active', true)->sortBydesc('last_checked')->get();
+                    $newNumber = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->get();
                     return  $newNumber;
             
                     $expiration = Carbon::now()->addMonth(20)->addDays(10);  
