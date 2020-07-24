@@ -550,6 +550,7 @@ class adminController extends Controller
 
 
         $demoNumbers = number::all()->where('is_private',false)->where('is_active',true)->sortBydesc('last_checked');
+        echo $demoNumbers;
         foreach ($demoNumbers as $demoNumber) {
             echo $demoNumber['number'] . "<br>";
             if ($demoNumber['last_checked'] < Carbon::now()->subMinutes(330)){
