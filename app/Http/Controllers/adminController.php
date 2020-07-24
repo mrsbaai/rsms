@@ -559,15 +559,16 @@ class adminController extends Controller
  
                 if ($count_free > 1){
                     echo "im inside";
-                    //number::where('id', $demoNumber['id'])->update(['is_private' => true]);
+                    
 
-                    $newNumber = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->sortBydesc('last_checked')->first();
+                    $newNumber = number::all()->where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->sortBydesc('last_checked')->first();
                     return  $newNumber;
             
                     $expiration = Carbon::now()->addMonth(20)->addDays(10);  
                         number::where('id', '=', $newNumber['id'])->update(['is_private' => false]);
                         number::where('id', '=', $newNumber['id'])->update(['expiration' => $expiration]);
                         message::where('receiver', $newNumber['number'])->delete();
+                        number::where('id', $demoNumber['id'])->delete();
                         $Simplepush->send("W6T4J9", "Demo number updated", "Old: " . $demoNumber['number'] . "- New: " . $newNumber['number'] . " - Avalable: " .  $count_free, "Demo number updated");
                 }else{
                     $Simplepush->send("W6T4J9", "Update demo number problem", "Old: " . $demoNumber['number'] . "- last inbox: " . $demoNumber['last_checked'] , "No numbers in databaze warning");
