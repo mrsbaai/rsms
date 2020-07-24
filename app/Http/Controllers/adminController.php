@@ -561,7 +561,7 @@ class adminController extends Controller
                     echo "im inside";
                     
 
-                    $newNumber = number::all()->where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->sortBydesc('last_checked')->first();
+                    $newNumber = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->first();
                     return  $newNumber;
             
                     $expiration = Carbon::now()->addMonth(20)->addDays(10);  
