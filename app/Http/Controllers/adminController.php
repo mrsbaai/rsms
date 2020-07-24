@@ -555,8 +555,9 @@ class adminController extends Controller
             if ($demoNumber['last_checked'] < Carbon::now()->subMinutes(330)){
                 echo $demoNumber['last_checked'] . "<br>";
                 $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
-   
+   echo $count_free;
                 if ($count_free > 1){
+                    echo "im inside";
                     number::where('id', $demoNumber['id'])->update(['is_private' => true]);
 
                     $newNumber = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->get();
