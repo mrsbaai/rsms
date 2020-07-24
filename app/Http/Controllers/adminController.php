@@ -554,15 +554,15 @@ class adminController extends Controller
         foreach ($demoNumbers as $demoNumber) {
             echo $demoNumber['number'] . "<br>";
             if ($demoNumber['last_checked'] < Carbon::now()->subMinutes(330)){
-                echo $demoNumber['last_checked'] . "<br>";
+
                 $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
  
                 if ($count_free > 1){
-                    echo "im inside";
+       
                     
 
                     $newNumber = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->first();
-                    return  $newNumber;
+                   
             
                     $expiration = Carbon::now()->addMonth(20)->addDays(10);  
                         number::where('id', '=', $newNumber['id'])->update(['is_private' => false]);
