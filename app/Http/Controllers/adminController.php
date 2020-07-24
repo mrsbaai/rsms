@@ -542,9 +542,10 @@ class adminController extends Controller
     public function isDemoNeedUpdate(){
 
         $Simplepush = new Simplepush;
-        $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('last_checked', '>', Carbon::now()->subDays(6)->toDateTimeString())->get();
+        $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
    
-        return $count_free;
+     
+        
         $Simplepush->send("W6T4J9", "Available numbers", "Available numbers count: " . $count_free, "Available numbers");
 
 
@@ -553,15 +554,14 @@ class adminController extends Controller
             echo $demoNumber['number'] . "<br>";
             if ($demoNumber['last_checked'] < Carbon::now()->subMinutes(330)){
                 echo $demoNumber['last_checked'] . "<br>";
-                $count_free = number::where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
-                $count_free_fix = number::where('info','no')->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
-                $count_free = $count_free - $count_free_fix;
+                $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
+   
                 if ($count_free > 1){
                     number::where('id', $demoNumber['id'])->update(['is_private' => true]);
 
-                    $newNumber = number::all()->where('network_login', 'not like', 'aa@%')->where('is_private',true)->where('email', null)->where('info', '<>', 'no')->sortBydesc('last_checked')->first();
-                    
-                    return $newNumber;
+                    $newNumber = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->sortBydesc('last_checked')->first();
+                    return  $newNumber;
+            
                     $expiration = Carbon::now()->addMonth(20)->addDays(10);  
                         number::where('id', '=', $newNumber['id'])->update(['is_private' => false]);
                         number::where('id', '=', $newNumber['id'])->update(['expiration' => $expiration]);
