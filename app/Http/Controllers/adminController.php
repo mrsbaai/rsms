@@ -542,9 +542,8 @@ class adminController extends Controller
     public function isDemoNeedUpdate(){
 
         $Simplepush = new Simplepush;
-        $count_free = number::where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
-        $count_free_fix = number::where('info','no')->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
-        $count_free = $count_free - $count_free_fix;
+        $count_free = number::where('info', '<>','no')->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
+   
         return $count_free;
         $Simplepush->send("W6T4J9", "Available numbers", "Available numbers count: " . $count_free, "Available numbers");
 
