@@ -17,9 +17,7 @@
             <div class="container width-fix col-sm-12">
                 {{ Form::open(array('action' => 'adminController@addCombo', 'id' => 'add-combo'))}}
                 <div class="col-sm-12">
-                    <textarea class="form-control" id="combo" name="combo" rows="10">
-
-                    </textarea>
+                    <textarea class="form-control" id="combo" name="combo" rows="15"></textarea>
                     
                 </div>
                 <br/><br/>
