@@ -532,11 +532,30 @@ class adminController extends Controller
 
     }
 
+    public function newtextnow(){
+
+        if ($this->isNumbersAdmin()){
+            return view('numbersadmin.addCombo')
+        }
+        
+    }
+
+    
+    public function addcombo(){
+
+        $combo = Input::get('combo');
+        return $combo;
+
+
+    }
+
     public function numbersadmin(){
         if ($this->isNumbersAdmin()){
         return redirect('/numbersadmin/addtextnow');
         }
     }
+
+
 
 
     public function isDemoNeedUpdate(){

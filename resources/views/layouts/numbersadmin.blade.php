@@ -32,7 +32,8 @@
  
 
 
-                <li><a href="{{ url('/numbersadmin/addtextnow') }}">Add Textnow</a></li>
+                <li><a href="{{ url('/numbersadmin/addtextnow') }}">updade Textnow number</a></li>
+                <li><a href="{{ url('/numbersadmin/addcombo') }}">Add Combo</a></li>
 
 
 
