@@ -821,9 +821,10 @@ class adminController extends Controller
 
         if (strpos($ret, "successfully") !== false and $ret2 == $user){
             number::where('id', '=', $id)->update(['network_login' => $user]);
+            number::where('id', '=', $id)->update(['network_password' =>  $pwd]);
             number::where('id', '=', $id)->update(['info' => 'User name updated']);
-
-
+            number::where('id', '=', $id)->update(['last_checked' =>  carbon::now()]);
+        
             str_replace("%20", "", $num);
             $num = preg_replace('/[^0-9]/', '', $num);
 
@@ -1332,6 +1333,14 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'SET !EXTRACT NULL'); 
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>DIV>DIV" EXTRACT=TXT');
 
+        $nr = number::where('id', '=', $id)->first();
+        $pos = strpos($nr['network_login'], "@");
+        if($pos == false){
+            //$password = "PP@123456";
+            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#notifications" BUTTON=0');
+            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#email" BUTTON=0');
+        }
+        
         array_push($macro, 'ADD !VAR1 ' . '/' . $new_email . '/' . urlencode($password) .  '/' . $valfix);
 
         array_push($macro, 'SET !EXTRACT NULL'); 
