@@ -541,7 +541,7 @@ class adminController extends Controller
     }
 
     
-    public function addcombo(){
+    public function addCombo(){
 
         $combo = Input::get('combo');
         return $combo;
