@@ -535,7 +535,7 @@ class adminController extends Controller
     public function newtextnow(){
 
         if ($this->isNumbersAdmin()){
-            return view('numbersadmin.addCombo')
+            return view('numbersadmin.addCombo');
         }
         
     }
