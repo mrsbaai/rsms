@@ -548,11 +548,22 @@ class adminController extends Controller
 
         foreach ($combo_array as $combo) {
             $entry = explode(":", $combo);
-            echo $entry[0] . "<br>";
-            echo $entry[1] . "<br>";
-            echo $entry[2] . "<br>----------------<br>";
+            $number = new number();
+    
+            $number->number = $entry[2];
+            $number->network_login = $entry[0];
+            $number->network_password = $entry[1];
+            $number->network = "textnow";
+            $number->last_checked =  Carbon::now()->subDays(7000);
+            $number->save();
+
 
         }
+
+        $added = count($combo_array);
+        flash()->overlay($added . ' Numbers added!', '+' . $added);
+    
+        return back();
 
         
 
