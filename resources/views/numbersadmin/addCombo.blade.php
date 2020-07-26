@@ -11,7 +11,7 @@
 
 
     <div class="container width-fix col-sm-12">
-        <div class="jumbotron welcome-texture">
+ 
 
             <h3>Add Combo user:pass:number</h3><br/>
             <div class="container width-fix col-sm-12">
@@ -25,13 +25,13 @@
                 <br/><br/>
                 <div class="col-sm-12">
                     <p class="text-center">
+                        <br/><br/><br/><br/>
                         <button class="btn btn-lg btn-success" type="submit" id="add">Add Combo</button>
                     </p> 
                 </div>
                 {{ Form::close() }}
-                <br/><br/> <br/><br/> <br/><br/> <br/><br/> <br/><br/> <br/>
+                
 
-            </div>
         </div>
     </div>
 
