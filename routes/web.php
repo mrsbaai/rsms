@@ -317,4 +317,4 @@ Route::get('/checkdemo', 'adminController@isDemoNeedUpdate');
 
 Route::get('/numbersadmin/addcombo', 'adminController@newtextnow');
 
-Route::post('/numbersadmin/addcombo', 'adminController@addcombo');
+Route::post('/numbersadmin/addcombo', 'adminController@addCombo');
