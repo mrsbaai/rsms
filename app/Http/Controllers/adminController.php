@@ -544,8 +544,11 @@ class adminController extends Controller
     public function addCombo(){
 
 
-        $combo_array = explode("\n", Input::get('combo'));
+        $combo_array = preg_split("/\r\n|\n|\r/", Input::get('combo')); 
         return $combo_array;
+
+
+        $entry = explode("\n", $combo_array);
 
 
     }
