@@ -179,7 +179,7 @@ class userController extends Controller
         if (Auth::check()){
             $email = Auth::user()->email;
             $numbers = number::all()->where('is_private',true)->where('active',true)->where('email',$email);
-            $avalableNumbers = number::all()->where('is_private',true)->where('active',true)->where('info', null)->where('email', null);
+            $avalableNumbers = number::all()->where('is_private',true)->where('active',true)->where('email', null);
             $max = count($avalableNumbers);
             if (count($numbers) == 0){
                 $noNumbers = true;
@@ -251,7 +251,7 @@ class userController extends Controller
         $name = Auth::user()->name;
         if ($price <= $balance){
             $email = Auth::user()->email;
-            $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->where('info', null)->sortBydesc('last_checked')->take($amount);
+            $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take($amount);
 
             $expiration = Carbon::now()->addMonth(1)->addDays(10);
 
