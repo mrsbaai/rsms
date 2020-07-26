@@ -545,10 +545,16 @@ class adminController extends Controller
 
 
         $combo_array = preg_split("/\r\n|\n|\r/", Input::get('combo')); 
-        return $combo_array;
 
+        foreach ($combo_array as $combo) {
+            $entry = explode(":", $combo);
+            echo $entry[0] . "<br>";
+            echo $entry[1] . "<br>";
+            echo $entry[2] . "<br>----------------<br>";
 
-        $entry = explode("\n", $combo_array);
+        }
+
+        
 
 
     }
