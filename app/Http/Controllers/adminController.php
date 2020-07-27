@@ -831,6 +831,7 @@ class adminController extends Controller
            
             if (is_numeric($num)){
                 if ($num[0] <> "1"){$num = "1" . $num;}
+                number::where('number', $num)->where('email', null)->delete();
                 $number = new number();
                 $number->number = $num;
                 $number->network_login = $user;
