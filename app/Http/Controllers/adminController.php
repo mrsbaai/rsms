@@ -824,15 +824,14 @@ class adminController extends Controller
             number::where('id', '=', $id)->update(['network_password' =>  $pwd]);
             number::where('id', '=', $id)->update(['info' => 'User name updated']);
             number::where('id', '=', $id)->update(['last_checked' =>  carbon::now()]);
-        echo "inside 1";
+
             str_replace("%20", "", $num);
             $num = preg_replace('/[^0-9]/', '', $num);
             
-            echo $num;
+
             if (is_numeric($num)){
-                echo "inside 2";
                 if ($num[0] <> "1"){$num = "1" . $num;}
-                //number::where('number', $num)->where('email', null)->delete();
+                number::where('number', $num)->where('email', null)->delete();
                 $number = new number();
                 $number->number = $num;
                 $number->network_login = $user;
@@ -1345,19 +1344,19 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(5)>BUTTON" BUTTON=0');
         array_push($macro, 'SET !EXTRACT NULL'); 
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>DIV>DIV" EXTRACT=TXT');
-
-
-        if($pos == false){
-            //$password = "PP@123456";
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#notifications" BUTTON=0');
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#email" BUTTON=0');
-        }
         
         array_push($macro, 'ADD !VAR1 ' . '/' . $new_email . '/' . urlencode($password) .  '/' . $valfix);
 
         array_push($macro, 'SET !EXTRACT NULL'); 
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(4)>INPUT" EXTRACT=TXT'); 
         array_push($macro, 'ADD !VAR1 ' . '/' . $valfix);
+
+        if($pos == false){
+            //$password = "PP@123456";
+            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#notifications" BUTTON=0');
+            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#email" BUTTON=0');
+        }
+
         array_push($macro, 'URL GOTO={{!VAR1}}'); 
         array_push($macro, 'WAIT SECONDS=10');
         array_push($macro, 'TAB CLOSE');
