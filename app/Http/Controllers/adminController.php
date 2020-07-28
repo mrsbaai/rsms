@@ -1361,7 +1361,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
             array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#password" BUTTON=0');
             array_push($macro, 'TAG POS=1 TYPE=INPUT ATTR=NAME:oldPassword CONTENT=' . $password);
             array_push($macro, 'TAG POS=1 TYPE=INPUT ATTR=NAME:newPassword CONTENT=' . $myPassword);
-            array_push($macro, 'TAG POS=1 TYPE=INPUT ATTR=NAME:cofirmPassword CONTENT=test' . $myPassword);
+            array_push($macro, 'TAG POS=1 TYPE=INPUT ATTR=NAME:confirmPassword CONTENT=test' . $myPassword);
             array_push($macro, 'WAIT SECONDS=2');
             array_push($macro, 'TAG POS=1 TYPE=BUTTON ATTR=TXT:Save');
             array_push($macro, 'WAIT SECONDS=10');
