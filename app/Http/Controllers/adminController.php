@@ -1345,6 +1345,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'SET !EXTRACT NULL'); 
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>DIV>DIV" EXTRACT=TXT');
         
+        if($pos == false){$password = "PP@123456";}
         array_push($macro, 'ADD !VAR1 ' . '/' . $new_email . '/' . urlencode($password) .  '/' . $valfix);
 
         array_push($macro, 'SET !EXTRACT NULL'); 
@@ -1352,9 +1353,11 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'ADD !VAR1 ' . '/' . $valfix);
 
         if($pos == false){
-            //$password = "PP@123456";
             array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#notifications" BUTTON=0');
             array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#email" BUTTON=0');
+            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#password" BUTTON=0');
+            array_push($macro, 'PAUSE');
+
         }
 
         array_push($macro, 'URL GOTO={{!VAR1}}'); 
