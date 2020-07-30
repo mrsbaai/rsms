@@ -132,7 +132,7 @@ class removeExpired extends Command
      
         foreach ($demoNumbers as $demoNumber) {
             echo $demoNumber['number'] . "<br>";
-            if ($demoNumber['last_checked'] < Carbon::now()->subMinutes(330)){
+            if ($demoNumber['last_checked'] < Carbon::now()->subMinutes(1000)){
 
                 $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
  
