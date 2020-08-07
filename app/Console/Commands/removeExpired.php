@@ -116,12 +116,14 @@ class removeExpired extends Command
             }
         }
 
+        // unvalid numbers
 
+        number::where('network_login', 'like', 'aa@%')->where('email', null)->delete();
 
         // check and update demo numbers
 
         $Simplepush = new Simplepush;
-        $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
+        $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(30)->toDateTimeString())->count();
    
      
         
@@ -132,15 +134,15 @@ class removeExpired extends Command
      
         foreach ($demoNumbers as $demoNumber) {
             echo $demoNumber['number'] . "<br>";
-            if ($demoNumber['last_checked'] < Carbon::now()->subMinutes(1000)){
+            if ($demoNumber['last_checked'] < Carbon::now()->subMinutes(1440)){
 
-                $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
+                $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(30)->toDateTimeString())->count();
  
                 if ($count_free > 1){
        
                     
 
-                    $newNumber = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->first();
+                    $newNumber = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(30)->toDateTimeString())->first();
                    
             
                     $expiration = Carbon::now()->addMonth(20)->addDays(10);  
