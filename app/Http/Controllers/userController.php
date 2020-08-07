@@ -179,7 +179,7 @@ class userController extends Controller
         if (Auth::check()){
             $email = Auth::user()->email;
             $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email',$email);
-            $avalableNumbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null);
+            $avalableNumbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->where('network_login', 'not like', 'aa@%')->where('network_login', 'like', '%@%')->where('last_checked', '>', Carbon::now()->subDays(40)->toDateTimeString());
             $max = count($avalableNumbers);
             if (count($numbers) == 0){
                 $noNumbers = true;
