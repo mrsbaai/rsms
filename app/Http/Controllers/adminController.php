@@ -1342,6 +1342,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(4)>INPUT" CONTENT='. $new_email);
         array_push($macro, 'WAIT SECONDS=4');
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(5)>BUTTON" BUTTON=0');
+        array_push($macro, 'WAIT SECONDS=3');
         array_push($macro, 'SET !EXTRACT NULL'); 
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>DIV>DIV" EXTRACT=TXT');
         
