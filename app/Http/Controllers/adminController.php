@@ -819,7 +819,8 @@ class adminController extends Controller
     public function updatenumber($id, $num, $user, $pwd, $ret, $ret2){
         echo $id . "<br/>" . $num . "<br/>" . $user . "<br/>" . $pwd . "<br/>" . $ret . "<br/>" . $ret2;
 
-        if (strpos($ret, "successfully") !== false and $ret2 == $user){
+        if ($ret2 == $user){
+        //if (strpos($ret, "successfully") !== false and $ret2 == $user){
             number::where('id', '=', $id)->update(['network_login' => $user]);
             number::where('id', '=', $id)->update(['network_password' =>  $pwd]);
             number::where('id', '=', $id)->update(['info' => 'User name updated']);
