@@ -1358,8 +1358,8 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'ADD !VAR1 ' . '/' . $valfix);
 
         if($pos == false){
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#notifications" BUTTON=0');
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#email" BUTTON=0');
+            //array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#notifications" BUTTON=0');
+            //array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#email" BUTTON=0');
             array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#password" BUTTON=0');
             array_push($macro, 'TAG POS=1 TYPE=INPUT ATTR=NAME:oldPassword CONTENT=' . $password);
             array_push($macro, 'TAG POS=1 TYPE=INPUT ATTR=NAME:newPassword CONTENT=' . $myPassword);
