@@ -1291,7 +1291,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0'); 
         array_push($macro, 'WAIT SECONDS=20');
         array_push($macro, 'URL GOTO=https://www.textnow.com/messaging');
-        array_push($macro, 'WAIT SECONDS=20');
+        array_push($macro, 'WAIT SECONDS=8');
         array_push($macro, 'SET !VAR1 {{!URLCURRENT}}');
         array_push($macro, 'SET !VAR1 EVAL("\"{{!VAR1}}\".split(\"/\").join(\"\");")');
         array_push($macro, 'TAG POS=1 TYPE=SPAN ATTR=CLASS:*uikit-text--danger EXTRACT=txt');
@@ -1322,56 +1322,6 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
             array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" CHARS="' . rand(200,800) . '"');
             array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#enterAreaCodeForm>DIV>INPUT" KEY=39');
             array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV:nth-of-type(2)>INPUT" BUTTON=0');
-            
-            
-                    
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
-            array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" CHARS="' . rand(200,800) . '"');
-            array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#enterAreaCodeForm>DIV>INPUT" KEY=39');
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV:nth-of-type(2)>INPUT" BUTTON=0');
-            
-                    
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
-            array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" CHARS="' . rand(200,800) . '"');
-            array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#enterAreaCodeForm>DIV>INPUT" KEY=39');
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV:nth-of-type(2)>INPUT" BUTTON=0');
-            
-                    
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
-            array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" CHARS="' . rand(200,800) . '"');
-            array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#enterAreaCodeForm>DIV>INPUT" KEY=39');
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV:nth-of-type(2)>INPUT" BUTTON=0');
-            
-                    
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
-            array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" CHARS="' . rand(200,800) . '"');
-            array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#enterAreaCodeForm>DIV>INPUT" KEY=39');
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV:nth-of-type(2)>INPUT" BUTTON=0');
-            
-                    
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
-            array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" CHARS="' . rand(200,800) . '"');
-            array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#enterAreaCodeForm>DIV>INPUT" KEY=39');
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV:nth-of-type(2)>INPUT" BUTTON=0');
-            
-                    
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
-            array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" CHARS="' . rand(200,800) . '"');
-            array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#enterAreaCodeForm>DIV>INPUT" KEY=39');
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV:nth-of-type(2)>INPUT" BUTTON=0');
-            
-                    
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
-            array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" CHARS="' . rand(200,800) . '"');
-            array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#enterAreaCodeForm>DIV>INPUT" KEY=39');
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV:nth-of-type(2)>INPUT" BUTTON=0');
-            
-                    
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
-            array_push($macro, 'EVENTS TYPE=KEYPRESS SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" CHARS="' . rand(200,800) . '"');
-            array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#enterAreaCodeForm>DIV>INPUT" KEY=39');
-            array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV:nth-of-type(2)>INPUT" BUTTON=0');
-            
             
             
             
