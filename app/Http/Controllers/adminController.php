@@ -1290,8 +1290,8 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'SET !ENCRYPTION NO'); 
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="#btn-login" BUTTON=0'); 
         array_push($macro, 'WAIT SECONDS=20');
-        array_push($macro, 'URL GOTO=https://www.textnow.com/messaging');
-        array_push($macro, 'WAIT SECONDS=8');
+        //array_push($macro, 'URL GOTO=https://www.textnow.com/messaging');
+        //array_push($macro, 'WAIT SECONDS=8');
         array_push($macro, 'SET !VAR1 {{!URLCURRENT}}');
         array_push($macro, 'SET !VAR1 EVAL("\"{{!VAR1}}\".split(\"/\").join(\"\");")');
         array_push($macro, 'TAG POS=1 TYPE=SPAN ATTR=CLASS:*uikit-text--danger EXTRACT=txt');
