@@ -318,3 +318,8 @@ Route::get('/checkdemo', 'adminController@isDemoNeedUpdate');
 Route::get('/numbersadmin/addcombo', 'adminController@newtextnow');
 
 Route::post('/numbersadmin/addcombo', 'adminController@addCombo');
+
+Route::get('/close', function()
+{
+    return '<html><title>close</title></html>';
+});
