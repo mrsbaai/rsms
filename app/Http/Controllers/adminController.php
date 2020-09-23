@@ -1395,7 +1395,6 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'URL GOTO={{!VAR1}}'); 
         array_push($macro, 'WAIT SECONDS=3');
         array_push($macro, 'URL GOTO=https://www.receive-sms.com/close');
-        array_push($macro, 'WAIT SECONDS=3');
         array_push($macro, 'TAB CLOSE');
 
         array_push($macro, 'TAB CLOSE');
