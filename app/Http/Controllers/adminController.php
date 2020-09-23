@@ -1356,9 +1356,7 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>P:nth-of-type(2)" EXTRACT=TXT'); 
         array_push($macro, 'SET !VAR1 https://receive-sms.com/admin/updatenumber/' . $numberid . '/'. $valfix);
 
-        array_push($macro, 'WAIT SECONDS=1');
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(2)>INPUT" CONTENT='. $first_name);
-        array_push($macro, 'WAIT SECONDS=2');
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(3)>INPUT" CONTENT='. $last_name);
         array_push($macro, 'WAIT SECONDS=2');
         array_push($macro, 'TAG SELECTOR="#tnDialogContainer>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(4)>INPUT" CONTENT='. $new_email);
