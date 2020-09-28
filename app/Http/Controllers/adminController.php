@@ -1306,8 +1306,8 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
 
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
         array_push($macro, 'TAG POS=1 TYPE=INPUT:TEXT FORM=ID:enterAreaCodeForm ATTR=* CONTENT=' . mt_rand(200,800));
-        array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#enterAreaCodeForm>DIV>INPUT" KEY=39');
         array_push($macro, 'WAIT SECONDS=10');
+        array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#enterAreaCodeForm>DIV>INPUT" KEY=39');
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV:nth-of-type(2)>INPUT" BUTTON=0');
         array_push($macro, 'WAIT SECONDS=10');
     
@@ -1341,7 +1341,6 @@ public function updateNumbersMacro($stage="login",$id=null,$ret=null, $fix1=null
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV>INPUT" BUTTON=0');
         array_push($macro, 'TAG POS=1 TYPE=INPUT:TEXT FORM=ID:enterAreaCodeForm ATTR=* CONTENT=' . mt_rand(200,800));
         array_push($macro, 'EVENT TYPE=KEYPRESS SELECTOR="#enterAreaCodeForm>DIV>INPUT" KEY=39');
-        array_push($macro, 'WAIT SECONDS=10');
         array_push($macro, 'EVENT TYPE=CLICK SELECTOR="HTML>BODY>DIV:nth-of-type(5)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>FORM>DIV:nth-of-type(2)>INPUT" BUTTON=0');
         
             
