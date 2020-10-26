@@ -216,11 +216,11 @@ class messagesController extends Controller
     public function textnowPostal(){
         Log::info($_REQUEST);
         
-        if (Input::has('plain_body') and Input::has('rcpt_to') and Input::has('subject')){
+        if (Input::has('plain_body') and Input::has('to') and Input::has('subject')){
 
             if (strpos(Input::get('subject'), "Message from") !== false){
             $text = Input::get('plain_body');
-            $toemail = Input::get('rcpt_to');
+            $toemail = Input::get('to');
             $subject = Input::get('subject');
 
             $subject = str_replace("Message from ","",$subject);
