@@ -137,7 +137,7 @@ class userController extends Controller
                 $confirmed = Auth::user()->confirmed;
 
                 if (!$confirmed and !$isResend){
-                    flash('<span style="font-size: 80%">Please check your email and click the activation link to verify your account! <a href="/resend">Resend</a><br/> <span style="color:red;">IMPORTANT: If you don\'t find the confirmation email in your inbox, please check your SPAM FOLDER, and mark as not spam.</span></span>')->warning()->important();
+                    flash('<span style="font-size: 80%">Please check your email and click the activation link to verify your account! <a href="/resend">Resend</a><br/> If you don\'t find the confirmation email in your inbox, please check your <span style="color:red;">SPAM FOLDER</span>, and mark as not spam.</span>')->warning()->important();
                 }
 
                 return view('inbox')->with('numbers', $numbers)->with('current', $number)->with('messages', $messages)->with('lastMessage', $lastMessage)->with('noNumbers', $noNumbers);
@@ -168,7 +168,7 @@ class userController extends Controller
 
 
         Mail::to($email)->send(new confirmEmail($confirmation_code));
-        flash('<span style="font-size: 80%">Confirmation email has been sent to your email address. <br/> <span style="color:red;">IMPORTANT: If you don\'t find the confirmation email in your inbox, please check your SPAM FOLDER, and mark as not spam.</span></span>')->success()->important();
+        flash('<span style="font-size: 80%">Confirmation email has been sent to your email address. <br/>If you don\'t find the confirmation email in your inbox, please check your <span style="color:red;">SPAM FOLDER</span>, and mark as not spam.</span>')->success()->important();
 
         return $this->inbox($request,null,true);
     }
