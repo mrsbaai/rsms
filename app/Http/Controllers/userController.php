@@ -168,7 +168,7 @@ class userController extends Controller
 
 
         Mail::to($email)->send(new confirmEmail($confirmation_code));
-        flash('<span style="font-size: 80%">Confirmation email has been sent to your email address. If you don\'t find it in your inbox, please see your SPAM FOLDER, and check as not spam.</span>')->success()->important();
+        flash('<span style="font-size: 80%">Confirmation email has been sent to your email address. <br/> <br/>If you don\'t find confirmation in your inbox, please check your SPAM FOLDER, and mark as not spam.</span>')->success()->important();
 
         return $this->inbox($request,null,true);
     }
