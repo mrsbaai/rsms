@@ -216,12 +216,12 @@ class messagesController extends Controller
     public function textnowPostal(){
         Log::info($_REQUEST);
         
-        if (Input::has('body-plain') and Input::has('To') and Input::has('Subject')){
+        if (Input::has('plain_body') and Input::has('rcpt_to') and Input::has('subject')){
 
-            if (strpos(Input::get('Subject'), "Message from") !== false){
-            $text = Input::get('body-plain');
-            $toemail = Input::get('To');
-            $subject = Input::get('Subject');
+            if (strpos(Input::get('subject'), "Message from") !== false){
+            $text = Input::get('plain_body');
+            $toemail = Input::get('rcpt_to');
+            $subject = Input::get('subject');
 
             $subject = str_replace("Message from ","",$subject);
             $subject = str_replace("textnow","",$subject);
@@ -260,11 +260,11 @@ class messagesController extends Controller
         }
     }
 
-    if (strpos(Input::get('Subject'), "Welcome to TextNow") !== false){
+    if (strpos(Input::get('subject'), "Welcome to TextNow") !== false){
   
 
 
-        preg_match('#\(https(.*?)\)#', Input::get('body-plain'), $matches);
+        preg_match('#\(https(.*?)\)#', Input::get('plain_body'), $matches);
         $url = trim($matches[0], '()');
 
 
