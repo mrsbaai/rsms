@@ -150,7 +150,7 @@ class userController extends Controller
 
     }
 
-    public function resendConfirmation(){
+    public function resendConfirmation(Request $request){
 
         $confirmation_code = str_random(30);
 
@@ -170,7 +170,7 @@ class userController extends Controller
         Mail::to($email)->send(new confirmEmail($confirmation_code));
         flash('<span style="font-size: 80%">Confirmation email has been sent to your email address.</span>')->success()->important();
 
-        return $this->inbox(null,true);
+        return $this->inbox($request,null,true);
     }
 
 
