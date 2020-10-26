@@ -15,7 +15,7 @@
             <div class="container">
                 <div class="row">
 
-                    <h2>Support {{@$result}}</h2>
+                    <h2>Support {!!@$result!!}</h2>
 
 												
      								@if ($errors->any())
