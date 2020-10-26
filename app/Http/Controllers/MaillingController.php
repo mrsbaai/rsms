@@ -33,14 +33,14 @@ class MaillingController extends Controller
 
 
         $email = "abdelilah.sbaai@gmail.com";
-        $data['name'] = "abdel";
-
-        $admin = new adminController();
-        $freeNumber = $admin->freeNumber($email, 5);
-        if ($freeNumber){
-            $data['number'] = $freeNumber;
-            Mail::to($email)->later($when, new freeNumber($data));
-        }
+        $data['subj'] = "[25% Off] Get An Online SMS Number";
+        $data['header'] = "Be Anonymous Online, And Get 25% Off!";
+        $data['coupon'] = "PRIVACY";
+        $data['date'] = Carbon::now()->addDays(20);
+        $data['email'] = $email;
+       
+        Mail::to($email)->later($when, new newCoupon($data));
+        
 
 
     }
