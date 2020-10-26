@@ -14,7 +14,7 @@
             <div class="container">
                 <div class="row">
 
-                    <h2>Contact Us {{@$result}}</h2>
+                    <h2>Contact Us {!!@$result!!}</h2>
 
      								@if ($errors->any())
 											<p class="lead" style="color:red;">
