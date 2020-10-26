@@ -86,7 +86,7 @@ class RegisterController extends Controller
             Mail::to($data['email'])->send(new confirmEmail($confirmation_code));
         }
 
-        flash()->overlay('Confirmation email has been sent to your email address.', 'Thanks for signing up!');
+        flash()->overlay('Confirmation email has been sent to your email address. Please check your e-mail for confirmation. <<IMPORTENT!>> If you don\'t find it in your inbox, please see your SPAM FOLDER, and check as Not Spam.', 'Thanks for signing up!');
 
         if(isset($_COOKIE['origin_ref'])){
             $source = $_COOKIE['origin_ref'];

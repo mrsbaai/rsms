@@ -63,7 +63,7 @@ class supportController extends Controller
                 $message->to($to);
             });
 
-        return view('support')->with('result', '- Sent!');
+        return view('support')->with('result', '- Sent! Please check your e-mail for confirmation. <<IMPORTENT!>> If you don\'t find it in your inbox, please see check SPAM FOLDER, and mark it as Not Spam.');
 
 
     }
