@@ -121,7 +121,7 @@ class SubscribersController extends Controller
            }
 
            Mail::to($request->email)->send(new subscribeConfirmation($request->email));
-           flash()->overlay('You have been subscribed successfully. Please check your e-mail for confirmation.', 'Thank you for your subscription!');
+           flash()->overlay('You have been subscribed successfully. Please check your e-mail for confirmation. If you don\'t find it in your inbox, please see your SPAM FOLDER, and check as Not Spam.', 'Thank you for your subscription! (Check SPAM FOLDER)');
 
            return redirect('/subscribed');
 
