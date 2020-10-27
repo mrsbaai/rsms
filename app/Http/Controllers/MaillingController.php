@@ -32,7 +32,7 @@ class MaillingController extends Controller
         $when = Carbon::now();
 
 
-        $email = "abdelilah.sbaai@gmail.com";
+        $email = "test-mlzq6n1ys@srv1.mail-tester.com";
         $data['subj'] = "[25% Off] Get An Online SMS Number";
         $data['header'] = "Be Anonymous Online, And Get 25% Off!";
         $data['coupon'] = "PRIVACY";
