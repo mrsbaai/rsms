@@ -213,6 +213,36 @@ class messagesController extends Controller
 
     }
 
+    public function testSendSMS(){
+        $curl = curl_init();
+
+curl_setopt_array($curl, [
+	CURLOPT_URL => "https://rapidapi.p.rapidapi.com/send-verification-code?phoneNumber=16137779527&brand=google.com",
+	CURLOPT_RETURNTRANSFER => true,
+	CURLOPT_FOLLOWLOCATION => true,
+	CURLOPT_ENCODING => "",
+	CURLOPT_MAXREDIRS => 10,
+	CURLOPT_TIMEOUT => 30,
+	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	CURLOPT_CUSTOMREQUEST => "POST",
+	CURLOPT_HTTPHEADER => [
+		"x-rapidapi-host: nexmo-nexmo-sms-verify-v1.p.rapidapi.com",
+		"x-rapidapi-key: 8876c93fb4mshaea91f14dc48babp15e86ajsn39c583358f45"
+	],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+	echo "cURL Error #:" . $err;
+} else {
+	echo $response;
+}
+
+    }
     public function textnowPostal(){
         //Log::info($_REQUEST);
         
