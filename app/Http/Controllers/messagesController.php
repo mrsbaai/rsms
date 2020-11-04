@@ -218,7 +218,7 @@ class messagesController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_URL => "https://rapidapi.p.rapidapi.com/send-verification-code?phoneNumber=+16194928209&brand=codecamp.ma",
+            CURLOPT_URL => "https://rapidapi.p.rapidapi.com/send-verification-code?phoneNumber=16194928209&brand=codecamp",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_ENCODING => "",
