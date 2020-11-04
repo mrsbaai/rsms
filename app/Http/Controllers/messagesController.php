@@ -214,34 +214,26 @@ class messagesController extends Controller
     }
 
     public function testSendSMS(){
-        $curl = curl_init();
+        
+        $client = new http\Client;
+        $request = new http\Client\Request;
 
-curl_setopt_array($curl, [
-	CURLOPT_URL => "https://rapidapi.p.rapidapi.com/send-verification-code?phoneNumber=16137779527&brand=google.com",
-	CURLOPT_RETURNTRANSFER => true,
-	CURLOPT_FOLLOWLOCATION => true,
-	CURLOPT_ENCODING => "",
-	CURLOPT_MAXREDIRS => 10,
-	CURLOPT_TIMEOUT => 30,
-	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-	CURLOPT_CUSTOMREQUEST => "POST",
-	CURLOPT_HTTPHEADER => [
-		"x-rapidapi-host: nexmo-nexmo-sms-verify-v1.p.rapidapi.com",
-		"x-rapidapi-key: 8876c93fb4mshaea91f14dc48babp15e86ajsn39c583358f45"
-	],
-]);
+        $request->setRequestUrl('https://rapidapi.p.rapidapi.com/send-verification-code');
+        $request->setRequestMethod('POST');
+        $request->setQuery(new http\QueryString([
+            'phoneNumber' => '16194928209',
+            'brand' => 'codecamp.ma'
+        ]));
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+        $request->setHeaders([
+            'x-rapidapi-key' => '8876c93fb4mshaea91f14dc48babp15e86ajsn39c583358f45',
+            'x-rapidapi-host' => 'nexmo-nexmo-sms-verify-v1.p.rapidapi.com'
+        ]);
 
-curl_close($curl);
+        $client->enqueue($request)->send();
+        $response = $client->getResponse();
 
-if ($err) {
-	echo "cURL Error #:" . $err;
-} else {
-	echo $response;
-}
-
+        echo $response->getBody();
     }
     public function textnowPostal(){
         //Log::info($_REQUEST);
