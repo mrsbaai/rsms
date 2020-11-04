@@ -218,7 +218,7 @@ class messagesController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_URL => "https://api.nexmo.com/verify/json?api_key=0b8c3e63&api_secret=BDYrXLxn3SH4BtA1&number=212700124156&brand=codecamp&code_length=4",
+            CURLOPT_URL => "https://api.nexmo.com/verify/json?api_key=0b8c3e63&api_secret=BDYrXLxn3SH4BtA1&number=16137779527&brand=codecamp&code_length=4",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_ENCODING => "",

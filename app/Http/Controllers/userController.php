@@ -159,7 +159,7 @@ class userController extends Controller
         }else{
             return view('auth.login');
         }
-
+        
 
 
         $user = User::whereemail($email)->first();
