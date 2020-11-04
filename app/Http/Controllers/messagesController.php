@@ -220,7 +220,7 @@ class messagesController extends Controller
         curl_setopt($ch, CURLOPT_URL, 'https://api.telnyx.com/v2/messages');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n    \"from\": \"+12182274028\",\n    \"to\": \"+12048193380\",\n    \"text\": \"this is test 4\",\n    \"media_urls\" : []\n  }");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n    \"from\": \"+18334850916\",\n    \"to\": \"+12048193380\",\n    \"text\": \"this is test 4\",\n    \"media_urls\" : []\n  }");
         
         $headers = array();
         $headers[] = 'Content-Type: application/json';
