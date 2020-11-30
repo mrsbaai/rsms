@@ -40,6 +40,8 @@ Route::get('register/verify/{confirmationCode}', [
 
 Route::get('/fast/support/{id}', 'adminController@fastSupport');
 
+
+
 Route::get('/fast/support/{id?}', 'adminController@sendResponse');
 
 Route::post('unsubscribe','SubscribersController@unsubscribe');
@@ -90,6 +92,8 @@ Route::post('/admin/sources', 'adminController@showSources');
 Route::post('/admin/support', 'adminController@sendResponse');
 Route::post('/admin/contact', 'adminController@sendResponse');
 Route::get('/admin/support/delete/{id}', 'adminController@deleteEmail');
+
+Route::get('/admin/support/give/{{$id}}/{{$email}}/{{$name}}/{{$subject}}', 'adminController@giveNumbersSupport');
 
 Route::get('/admin/give', 'adminController@give');
 Route::post('/admin/give', 'adminController@giveNumbers');

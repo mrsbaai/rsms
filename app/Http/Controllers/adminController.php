@@ -995,8 +995,6 @@ print_r($_SERVER);
             array_push($data['numbers'],$addedNumber);
         }
 
-
-
         $data['name'] = $name;
         Mail::to($email)->queue(new numbersReady($data));
 
@@ -1005,6 +1003,50 @@ print_r($_SERVER);
         return $this->give();
 
     }
+
+
+    public function giveNumbersSupport(){
+
+        $id = Input::get('id');
+        $email = Input::get('email');
+        $data['subject'] = "Re: " . Input::get('subject');
+        $data['message']= "I will add a different number to your account. If you still have a problem please use the support form to get fast answer.";
+        $data['name']= Input::get('name');
+
+        Mail::to($email)->queue(new response($data));
+
+        $record = contact::all()->where('id',$id)->first();
+        $record->is_responded = true;
+        $record->save();
+
+
+        $amount = 1;
+        $email = Input::get('email');
+
+        $user = user::all()->where('email','=',$email)->first();
+        $name = $user->name;
+        $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take($amount);
+        $expiration = Carbon::now()->addMonth(1)->addDays(10);
+
+        $data['numbers'] = array();
+        foreach ($numbers as $number) {
+            $number = number::where('id', '=', $number['id'])->first();
+            number::where('id', '=', $number['id'])->update(['email' => $email]);
+            number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+            message::where('receiver', $number['number'])->delete();
+            $addedNumber = array($number['number'],$number['country'],"International",$expiration);
+            array_push($data['numbers'],$addedNumber);
+        }
+
+        $data['name'] = $name;
+        Mail::to($email)->queue(new numbersReady($data));
+
+        flash()->overlay("You successfully added $amount numbers to " . $name .  "'s account! (" . $email . ").", 'Good');
+
+        return back();
+
+    }
+
 
     public function dataFix (){
 
