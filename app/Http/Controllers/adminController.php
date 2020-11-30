@@ -1030,7 +1030,7 @@ print_r($_SERVER);
         $name = $user->name;
         $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take($amount);
         $expiration = Carbon::now()->addMonth(1)->addDays(10);
-
+return;
         $data['numbers'] = array();
         foreach ($numbers as $number) {
             $number = number::where('id', '=', $number['id'])->first();
