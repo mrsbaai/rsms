@@ -1022,7 +1022,7 @@ print_r($_SERVER);
         $record->is_responded = true;
         $record->save();
 
-        $user = user::all()->where('email','=',$email)->first();
+
         $name = $data['name'];
         $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(1);
         $expiration = Carbon::now()->addMonth(1)->addDays(10);
