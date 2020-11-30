@@ -53,15 +53,10 @@ class supportController extends Controller
 			$Simplepush = new Simplepush;
 			$Simplepush->send("W6T4J9", $title, $url, $status);
 			//PushBullet::all()->link($subject, 'https://receive-sms.com/fast/support/' . $sup['id'], $content);
-            //Mail::to($email)->send(new contactReceived());
+            Mail::to($email)->send(new contactReceived());
 
             $subject = "[SUPPORT] " . $subject;
             $to = 'support@receive-sms.com';
-            Mail::send('emails.contact', ['content' => $content], function ($message) use($subject,$email,$name, $to){
-                $message->from($email, $name);
-                $message->subject($subject);
-                $message->to($to);
-            });
 
         return view('support')->with('result', '<br/><br/>Sent! Please check your e-mail for confirmation. <br/><br/><span style="color:red;">IMPORTANT:</span> If you don\'t find the confirmation email in your inbox, please see check <span style="color:red;">SPAM FOLDER</span>, and mark as not spam.');
 
