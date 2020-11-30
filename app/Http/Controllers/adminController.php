@@ -1016,6 +1016,7 @@ print_r($_SERVER);
         $data['message']= "I will add a different number to your account. If you still have a problem please use the support form to get fast answer.";
         $data['name']= $record["name"];
 
+        return $email;
         Mail::to($email)->queue(new response($data));
 
         $record->is_responded = true;
