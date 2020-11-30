@@ -53,7 +53,7 @@ class supportController extends Controller
 			$Simplepush = new Simplepush;
 			$Simplepush->send("W6T4J9", $title, $url, $status);
 			//PushBullet::all()->link($subject, 'https://receive-sms.com/fast/support/' . $sup['id'], $content);
-            Mail::to($email)->send(new contactReceived());
+            //Mail::to($email)->send(new contactReceived());
 
             $subject = "[SUPPORT] " . $subject;
             $to = 'support@receive-sms.com';
