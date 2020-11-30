@@ -54,11 +54,11 @@ class contactController extends Controller
 
             $subject = "[CONTACT] " . $subject;
             $to = 'support@receive-sms.com';
-            Mail::send('emails.contact', ['content' => $content], function ($message) use($subject,$email,$name, $to){
-                $message->from($email);
-                $message->subject($subject);
-                $message->to($to);
-            });
+            //Mail::send('emails.contact', ['content' => $content], function ($message) use($subject,$email,$name, $to){
+            //    $message->from($email, $name);
+            //    $message->subject($subject);
+            //    $message->to($to);
+            //});
 
             Mail::to($email)->send(new contactReceived());
 

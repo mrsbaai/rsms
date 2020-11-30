@@ -57,11 +57,11 @@ class supportController extends Controller
 
             $subject = "[SUPPORT] " . $subject;
             $to = 'support@receive-sms.com';
-            Mail::send('emails.contact', ['content' => $content], function ($message) use($subject,$email,$name, $to){
-                $message->from($email);
-                $message->subject($subject);
-                $message->to($to);
-            });
+           // Mail::send('emails.contact', ['content' => $content], function ($message) use($subject,$email,$name, $to){
+            //    $message->from($email, $name);
+            //    $message->subject($subject);
+             //   $message->to($to);
+            //});
 
         return view('support')->with('result', '<br/><br/>Sent! Please check your e-mail for confirmation. <br/><br/><span style="color:red;">IMPORTANT:</span> If you don\'t find the confirmation email in your inbox, please see check <span style="color:red;">SPAM FOLDER</span>, and mark as not spam.');
 
