@@ -1030,9 +1030,9 @@ print_r($_SERVER);
         $data2['numbers'] = array();
       
             $number = number::where('id', '=', $number['id'])->first();
-            number::where('id', '=', $number['id'])->update(['email' => $email]);
-            number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
-            message::where('receiver', $number['number'])->delete();
+            //number::where('id', '=', $number['id'])->update(['email' => $email]);
+            //number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
+            //message::where('receiver', $number['number'])->delete();
             $addedNumber = array($number['number'],$number['country'],"International",$expiration);
             array_push($data2['numbers'],$addedNumber);
         
@@ -1040,10 +1040,9 @@ print_r($_SERVER);
         $data2['name'] = $name;
         Mail::to($email)->queue(new numbersReady($data2));
 
-        flash()->overlay("You successfully added a number to " . $name .  "'s account! (" . $email . ").", 'Good');
+      
 
-        return $number;
-
+        return $addedNumber;
     }
 
 
