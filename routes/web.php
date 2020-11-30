@@ -93,7 +93,7 @@ Route::post('/admin/support', 'adminController@sendResponse');
 Route::post('/admin/contact', 'adminController@sendResponse');
 Route::get('/admin/support/delete/{id}', 'adminController@deleteEmail');
 
-Route::get('/admin/support/give/{{$id}}/{{$email}}/{{$name}}/{{$subject}}', 'adminController@giveNumbersSupport');
+Route::get('/admin/support/givesupport/{{$id}}', 'adminController@giveNumbersSupport');
 
 Route::get('/admin/give', 'adminController@give');
 Route::post('/admin/give', 'adminController@giveNumbers');

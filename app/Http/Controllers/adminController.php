@@ -1008,20 +1008,22 @@ print_r($_SERVER);
     public function giveNumbersSupport(){
 
         $id = Input::get('id');
-        $email = Input::get('email');
-        $data['subject'] = "Re: " . Input::get('subject');
+        $record = contact::all()->where('id',$id)->first();
+
+
+        $email = $record["email"];
+        $data['subject'] = "Re: " .$record["subject"];
         $data['message']= "I will add a different number to your account. If you still have a problem please use the support form to get fast answer.";
-        $data['name']= Input::get('name');
+        $data['name']= $record["name"];
 
         Mail::to($email)->queue(new response($data));
 
-        $record = contact::all()->where('id',$id)->first();
         $record->is_responded = true;
         $record->save();
 
 
         $amount = 1;
-        $email = Input::get('email');
+  
 
         $user = user::all()->where('email','=',$email)->first();
         $name = $user->name;

@@ -29,7 +29,7 @@
                                         <input type="submit" class="btn btn-primary btn-send " value="Send">
 										<span class="float:right;"><a href="/admin/support/delete/{{$id}}">Ignore!</a></span>
 									
-										<span class="float:right;"><a href="/admin/support/give/{{$id}}/{{$email}}/{{$name}}/{{$subject}}">Give Number</a></span>
+										<span class="float:right;"><a href="/admin/support/givesupport/{{$id}}">Give Number</a></span>
                                         {{ Form::close() }}
 										<br/><br/>
 										
