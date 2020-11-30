@@ -1024,25 +1024,25 @@ print_r($_SERVER);
 
 
         $name = $data['name'];
-        $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->first();
+        $number = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->first();
         $expiration = Carbon::now()->addMonth(1)->addDays(10);
 
         $data2['numbers'] = array();
-        foreach ($numbers as $number) {
+      
             $number = number::where('id', '=', $number['id'])->first();
             number::where('id', '=', $number['id'])->update(['email' => $email]);
             number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
             message::where('receiver', $number['number'])->delete();
             $addedNumber = array($number['number'],$number['country'],"International",$expiration);
             array_push($data2['numbers'],$addedNumber);
-        }
+        
 
         $data2['name'] = $name;
         Mail::to($email)->queue(new numbersReady($data2));
 
         flash()->overlay("You successfully added a number to " . $name .  "'s account! (" . $email . ").", 'Good');
 
-        return back();
+        return $number;
 
     }
 
