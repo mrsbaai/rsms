@@ -1040,7 +1040,7 @@ print_r($_SERVER);
         $data2['name'] = $name;
         Mail::to($email)->queue(new numbersReady($data2));
 
-        flash()->overlay("You successfully added $amount numbers to " . $name .  "'s account! (" . $email . ").", 'Good');
+        flash()->overlay("You successfully added a number to " . $name .  "'s account! (" . $email . ").", 'Good');
 
         return back();
 
