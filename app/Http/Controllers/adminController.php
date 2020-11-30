@@ -1022,26 +1022,22 @@ print_r($_SERVER);
         $record->is_responded = true;
         $record->save();
 
-
-        $amount = 1;
-        return;
-
         $user = user::all()->where('email','=',$email)->first();
-        $name = $user->name;
-        $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take($amount);
+        $name = $data['name'];
+        $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(1);
         $expiration = Carbon::now()->addMonth(1)->addDays(10);
 
-        $data['numbers'] = array();
+        $data2['numbers'] = array();
         foreach ($numbers as $number) {
             $number = number::where('id', '=', $number['id'])->first();
             number::where('id', '=', $number['id'])->update(['email' => $email]);
             number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
             message::where('receiver', $number['number'])->delete();
             $addedNumber = array($number['number'],$number['country'],"International",$expiration);
-            array_push($data['numbers'],$addedNumber);
+            array_push($data2['numbers'],$addedNumber);
         }
 
-        $data['name'] = $name;
+        $data2['name'] = $name;
         Mail::to($email)->queue(new numbersReady($data));
 
         flash()->overlay("You successfully added $amount numbers to " . $name .  "'s account! (" . $email . ").", 'Good');
