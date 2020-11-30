@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'no-reply@receive-sms.com'),
-        'name' => env('MAIL_FROM_NAME', 'receive-sms.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'no-reply@mail.receive-sms.com'),
+        'name' => env('MAIL_FROM_NAME', '[Receive-SMS]'),
     ],
 
     /*
