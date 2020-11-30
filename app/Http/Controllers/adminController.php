@@ -1011,12 +1011,12 @@ print_r($_SERVER);
         $record = contact::all()->where('id',$id)->first();
 
 
-        $email = $record["email"];
-        $data['subject'] = "Re: " .$record["subject"];
+        $email = $record->email;
+        $data['subject'] = "Re: " .$record->subject;
         $data['message']= "I will add a different number to your account. If you still have a problem please use the support form to get fast answer.";
-        $data['name']= $record["name"];
+        $data['name']= $record->name;
 
-        return $email;
+
         Mail::to($email)->queue(new response($data));
 
         $record->is_responded = true;
