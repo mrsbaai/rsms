@@ -1024,7 +1024,7 @@ print_r($_SERVER);
 
 
         $name = $data['name'];
-        $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(1);
+        $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->first();
         $expiration = Carbon::now()->addMonth(1)->addDays(10);
 
         $data2['numbers'] = array();
