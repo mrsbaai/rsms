@@ -1007,7 +1007,6 @@ print_r($_SERVER);
 
     public function giveNumbersSupport(){
 
-        return "in";
         $id = Input::get('id');
         $record = contact::all()->where('id',$id)->first();
 
