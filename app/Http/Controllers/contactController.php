@@ -60,7 +60,7 @@ class contactController extends Controller
                 $message->to($to);
             });
 
-            Mail::to($email)->send(new contactReceived());
+            //Mail::to($email)->send(new contactReceived());
 
 
             return view('contact')->with('result', '<br/><br/>Sent! Please check your e-mail for confirmation. <br/><br/><span style="color:red;">IMPORTANT:</span> If you don\'t find the confirmation email in your inbox, please see check <span style="color:red;">SPAM FOLDER</span>, and mark as not spam.');
