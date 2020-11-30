@@ -1042,7 +1042,7 @@ print_r($_SERVER);
 
       
 
-        return $addedNumber;
+        return $data2['numbers'];
     }
 
 
