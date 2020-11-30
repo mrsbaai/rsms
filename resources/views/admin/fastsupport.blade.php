@@ -27,7 +27,7 @@
                                         <textarea id="response" type="text" name="response" class="form-control"></textarea>
                                         <br/>
                                         <input type="submit" class="btn btn-primary btn-send " value="Send">
-										<span class="float:right;"><a href="/admin/support/delete/{{$id}}">Ignore</a></span>
+										<span class="float:right;"><a href="/admin/support/delete/{{$id}}">Ignore!</a></span>
 									
 										<span class="float:right;"><a href="/admin/support/give/{{$id}}/{{$email}}/{{$name}}/{{$subject}}">Give Number</a></span>
                                         {{ Form::close() }}
