@@ -26,28 +26,18 @@ class ElementNode extends AbstractNode
     private $namespace;
     private $element;
 
-    /**
-     * @param string|null $namespace
-     * @param string|null $element
-     */
     public function __construct(string $namespace = null, string $element = null)
     {
         $this->namespace = $namespace;
         $this->element = $element;
     }
 
-    /**
-     * @return null|string
-     */
-    public function getNamespace()
+    public function getNamespace(): ?string
     {
         return $this->namespace;
     }
 
-    /**
-     * @return null|string
-     */
-    public function getElement()
+    public function getElement(): ?string
     {
         return $this->element;
     }

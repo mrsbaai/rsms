@@ -11,7 +11,7 @@
 
 namespace Symfony\Component\HttpKernel\DataCollector\Util;
 
-@trigger_error('The '.__NAMESPACE__.'\ValueExporter class is deprecated since Symfony 3.2 and will be removed in 4.0. Use the VarDumper component instead.', E_USER_DEPRECATED);
+@trigger_error('The '.__NAMESPACE__.'\ValueExporter class is deprecated since Symfony 3.2 and will be removed in 4.0. Use the VarDumper component instead.', \E_USER_DEPRECATED);
 
 /**
  * @author Bernhard Schussek <bschussek@gmail.com>
@@ -50,7 +50,7 @@ class ValueExporter
 
             $indent = str_repeat('  ', $depth);
 
-            $a = array();
+            $a = [];
             foreach ($value as $k => $v) {
                 if (\is_array($v)) {
                     $deep = true;

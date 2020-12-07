@@ -32,21 +32,21 @@ class HtmlDumperTest extends TestCase
         $dumper->setDumpHeader('<foo></foo>');
         $dumper->setDumpBoundaries('<bar>', '</bar>');
         $cloner = new VarCloner();
-        $cloner->addCasters(array(
+        $cloner->addCasters([
             ':stream' => function ($res, $a) {
                 unset($a['uri'], $a['wrapper_data']);
 
                 return $a;
             },
-        ));
+        ]);
         $data = $cloner->cloneVar($var);
 
         ob_start();
         $dumper->dump($data);
         $out = ob_get_clean();
         $out = preg_replace('/[ \t]+$/m', '', $out);
-        $var['file'] = htmlspecialchars($var['file'], ENT_QUOTES, 'UTF-8');
-        $intMax = PHP_INT_MAX;
+        $var['file'] = htmlspecialchars($var['file'], \ENT_QUOTES, 'UTF-8');
+        $intMax = \PHP_INT_MAX;
         preg_match('/sf-dump-\d+/', $out, $dumpId);
         $dumpId = $dumpId[0];
         $res = (int) $var['res'];

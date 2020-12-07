@@ -51,7 +51,7 @@ class HttpKernel implements HttpKernelInterface, TerminableInterface
         $this->argumentResolver = $argumentResolver;
 
         if (null === $this->argumentResolver) {
-            @trigger_error(sprintf('As of 3.1 an %s is used to resolve arguments. In 4.0 the $argumentResolver becomes the %s if no other is provided instead of using the $resolver argument.', ArgumentResolverInterface::class, ArgumentResolver::class), E_USER_DEPRECATED);
+            @trigger_error(sprintf('As of 3.1 an %s is used to resolve arguments. In 4.0 the $argumentResolver becomes the %s if no other is provided instead of using the $resolver argument.', ArgumentResolverInterface::class, ArgumentResolver::class), \E_USER_DEPRECATED);
             // fallback in case of deprecations
             $this->argumentResolver = $resolver;
         }
@@ -62,7 +62,7 @@ class HttpKernel implements HttpKernelInterface, TerminableInterface
      */
     public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
     {
-        $request->headers->set('X-Php-Ob-Level', ob_get_level());
+        $request->headers->set('X-Php-Ob-Level', (string) ob_get_level());
 
         try {
             return $this->handleRaw($request, $type);
@@ -202,8 +202,7 @@ class HttpKernel implements HttpKernelInterface, TerminableInterface
      * operations such as {@link RequestStack::getParentRequest()} can lead to
      * weird results.
      *
-     * @param Request $request
-     * @param int     $type
+     * @param int $type
      */
     private function finishRequest(Request $request, $type)
     {
@@ -240,7 +239,7 @@ class HttpKernel implements HttpKernelInterface, TerminableInterface
 
         // the developer asked for a specific status code
         if ($response->headers->has('X-Status-Code')) {
-            @trigger_error(sprintf('Using the X-Status-Code header is deprecated since Symfony 3.3 and will be removed in 4.0. Use %s::allowCustomResponseCode() instead.', GetResponseForExceptionEvent::class), E_USER_DEPRECATED);
+            @trigger_error(sprintf('Using the X-Status-Code header is deprecated since Symfony 3.3 and will be removed in 4.0. Use %s::allowCustomResponseCode() instead.', GetResponseForExceptionEvent::class), \E_USER_DEPRECATED);
 
             $response->setStatusCode($response->headers->get('X-Status-Code'));
 
@@ -263,6 +262,9 @@ class HttpKernel implements HttpKernelInterface, TerminableInterface
         }
     }
 
+    /**
+     * Returns a human-readable string for the specified variable.
+     */
     private function varToString($var)
     {
         if (\is_object($var)) {
@@ -270,7 +272,7 @@ class HttpKernel implements HttpKernelInterface, TerminableInterface
         }
 
         if (\is_array($var)) {
-            $a = array();
+            $a = [];
             foreach ($var as $k => $v) {
                 $a[] = sprintf('%s => %s', $k, $this->varToString($v));
             }
