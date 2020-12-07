@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Twilio;
-
 use Illuminate\Http\Request;
 use App\message;
 use App\number;
