@@ -214,7 +214,8 @@ class messagesController extends Controller
     }
 
     public function testSendSMS(){
-        Twilio::message("+212700124156", "this is a test sms");
+        $twilio = new Aloha\Twilio\Twilio($accountId, $token, $fromNumber);
+        $twilio->message('+212700124156', 'Pink Elephants and Happy Rainbows');
                      
     }
     public function textnowPostal(){
