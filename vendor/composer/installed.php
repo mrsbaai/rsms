@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'ccad7073b2d920f89b28b3b7d1517aebfe6a11e2',
+    'reference' => '77eefd1f37574730fbf15ca1c1c3e45c62d3d128',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -69,15 +69,6 @@
       array (
       ),
       'reference' => 'cb17b6477dfff935958ba01325f2e8a2bfa6dab3',
-    ),
-    'fzaninotto/faker' => 
-    array (
-      'pretty_version' => 'v1.9.1',
-      'version' => '1.9.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'fc10d778e4b84d5bd315dad194661e091d307c6f',
     ),
     'guzzlehttp/guzzle' => 
     array (
@@ -395,7 +386,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'ccad7073b2d920f89b28b3b7d1517aebfe6a11e2',
+      'reference' => '77eefd1f37574730fbf15ca1c1c3e45c62d3d128',
     ),
     'laravel/tinker' => 
     array (
@@ -635,8 +626,8 @@
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'psy/psysh' => 
