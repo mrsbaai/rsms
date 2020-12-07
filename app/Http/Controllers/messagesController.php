@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use Twilio;
 
 use Illuminate\Http\Request;
 use App\message;
@@ -214,27 +214,7 @@ class messagesController extends Controller
     }
 
     public function testSendSMS(){
-        
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, 'https://api.telnyx.com/v2/messages');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n    \"from\": \"+12182274028\",\n    \"to\": \"+12048193380\",\n    \"text\": \"this is test 7\",\n    \"media_urls\" : []\n  }");
-        
-        $headers = array();
-        $headers[] = 'Content-Type: application/json';
-        $headers[] = 'Accept: application/json';
-        $headers[] = 'Authorization: Bearer KEY017594158FA15334F6D1DA487ABB4DBF_sPCOY489zFGefxuQiJkxyQ';
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        
-        $result = curl_exec($ch);
-        if (curl_errno($ch)) {
-            echo 'Error:' . curl_error($ch);
-        }
-        curl_close($ch);
-        
-
+        Twilio::message("+212700124156", "this is a test sms");
                      
     }
     public function textnowPostal(){

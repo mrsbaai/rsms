@@ -236,6 +236,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
+        'Twilio' => Aloha\Twilio\Support\Laravel\Facade::class
 
     ],
 
