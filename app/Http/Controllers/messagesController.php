@@ -461,7 +461,7 @@ class messagesController extends Controller
 
     public function SmsForTest(){
 
-        return array("Welcome at CodeCamp! Please login and complete your profile.");
+        return array("Welcome at CodeCamp! Please login and complete your profile.","Welcome at CodeCamp! Please login and complete your profile.");
              
  
      }
