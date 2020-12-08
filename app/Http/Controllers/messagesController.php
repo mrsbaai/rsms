@@ -217,6 +217,7 @@ $ch = curl_init();
 
 curl_setopt($ch, CURLOPT_URL, 'https://api.twilio.com/2010-04-01/Accounts/ACbba90f360af04d46546f5f5ce2559a77/Messages.json');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, "To=+212700124156&From=+16195972650&Body=Hello from my Twilio line!");
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_USERPWD, 'ACbba90f360af04d46546f5f5ce2559a77' . ':' . '0900082e8267055d80d4fe327c245572');
 
