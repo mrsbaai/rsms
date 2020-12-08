@@ -114,7 +114,7 @@ class messagesController extends Controller
         $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->where('last_checked', '<', Carbon::now()->subDays(1)->toDateTimeString());
         echo "<html>";
         foreach ($numbers as $number) {
-            $to = $number['id'];
+            $to = $number['number'];
             echo "To=$to&From=$from&Body=$message<br/>";
             //$this->sendsms($from, $to, $message);
         }
