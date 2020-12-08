@@ -174,10 +174,10 @@ class messagesController extends Controller
     }
 
     public function logMessage($from, $to, $text){
-        Log::info("$from, $to, $text");
+        
         $time = Carbon::now();
 
-        Log::info($time);
+  
         number::where('number', '=', $to)->update(['last_checked' => $time]);
 
         if (number::where('number','=',$to)->where('is_private','=',true)->count() > 0){
@@ -193,6 +193,7 @@ class messagesController extends Controller
 
             if ($this->strpos_arr($text, $this->SmsForTest()) === false){
                 // check if not spam
+                Log::info("$from, $to, $text");
                 if ($this->isSpam($from,$to,$text) == false){
                     $message = new message();
                     $message->message = $text;
@@ -219,7 +220,7 @@ $ch = curl_init();
 
 curl_setopt($ch, CURLOPT_URL, 'https://api.twilio.com/2010-04-01/Accounts/ACbba90f360af04d46546f5f5ce2559a77/Messages.json');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, "To=+16137779527&From=+16195972650&Body=Hello from my friend!");
+curl_setopt($ch, CURLOPT_POSTFIELDS, "To=+16137779527&From=+16195972650&Body=Hello my friend!");
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_USERPWD, 'ACbba90f360af04d46546f5f5ce2559a77' . ':' . '0900082e8267055d80d4fe327c245572');
 
@@ -273,7 +274,6 @@ return $result;
                 
         }else{
 
-            Log::info("$from, $to, $text");
             $this->logMessage($from, $to, $text);
 
             //$this->sendCallback($from,$to,$text);
