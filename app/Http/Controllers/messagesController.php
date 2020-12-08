@@ -231,10 +231,10 @@ return $result;
                      
     }
     public function textnowPostal(){
-        Log::info($_REQUEST);
+        
         
         if (Input::has('plain_body') and Input::has('to') and Input::has('subject')){
-            Log::info(Input::get('plain_body'));
+            
             if (strpos(Input::get('subject'), "Message from") !== false){
             $text = Input::get('plain_body');
             $toemail = Input::get('to');
@@ -250,7 +250,7 @@ return $result;
             $number = number::where('network_login','=',$toemail)->first();
             $to = $number["number"];
 
-
+            Log::info("$from, $to, $text");
 
 
         if ($number["email"] == "SMS-Verification"){
