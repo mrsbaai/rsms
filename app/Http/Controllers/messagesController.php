@@ -74,6 +74,8 @@ class messagesController extends Controller
 
                     $this->sendCallback($from,$to,$text);
                 //}
+            }else{
+                Log::info("Received: $text to: $to");
             }
 
             
