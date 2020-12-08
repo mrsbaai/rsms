@@ -99,6 +99,7 @@ class messagesController extends Controller
         curl_setopt($ch, CURLOPT_USERPWD, 'ACbba90f360af04d46546f5f5ce2559a77' . ':' . '0900082e8267055d80d4fe327c245572');
 
         $result = curl_exec($ch);
+        echo $result . "<br>";
         if (curl_errno($ch)) {
         $Simplepush->send("W6T4J9", "Error sending twilio to $to", 'Error:' . curl_error($ch));
         Log::error('Error twilio to' . $to . curl_error($ch));
