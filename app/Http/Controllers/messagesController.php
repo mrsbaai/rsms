@@ -250,7 +250,7 @@ return $result;
             $number = number::where('network_login','=',$toemail)->first();
             $to = $number["number"];
 
-            Log::info("$from, $to, $text");
+           
 
 
         if ($number["email"] == "SMS-Verification"){
@@ -271,6 +271,7 @@ return $result;
                 
         }else{
 
+            Log::info("$from, $to, $text");
             $this->logMessage($from, $to, $text);
 
             //$this->sendCallback($from,$to,$text);
