@@ -117,7 +117,7 @@ class messagesController extends Controller
         foreach ($numbers as $number) {
             $to = "+" . $number['number'];
             echo "To=$to&From=$from&Body=$message<br/>";
-            //$this->sendsms($from, $to, $message);
+            $this->sendsms($from, $to, $message);
         }
         echo "done";
                      
