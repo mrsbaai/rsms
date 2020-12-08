@@ -118,11 +118,11 @@ class messagesController extends Controller
         foreach ($numbers as $number) {
             $to = "+" . $number['number'];
             echo "To=$to&From=$from&Body=$message<br/>";
-            if ($this->sendsms($from, $to, $message) !== false){
+            if ($this->sendsms($from, $to, $message) == false){
                 return;
             }
         }
-        
+
         echo "done";
                      
     }
