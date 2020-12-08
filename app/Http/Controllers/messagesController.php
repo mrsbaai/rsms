@@ -102,6 +102,7 @@ class messagesController extends Controller
         if (curl_errno($ch)) {
         $Simplepush->send("W6T4J9", "Error sending twilio to $to", 'Error:' . curl_error($ch));
         Log::error('Error twilio to' . $to . curl_error($ch));
+        return false;
   
         }
         curl_close($ch);
@@ -117,8 +118,11 @@ class messagesController extends Controller
         foreach ($numbers as $number) {
             $to = "+" . $number['number'];
             echo "To=$to&From=$from&Body=$message<br/>";
-            $this->sendsms($from, $to, $message);
+            if ($this->sendsms($from, $to, $message) !== false){
+                return;
+            }
         }
+        
         echo "done";
                      
     }
