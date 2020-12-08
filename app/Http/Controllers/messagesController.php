@@ -111,7 +111,7 @@ class messagesController extends Controller
     public function testSendSMS(){
         $from= "+16195972650";
         $message = "Welcome at CodeCamp! Please login and complete your profile.";
-        $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->where('last_checked', '>', Carbon::now()->subDays(1)->toDateTimeString());
+        $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->where('last_checked', '<', Carbon::now()->subDays(1)->toDateTimeString());
         echo "<html>";
         foreach ($numbers as $number) {
             $to = $number['id'];
