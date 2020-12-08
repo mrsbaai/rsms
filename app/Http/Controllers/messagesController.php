@@ -194,8 +194,8 @@ class messagesController extends Controller
             if ($this->strpos_arr($text, $this->SmsForTest()) === false){
                 // check if not spam
                 
-                if ($this->isSpam($from,$to,$text) == false){
-                    Log::info("$from, $to, $text");
+                //if ($this->isSpam($from,$to,$text) == false){
+                    //Log::info("$from, $to, $text");
                     $message = new message();
                     $message->message = $text;
                     $message->sender = $from;
@@ -205,7 +205,7 @@ class messagesController extends Controller
                     $message->save();
 
                     $this->sendCallback($from,$to,$text);
-                }
+                //}
             }
 
             
