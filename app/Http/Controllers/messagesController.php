@@ -118,14 +118,14 @@ class messagesController extends Controller
         $messages = $this->SmsForTest();
         $message = $messages["0"];
         $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->where('last_checked', '<', Carbon::now()->subDays(1)->toDateTimeString());
-        echo "<html>";
+        echo "<html>+212707730772,";
         foreach ($numbers as $number) {
              "+" . $number['number'];
             echo "$to, ";
 
         }
 
-        echo "done";
+        echo "+212707730772";
                      
     }
     public function textnowPostal(){
