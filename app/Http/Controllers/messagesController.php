@@ -120,7 +120,7 @@ class messagesController extends Controller
         $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->where('last_checked', '<', Carbon::now()->subDays(1)->toDateTimeString());
         echo "<html>+212707730772,";
         foreach ($numbers as $number) {
-             "+" . $number['number'];
+            $to =  "+" . $number['number'];
             echo "$to, ";
 
         }
