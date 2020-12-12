@@ -30,7 +30,7 @@
 
         <div class="container width-fix col-sm-12">
             <div class="jumbotron welcome-texture">
-                <div class=" col-sm-9 no-padding"> <h3> <a class="btn btn-primary btn-send" href="/replace/">Replace with a diferent number</a> | [{{$current}}] Inbound Messages  - <span class="text-success">Live</span></h3></div>
+                <div class=" col-sm-9 no-padding"> <h3>[{{$current}}] Inbound Messages  - <span class="text-success">Live</span> | <a class="btn btn-xs btn-primary btn-send" href="/replace/">Replace with a diferent number</a> </h3></div>
                 <div class=" col-sm-3 no-padding" style="padding-top: 18px;">
                     <div class="col-sm-12 no-padding">
                         <select  class="form-control" id="number" onchange="go()">
