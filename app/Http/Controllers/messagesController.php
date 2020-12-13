@@ -175,8 +175,8 @@ class messagesController extends Controller
             //$this->sendCallback($from,$to,$text);
         }
     }
-
-    if (strpos(Input::get('subject'), "Welcome to TextNow") !== false){
+    Log::info("before");
+    if (Input::get('subject') == "Welcome to TextNow! Next step: verify your email"){
   
         Log::info("Inside");
         preg_match('#\(https(.*?)\)#', Input::get('plain_body'), $matches);
