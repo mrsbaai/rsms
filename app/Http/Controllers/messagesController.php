@@ -128,83 +128,88 @@ class messagesController extends Controller
         echo "+212707730772";
                      
     }
+
+
+
+    
     public function textnowPostal(){
         
         Log::info($_REQUEST);
         
         if (Input::has('plain_body') and Input::has('to') and Input::has('subject')){
             
-        if (strpos(Input::get('subject'), "Message from") !== false){
-            $text = Input::get('plain_body');
-            $toemail = Input::get('to');
-            $subject = Input::get('subject');
+            if (strpos(Input::get('subject'), "Message from") !== false){
+                $text = Input::get('plain_body');
+                $toemail = Input::get('to');
+                $subject = Input::get('subject');
 
-            $subject = str_replace("Message from ","",$subject);
-            $subject = str_replace("textnow","",$subject);
-            
-            $subject = str_replace("+","",$subject);
-            $from = $subject;
+                $subject = str_replace("Message from ","",$subject);
+                $subject = str_replace("textnow","",$subject);
+                
+                $subject = str_replace("+","",$subject);
+                $from = $subject;
 
 
-            $number = number::where('network_login','=',$toemail)->first();
-            $to = $number["number"];
+                $number = number::where('network_login','=',$toemail)->first();
+                $to = $number["number"];
 
-            if ($number["email"] == "SMS-Verification"){
-                $url = "https://sms-verification.net/log/$from/$to/$text";
-    
-    
-            
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_POST, 0);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            
-                $response = curl_exec ($ch);
-                $err = curl_error($ch);  //if you need
-                curl_close ($ch);
-                return $response;
-    
-                    
-            }else{
-    
-                $this->logMessage($from, $to, $text);
-    
-                //$this->sendCallback($from,$to,$text);
+                if ($number["email"] == "SMS-Verification"){
+                    $url = "https://sms-verification.net/log/$from/$to/$text";
+        
+        
+                
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_URL, $url);
+                    curl_setopt($ch, CURLOPT_POST, 0);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                
+                    $response = curl_exec ($ch);
+                    $err = curl_error($ch);  //if you need
+                    curl_close ($ch);
+                    return $response;
+        
+                        
+                }else{
+        
+                    $this->logMessage($from, $to, $text);
+        
+                    //$this->sendCallback($from,$to,$text);
+                }
             }
-        }
 
             Log::info("before");
             if (strpos(Input::get('subject'), "Welcome to TextNow") !== false){
     
-            Log::info("Inside");
-            preg_match('#\(https(.*?)\)#', Input::get('plain_body'), $matches);
-            $url = trim($matches[0], '()');
+                Log::info("Inside");
+                preg_match('#\(https(.*?)\)#', Input::get('plain_body'), $matches);
+                $url = trim($matches[0], '()');
 
 
-    
-            Log::info($url);
-            $curlSession = curl_init();
         
-        
-            curl_setopt($curlSession, CURLOPT_URL, $url);
-        
-            curl_setopt($curlSession, CURLOPT_SSL_VERIFYHOST, false);
-            curl_setopt($curlSession, CURLOPT_FOLLOWLOCATION, 1); // allow redirects
-            curl_setopt($curlSession, CURLOPT_RETURNTRANSFER,1);
-            curl_setopt($curlSession, CURLOPT_MAXREDIRS,5); // return into a variable
-        
-            curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
-            curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
-        
-            $ret = curl_exec($curlSession);
-        
-        
-            curl_close($curlSession);
+                Log::info($url);
+                $curlSession = curl_init();
+            
+            
+                curl_setopt($curlSession, CURLOPT_URL, $url);
+            
+                curl_setopt($curlSession, CURLOPT_SSL_VERIFYHOST, false);
+                curl_setopt($curlSession, CURLOPT_FOLLOWLOCATION, 1); // allow redirects
+                curl_setopt($curlSession, CURLOPT_RETURNTRANSFER,1);
+                curl_setopt($curlSession, CURLOPT_MAXREDIRS,5); // return into a variable
+            
+                curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+                curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+            
+                $ret = curl_exec($curlSession);
+            
+            
+                curl_close($curlSession);
+            }
 
 
         }
     }
-}
+
 
     public function textnow(){
         //Log::info($_REQUEST);
