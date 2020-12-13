@@ -134,20 +134,19 @@ class messagesController extends Controller
 
     public function textnowPostal(){
         
-        Log::info($_REQUEST);
 
-        Log::info(Input::get('html_body'));
 
         
         if (Input::has('plain_body') and Input::has('to') and Input::has('subject')){
 
-
-
+            
+           
             if (strpos(Input::get('subject'), "Welcome to TextNow") !== false){
     
-                preg_match_all("\s]+?)[\'\"\s]{1}[^>]*>(?'name'[^>]*)<#simU", Input::get('html_body'), $matches);
+                preg_match_all('/<a href="(.*)">/', Input::get('html_body'), $matches);
              
-                $url = $matches[0][0];
+                Log::info( $matches);
+                $url = $matches[0];
     
     
         
