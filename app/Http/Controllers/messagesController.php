@@ -143,11 +143,18 @@ class messagesController extends Controller
            
             if (strpos(Input::get('subject'), "Welcome to TextNow") !== false){
     
-                preg_match_all('/<a href="(.*)">/', Input::get('html_body'), $matches);
              
-                Log::info( $matches);
+               
                 $url = $matches[0];
     
+
+                $html = str_get_html(Input::get('html_body'));
+
+
+
+                foreach($html->find('a') as $link) {
+                    Log::info($link->href);
+                }
     
         
                 Log::info($url);
