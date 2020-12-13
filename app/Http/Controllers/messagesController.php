@@ -27,6 +27,7 @@ class messagesController extends Controller
     
     public function test(){
 
+        echo "ss";
 		
     }
 
@@ -148,7 +149,6 @@ class messagesController extends Controller
     
 
                 $html = str_get_html(Input::get('html_body'));
-
 
 
                 foreach($html->find('a') as $link) {
