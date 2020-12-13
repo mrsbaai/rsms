@@ -131,14 +131,15 @@ class messagesController extends Controller
 
 
 
-    
+
     public function textnowPostal(){
         
         Log::info($_REQUEST);
         
         if (Input::has('plain_body') and Input::has('to') and Input::has('subject')){
-            
+            Log::info("before0");
             if (strpos(Input::get('subject'), "Message from") !== false){
+                Log::info("before1");
                 $text = Input::get('plain_body');
                 $toemail = Input::get('to');
                 $subject = Input::get('subject');
@@ -168,7 +169,7 @@ class messagesController extends Controller
                     curl_close ($ch);
                     return $response;
         
-                        
+             
                 }else{
         
                     $this->logMessage($from, $to, $text);
