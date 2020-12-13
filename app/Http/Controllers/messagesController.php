@@ -174,11 +174,11 @@ class messagesController extends Controller
 
             //$this->sendCallback($from,$to,$text);
         }
-    }
-    Log::info("before");
+    
+
     if (Input::get('subject') == "Welcome to TextNow! Next step: verify your email"){
   
-        Log::info("Inside");
+
         preg_match('#\(https(.*?)\)#', Input::get('plain_body'), $matches);
         $url = trim($matches[0], '()');
 
@@ -210,6 +210,7 @@ class messagesController extends Controller
  
 
     }
+}
 
     public function textnow(){
         //Log::info($_REQUEST);
