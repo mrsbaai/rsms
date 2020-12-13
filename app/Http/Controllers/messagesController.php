@@ -136,7 +136,7 @@ class messagesController extends Controller
         
 
 
-
+        Log::info(Input::has('plain_html'));
 
         
         if (Input::has('plain_body') and Input::has('to') and Input::has('subject')){
@@ -171,7 +171,6 @@ class messagesController extends Controller
                 curl_close($curlSession);
                 return;
             }
-
             
             if (strpos(Input::get('subject'), "Message from") !== false){
                 $text = Input::get('plain_body');
