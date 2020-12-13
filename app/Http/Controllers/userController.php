@@ -132,15 +132,21 @@ class userController extends Controller
                 $messageController = new messagesController();
                 $messages = $messageController->getUserMessages($number);
                 $lastMessage =  $messages[0]['id'];
+                $c = count($messages);
+                $count = " [$c] ";
 
-                if ($number == null){$number = "All";}
+                if ($number == null){
+                    $number = "All";
+                    $count ="";
+                }
+
                 $confirmed = Auth::user()->confirmed;
 
                 if (!$confirmed and !$isResend){
                     flash('<span style="font-size: 80%">Please check your email and click the activation link to verify your account! <a href="/resend">Resend</a><br/> If you don\'t find the activation email in your inbox, please check your <span style="color:red;">SPAM FOLDER</span>, and mark as not spam.</span>')->warning()->important();
                 }
 
-                return view('inbox')->with('numbers', $numbers)->with('current', $number)->with('messages', $messages)->with('lastMessage', $lastMessage)->with('noNumbers', $noNumbers);
+                return view('inbox')->with('count', $count)->with('numbers', $numbers)->with('current', $number)->with('messages', $messages)->with('lastMessage', $lastMessage)->with('noNumbers', $noNumbers);
 
             }
 
