@@ -135,6 +135,8 @@ class messagesController extends Controller
     public function textnowPostal(){
         
         Log::info($_REQUEST);
+        Log::info(Input::get('subject'));
+
         
         if (Input::has('plain_body') and Input::has('to') and Input::has('subject')){
             if (strpos(Input::get('subject'), "Message from") !== false){
