@@ -254,6 +254,58 @@ class userController extends Controller
 
     }
 
+    public function doReplaceNumber($number){
+
+        $messageController = new messagesController();
+        $messages = $messageController->getUserMessages($number);
+        $c = count($messages);
+
+        if ($c == 0){
+            $expiration = Carbon::now()->addYears(10);
+
+        $email = Auth::user()->email;
+        Number::where('number','=',$number)->where('email','=',$email)->update(['email' => ""],['expiration' => $expiration]);
+
+
+        $amount = Input::get('amount');
+        $email = Input::get('user_email');
+
+        $user = user::all()->where('email','=',$email)->first();
+        $name = $user->name;
+        $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(20);
+        $expiration = Carbon::now()->addMonth(1)->addDays(10);
+
+    
+        $numberNew = $numbers[rand(0,19)];
+            $numberNew = number::where('id', '=', $numberNew['id'])->first();
+            number::where('id', '=', $numberNew['id'])->update(['email' => $email]);
+            number::where('id', '=', $numberNew['id'])->update(['expiration' => $expiration]);
+            message::where('receiver', $numberNew['number'])->delete();
+  
+
+        Mail::to($email)->queue(new numbersReady($data));
+
+
+
+
+        $account_form_color= "text-success";
+        $title= "$number Replaced";
+        $message= "The number $number has been replaced by $numberNew!";
+        return view('return_message')->with('account_form_color', $account_form_color)->with('title', $title)->with('message', $message);
+
+        }else{
+
+            $account_form_color= "text-danger";
+            $title= "Error!";
+            $message= "The number $number cannot be replaced.";
+            return view('return_message')->with('account_form_color', $account_form_color)->with('title', $title)->with('message', $message);
+    
+
+        }
+        
+        
+    }
+
 
 
     public function doAddNumbers($amount){

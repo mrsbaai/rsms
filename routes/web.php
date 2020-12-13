@@ -176,6 +176,7 @@ Route::post('renew','userController@renewNumbers');
 
 Route::get('/delete/{number}','userController@deleteNumber');
 
+Route::get('/replace/{number}','userController@doReplaceNumber');
 
 Route::post('/ipn/payza','PaymentController@payzaIPN');
 
