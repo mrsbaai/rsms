@@ -140,7 +140,7 @@ class userController extends Controller
                     $count = "";
                 }
 
-                if ($count <> 0 and $count <> ""){
+                if ($count == 0 and $count <> ""){
                     $replace = '| <a class="btn btn-xs btn-primary btn-send" href="/replace/' . $number . '">Replace with a diferent number</a>';   
                 }else{
                     $replace = "";
