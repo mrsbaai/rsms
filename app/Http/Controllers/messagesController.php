@@ -136,37 +136,43 @@ class messagesController extends Controller
         
 
 
-        if (strpos(Input::get('subject'), "Welcome to TextNow") !== false){
-    
-            preg_match_all("#<a\s[^>]*href\s*=\s*[\'\"]??\s*?(?'path'[^\'\"\s]+?)[\'\"\s]{1}[^>]*>(?'name'[^>]*)<#simU", Input::get('html_body'), $matches);
-         
-            $url = trim($matches[0], '()');
 
-
-    
-            Log::info($url);
-            $curlSession = curl_init();
-        
-        
-            curl_setopt($curlSession, CURLOPT_URL, $url);
-        
-            curl_setopt($curlSession, CURLOPT_SSL_VERIFYHOST, false);
-            curl_setopt($curlSession, CURLOPT_FOLLOWLOCATION, 1); // allow redirects
-            curl_setopt($curlSession, CURLOPT_RETURNTRANSFER,1);
-            curl_setopt($curlSession, CURLOPT_MAXREDIRS,5); // return into a variable
-        
-            curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
-            curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
-        
-            $ret = curl_exec($curlSession);
-        
-        
-            curl_close($curlSession);
-            return;
-        }
 
         
         if (Input::has('plain_body') and Input::has('to') and Input::has('subject')){
+
+
+
+            if (strpos(Input::get('subject'), "Welcome to TextNow") !== false){
+    
+                preg_match_all("#<a\s[^>]*href\s*=\s*[\'\"]??\s*?(?'path'[^\'\"\s]+?)[\'\"\s]{1}[^>]*>(?'name'[^>]*)<#simU", Input::get('html_body'), $matches);
+             
+                $url = trim($matches[0], '()');
+    
+    
+        
+                Log::info($url);
+                $curlSession = curl_init();
+            
+            
+                curl_setopt($curlSession, CURLOPT_URL, $url);
+            
+                curl_setopt($curlSession, CURLOPT_SSL_VERIFYHOST, false);
+                curl_setopt($curlSession, CURLOPT_FOLLOWLOCATION, 1); // allow redirects
+                curl_setopt($curlSession, CURLOPT_RETURNTRANSFER,1);
+                curl_setopt($curlSession, CURLOPT_MAXREDIRS,5); // return into a variable
+            
+                curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+                curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+            
+                $ret = curl_exec($curlSession);
+            
+            
+                curl_close($curlSession);
+                return;
+            }
+
+            
             if (strpos(Input::get('subject'), "Message from") !== false){
                 $text = Input::get('plain_body');
                 $toemail = Input::get('to');
