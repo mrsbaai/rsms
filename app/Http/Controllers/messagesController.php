@@ -144,8 +144,7 @@ class messagesController extends Controller
             if (strpos(Input::get('subject'), "Welcome to TextNow") !== false){
     
              
-               
-                $url = $matches[0];
+            
     
 
                 $html = str_get_html(Input::get('html_body'));
