@@ -134,7 +134,7 @@ class messagesController extends Controller
 
     public function textnowPostal(){
         
-
+        Log::info($_REQUEST);
 
         Log::info(Input::get('html_body'));
 
