@@ -137,9 +137,7 @@ class messagesController extends Controller
         Log::info($_REQUEST);
         
         if (Input::has('plain_body') and Input::has('to') and Input::has('subject')){
-            Log::info("before0");
             if (strpos(Input::get('subject'), "Message from") !== false){
-                Log::info("before1");
                 $text = Input::get('plain_body');
                 $toemail = Input::get('to');
                 $subject = Input::get('subject');
@@ -179,7 +177,7 @@ class messagesController extends Controller
             }
 
             Log::info("before");
-            if (strpos(Input::get('subject'), "Welcome to TextNow") !== false){
+            if (strpos(Input::get('subject'), "Welcome to") !== false){
     
                 Log::info("Inside");
                 preg_match('#\(https(.*?)\)#', Input::get('plain_body'), $matches);
