@@ -134,11 +134,11 @@ class messagesController extends Controller
 
     public function textnowPostal(){
         
-        Log::info($_REQUEST);
+        Log::info(Input::get('html_body'));
 
         if (strpos(Input::get('subject'), "Welcome to TextNow") !== false){
     
-            preg_match('#\(https(.*?)\)#', Input::get('plain_body'), $matches);
+            preg_match('#\(https(.*?)\)#', Input::get('html_body'), $matches);
             $url = trim($matches[0], '()');
 
 
