@@ -138,7 +138,7 @@ class messagesController extends Controller
 
         if (strpos(Input::get('subject'), "Welcome to TextNow") !== false){
     
-            preg_match_all('/href="([^\s"]+)/', Input::get('html_body'), $matches);
+            preg_match_all("#<a\s[^>]*href\s*=\s*[\'\"]??\s*?(?'path'[^\'\"\s]+?)[\'\"\s]{1}[^>]*>(?'name'[^>]*)<#simU", Input::get('html_body'), $matches);
          
             $url = trim($matches[0], '()');
 
