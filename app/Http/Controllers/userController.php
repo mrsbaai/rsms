@@ -278,8 +278,13 @@ class userController extends Controller
         print_r($numbers);
         $numberNew = $numbers[rand(0,19)];
             $numberNew = number::where('id', '=', $numberNew['id'])->first();
-
-            return $numberNew['number'];
+            number::where('id', '=', $numberNew['id'])->update(['email' => $email]);
+            number::where('id', '=', $numberNew['id'])->update(['expiration' => $expiration]);
+            $data['numbers'] = array();
+            $addedNumber = array($numberNew['number'],$numberNew['country'],"International",$expiration);
+            array_push($data['numbers'],$addedNumber);
+            $data['name'] = $name;
+            Mail::to($email)->queue(new numbersReady($data));
 
 
 
