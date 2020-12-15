@@ -269,7 +269,7 @@ class userController extends Controller
 
         $user = user::all()->where('email','=',$email)->first();
         $name = $user->name;
-        $numbers = number::where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(20);
+        $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', '')->sortBydesc('last_checked')->take(20);
         $expiration = $oldNumber['expiration'];
 
         return print_r($numbers);
