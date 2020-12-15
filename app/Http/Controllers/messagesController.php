@@ -146,10 +146,10 @@ class messagesController extends Controller
     
              
             
-                $links = linkExtractor(Input::get('html_body'));
+                preg_match_all('#\bhttps?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#', Input::get('html_body'), $match);
 
                 
-                Log::info($links);
+                Log::info($match);
 
 
       
