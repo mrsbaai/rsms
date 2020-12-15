@@ -275,17 +275,11 @@ class userController extends Controller
         $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(20);
         $expiration = Carbon::now()->addMonth(1)->addDays(10);
 
-    print_r($numbers);
+        print_r($numbers);
         $numberNew = $numbers[rand(0,19)];
             $numberNew = number::where('id', '=', $numberNew['id'])->first();
 
             return $numberNew['number'];
-            number::where('id', '=', $numberNew['id'])->update(['email' => $email]);
-            number::where('id', '=', $numberNew['id'])->update(['expiration' => $expiration]);
-            message::where('receiver', $numberNew['number'])->delete();
-  
-
-        Mail::to($email)->queue(new numbersReady($data));
 
 
 
