@@ -280,7 +280,30 @@ class userController extends Controller
             $numberNew = number::where('id', '=', $numberNew['id'])->first();
 
             return $numberNew['number'];
+            number::where('id', '=', $numberNew['id'])->update(['email' => $email]);
+            number::where('id', '=', $numberNew['id'])->update(['expiration' => $expiration]);
+            message::where('receiver', $numberNew['number'])->delete();
+  
 
+        Mail::to($email)->queue(new numbersReady($data));
+
+
+
+
+        $account_form_color= "text-success";
+        $title= "$number Replaced";
+        $message= "The number $number has been replaced by $numberNew!";
+        return view('return_message')->with('account_form_color', $account_form_color)->with('title', $title)->with('message', $message);
+
+        }else{
+
+            $account_form_color= "text-danger";
+            $title= "Error!";
+            $message= "The number $number cannot be replaced.";
+            return view('return_message')->with('account_form_color', $account_form_color)->with('title', $title)->with('message', $message);
+    
+
+        }
         
         
     }
