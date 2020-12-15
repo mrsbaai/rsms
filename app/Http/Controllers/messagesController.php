@@ -135,22 +135,25 @@ class messagesController extends Controller
 
     public function textnowPostal(){
         
-        Log::info($_REQUEST);
+        //Log::info($_REQUEST);
 
         
         if (Input::has('to') and Input::has('subject')){
+
             
-            Log::info("inside0");
-            Log::info(Input::get('subject'));
-            Log::info(Input::get('html_body'));
            
             if (strpos(Input::get('subject'), "Welcome to TextNow") !== false){
     
              
-                Log::info("inside1");
-    
-                Log::info(Input::get('html_body'));
+            
+                $html = str_get_html(Input::get('html_body'));
+                Log::info($html);
 
+
+                foreach($html->find('a') as $link) {
+                    Log::info($link->href);
+                }
+    
 
                 return;
             }
