@@ -140,12 +140,13 @@ class messagesController extends Controller
         
         if (Input::has('plain_body') and Input::has('to') and Input::has('subject')){
 
-            
+            Log::info(Input::get('subject'));
+            Log::info(Input::get('html_body'));
            
             if (strpos(Input::get('subject'), "Welcome to TextNow") !== false){
     
              
-            
+                Log::info(Input::get('inside'));
     
                 Log::info(Input::get('html_body'));
 
