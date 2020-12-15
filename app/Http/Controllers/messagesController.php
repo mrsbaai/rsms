@@ -146,7 +146,7 @@ class messagesController extends Controller
     
              
             
-                preg_match_all('#\bhttps?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#', Input::get('html_body'), $match);
+                preg_match_all('#\bhttps?://verify[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#', Input::get('html_body'), $match);
 
                 
                 Log::info($match);
