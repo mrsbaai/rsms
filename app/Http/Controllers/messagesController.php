@@ -138,7 +138,8 @@ class messagesController extends Controller
         Log::info($_REQUEST);
 
         
-        if (Input::has('plain_body') and Input::has('to') and Input::has('subject')){
+        if (Input::has('to') and Input::has('subject')){
+            
             Log::info("inside0");
             Log::info(Input::get('subject'));
             Log::info(Input::get('html_body'));
