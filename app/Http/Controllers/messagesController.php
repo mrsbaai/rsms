@@ -147,15 +147,8 @@ class messagesController extends Controller
              
             
     
+                Log::info(Input::get('html_body'));
 
-                $html = str_get_html(Input::get('html_body'));
-                Log::info($html);
-
-
-                foreach($html->find('a') as $link) {
-                    Log::info($link->href);
-                }
-    
 
                 return;
             }
