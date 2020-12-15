@@ -146,13 +146,13 @@ class messagesController extends Controller
     
              
             
-                $html = str_get_html(Input::get('html_body'));
-                Log::info($html);
+                $links = linkExtractor(Input::get('html_body'));
+
+                
+                Log::info($links);
 
 
-                foreach($html->find('a') as $link) {
-                    Log::info($link->href);
-                }
+      
     
 
                 return;
