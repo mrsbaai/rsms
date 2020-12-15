@@ -275,7 +275,7 @@ class userController extends Controller
         $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(20);
         $expiration = Carbon::now()->addMonth(1)->addDays(10);
 
-    
+    return $numbers;
         $numberNew = $numbers[rand(0,19)];
             $numberNew = number::where('id', '=', $numberNew['id'])->first();
 
