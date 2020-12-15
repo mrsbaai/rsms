@@ -261,21 +261,18 @@ class userController extends Controller
         $c = count($messages);
 
         if ($c == 0){
-            $expiration = Carbon::now()->addYears(10);
-
+        $far_expiration = Carbon::now()->addYears(10);
         $email = Auth::user()->email;
-        Number::where('number','=',$number)->where('email','=',$email)->update(['email' => ""],['expiration' => $expiration]);
 
+        $oldNumber = Number::where('number','=',$number);
 
-        $amount = Input::get('amount');
-        $email = Input::get('user_email');
 
         $user = user::all()->where('email','=',$email)->first();
         $name = $user->name;
         $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(20);
-        $expiration = Carbon::now()->addMonth(1)->addDays(10);
+        $expiration = $oldNumber['expiration'];
 
-        print_r($numbers);
+        return print_r($numbers);
         $numberNew = $numbers[rand(0,19)];
             $numberNew = number::where('id', '=', $numberNew['id'])->first();
             number::where('id', '=', $numberNew['id'])->update(['email' => $email]);
