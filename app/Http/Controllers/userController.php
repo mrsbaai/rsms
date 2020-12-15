@@ -264,6 +264,9 @@ class userController extends Controller
         $far_expiration = Carbon::now()->addYears(10);
         $email = Auth::user()->email;
 
+        //Number::where('number','=',$number)->where('email','=',$email)->update(['email' => ""],['expiration' => $far_expiration]);
+
+
         $oldNumber = Number::where('number','=',$number);
 
 
