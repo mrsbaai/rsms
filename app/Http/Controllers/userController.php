@@ -256,7 +256,7 @@ class userController extends Controller
 
     public function doReplaceNumber($number){
 
-        $oldNumber = Number::where('number','=',$number);
+        $oldNumber = Number::where('number','=',$number)->first();
 
         $email = $oldNumber['email'];
 
