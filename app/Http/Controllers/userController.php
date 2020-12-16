@@ -284,18 +284,27 @@ class userController extends Controller
             }
        
             $numberNew = $selectedNumbers[mt_rand(0,19)];
-            return $numberNew['number'];
+
+
+       
+            number::where('id', '=', $numberNew['id'])->update(['email' => $email]);
+            number::where('id', '=', $numberNew['id'])->update(['expiration' => $expiration]);
+            $data['numbers'] = array();
+            $addedNumber = array($numberNew['number'],$numberNew['country'],"International",$expiration);
+            array_push($data['numbers'],$addedNumber);
+            $data['name'] = Auth::user()->email;
+            Mail::to($email)->queue(new numbersReady($data));
+
 
     
     
-            //$far_expiration = Carbon::now()->addYears(10);
-            //Number::where('number','=',$number)->where('email','=',$email)->update(['email' => ""],['expiration' => $far_expiration]);
-    
-    
-    
+            $far_expiration = Carbon::now()->addYears(10);
+            Number::where('number','=',$number)->where('email','=',$email)->update(['email' => ""],['expiration' => $far_expiration]);
+
+            $theNewNumber = $numberNew['number'];
             $account_form_color= "text-success";
             $title= "$number Replaced";
-            $message= "The number $number has been replaced by $numberNew!";
+            $message= "The number $number has been replaced by $theNewNumber!";
             return view('return_message')->with('account_form_color', $account_form_color)->with('title', $title)->with('message', $message);
     
             }else{
@@ -308,6 +317,14 @@ class userController extends Controller
     
             }
             
+
+        }else{
+    
+            $account_form_color= "text-danger";
+            $title= "Error!";
+            $message= "The number $number cannot be replaced.";
+            return view('return_message')->with('account_form_color', $account_form_color)->with('title', $title)->with('message', $message);
+    
 
         }
  
