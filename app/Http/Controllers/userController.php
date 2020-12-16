@@ -276,9 +276,8 @@ class userController extends Controller
 
 
 
-            $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked');
+            $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(20);
   
-            echo $expiration;
             return print_r($numbers);
             $numberNew = $numbers[rand(0,19)];
             echo "inside 4 --- ";
