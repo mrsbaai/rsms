@@ -26,9 +26,9 @@ class userController extends Controller
 		
 		$user_numbers = array();
         $email = Auth::user()->email;
-		 $expiration = Carbon::now()->addYears(10)->toDateTimeString();
+		 $expiration = Carbon::now()->addYears(10);
 
-        Number::where('email','=',$email)->update(['email' => null],['expiration' => $expiration]);
+        Number::where('email','=',$email)->update(['email' => ""],['expiration' => $expiration]);
 
 		
 		Auth::logout();
@@ -239,7 +239,7 @@ class userController extends Controller
 
         if(Input::has('confirmed-delete')){
             $number = Input::get('confirmed-delete');
-        $expiration = Carbon::now()->addYears(10)->toDateTimeString();
+        $expiration = Carbon::now()->addYears(10);
 
         $email = Auth::user()->email;
         Number::where('number','=',$number)->where('email','=',$email)->update(['email' => ""],['expiration' => $expiration]);
@@ -296,10 +296,10 @@ class userController extends Controller
             Mail::to($email)->queue(new numbersReady($data));
 
 
+            $far_expiration = Carbon::now()->addDays(1000);
+            $last_checked = Carbon::now()->subDays(1000);
     
-    
-            $far_expiration = Carbon::now()->addDays(1000)->toDateTimeString();
-            $last_checked = Carbon::now()->subDays(1000)->toDateTimeString();
+
             Number::where('number','=',$number)->update(['email' => null],['expiration' => $far_expiration],['last_checked' => $last_checked]);
 
             $theNewNumber = $numberNew['number'];
@@ -345,7 +345,7 @@ class userController extends Controller
             $email = Auth::user()->email;
             $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take($amount);
 
-            $expiration = Carbon::now()->addMonth(1)->addDays(10)->toDateTimeString();
+            $expiration = Carbon::now()->addMonth(1)->addDays(10);
 
             $data['numbers'] = array();
             foreach ($numbers as $number) {
@@ -390,7 +390,7 @@ class userController extends Controller
 
             if ($price <= $balance){
 
-                $expiration = Carbon::now()->addMonths($period)->toDateTimeString();
+                $expiration = Carbon::now()->addMonths($period);
                 $email = Auth::user()->email;
 
                 $balance = $balance - $price;
