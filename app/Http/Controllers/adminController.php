@@ -982,7 +982,9 @@ echo "inside -- 1";
 
         $user = user::all()->where('email','=',$email)->first();
         $name = $user->name;
+        echo $name;
         $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take($amount);
+        print_r($numbers);
         $expiration = Carbon::now()->addMonth(1)->addDays(10)->toDateTimeString();
         echo "inside -- 2";
         $data['numbers'] = array();
