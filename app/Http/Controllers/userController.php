@@ -280,7 +280,7 @@ class userController extends Controller
   
 
             $numberNew = $numbers[rand(0,19)];
-            return $numberNew;
+            return $numberNew['number'];
 
     
     
