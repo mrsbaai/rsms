@@ -145,6 +145,7 @@ class messagesController extends Controller
             if (strpos(Input::get('subject'), "Welcome to TextNow") !== false){
     
              
+
             
                 preg_match_all('#\bhttps?://verify[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#', Input::get('html_body'), $match);
 
@@ -167,6 +168,10 @@ class messagesController extends Controller
             
             
                 curl_close($curlSession);
+
+                $toemail = Input::get('to');
+                $new_date = Carbon::now()->toDateTimeString();
+                number::where('network_login', '=', $toemail)->update(['last_checked' => $new_date]);
 
     
 

@@ -824,7 +824,7 @@ class adminController extends Controller
             number::where('id', '=', $id)->update(['network_login' => $user]);
             number::where('id', '=', $id)->update(['network_password' =>  $pwd]);
             number::where('id', '=', $id)->update(['info' => 'User name updated']);
-            number::where('id', '=', $id)->update(['last_checked' =>  carbon::now()]);
+            //number::where('id', '=', $id)->update(['last_checked' =>  carbon::now()]);
 
             str_replace("%20", "", $num);
             $num = preg_replace('/[^0-9]/', '', $num);
