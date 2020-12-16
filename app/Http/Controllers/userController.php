@@ -260,7 +260,7 @@ class userController extends Controller
 
         $email = $oldNumber['email'];
         $expiration = $oldNumber['expiration'];
-        echo $expiration;
+
 
         if ($email == Auth::user()->email){
    
@@ -273,12 +273,12 @@ class userController extends Controller
             if ($c == 0){
 
             
-    
+                echo $expiration;
     
             $user = user::all()->where('email','=',$email)->first();
             $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked');
   
-
+            echo $expiration;
             return print_r($numbers);
             $numberNew = $numbers[rand(0,19)];
 
