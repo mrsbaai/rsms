@@ -256,7 +256,7 @@ class userController extends Controller
 
     public function doReplaceNumber($number){
 
-        return "inside";
+        return $number;
         $messageController = new messagesController();
         $messages = $messageController->getUserMessages($number);
         $c = count($messages);
