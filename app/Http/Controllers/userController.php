@@ -278,8 +278,12 @@ class userController extends Controller
 
             $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(20)->toArray();
   
-
-            $numberNew = $numbers[rand(0,19)];
+            $selectedNumbers = array();
+            foreach($numbers as $num){
+                array_push($selectedNumbers,$num);
+            }
+            
+            $numberNew = $selectedNumbers[rand(0,19)];
             return $numberNew['number'];
 
     
