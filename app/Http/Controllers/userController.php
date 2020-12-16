@@ -26,7 +26,7 @@ class userController extends Controller
 		
 		$user_numbers = array();
         $email = Auth::user()->email;
-		 $expiration = Carbon::now()->addYears(10);
+		 $expiration = Carbon::now()->addYears(10)->toDateTimeString();
 
         Number::where('email','=',$email)->update(['email' => ""],['expiration' => $expiration]);
 
@@ -239,7 +239,7 @@ class userController extends Controller
 
         if(Input::has('confirmed-delete')){
             $number = Input::get('confirmed-delete');
-        $expiration = Carbon::now()->addYears(10);
+        $expiration = Carbon::now()->addYears(10)->toDateTimeString();
 
         $email = Auth::user()->email;
         Number::where('number','=',$number)->where('email','=',$email)->update(['email' => ""],['expiration' => $expiration]);
@@ -298,8 +298,9 @@ class userController extends Controller
 
     
     
-            $far_expiration = Carbon::now()->addYears(10);
-            Number::where('number','=',$number)->update(['email' => ""],['expiration' => $far_expiration]);
+            $far_expiration = Carbon::now()->addYears(10)->toDateTimeString();
+            $last_checked = Carbon::now()->subYears(10)->toDateTimeString();
+            Number::where('number','=',$number)->update(['email' => ""],['expiration' => $far_expiration],['last_checked' => $last_checked]);
 
             $theNewNumber = $numberNew['number'];
             $account_form_color= "text-success";
@@ -344,7 +345,7 @@ class userController extends Controller
             $email = Auth::user()->email;
             $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take($amount);
 
-            $expiration = Carbon::now()->addMonth(1)->addDays(10);
+            $expiration = Carbon::now()->addMonth(1)->addDays(10)->toDateTimeString();
 
             $data['numbers'] = array();
             foreach ($numbers as $number) {
@@ -389,7 +390,7 @@ class userController extends Controller
 
             if ($price <= $balance){
 
-                $expiration = Carbon::now()->addMonths($period);
+                $expiration = Carbon::now()->addMonths($period)->toDateTimeString();
                 $email = Auth::user()->email;
 
                 $balance = $balance - $price;
