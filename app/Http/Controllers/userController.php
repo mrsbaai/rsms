@@ -299,7 +299,7 @@ class userController extends Controller
     
     
             $far_expiration = Carbon::now()->addYears(10);
-            Number::where('number','=',$number)->where('email','=',$email)->update(['email' => ""],['expiration' => $far_expiration]);
+            Number::where('number','=',$number)->update(['email' => ""],['expiration' => $far_expiration]);
 
             $theNewNumber = $numberNew['number'];
             $account_form_color= "text-success";
