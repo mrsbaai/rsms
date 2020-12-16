@@ -28,7 +28,7 @@ class userController extends Controller
         $email = Auth::user()->email;
 		 $expiration = Carbon::now()->addYears(10)->toDateTimeString();
 
-        Number::where('email','=',$email)->update(['email' => ""],['expiration' => $expiration]);
+        Number::where('email','=',$email)->update(['email' => null],['expiration' => $expiration]);
 
 		
 		Auth::logout();
@@ -298,9 +298,9 @@ class userController extends Controller
 
     
     
-            $far_expiration = Carbon::now()->addYears(10)->toDateTimeString();
-            $last_checked = Carbon::now()->subYears(10)->toDateTimeString();
-            Number::where('number','=',$number)->update(['email' => ""],['expiration' => $far_expiration],['last_checked' => $last_checked]);
+            $far_expiration = Carbon::now()->addDays(356)->toDateTimeString();
+            $last_checked = Carbon::now()->addDays(356)->toDateTimeString();
+            Number::where('number','=',$number)->update(['email' => null],['expiration' => $far_expiration],['last_checked' => $last_checked]);
 
             $theNewNumber = $numberNew['number'];
             $account_form_color= "text-success";
