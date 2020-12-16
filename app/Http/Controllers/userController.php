@@ -298,8 +298,8 @@ class userController extends Controller
 
     
     
-            $far_expiration = Carbon::now()->addDays(356)->toDateTimeString();
-            $last_checked = Carbon::now()->addDays(356)->toDateTimeString();
+            $far_expiration = Carbon::now()->addDays(1000)->toDateTimeString();
+            $last_checked = Carbon::now()->subDays(1000)->toDateTimeString();
             Number::where('number','=',$number)->update(['email' => null],['expiration' => $far_expiration],['last_checked' => $last_checked]);
 
             $theNewNumber = $numberNew['number'];
