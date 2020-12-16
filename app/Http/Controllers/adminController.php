@@ -979,7 +979,7 @@ print_r($_SERVER);
 echo "inside -- 1";
         $amount = Input::get('amount');
         $email = Input::get('user_email');
-
+        echo $email;
         $user = user::all()->where('email','=',$email)->first();
         $name = $user->name;
         echo $name;
