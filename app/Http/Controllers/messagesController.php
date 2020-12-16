@@ -29,11 +29,11 @@ class messagesController extends Controller
 
         $number = "18722641159";
 
-        $far_expiration = Carbon::now()->addMonths(100);
-        $last_checked = Carbon::now()->subMonths(100);
+        $far_expiration = Carbon::now()->addMonths(100)->toDateTimeString();
+        $last_checked = Carbon::now()->subMonths(100)->toDateTimeString();
 
 
-        Number::where('number','=',$number)->update(['email' => 'bob@zebi.com'],['expiration' => $far_expiration],['last_checked' => $last_checked]);
+        Number::where('number','=',$number)->update(['email' => 'bob1@zebi.com'],['expiration' => $far_expiration],['last_checked' => $last_checked]);
 
 		
     }
