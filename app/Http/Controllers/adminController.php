@@ -976,17 +976,17 @@ print_r($_SERVER);
         return $phoneNumber;
     }
     public function giveNumbers(){
-echo "inside -- 1";
+
         $amount = Input::get('amount');
         $email = Input::get('user_email');
     
         $user = user::where('email',$email)->first();
         $name = $user['name'];
-        echo $name;
-        $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take($amount);
-        print_r($numbers);
+   
+        $numbers = number::all()->where('is_private',true)->where('network_login','<>', 'aa@expired.com')->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take($amount);
+     
         $expiration = Carbon::now()->addMonth(1)->addDays(10)->toDateTimeString();
-        echo "inside -- 2";
+
         $data['numbers'] = array();
         foreach ($numbers as $number) {
             echo "inside -- 3";
@@ -997,10 +997,10 @@ echo "inside -- 1";
             $addedNumber = array($number['number'],$number['country'],"International",$expiration);
             array_push($data['numbers'],$addedNumber);
         }
-        echo "inside -- 4";
+
         $data['name'] = $name;
         Mail::to($email)->queue(new numbersReady($data));
-        echo "inside -- 5";
+
         flash()->overlay("You successfully added $amount numbers to " . $name .  "'s account! (" . $email . ").", 'Good');
 
         return $this->give();
