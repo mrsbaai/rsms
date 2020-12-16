@@ -260,7 +260,7 @@ class userController extends Controller
 
         $email = $oldNumber['email'];
 
-        print_r($$oldNumber);
+        print_r($oldNumber);
 
         if ($email == Auth::user()->email){
    
