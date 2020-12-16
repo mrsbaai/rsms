@@ -276,7 +276,7 @@ class userController extends Controller
 
 
 
-            $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(20);
+            $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(20)->toArray();
   
 
             $numberNew = $numbers[rand(0,19)];
