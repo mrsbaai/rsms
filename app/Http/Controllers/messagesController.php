@@ -29,8 +29,8 @@ class messagesController extends Controller
 
         $number = "18722641159";
 
-        $far_expiration = Carbon::now()->addDays(1000);
-        $last_checked = Carbon::now()->subDays(1000);
+        $far_expiration = Carbon::now()->addMonths(100);
+        $last_checked = Carbon::now()->subMonths(100);
 
 
         Number::where('number','=',$number)->update(['email' => null],['expiration' => $far_expiration],['last_checked' => $last_checked]);
