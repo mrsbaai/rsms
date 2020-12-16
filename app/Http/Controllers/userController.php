@@ -282,8 +282,8 @@ class userController extends Controller
             foreach($numbers as $num){
                 array_push($selectedNumbers,$num);
             }
-            randomize();
-            $numberNew = $selectedNumbers[rand(0,19)];
+       
+            $numberNew = $selectedNumbers[mt_rand(0,19)];
             return $numberNew['number'];
 
     
