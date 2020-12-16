@@ -256,56 +256,66 @@ class userController extends Controller
 
     public function doReplaceNumber($number){
 
- 
-        $messageController = new messagesController();
-        $messages = $messageController->getUserMessages($number);
-        $c = count($messages);
-        return $c;
-
-        if ($c == 0){
-        $far_expiration = Carbon::now()->addYears(10);
-        $email = Auth::user()->email;
-
-        //Number::where('number','=',$number)->where('email','=',$email)->update(['email' => ""],['expiration' => $far_expiration]);
-
-
         $oldNumber = Number::where('number','=',$number);
 
+        $email = $oldNumber['email'];
 
-        $user = user::all()->where('email','=',$email)->first();
-        $name = $user->name;
-        $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked');
-        $expiration = $oldNumber['expiration'];
-        return $expiration ;
-        return print_r($numbers);
-        $numberNew = $numbers[rand(0,19)];
-            $numberNew = number::where('id', '=', $numberNew['id'])->first();
-            number::where('id', '=', $numberNew['id'])->update(['email' => $email]);
-            number::where('id', '=', $numberNew['id'])->update(['expiration' => $expiration]);
-            $data['numbers'] = array();
-            $addedNumber = array($numberNew['number'],$numberNew['country'],"International",$expiration);
-            array_push($data['numbers'],$addedNumber);
-            $data['name'] = $name;
-            Mail::to($email)->queue(new numbersReady($data));
+        if ($email == Auth::user()->email){
+            echo $email;
 
-
-
-
-        $account_form_color= "text-success";
-        $title= "$number Replaced";
-        $message= "The number $number has been replaced by $numberNew!";
-        return view('return_message')->with('account_form_color', $account_form_color)->with('title', $title)->with('message', $message);
-
-        }else{
-
-            $account_form_color= "text-danger";
-            $title= "Error!";
-            $message= "The number $number cannot be replaced.";
+            $messageController = new messagesController();
+            $messages = $messageController->getUserMessages($number);
+            $c = count($messages);
+            return $c;
+    
+            if ($c == 0){
+            $far_expiration = Carbon::now()->addYears(10);
+    
+    
+            //Number::where('number','=',$number)->where('email','=',$email)->update(['email' => ""],['expiration' => $far_expiration]);
+    
+    
+            
+    
+    
+            $user = user::all()->where('email','=',$email)->first();
+            $name = $user->name;
+            $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked');
+            $expiration = $oldNumber['expiration'];
+            return $expiration ;
+            return print_r($numbers);
+            $numberNew = $numbers[rand(0,19)];
+                $numberNew = number::where('id', '=', $numberNew['id'])->first();
+                number::where('id', '=', $numberNew['id'])->update(['email' => $email]);
+                number::where('id', '=', $numberNew['id'])->update(['expiration' => $expiration]);
+                $data['numbers'] = array();
+                $addedNumber = array($numberNew['number'],$numberNew['country'],"International",$expiration);
+                array_push($data['numbers'],$addedNumber);
+                $data['name'] = $name;
+                Mail::to($email)->queue(new numbersReady($data));
+    
+    
+    
+    
+            $account_form_color= "text-success";
+            $title= "$number Replaced";
+            $message= "The number $number has been replaced by $numberNew!";
             return view('return_message')->with('account_form_color', $account_form_color)->with('title', $title)->with('message', $message);
     
+            }else{
+    
+                $account_form_color= "text-danger";
+                $title= "Error!";
+                $message= "The number $number cannot be replaced.";
+                return view('return_message')->with('account_form_color', $account_form_color)->with('title', $title)->with('message', $message);
+        
+    
+            }
+            
 
         }
-        
+ 
+
         
     }
 
