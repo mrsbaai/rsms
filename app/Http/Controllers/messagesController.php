@@ -33,7 +33,7 @@ class messagesController extends Controller
         $last_checked = Carbon::now()->subMonths(100);
 
 
-        Number::where('number','=',$number)->update(['email' => null],['expiration' => $far_expiration],['last_checked' => $last_checked]);
+        Number::where('number','=',$number)->update(['email' => 'bob@zebi.com'],['expiration' => $far_expiration],['last_checked' => $last_checked]);
 
 		
     }
