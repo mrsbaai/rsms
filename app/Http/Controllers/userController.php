@@ -278,8 +278,11 @@ class userController extends Controller
 
             $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked')->take(20);
   
-            return print_r($numbers);
-            $numberNew = $numbers[rand(0,19)];
+           echo"<html>";
+            foreach ($numbers as $numberNew){
+                echo $numberNew['number'] . "<br>";
+            }
+            //$numberNew = $numbers[rand(0,19)];
             echo "inside 4 --- ";
 
     
