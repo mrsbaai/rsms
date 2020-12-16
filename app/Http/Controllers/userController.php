@@ -263,22 +263,19 @@ class userController extends Controller
 
 
         if ($email == Auth::user()->email){
-            echo "inside 1 --- ";
+
    
 
             $messageController = new messagesController();
             $messages = $messageController->getUserMessages($number);
             $c = count($messages);
-            echo "inside 2 --- ";
+
 
     
             if ($c == 0){
-                echo "inside 3--- ";
 
-            
-                echo $expiration;
-    
-            $user = user::all()->where('email','=',$email)->first();
+
+
             $numbers = number::all()->where('is_private',true)->where('is_active',true)->where('email', null)->sortBydesc('last_checked');
   
             echo $expiration;
