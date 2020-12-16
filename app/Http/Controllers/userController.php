@@ -263,14 +263,17 @@ class userController extends Controller
 
 
         if ($email == Auth::user()->email){
+            echo "inside 1 --- ";
    
 
             $messageController = new messagesController();
             $messages = $messageController->getUserMessages($number);
             $c = count($messages);
+            echo "inside 2 --- ";
 
     
             if ($c == 0){
+                echo "inside 3--- ";
 
             
                 echo $expiration;
@@ -281,6 +284,7 @@ class userController extends Controller
             echo $expiration;
             return print_r($numbers);
             $numberNew = $numbers[rand(0,19)];
+            echo "inside 4 --- ";
 
     
     
