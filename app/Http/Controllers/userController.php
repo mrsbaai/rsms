@@ -256,10 +256,11 @@ class userController extends Controller
 
     public function doReplaceNumber($number){
 
-        return $number;
+ 
         $messageController = new messagesController();
         $messages = $messageController->getUserMessages($number);
         $c = count($messages);
+        return $c;
 
         if ($c == 0){
         $far_expiration = Carbon::now()->addYears(10);
