@@ -989,7 +989,6 @@ print_r($_SERVER);
 
         $data['numbers'] = array();
         foreach ($numbers as $number) {
-            echo "inside -- 3";
             $number = number::where('id', '=', $number['id'])->first();
             number::where('id', '=', $number['id'])->update(['email' => $email]);
             number::where('id', '=', $number['id'])->update(['expiration' => $expiration]);
