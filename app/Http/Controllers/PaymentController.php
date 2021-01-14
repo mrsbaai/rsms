@@ -441,7 +441,7 @@ class PaymentController extends Controller
 
     $ipn_type = $_POST['ipn_type'];
     $txn_id = $_POST['txn_id'];
-    $item_name = $_POST['item_name'];
+    $item_desc = $_POST['item_desc'];
     $amount1 = floatval($_POST['amount1']);
     $currency1 = $_POST['currency1'];
     $status = intval($_POST['status']);
@@ -449,8 +449,8 @@ class PaymentController extends Controller
     $buyerEmail = $_POST['email'];
 
 
-    $originalAmount = $this->getDescriptionVariables("originalAmount",$item_name);
-    $userEmail = $this->getDescriptionVariables("userEmail",$item_name);
+    $originalAmount = $this->getDescriptionVariables("originalAmount",$item_desc);
+    $userEmail = $this->getDescriptionVariables("userEmail",$item_desc);
 
     Log::info("$originalAmount | $userEmail ");
 
@@ -468,9 +468,9 @@ class PaymentController extends Controller
  
     if ($status >= 100 || $status == 2) {
 
-        $originalAmount = $this->getDescriptionVariables("originalAmount",$item_name);
-        $userEmail = $this->getDescriptionVariables("userEmail",$item_name);
-        $code = $this->getDescriptionVariables("code",$item_name);
+        $originalAmount = $this->getDescriptionVariables("originalAmount",$item_desc);
+        $userEmail = $this->getDescriptionVariables("userEmail",$item_desc);
+        $code = $this->getDescriptionVariables("code",$item_desc);
 
         $payedAmount = $amount1; 
         $transactionType = "Payment";
