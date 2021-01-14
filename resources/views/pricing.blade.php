@@ -22,13 +22,13 @@
     <div class="container col-sm-12">
         <div class="container col-sm-3 text-center">
         </div>
-        <div class="container col-sm-3 text-center">
+        <div class="container col-sm-6 text-center">
             <img src="../img/bitcoin.png" title="Bitcoin">
         </div>
 
-        <div class="container col-sm-3 text-center">
+       <!-- <div class="container col-sm-3 text-center">
             <img src="../img/paypal.png" title="PayPal">
-        </div>
+        </div> -->
         <div class="container col-sm-3 text-center">
         </div>
 
