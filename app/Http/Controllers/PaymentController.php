@@ -442,11 +442,8 @@ class PaymentController extends Controller
     $ipn_type = $_POST['ipn_type'];
     $txn_id = $_POST['txn_id'];
     $item_name = $_POST['item_name'];
-    $item_number = $_POST['item_number'];
     $amount1 = floatval($_POST['amount1']);
-    $amount2 = floatval($_POST['amount2']);
     $currency1 = $_POST['currency1'];
-    $currency2 = $_POST['currency2'];
     $status = intval($_POST['status']);
     $status_text = $_POST['status_text']; 
 
@@ -471,7 +468,7 @@ class PaymentController extends Controller
         $payedAmount = $amount1; 
 
         $transactionType = "Payment";
-        $transactionStatus = "Completed";
+        $transactionStatus = $status_text;
 
         $buyerEmail = $userEmail;
         $accountId = "d2a2ff1d7391af30262dee3353f43071";
