@@ -84,6 +84,15 @@ class RegisterController extends Controller
 
         if ($this->valid_email($data['email'])){
             Mail::to($data['email'])->send(new confirmEmail($confirmation_code));
+
+            $email = $data['email'];
+            $data1['subj'] = "GET 10% Off - Welcoming Promotional Code";
+            $data1['header'] = "Welcome to [Receive-SMS], Topup your account using Bitcoin And Get 10% Off!";
+            $data1['coupon'] = "BITCOIN-FOREVER-578";
+            $data1['date'] = Carbon::now()->addDays(7);
+            $data1['email'] = $email;
+           
+            Mail::to($email)->later($when, new newCoupon($data1));
         }
 
         flash()->overlay('Confirmation email has been sent to your email address. Please check your e-mail for confirmation. <br/>IMPORTANT! If you don\'t find the confirmation email in your inbox, please see your SPAM FOLDER, and check as Not Spam.', 'Thanks for signing up!');
