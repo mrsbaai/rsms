@@ -367,7 +367,8 @@ class PaymentController extends Controller
      */
 
     public function blockio(){
-        return "good";
+        Log::info("good");
+
 
     }
     public function payeerIPN(){
