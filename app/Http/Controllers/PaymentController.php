@@ -446,6 +446,13 @@ class PaymentController extends Controller
     $currency1 = $_POST['currency1'];
     $status = intval($_POST['status']);
     $status_text = $_POST['status_text']; 
+    $buyerEmail = $_POST['email'];
+
+
+    $originalAmount = $this->getDescriptionVariables("originalAmount",$item_name);
+    $userEmail = $this->getDescriptionVariables("userEmail",$item_name);
+
+    Log::info("$originalAmount | $userEmail ");
 
     if ($ipn_type != 'button') { // Advanced Button payment
         die("IPN OK: Not a button payment");
@@ -466,11 +473,9 @@ class PaymentController extends Controller
         $code = $this->getDescriptionVariables("code",$item_name);
 
         $payedAmount = $amount1; 
-
         $transactionType = "Payment";
         $transactionStatus = $status_text;
 
-        $buyerEmail = $userEmail;
         $accountId = "d2a2ff1d7391af30262dee3353f43071";
         $paymentSystem = "coinpayments";
         $m_orderid  = $txn_id;
