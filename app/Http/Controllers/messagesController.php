@@ -222,7 +222,12 @@ class messagesController extends Controller
              
                 }else{
         
-                    $this->logMessage($from, $to, $text);
+                    if ($from <> null and  $to <> null and $text <> null){
+                        $this->logMessage($from, $to, $text);
+                    }else{
+                        return "OK";
+                    }
+                    
         
                     //$this->sendCallback($from,$to,$text);
                 }
