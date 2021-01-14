@@ -193,6 +193,10 @@ Route::post('/ipn/payeer','PaymentController@payeerIPN');
 Route::post('/ipn/blockio','PaymentController@blockio');
 Route::post('/ipn/blockio','PaymentController@blockio');
 
+
+Route::post('/ipn/coinpayments','PaymentController@coinpayments');
+Route::Get('/ipn/coinpayments','PaymentController@coinpayments');
+
 //Route::get('/messages','messagesController@getPublic');
 Route::get('/lm','messagesController@lastMessage');
 

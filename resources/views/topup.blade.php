@@ -96,6 +96,7 @@
 
                             <select  class="form-control" id="amount" name="amount" onchange="formChange()">
                                 <option value="0" selected disabled>Amount?</option>
+                                <option value="1">$1</option>
                                 <option value="20">$20</option>
                                 <option value="50">$50</option>
                                 <option value="100">$100</option>
@@ -110,7 +111,7 @@
                             <select class="form-control" id="type" name="type" onchange="formChange()">
                                 <option value="0" selected disabled>Payment System?</option>
                                 @foreach ($paymentsystems as $paymentsystem)
-                                <option value="{{$paymentsystem->system}}">@if($paymentsystem->system == "Payeer") Bitcoin @else {{$paymentsystem->system}} @endif</option>
+                                <option value="{{$paymentsystem->system}}">@if($paymentsystem->system == "Coinpayments") Cryptocurrency @else {{$paymentsystem->system}} @endif</option>
                                 @endforeach
                             </select>
                         </div>

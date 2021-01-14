@@ -83,6 +83,8 @@ class PaymentController extends Controller
         }
 
     }
+
+
     public function RedirectToPaymentInternal(){
 
         $business =  Input::get('toemail');
@@ -109,6 +111,8 @@ class PaymentController extends Controller
         $url = "https://www.paypal.com/cgi-bin/webscr";
         return redirect()->away($url . "?" . http_build_query($properties));
     }
+
+
     public function RedirectToPayment(){
         if (Auth::check()){
             $email = Auth::user()->email;
@@ -208,6 +212,40 @@ class PaymentController extends Controller
                         "ap_alerturl"=>$ap_alerturl,
                         "ap_returnurl"=>$ap_returnurl,
                         "ap_cancelurl"=>$ap_cancelurl
+                    );
+
+                    return redirect()->away($url . "?" . http_build_query($properties));
+                //return $url . "?" . http_build_query($properties);
+
+                case "Coinpayments":
+
+                    $url = "https://www.coinpayments.net/index.php";
+
+                    $cmd = "_pay_simple";
+                    $reset = "1";
+                    $merchant = "d2a2ff1d7391af30262dee3353f43071";
+                    $item_name = "$" . $amountOriginal . " Balance Top Up";
+                    $item_desc = $description;
+                    $currency = "USD";
+                    $amountf = $amountToPay;
+                    $want_shipping = "0";
+                    $success_url = "https://receive-sms.com/success";
+                    $cancel_url = "https://receive-sms.com/fail";
+                    $ipn_url = "https://receive-sms.com/ipn/coinpayments";
+
+
+                    $properties = array(
+                        "cmd"=>$cmd,
+                        "reset"=>$reset,
+                        "merchant"=>$merchant,
+                        "item_name"=>$item_name,
+                        "item_desc"=>$item_desc,
+                        "currency"=>$currency,
+                        "amountf"=>$amountf,
+                        "want_shipping"=>$want_shipping,
+                        "success_url"=>$success_url,
+                        "cancel_url"=>$cancel_url,
+                        "ipn_url"=>$ipn_url,
                     );
 
                     return redirect()->away($url . "?" . http_build_query($properties));
@@ -369,8 +407,92 @@ class PaymentController extends Controller
     public function blockio(){
         Log::info("good");
 
+    }
+
+
+    public function coinpayments(){
+        Log::info("inside");
+
+    $merchant_id = 'd2a2ff1d7391af30262dee3353f43071';
+    $secret = '991580';
+
+    if (!isset($_SERVER['HTTP_HMAC']) || empty($_SERVER['HTTP_HMAC'])) {
+    die("No HMAC signature sent");
+    }
+
+    $merchant = isset($_POST['merchant']) ? $_POST['merchant']:'';
+    if (empty($merchant)) {
+    die("No Merchant ID passed");
+    }
+
+    if ($merchant != $merchant_id) {
+    die("Invalid Merchant ID");
+    }
+
+    $request = file_get_contents('php://input');
+    if ($request === FALSE || empty($request)) {
+    die("Error reading POST data");
+    }
+
+    $hmac = hash_hmac("sha512", $request, $secret);
+    if ($hmac != $_SERVER['HTTP_HMAC']) {
+    die("HMAC signature does not match");
+    }
+
+    $ipn_type = $_POST['ipn_type'];
+    $txn_id = $_POST['txn_id'];
+    $item_name = $_POST['item_name'];
+    $item_number = $_POST['item_number'];
+    $amount1 = floatval($_POST['amount1']);
+    $amount2 = floatval($_POST['amount2']);
+    $currency1 = $_POST['currency1'];
+    $currency2 = $_POST['currency2'];
+    $status = intval($_POST['status']);
+    $status_text = $_POST['status_text']; 
+
+    if ($ipn_type != 'button') { // Advanced Button payment
+        die("IPN OK: Not a button payment");
+    }
+
+    //depending on the API of your system, you may want to check and see if the transaction ID $txn_id has already been handled before at this point
+
+    // Check the original currency to make sure the buyer didn't change it.
+    if ($currency1 != "USD") {
+        errorAndDie('Original currency mismatch!');
+    }
+
+ 
+    if ($status >= 100 || $status == 2) {
+
+        $originalAmount = $this->getDescriptionVariables("originalAmount",$item_name);
+        $userEmail = $this->getDescriptionVariables("userEmail",$item_name);
+        $code = $this->getDescriptionVariables("code",$item_name);
+
+        $payedAmount = $amount1; 
+
+        $transactionType = "Payment";
+        $transactionStatus = "Completed";
+
+        $buyerEmail = $userEmail;
+        $accountId = "d2a2ff1d7391af30262dee3353f43071";
+        $paymentSystem = "coinpayments";
+        $m_orderid  = $txn_id;
+        // payment is complete or queued for nightly payout, success
+        $this->doTopup($userEmail,$payedAmount,$originalAmount,$code,$paymentSystem, $m_orderid);        
+        $this->notify("0", "0", "coinpayments", "Payment", "coinpayments", $buyerEmail, "", $payedAmount, $code,"","");
+        $this->log($payedAmount, $originalAmount, $code, $transactionType, $transactionStatus, $userEmail, $buyerEmail, $accountId, $paymentSystem, $m_orderid);
+
+    } else if ($status < 0) {
+        //payment error, this is usually final but payments will sometimes be reopened if there was no exchange rate conversion or with seller consent
+    } else {
+        //payment is pending, you can optionally add a note to the order page
+    }
+    die('IPN OK'); 
 
     }
+
+
+    
     public function payeerIPN(){
         if (Input::get('m_operation_id') !== null && Input::get('m_sign') !== null)
         {
