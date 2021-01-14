@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Mail;
 use App\Mail\confirmEmail;
+use App\Mail\newCoupon;
 use Flash;
 use Carbon\Carbon;
 
