@@ -190,6 +190,9 @@ Route::get('/ipn/paypal/flat','PaymentController@paypalIPNflat');
 Route::post('/ipn/smsver','PaymentController@paypalIPN');
 Route::post('/ipn/payeer','PaymentController@payeerIPN');
 
+Route::post('/ipn/blockio','PaymentController@blockio');
+Route::post('/ipn/blockio','PaymentController@blockio');
+
 //Route::get('/messages','messagesController@getPublic');
 Route::get('/lm','messagesController@lastMessage');
 

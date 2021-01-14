@@ -365,6 +365,11 @@ class PaymentController extends Controller
     /**
      * @return string
      */
+
+    public function blockio(){
+        return "good";
+
+    }
     public function payeerIPN(){
         if (Input::get('m_operation_id') !== null && Input::get('m_sign') !== null)
         {
