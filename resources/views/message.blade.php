@@ -10,7 +10,7 @@
             <div class="container">
                 <div class="row message">
                     <h2><span class="{{$titleClass}}">{{$title}}</span></h2>
-                    <p>{{$content}}</p>
+                    <p>{!! $content !!}</p>
                 </div>
             </div>
         </div>
