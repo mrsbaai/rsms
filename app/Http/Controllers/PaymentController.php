@@ -411,7 +411,7 @@ class PaymentController extends Controller
 
 
     public function coinpayments(){
-        Log::info("inside");
+
 
     $merchant_id = 'd2a2ff1d7391af30262dee3353f43071';
     $secret = '991580';
@@ -452,7 +452,7 @@ class PaymentController extends Controller
     $originalAmount = $this->getDescriptionVariables("originalAmount",$item_desc);
     $userEmail = $this->getDescriptionVariables("userEmail",$item_desc);
 
-    Log::info("$originalAmount | $userEmail ");
+    Log::info("$originalAmount | $userEmail | $status");
 
     if ($ipn_type != 'button') { // Advanced Button payment
         die("IPN OK: Not a button payment");
@@ -467,6 +467,9 @@ class PaymentController extends Controller
 
  
     if ($status >= 100 || $status == 2) {
+        
+    Log::info("Successful payment");
+
 
         $originalAmount = $this->getDescriptionVariables("originalAmount",$item_desc);
         $userEmail = $this->getDescriptionVariables("userEmail",$item_desc);
