@@ -163,6 +163,12 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <div class="col-12 text-center">
+                            <b>BITCOIN-FOREVER-456</b> (Get 10% discount with cryptocurrency payments)
+                        </div>
+                    </div>
+
                     {{ Form::close() }}
 
                     </div>
