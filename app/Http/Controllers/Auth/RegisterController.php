@@ -88,8 +88,8 @@ class RegisterController extends Controller
 
             $when = Carbon::now();
             $email = $data['email'];
-            $data1['subj'] = "GET 10% Off - Welcoming Promotional Code";
-            $data1['header'] = "Welcome to [Receive-SMS], Topup your account using crypto and get 10% off!";
+            $data1['subj'] = "GET 10% Off - Cryptocurrency Promotional Code";
+            $data1['header'] = "Welcome to [Receive-SMS], Topup your account using cryptocurrency and get 10% off!";
             $data1['coupon'] = "BITCOIN-FOREVER-578";
             $data1['date'] = Carbon::now()->addDays(7);
             $data1['email'] = $email;
