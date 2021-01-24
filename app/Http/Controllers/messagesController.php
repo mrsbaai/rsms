@@ -27,12 +27,19 @@ class messagesController extends Controller
     
     public function test(){
 
-        $arrays = array(
-            array('A1','A2','A3'), 
-            array('B1','B2','B3'), 
-            array('C1','C2')
+        print_r(
+            $this->combinations(
+                array(
+                    array('A1','A2','A3'), 
+                    array('B1','B2','B3'), 
+                    array('C1','C2')
+                )
+            )
         );
-        $i = 0;
+		
+    }
+
+    private function combinations($arrays, $i = 0){
         if (!isset($arrays[$i])) {
             return array();
         }
@@ -41,7 +48,7 @@ class messagesController extends Controller
         }
     
         // get combinations from subsequent arrays
-        $tmp = combinations($arrays, $i + 1);
+        $tmp = $this->combinations($arrays, $i + 1);
     
         $result = array();
     
@@ -56,7 +63,7 @@ class messagesController extends Controller
     
         return $result;
 
-		
+
     }
 
 
