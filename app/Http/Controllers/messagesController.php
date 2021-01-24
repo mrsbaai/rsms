@@ -31,7 +31,7 @@ class messagesController extends Controller
             $this->combinations(
                 array(
                     array('Arabic','English','Frensh'), 
-                    array('Sudent','Not Student'), 
+                    array('Sudent','Entroproneur'), 
                     array('Making money online','Not making money online')
                 )
             )
