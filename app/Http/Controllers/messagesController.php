@@ -30,9 +30,9 @@ class messagesController extends Controller
         print_r(
             $this->combinations(
                 array(
-                    array('A1','A2','A3'), 
-                    array('B1','B2','B3'), 
-                    array('C1','C2')
+                    array('Arabic','English','Frensh'), 
+                    array('Sudent','Not Student'), 
+                    array('Making money online','Not making money online')
                 )
             )
         );
