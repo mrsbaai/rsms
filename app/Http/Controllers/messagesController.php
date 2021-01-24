@@ -27,17 +27,34 @@ class messagesController extends Controller
     
     public function test(){
 
-        $number = "18722641159";
-
-        $far_expiration = Carbon::now()->addMonths(100)->toDateTimeString();
-        $last_checked = Carbon::now()->subMonths(100)->toDateTimeString();
-
-
-        Number::where('number','=',$number)->update(['email' => 'bob1eeeeeeeeeeeeee@zebi.com']);
-
-        Number::where('number','=',$number)->update(['expiration' => $far_expiration]);
-
-        Number::where('number','=',$number)->update(['last_checked' => $last_checked]);
+        $arrays = array(
+            array('A1','A2','A3'), 
+            array('B1','B2','B3'), 
+            array('C1','C2')
+        );
+        $i = 0;
+        if (!isset($arrays[$i])) {
+            return array();
+        }
+        if ($i == count($arrays) - 1) {
+            return $arrays[$i];
+        }
+    
+        // get combinations from subsequent arrays
+        $tmp = combinations($arrays, $i + 1);
+    
+        $result = array();
+    
+        // concat each array from tmp with each element from $arrays[$i]
+        foreach ($arrays[$i] as $v) {
+            foreach ($tmp as $t) {
+                $result[] = is_array($t) ? 
+                    array_merge(array($v), $t) :
+                    array($v, $t);
+            }
+        }
+    
+        return $result;
 
 		
     }
