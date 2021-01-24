@@ -26,7 +26,7 @@ class messagesController extends Controller
        
     
     public function test(){
-
+echo "<html><pre>";
         print_r(
             $this->combinations(
                 array(
@@ -36,6 +36,8 @@ class messagesController extends Controller
                 )
             )
         );
+
+        echo "</pre>";
 		
     }
 
