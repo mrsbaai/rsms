@@ -165,7 +165,7 @@
 
                     <div class="form-group">
                         <div class="col-12 text-center">
-                            <span style="font-size: 50%;">Use this promo code: <b>BITCOIN-FOREVER-456</b> to Get 10% discount with cryptocurrency payments. <br/> (Limited time offer)</span>
+                            <span style="font-size: 50%;">Use this promo code:<br/><b>BITCOIN-FOREVER-456</b><br/>10% discount with cryptocurrency payments. (Limited time offer)</span>
                         </div>
                     </div>
 
