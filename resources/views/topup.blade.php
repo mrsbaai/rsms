@@ -135,7 +135,7 @@
                                     >
 
                         <span class="input-group-btn">
-                            <input onclick="applyCoupon()" class="btn btn-md" style="background: #0070BA;" value="Redeem">
+                            <input onclick="applyCoupon()" class="btn btn-primary btn-md" value="Redeem">
                         </span>
 
                                 </div>
