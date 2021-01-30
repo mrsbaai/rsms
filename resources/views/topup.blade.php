@@ -165,7 +165,7 @@
 
                     <div class="form-group">
                         <div class="col-12 text-center">
-                            <span style="font-size: 50%;">10% discount with cryptocurrency payments. (Limited time offer), Code:<br/><b>BITCOIN-FOREVER-456</b></span>
+                            <span style="font-size: 50%;">Limited time offer, 10% discount with cryptocurrency payments. Code:<br/><b>BITCOIN-FOREVER-456</b></span>
                         </div>
                     </div>
 
