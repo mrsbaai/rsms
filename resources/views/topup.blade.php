@@ -157,7 +157,7 @@
 
                     <div class="form-group">
                         <div class="col-12">
-                            <button id="pay_button" type="submit" class="btn btn-lg btn-block" style="background: #4267B2;" disabled>
+                            <button id="pay_button" type="submit" class="btn btn-lg btn-block btn-success" style="background: #4267B2;" disabled>
                                 Pay
                             </button>
                         </div>
