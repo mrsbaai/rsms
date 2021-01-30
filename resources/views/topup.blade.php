@@ -157,15 +157,15 @@
 
                     <div class="form-group">
                         <div class="col-12">
-                            <button id="pay_button" type="submit" class="btn btn-lg btn-block btn-success" disabled>
-                                Pay
+                            <button id="pay_button" type="submit" class="btn btn-lg btn-block btn-primary" disabled>
+                                Order Credit
                             </button>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-12 text-center">
-                            <span style="font-size: 50%;"><span style="color: red;">Limited time offer:</span> 10% discount with cryptocurrency payments. Code:<br/><b><span style="color:#587877;">BITCOIN-FOREVER-456</b></b></span>
+                            <span style="font-size: 50%;"><span style="color: red;">Limited time offer:</span> 10% discount with cryptocurrency payments. Code:<br/><b><span style="color:#5CB85C;">BITCOIN-FOREVER-456</b></b></span>
                         </div>
                     </div>
 
