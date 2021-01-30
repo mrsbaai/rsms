@@ -135,7 +135,7 @@
                                     >
 
                         <span class="input-group-btn">
-                            <input onclick="applyCoupon()" class="btn btn-primary btn-md" value="Redeem">
+                            <input onclick="applyCoupon()" class="btn btn-md" style="background: #0070BA;" value="Redeem">
                         </span>
 
                                 </div>
@@ -157,7 +157,7 @@
 
                     <div class="form-group">
                         <div class="col-12">
-                            <button id="pay_button" type="submit" class="btn btn-lg btn-block btn-success" disabled>
+                            <button id="pay_button" type="submit" class="btn btn-lg btn-block" style="background: #0070BA;" disabled>
                                 Pay
                             </button>
                         </div>
