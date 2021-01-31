@@ -4,7 +4,7 @@
 @stop
 @section('content')
 <style>
-.button.close{
+.close{
 color:#90C6C5;
 }
 </style>
