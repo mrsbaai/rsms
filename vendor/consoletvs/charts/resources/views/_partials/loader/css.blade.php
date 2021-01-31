@@ -66,4 +66,8 @@
     display: inline-block;
 }
 
+button.close{
+color:#90C6C5;
+}
+
 </style>
