@@ -85,15 +85,13 @@ class RegisterController extends Controller
 
         if ($this->valid_email($data['email'])){
             Mail::to($data['email'])->send(new confirmEmail($confirmation_code));
-
             //$when = Carbon::now();
             //$email = $data['email'];
             //$data1['subj'] = "GET 10% Off - Cryptocurrency Promotional Code";
             //$data1['header'] = "Welcome to [Receive-SMS], Topup your account using cryptocurrency and get 10% off!";
             //$data1['coupon'] = "BITCOIN-FOREVER-578";
             //$data1['date'] = Carbon::now()->addDays(7);
-            //$data1['email'] = $email;
-           
+            //$data1['email'] = $email;          
             //Mail::to($email)->later($when, new newCoupon($data1));
         }
 
