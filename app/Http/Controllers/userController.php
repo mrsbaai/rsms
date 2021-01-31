@@ -150,7 +150,7 @@ class userController extends Controller
 
                 $confirmed = Auth::user()->confirmed;
 
-                $p = paymentlog::where('user_email', $email)->where('status','Complete')->first();
+                $p = paymentlog::where('userEmail', $email)->where('status','Complete')->first();
 
                 if ($p){
                     flash('<span style="font-size: 80%">' . $p . '</span>')->warning()->important();
