@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<meta charset=utf-8>
 <html lang="en">
 <head>
     <!-- Global Site Tag (gtag.js) - Google Analytics -->
