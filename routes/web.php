@@ -245,7 +245,7 @@ Route::get('/log/bandwidth','messagesController@bandwidth');
 Route::get('/log/system', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('/success', function () {
-    return view('message')->with('content', 'If you\'ve payed with <b>crypto</b>, your payment will be credited to your balance once it reaches the <b><span style="color:red;">required confirmations</span></b>. This could take a <b><span style="color:red;">few hours</span></b>')->with('titleClass', 'text-success')->with('title', 'Thank you for topping up your account!');
+    return view('message')->with('content', 'If you\'ve payed with <b>crypto</b>, your payment will be credited to your balance once it reaches the <b><span style="color:red;">required confirmations</span></b>. This could take a <b><span style="color:red;">few hours</span>.</b>')->with('titleClass', 'text-success')->with('title', 'Thank you for topping up your account!');
 });
 
 Route::get('/renew/success', function () {
