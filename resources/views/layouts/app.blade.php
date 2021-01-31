@@ -21,7 +21,9 @@
     @yield('head')
 </head>
 <body>
-@include('flash::message')
+    <div class="container width-fix col-sm-12">
+        @include('flash::message')
+    </div>
 
 <div class="navbar navbar-inverse navbar-fixed-top nav-texture" role="navigation">
     <div class="container">
