@@ -154,7 +154,8 @@ class userController extends Controller
 
                 if ($p){
                     if ($p->paymentSystemId == 4){
-                        flash('<span style="font-size: 80%"><a href="https://www.coinpayments.net/feedback">Please leave a positive feedback at coinpayments.net</a></span> <span style="text-rendering:auto;">    &#128591; &#x1F64F;</span> <i class="icon-foo">&#xf015;</i> <i class="fa">&#x1F64F;</i>
+                        flash('<span style="font-size: 80%"><a href="https://www.coinpayments.net/feedback">Please leave a positive feedback at coinpayments.net</a></span>
+                         <img src="https://i.imgur.com/VSPFADO.png" width="24" height="24"> 
                         ')->success()->important();
 
                     }
