@@ -11,6 +11,7 @@ use App\user;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\paymentsystem;
+use App\paymentlog;
 use Mail;
 use App\Mail\numbersReady;
 use App\Mail\confirmEmail;
@@ -149,8 +150,9 @@ class userController extends Controller
 
                 $confirmed = Auth::user()->confirmed;
 
+                $p = paymentlog::where('email', $email)->where('status','Complete')->first();
                 if (!$confirmed and !$isResend){
-                    flash('<span style="font-size: 80%">Please check your email and click the activation link to verify your account! <a href="/resend">Resend</a><br/> If you don\'t find the activation email in your inbox, please check your <span style="color:red;">SPAM FOLDER</span>, and mark as not spam.</span>')->warning()->important();
+                    flash('<span style="font-size: 80%">' . $p . '</span>')->warning()->important();
                     flash('<span style="font-size: 80%">Please check your email and click the activation link to verify your account! <a href="/resend">Resend</a><br/> If you don\'t find the activation email in your inbox, please check your <span style="color:red;">SPAM FOLDER</span>, and mark as not spam.</span>')->warning()->important();
                 }
 
