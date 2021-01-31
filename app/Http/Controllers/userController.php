@@ -152,10 +152,10 @@ class userController extends Controller
 
                 $p = paymentlog::where('userEmail', $email)->where('status','Complete')->first();
 
-                if ($p){
+          
                     flash('<span style="font-size: 80%">' . $p . '</span>')->warning()->important();
 
-                }
+                
                 if (!$confirmed and !$isResend){
                     
                     flash('<span style="font-size: 80%">Please check your email and click the activation link to verify your account! <a href="/resend">Resend</a><br/> If you don\'t find the activation email in your inbox, please check your <span style="color:red;">SPAM FOLDER</span>, and mark as not spam.</span>')->warning()->important();
