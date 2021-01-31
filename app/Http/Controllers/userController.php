@@ -154,7 +154,7 @@ class userController extends Controller
 
                 if ($p){
                     if ($p->paymentSystemId == 4){
-                        flash('<span style="font-size: 80%">' . $p . '</span>')->warning()->important();
+                        flash('<span style="font-size: 80%">Topped up</span>')->warning()->important();
 
                     }
                 }
