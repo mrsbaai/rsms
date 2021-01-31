@@ -66,7 +66,7 @@
     display: inline-block;
 }
 
-button.close{
+.button.close{
 color:#90C6C5;
 }
 
