@@ -3,7 +3,11 @@
     <title>Receive-SMS :: {{$title}}</title>
 @stop
 @section('content')
-
+<style>
+.button.close{
+color:#90C6C5;
+}
+</style>
     <div class="container width-fix small-box">
         <div class="jumbotron welcome-texture">
 
