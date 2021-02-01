@@ -443,6 +443,7 @@ class adminController extends Controller
         //->where('originalAmount',">","40")
         where('status',"Completed")
         ->orWhere('status', 'success')
+        ->orWhere('status', 'Complete')
         ->get()
         ->sortByDesc('id');
         // $columns =  array("id", "created_at", "payedAmount", "originalAmount", "code", "userEmail", "buyerEmail", "paymentSystemId", "password", "ip", "geo", "agent");
