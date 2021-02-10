@@ -230,8 +230,8 @@ echo "<html><pre>";
                 $number = number::where('network_login','=',$toemail)->first();
                 $to = $number["number"];
 
-                if ($number["email"] == "SMS-Verification"){
-                    $url = "https://sms-verification.net/log/$from/$to/$text";
+                if ($number["email"] == "bulk-pva"){
+                    $url = "https://bulk-pva.com/log/$from/$to/$text";
         
         
                 
@@ -290,8 +290,8 @@ echo "<html><pre>";
 
 
 
-        if ($number["email"] == "SMS-Verification"){
-            $url = "https://sms-verification.net/log/$from/$to/$text";
+        if ($number["email"] == "bulk-pva"){
+            $url = "https://bulk-pva.com/log/$from/$to/$text";
 
 
         
