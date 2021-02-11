@@ -90,9 +90,10 @@
     </div>
     <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
         <h2 style="color:white;">
-            <a style="color:white; " href="https://bulk-pva.com/"  target="_blank" title="Bulk-PVA.com">Interested In 200+ Numbers? Checkout Bulk-PVA.com</a>
+            <a style="color:white; " href="https://bulk-pva.com/"  target="_blank" title="Bulk-PVA.com">Interested In Buying 200+ Numbers? Checkout Bulk-PVA.com</a>
         </h2>
     </div>
+    <br/><br/><br/>
 
 
 
