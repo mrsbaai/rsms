@@ -12,3 +12,4 @@ This message was sent automatically. Please, do not reply.
 
 For questions about this list: <a href="http://receive-sms.com/contact">Receive-SMS Contact</a>
 @endcomponent
+

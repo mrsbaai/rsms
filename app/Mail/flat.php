@@ -19,11 +19,13 @@ class flat extends Mailable
 
     protected $htm;
     protected $subj;
+    protected $email;
 
     public function __construct($data)
     {
         $this->htm = $data['html'];
         $this->subj = $data['subject'];
+        $this->email = $data['email'];
 
 
     }
@@ -40,6 +42,7 @@ class flat extends Mailable
             ->subject($this->subj)
             ->with([
                 'html' => $this->htm,
+                'email' => $this->email,
 
             ]);
 

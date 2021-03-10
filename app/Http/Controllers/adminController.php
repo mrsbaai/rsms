@@ -103,7 +103,9 @@ class adminController extends Controller
 			
 			$entry = pendinglist::where('email', $test_email)->first();
 
-            Mail::to($entry['email'])->queue(new generic($entry));
+            Mail::to($entry['email'])
+            ->addTextHeader('List-Unsubscribe', '<https://receive-sms.com/unsubscribe>')
+            ->queue(new generic($entry));
                $entry->delete();
             
 

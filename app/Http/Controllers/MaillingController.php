@@ -106,7 +106,9 @@ class MaillingController extends Controller
                 $data['date'] = Carbon::now()->addDays(20);
                 $data['email'] = $email;
                 if ($this->is_email_subscribed($email)){
-                    Mail::to($email)->later($when, new newCoupon($data));
+                    Mail::to($email)
+                    ->addTextHeader('List-Unsubscribe', '<https://receive-sms.com/unsubscribe>')
+                    ->later($when, new newCoupon($data));
                 }
                 return;
 
@@ -259,6 +261,7 @@ class MaillingController extends Controller
 
         $data['subject'] = Input::get('subject');
         $data['html'] = Input::get('html');
+        $data['email'] = Input::get('test_email');
 
 
 
