@@ -13,7 +13,7 @@
             <div class="container">
                 <div class="row">
 
-                    <h2 class="text-success">Not gonna bother you again</h2><br/>
+                    <h2 class="text-success">Not gonna bother you again 😉</h2><br/>
 
 
                     {{ Form::open(array('action' => 'SubscribersController@unsubscribe', 'id' => 'unsubscribe'))}}
@@ -24,6 +24,8 @@
                                 <input id="email" type="email" name="email" class="form-control" placeholder="Enter Your Email Here" required="required" value="{{$email}}">
                             </div>
                         </div>
+                        <br/>
+
 
                         <div class="col-md-12t">
                             <input type="submit" class="btn btn-success btn-send" value="Unsubscribe">
