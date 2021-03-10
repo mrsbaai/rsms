@@ -1,18 +1,18 @@
 @component('mail::message')
 # Hello {{$name}}!
 
-We've just updated the demo numbers. Visit our home page and be the first to use them.
+We've just updated the demo numbers. Please visit Receive-SMS.com to be the first to use them.
 
 @component('mail::button', ['url' => 'http://receive-sms.com'])
 Receive-SMS.com
 @endcomponent
 
-Their is also new fresh private numbers on our system. Here is a link if you need to register a private inbox:
+We have a new batch of fresh numbers on our system. Consider getting a private number 😉.
 
 @component('mail::button', ['url' => 'http://receive-sms.com/register'])
-Register
+Get a private number
 @endcomponent
 
-Regards,<br>
+Cheers,<br>
 {{ config('app.name') }}
 @endcomponent

@@ -13,7 +13,7 @@
             <div class="container">
                 <div class="row">
 
-                    <h2 class="text-danger">We're sorry to see you go :(</h2>
+                    <h2 class="text-success">Not gonna bother you again</h2><br/>
 
 
                     {{ Form::open(array('action' => 'SubscribersController@unsubscribe', 'id' => 'unsubscribe'))}}
