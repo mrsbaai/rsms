@@ -121,7 +121,7 @@ class RegisterController extends Controller
                 ]);
             }else{
                 flash()->overlay('Click the Forgot password link if you don\'t remember your password. (We\'ll send a message to that email address to help you access the account.)', 'Email Address is Already Registered!');
-                return;
+                return redirect('/register');
 
             }
 
@@ -129,7 +129,7 @@ class RegisterController extends Controller
         }else{
 
             flash()->overlay('We coudn\'t sign you up because you\'ve entred an invalid email', 'Error!');
-            return;
+            return redirect('/register');
         }
 
 
