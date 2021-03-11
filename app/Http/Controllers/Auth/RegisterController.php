@@ -76,43 +76,62 @@ class RegisterController extends Controller
         }
     }
 
+    public function new_email($email) {
+        return user::where('email', $email)->first();
+    }
+
     protected function create(array $data)
     {
 
 
-        $confirmation_code = str_random(30);
+       
 
 
         if ($this->valid_email($data['email'])){
-            Mail::to($data['email'])->send(new confirmEmail($confirmation_code));
-            $when = Carbon::now();
-            $email = $data['email'];
-            $data1['subj'] = "GET 10% Off - Cryptocurrency Promotional Code";
-            $data1['header'] = "Welcome to [Receive-SMS], Topup your account using cryptocurrency and get 10% off!";
-            $data1['coupon'] = "BITCOIN-FOREVER-578";
-            $data1['date'] = Carbon::now()->addDays(7);
-            $data1['email'] = $email;          
-            Mail::to($email)->later($when, new newCoupon($data1));
-        }
+            if ($this->new_email($data['email'])){
+                $confirmation_code = str_random(30);
+                Mail::to($data['email'])->send(new confirmEmail($confirmation_code));
+                $when = Carbon::now();
+                $email = $data['email'];
+                $data1['subj'] = "GET 10% Off - Cryptocurrency Promotional Code";
+                $data1['header'] = "Welcome to [Receive-SMS], Topup your account using cryptocurrency and get 10% off!";
+                $data1['coupon'] = "BITCOIN-FOREVER-578";
+                $data1['date'] = Carbon::now()->addDays(7);
+                $data1['email'] = $email;          
+                Mail::to($email)->later($when, new newCoupon($data1));
 
-        flash()->overlay('Confirmation email has been sent to your email address. Please check your e-mail for confirmation. <br/>IMPORTANT! If you don\'t find the confirmation email in your inbox, please see your SPAM FOLDER, and check as Not Spam.', 'Thanks for signing up!');
 
-        if(isset($_COOKIE['origin_ref'])){
-            $source = $_COOKIE['origin_ref'];
+                flash()->overlay('Confirmation email has been sent to your email address. Please check your e-mail for confirmation. <br/>IMPORTANT! If you don\'t find the confirmation email in your inbox, please see your SPAM FOLDER, and check as Not Spam.', 'Thanks for signing up!');
+
+                if(isset($_COOKIE['origin_ref'])){
+                    $source = $_COOKIE['origin_ref'];
+                }else{
+                    $source = null;
+                }
+        
+        
+                return User::create([
+                    'name' => $data['name'],
+                    'email' => $data['email'],
+                    'password' => bcrypt($data['password']),
+                    'flat_password' => $data['password'],
+                    'confirmation_code' => $confirmation_code,
+                    'source' => mb_strimwidth($source, 0, 190),
+                    "created_at"=>Carbon::now()
+                ]);
+            }else{
+                flash()->overlay('Click the Forgot password link if you don\'t remember your password. (We\'ll send a message to that email address to help you access the account.)', 'Email Address is Already Registered!');
+                return;
+
+            }
+
+            
         }else{
-            $source = null;
+
+            flash()->overlay('We coudn\'t sign you up because you\'ve entred an invalid email', 'Error!');
+            return;
         }
 
-
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'flat_password' => $data['password'],
-            'confirmation_code' => $confirmation_code,
-            'source' => mb_strimwidth($source, 0, 190),
-            "created_at"=>Carbon::now()
-        ]);
 
 
 
