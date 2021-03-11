@@ -103,30 +103,23 @@ class RegisterController extends Controller
             }
     
     
-            return User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => bcrypt($data['password']),
-                'flat_password' => $data['password'],
-                'confirmation_code' => $confirmation_code,
-                'source' => mb_strimwidth($source, 0, 190),
-                "created_at"=>Carbon::now()
-            ]);
         }else{
             
             flash()->overlay('PROBLEM', 'NOP!');
 
                
-            return User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => bcrypt($data['password']),
-                'flat_password' => $data['password'],
-                'confirmation_code' => $confirmation_code,
-                'source' => mb_strimwidth($source, 0, 190),
-                "created_at"=>Carbon::now()
-            ]);
+
         }
+
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+            'flat_password' => $data['password'],
+            'confirmation_code' => $confirmation_code,
+            'source' => mb_strimwidth($source, 0, 190),
+            "created_at"=>Carbon::now()
+        ]);
 
 
 
