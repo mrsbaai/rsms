@@ -93,26 +93,30 @@ class RegisterController extends Controller
             $data1['date'] = Carbon::now()->addDays(7);
             $data1['email'] = $email;          
             Mail::to($email)->later($when, new newCoupon($data1));
-        }
 
-        flash()->overlay('Confirmation email has been sent to your email address. Please check your e-mail for confirmation. <br/>IMPORTANT! If you don\'t find the confirmation email in your inbox, please see your SPAM FOLDER, and check as Not Spam.', 'Thanks for signing up!');
+            flash()->overlay('Confirmation email has been sent to your email address. Please check your e-mail for confirmation. <br/>IMPORTANT! If you don\'t find the confirmation email in your inbox, please see your SPAM FOLDER, and check as Not Spam.', 'Thanks for signing up!');
 
-        if(isset($_COOKIE['origin_ref'])){
-            $source = $_COOKIE['origin_ref'];
+            if(isset($_COOKIE['origin_ref'])){
+                $source = $_COOKIE['origin_ref'];
+            }else{
+                $source = null;
+            }
+    
+    
+            return User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'flat_password' => $data['password'],
+                'confirmation_code' => $confirmation_code,
+                'source' => mb_strimwidth($source, 0, 190),
+                "created_at"=>Carbon::now()
+            ]);
         }else{
-            $source = null;
+            return  redirect('/register');
         }
 
 
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'flat_password' => $data['password'],
-            'confirmation_code' => $confirmation_code,
-            'source' => mb_strimwidth($source, 0, 190),
-            "created_at"=>Carbon::now()
-        ]);
 
 
 
