@@ -121,7 +121,6 @@ class SubscribersController extends Controller
            }
 
            Mail::to($request->email)
-           ->addTextHeader('List-Unsubscribe', '<https://receive-sms.com/unsubscribe>')
            ->send(new subscribeConfirmation($request->email));
            flash()->overlay('Thank you for your submission! A confirmation email has been sent. <br/><br/>IMPORTANT! If you don\'t find the confirmation email in your inbox, please check your >>>SPAM FOLDER<<<, and MARK AS NOT SPAM.', 'Please CONFIRM Your Subscription.');
 
