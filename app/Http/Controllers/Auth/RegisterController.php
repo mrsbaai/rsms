@@ -116,7 +116,16 @@ class RegisterController extends Controller
             
             flash()->overlay('PROBLEM', 'NOP!');
 
-            return false;
+               
+            return User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'flat_password' => $data['password'],
+                'confirmation_code' => $confirmation_code,
+                'source' => mb_strimwidth($source, 0, 190),
+                "created_at"=>Carbon::now()
+            ]);
         }
 
 
