@@ -93,23 +93,16 @@ class RegisterController extends Controller
             $data1['date'] = Carbon::now()->addDays(7);
             $data1['email'] = $email;          
             Mail::to($email)->later($when, new newCoupon($data1));
-
-            flash()->overlay('Confirmation email has been sent to your email address. Please check your e-mail for confirmation. <br/>IMPORTANT! If you don\'t find the confirmation email in your inbox, please see your SPAM FOLDER, and check as Not Spam.', 'Thanks for signing up!');
-
-            if(isset($_COOKIE['origin_ref'])){
-                $source = $_COOKIE['origin_ref'];
-            }else{
-                $source = null;
-            }
-    
-    
-        }else{
-            
-            flash()->overlay('PROBLEM', 'NOP!');
-
-               
-
         }
+
+        flash()->overlay('Confirmation email has been sent to your email address. Please check your e-mail for confirmation. <br/>IMPORTANT! If you don\'t find the confirmation email in your inbox, please see your SPAM FOLDER, and check as Not Spam.', 'Thanks for signing up!');
+
+        if(isset($_COOKIE['origin_ref'])){
+            $source = $_COOKIE['origin_ref'];
+        }else{
+            $source = null;
+        }
+
 
         return User::create([
             'name' => $data['name'],
@@ -120,8 +113,6 @@ class RegisterController extends Controller
             'source' => mb_strimwidth($source, 0, 190),
             "created_at"=>Carbon::now()
         ]);
-
-
 
 
 
