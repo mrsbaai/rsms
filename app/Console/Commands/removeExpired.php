@@ -102,6 +102,7 @@ class removeExpired extends Command
                     $user = User::whereemail($number['email'])->first();
 
                     $data['name'] = $user['name'];
+                    $data['email'] = $user['email'];
                     $data['date'] = Carbon::parse($number['expiration'])->toDateString();
 					echo "topup needed email: " . $number['number'];
                     Mail::to($number["email"])->later($when, new topupNeeded($data));
