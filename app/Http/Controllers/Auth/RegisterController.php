@@ -113,7 +113,10 @@ class RegisterController extends Controller
                 "created_at"=>Carbon::now()
             ]);
         }else{
-            return  redirect('/register');
+            
+            flash()->overlay('PROBLEM', 'NOP!');
+
+            return false;
         }
 
 
