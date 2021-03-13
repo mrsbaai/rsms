@@ -26,7 +26,7 @@ class DemoNumbers extends Command
      *
      * @var string
      */
-    protected $description = 'Change demo numbers end send an email';
+    protected $description = 'Change demo numbers and send an email';
 
     /**
      * Create a new command instance.
@@ -90,11 +90,19 @@ class DemoNumbers extends Command
                         }
                     }
             
+                    //test
+                    $data['email'] = "abdelilah.sbaai@gmail.com";
+                    Mail::to($data['email'])->queue(new newdemonumbers($data));
+                        
+                                            
                     foreach($emails as $email) {
                         $data['email'] = $email;
                         //send an email to subscriber
                         //Mail::to($email)->queue(new newdemonumbers($data));
                         
+                        
+                        
+            
 
                     }
                     
