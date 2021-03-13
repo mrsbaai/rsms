@@ -1,20 +1,29 @@
 @component('mail::message')
-# Hello {{$name}}!
+# Hello!
 
-We've just updated the demo numbers. Please visit Receive-SMS.com to be the first to use them.
+I just updated the demo numbers. Please visit Receive-SMS.com to be the first to use them.
 
 @component('mail::button', ['url' => 'http://receive-sms.com'])
 Receive-SMS.com
 @endcomponent
 
-We have a new batch of fresh numbers on our system. Consider getting a private number 😉.
+@component('mail::table')
+    |   Number  |   Country     |   Reach   |
+    |   :-----  |   :------     |   :----   |
+    @foreach ($numbers as $number)
+    |   {{$number[0]}}  |   {{$number[1]}}     |   {{$number[2]}}   |
+    @endforeach
+@endcomponent
+
+We have a new batch of fresh numbers on our system. So consider buying a private numbers 😉.
 
 @component('mail::button', ['url' => 'http://receive-sms.com/register'])
-Get a private number
+Own a private number
 @endcomponent
 
 Cheers,<br>
-{{ config('app.name') }}
+Abe
+{{ config('app.name') }} Admin
 @endcomponent
 
 <div style="text-align: center;">

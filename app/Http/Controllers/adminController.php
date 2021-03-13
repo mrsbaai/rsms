@@ -619,6 +619,43 @@ class adminController extends Controller
             }
         }
     }
+
+
+    public function DemoNumbersUpdate(){
+
+        $Simplepush = new Simplepush;
+        $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
+   
+     
+        
+        $Simplepush->send("W6T4J9", "Available numbers", "Available numbers count: " . $count_free, "Available numbers");
+
+
+        $demoNumbers = number::all()->where('is_private',false)->where('is_active',true)->sortBydesc('last_checked');
+     
+        foreach ($demoNumbers as $demoNumber) {
+            echo $demoNumber['number'] . "<br>";
+
+                $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
+ 
+                if ($count_free > 1){
+                    $newNumber = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->first();
+                    $count_free = $count_free -1;
+                    echo $newNumber['number'] . "<br>";
+            
+                    $expiration = Carbon::now()->addMonth(20)->addDays(10);  
+                        number::where('id', '=', $newNumber['id'])->update(['is_private' => false]);
+                        number::where('id', '=', $newNumber['id'])->update(['expiration' => $expiration]);
+                        message::where('receiver', $newNumber['number'])->delete();
+                        number::where('id', $demoNumber['id'])->delete();
+                        $Simplepush->send("W6T4J9", "Demo number updated", "Old: " . $demoNumber['number'] . "- New: " . $newNumber['number'] . " - Avalable: " .  $count_free, "Demo number updated");
+                //send an email to subscribers here
+                }else{
+                    $Simplepush->send("W6T4J9", "Update demo number problem", "Old: " . $demoNumber['number'] . "- last inbox: " . $demoNumber['last_checked'] , "No numbers in database warning");
+                }
+            
+        }
+    }
         
 
     public function showSources(){

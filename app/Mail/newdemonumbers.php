@@ -10,15 +10,17 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class newdemonumbers extends Mailable
 {
     use Queueable, SerializesModels;
-    protected $name;
+    protected $email;
+    protected $numbers;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name)
+    public function __construct($email, $numbers)
     {
-        $this->name = $name;
+        $this->email = $email;
+        $this->numbers = $numbers;
     }
 
     /**
@@ -31,7 +33,8 @@ class newdemonumbers extends Mailable
         return $this->markdown('emails.newdemonumbers')
             ->subject('Fresh Demo Numbers Live!')
             ->with([
-                'name' => $this->name,
+                'numbers' => $this->numbers,
+                'email' => $this->email,
             ]);
     }
 }
