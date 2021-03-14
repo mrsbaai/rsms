@@ -339,6 +339,6 @@ Route::get('/close', function()
     return '<html><title>close</title></html>';
 });
 
-Route::get('/UpdateDemoNumbers', function() {
+Route::get('/test_command', function() {
     Artisan::call('UpdateDemoNumbers');
 });
