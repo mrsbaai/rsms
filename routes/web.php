@@ -340,5 +340,5 @@ Route::get('/close', function()
 });
 
 Route::get('/test_command', function() {
-    //Artisan::call('DemoNumbers:Update');
+    Artisan::call('DemoNumbers:Update');
 });
