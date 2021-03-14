@@ -15,8 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         '\App\Console\Commands\SendPromoMails',
         '\App\Console\Commands\SendAutoMails',
-        //'\App\Console\Commands\DemoNumbers',
-        '\App\Console\Commands\removeExpired'
+        '\App\Console\Commands\DemoNumbers',
+        '\App\Console\Commands\removeExpired',
         //'\App\Console\Commands\SendNumberVerification',
     ];
 
@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
 		
 		$schedule->command('SendPromoMails:Send')->daily();
         $schedule->command('SendAutoMails:SendMails')->daily();
-        $schedule->command('DemoNumbers:Update')->weekly();
+        $schedule->command('UpdateDemoNumbers')->weekly();
 
         //$schedule->command('Verification:Send')->daily();
     }
