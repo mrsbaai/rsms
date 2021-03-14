@@ -15,8 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         '\App\Console\Commands\SendPromoMails',
         '\App\Console\Commands\SendAutoMails',
-        '\App\Console\Commands\DemoNumbers',
-        '\App\Console\Commands\removeExpired'
+        '\App\Console\Commands\removeExpired',
+        '\App\Console\Commands\DemoNumbers'
         //'\App\Console\Commands\SendNumberVerification',
     ];
 
