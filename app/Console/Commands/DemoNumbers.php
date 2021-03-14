@@ -11,14 +11,14 @@ class DemoNumbers extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'UpdateDemoNumbers';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'update demo numbers and send notification to all subscribers';
 
     /**
      * Create a new command instance.
@@ -37,6 +37,7 @@ class DemoNumbers extends Command
      */
     public function handle()
     {
-        //
+        echo 'test';
+        return;
     }
 }
