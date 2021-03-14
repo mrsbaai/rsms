@@ -103,9 +103,6 @@ class DemoNumbers extends Command
                         //send an email to subscriber
                         //Mail::to($email)->queue(new newdemonumbers($data));
                         
-                        
-                        
-            
 
                     }
                     

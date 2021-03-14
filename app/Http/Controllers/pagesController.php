@@ -40,7 +40,7 @@ class pagesController extends Controller
         }
     }
 
-    Public function showTag($tag){
+    Public function showTag($tag=""){
         if (!is_string($tag)){
             return redirect('/home');
         }
