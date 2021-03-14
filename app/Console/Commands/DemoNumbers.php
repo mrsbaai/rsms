@@ -18,7 +18,7 @@ class DemoNumbers extends Command
      *
      * @var string
      */
-    protected $description = 'update demo numbers and send notification to all subscribers';
+    protected $description = 'Update demo numbers and send notification to all subscribers';
 
     /**
      * Create a new command instance.
@@ -37,7 +37,7 @@ class DemoNumbers extends Command
      */
     public function handle()
     {
-        echo 'test';
+        echo 'test-----------------------------------------';
         return;
     }
 }
