@@ -1,8 +1,15 @@
 <?php
-
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\number;
+use App\subscriber;
+use App\message;
+use Carbon\Carbon;
+use App\suppression;
+use App\Mail\newdemonumbers;
+
+use Log;
 
 class DemoNumbers extends Command
 {
