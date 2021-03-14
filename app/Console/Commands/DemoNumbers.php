@@ -45,16 +45,18 @@ class DemoNumbers extends Command
     public function handle()
     {
         
-
+        echo "<html>inside 0 <br/>";
         $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
         $demoNumbers = number::all()->where('is_private',false)->where('is_active',true)->sortBydesc('last_checked');
-     
+        echo "inside 1 <br/>";
         foreach ($demoNumbers as $demoNumber) {
 
+            echo "inside 2 <br/>";
 
                 $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
- 
+                echo "inside 3 <br/>";
             if ($count_free > 1){
+                echo "inside 4 <br/>";
                     $newNumber = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->first();
                     $count_free = $count_free -1;
             
@@ -68,12 +70,13 @@ class DemoNumbers extends Command
                     $numbers = number::all()->where('is_private',false)->where('is_active',true);
                     $data['numbers'] = array();
                     foreach ($numbers as $number) {
+                        echo "inside 5 <br/>";
                         $number = number::where('id', '=', $number['id'])->first();
                         $addedNumber = array($number['number'],$number['country'],"International");          
                         array_push($data['numbers'],$addedNumber);
                     }
-
-                    echo "inside";
+                    echo "inside 6 <br/>";
+                   
                     print_r( $data['numbers']);
 
 
