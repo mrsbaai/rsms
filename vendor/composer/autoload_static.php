@@ -390,7 +390,6 @@ class ComposerStaticInit45de193095ab851f93bb59cf8632511a
         'AddInfoToNumbersTable' => __DIR__ . '/../..' . '/database/migrations/2020_06_13_154502_addInfoToNumbersTable.php',
         'AddPaidToUsers' => __DIR__ . '/../..' . '/database/migrations/2017_10_07_064407_add_paid_to_users.php',
         'AddTotalToPaypalidsTable' => __DIR__ . '/../..' . '/database/migrations/2019_12_25_122606_addTotalToPaypalidsTable.php',
-        'App\\Console\\Commands\\DemoNumbers' => __DIR__ . '/../..' . '/app/Console/Commands/DemoNumbers.php',
         'App\\Console\\Commands\\SendAutoMails' => __DIR__ . '/../..' . '/app/Console/Commands/SendAutoMails.php',
         'App\\Console\\Commands\\SendNumberVerification' => __DIR__ . '/../..' . '/app/Console/Commands/SendNumberVerification.php',
         'App\\Console\\Commands\\SendPromoMails' => __DIR__ . '/../..' . '/app/Console/Commands/SendPromoMails.php',
