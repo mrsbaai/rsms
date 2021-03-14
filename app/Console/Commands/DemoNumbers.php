@@ -44,7 +44,7 @@ class DemoNumbers extends Command
      */
     public function handle()
     {
-        echo "test2____________________--------";
+        
 
         $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
         $demoNumbers = number::all()->where('is_private',false)->where('is_active',true)->sortBydesc('last_checked');
@@ -73,7 +73,7 @@ class DemoNumbers extends Command
                         array_push($data['numbers'],$addedNumber);
                     }
 
-
+                    echo "inside";
                     print_r( $data['numbers']);
 
 
