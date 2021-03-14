@@ -16,8 +16,8 @@ class Kernel extends ConsoleKernel
         '\App\Console\Commands\SendPromoMails',
         '\App\Console\Commands\SendAutoMails',
         '\App\Console\Commands\DemoNumbers',
-        '\App\Console\Commands\removeExpired'
-        //'\App\Console\Commands\SendNumberVerification',
+        '\App\Console\Commands\removeExpired',
+        '\App\Console\Commands\SendNumberVerification',
     ];
 
     /**
