@@ -19,14 +19,14 @@ class DemoNumbers extends Command
      *
      * @var string
      */
-    protected $signature = 'DemoNumbers:Update';
+    protected $signature = 'UpdateDemoNumbers';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Change demo numbers and send an email';
+    protected $description = 'update demo numbers and send an email to subscribers';
 
     /**
      * Create a new command instance.
@@ -46,6 +46,7 @@ class DemoNumbers extends Command
     public function handle()
     {
         echo "test";
+        return;
 
         $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
         $demoNumbers = number::all()->where('is_private',false)->where('is_active',true)->sortBydesc('last_checked');
