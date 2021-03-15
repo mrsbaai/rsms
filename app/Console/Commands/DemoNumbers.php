@@ -111,11 +111,14 @@ class DemoNumbers extends Command
 
 
         $mailable = new newdemonumbers($data);
+        $i=0;
 
         foreach ($filterd_emails as $email)
         {
-            //Mail::to($email)->queue($mailable);
-             $this->info($email  . "\n");
+            
+           // Mail::to($email)->queue($mailable);
+            $this->info(count($filterd_emails) . "/" .  $i . $email . "\n");
+            $i = $i + 1;
     
         };
 
