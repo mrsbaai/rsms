@@ -17,10 +17,10 @@ class newdemonumbers extends Mailable
      *
      * @return void
      */
-    public function __construct($email, $numbers)
+    public function __construct($data)
     {
-        $this->email = $email;
-        $this->numbers = $numbers;
+        $this->numbers = $data['numbers'];
+        $this->email = $data['email'];
     }
 
     /**
