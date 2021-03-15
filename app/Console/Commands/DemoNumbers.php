@@ -53,33 +53,29 @@ class DemoNumbers extends Command
         echo "inside 1 <br/>";
         foreach ($demoNumbers as $demoNumber) {
 
-            echo "inside 2 <br/>";
-
                 $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
-                echo "inside 3 <br/>";
+   
             if ($count_free > 1){
-                echo "inside 4 <br/>";
+    
                     $newNumber = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->first();
                     $count_free = $count_free -1;
             
                     $expiration = Carbon::now()->addMonth(20)->addDays(10);  
-                        //number::where('id', '=', $newNumber['id'])->update(['is_private' => false]);
-                        //number::where('id', '=', $newNumber['id'])->update(['expiration' => $expiration]);
-                        //message::where('receiver', $newNumber['number'])->delete();
-                        //number::where('id', $demoNumber['id'])->update(['is_active' => false]);
-                        //number::where('id', $demoNumber['id'])->update(['is_private' => true]);
+                        number::where('id', '=', $newNumber['id'])->update(['is_private' => false]);
+                        number::where('id', '=', $newNumber['id'])->update(['expiration' => $expiration]);
+                        message::where('receiver', $newNumber['number'])->delete();
+                        number::where('id', $demoNumber['id'])->update(['is_active' => false]);
+                        number::where('id', $demoNumber['id'])->update(['is_private' => true]);
 
                     $numbers = number::all()->where('is_private',false)->where('is_active',true);
                     $data['numbers'] = array();
                     foreach ($numbers as $number) {
-                        echo "inside 5 <br/>";
                         $number = number::where('id', '=', $number['id'])->first();
                         $addedNumber = array($number['number'],$number['country'],"International");          
                         array_push($data['numbers'],$addedNumber);
                     }
-                    echo "inside 6 <br/>";
+          
                    
-                    print_r( $data['numbers']);
                    
                         
                 }
@@ -103,8 +99,10 @@ class DemoNumbers extends Command
 
                     
                 $test[] = "abdelilah.sbaai@gmail.com";
+                $test[] = "abdelilahsbaai@gmail.com";
 
                 foreach($test as $email) {
+
                     $data['email'] = $email;
                     //send an email to subscriber
      
