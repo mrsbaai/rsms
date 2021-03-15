@@ -45,7 +45,7 @@ class DemoNumbers extends Command
      */
     public function handle()
     {
-        $when = Carbon::now();
+
 
         $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
         $demoNumbers = number::all()->where('is_private',false)->where('is_active',true)->sortBydesc('last_checked');
@@ -99,26 +99,30 @@ class DemoNumbers extends Command
             }
         }
 
-        $pre[] =  "abdelilah.sbaai@gmail.com";
-        $pre[] =  "abdelilah.sbaai@gmail.com";
+        $test[] = "abdelilah.sbaai@gmail.com";
+        $test[] = "abdelilah.sbaai@gmail.com";
+        
+        $test[] = "abdelilah.sbaai@gmail.com";
+        $test[] = "abdelilah.sbaai@gmail.com";
 
-        $test[] = $pre;     
-        $test[] = $pre;     
-        $test[] = $pre;     
-        $test[] = $pre;     
-        $test[] = $pre;
-
+        
+        $test[] = "abdelilah.sbaai@gmail.com";
+        $test[] = "abdelilah.sbaai@gmail.com";
 
 
         $mailable = new newdemonumbers($data);
+        foreach($test as $email) {
 
+            
+            //send an email to subscriber
+            $when = $startDate = Carbon::now()->addMinutes(1);
 
-            Mail::to($test)->queue($mailable);
-            $this->info($test  . "\n");
+            Mail::to($email)->later($when, $mailable);
+            $this->info($email  . "\n");
     
-      
+            
 
-        
+        }
 
     }
 }
