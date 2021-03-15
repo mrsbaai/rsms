@@ -47,7 +47,6 @@ class DemoNumbers extends Command
     {
         $when = Carbon::now();
 
-        echo "<html>inside 0 <br/>";
         $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
         $demoNumbers = number::all()->where('is_private',false)->where('is_active',true)->sortBydesc('last_checked');
         echo "inside 1 <br/>";
@@ -111,7 +110,7 @@ class DemoNumbers extends Command
 
             Mail::to($email)->queue($mailable);
 
-            $this->info($data['email']  . "\n");
+            $this->info($email  . "\n");
     
             
 
