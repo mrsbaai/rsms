@@ -100,16 +100,18 @@ class DemoNumbers extends Command
             }
         }
 
+        $test[] = "abdelilah.sbaai@gmail.com";
+        $test[] = "abdelilah.sbaai@gmail.com";
 
         $mailable = new newdemonumbers($data);
-        foreach($filterd_emails as $email) {
+        foreach($test as $email) {
 
-            $data['email'] = $email;
+            
             //send an email to subscriber
 
             Mail::to($email)->queue($mailable);
 
-            $this->info($entry['subject'] . " -> " . $entry['email']  . "\n");
+            $this->info($data['email']  . "\n");
     
             
 

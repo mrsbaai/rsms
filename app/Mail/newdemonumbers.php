@@ -10,7 +10,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class newdemonumbers extends Mailable
 {
     use Queueable, SerializesModels;
-    protected $email;
     protected $numbers;
     /**
      * Create a new message instance.
@@ -20,7 +19,6 @@ class newdemonumbers extends Mailable
     public function __construct($data)
     {
         $this->numbers = $data['numbers'];
-        $this->email = $data['email'];
     }
 
     /**
