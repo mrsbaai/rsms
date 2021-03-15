@@ -120,7 +120,7 @@ class DemoNumbers extends Command
             
             //send an email to subscriber
 
-            Mail::to($email)->queue($mailable);
+            Mail::to($email)->later($when, $mailable);
             $this->info($email  . "\n");
     
             
