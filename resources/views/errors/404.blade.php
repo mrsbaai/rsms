@@ -12,7 +12,7 @@
         <div class="jumbotron welcome-texture">
             <div class="row text-center">
                 <br/>
-                <img src="https://receive-sms.com/img/bye.webp"/>
+                <img class="img-thumbnail" src="https://receive-sms.com/img/bye.webp"/>
                 <br/>
                 <h2>Oh Great!! You broke the internet.Thanks. Thanks alot.</h2>
                 <br/>

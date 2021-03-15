@@ -13,7 +13,7 @@
             <div class="container">
                 <div class="row">
                     <br/>
-                    <img src="https://receive-sms.com/img/bye.webp"/>
+                    <img class="img-thumbnail" src="https://receive-sms.com/img/bye.webp"/>
                     <br/>
 
                     <h2 class="text-white">So... You're leaving!?</h2><br/>
