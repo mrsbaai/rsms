@@ -101,15 +101,15 @@ class DemoNumbers extends Command
         }
 
 
+        $mailable = new newdemonumbers($data);
         foreach($filterd_emails as $email) {
 
             $data['email'] = $email;
             //send an email to subscriber
 
-            Mail::to($email)
-                        ->queue(new newdemonumbers($data));
+            Mail::to($email)->queue($mailable);
 
-            echo  $data['email'] . "<br/>";
+            $this->info($entry['subject'] . " -> " . $entry['email']  . "\n");
     
             
 
