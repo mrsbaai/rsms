@@ -115,17 +115,14 @@ class DemoNumbers extends Command
 
 
         $mailable = new newdemonumbers($data);
-        foreach($test as $email) {
 
-            
-            //send an email to subscriber
 
-            Mail::to($email)->later($when, $mailable);
-            $this->info($email  . "\n");
+            Mail::to($test)->queue($mailable);
+            $this->info($test  . "\n");
     
             
 
-        }
+        
 
     }
 }
