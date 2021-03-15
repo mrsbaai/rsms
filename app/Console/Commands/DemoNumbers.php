@@ -61,11 +61,11 @@ class DemoNumbers extends Command
                     $count_free = $count_free -1;
             
                     $expiration = Carbon::now()->addMonth(20)->addDays(10);  
-                        number::where('id', '=', $newNumber['id'])->update(['is_private' => false]);
-                        number::where('id', '=', $newNumber['id'])->update(['expiration' => $expiration]);
-                        message::where('receiver', $newNumber['number'])->delete();
-                        number::where('id', $demoNumber['id'])->update(['is_active' => false]);
-                        number::where('id', $demoNumber['id'])->update(['is_private' => true]);
+                        //number::where('id', '=', $newNumber['id'])->update(['is_private' => false]);
+                       // number::where('id', '=', $newNumber['id'])->update(['expiration' => $expiration]);
+                        //message::where('receiver', $newNumber['number'])->delete();
+                        //number::where('id', $demoNumber['id'])->update(['is_active' => false]);
+                        //number::where('id', $demoNumber['id'])->update(['is_private' => true]);
 
                     $numbers = number::all()->where('is_private',false)->where('is_active',true);
                     $data['numbers'] = array();
@@ -106,7 +106,7 @@ class DemoNumbers extends Command
             $data['email'] = $email;
             //send an email to subscriber
 
-            Mail::to($email)->later($when, new newdemonumbers($data));
+            //Mail::to($email)->later($when, new newdemonumbers($data));
 
             echo  $data['email'] . "<br/>";
     
