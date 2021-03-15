@@ -207,13 +207,15 @@ class ExceptionHandler
                 $title = 'Sorry, the page you are looking for could not be found.';
                 break;
             default:
-                $title = 'Looks like something went wrong.';
+                $title = 'Whoops, looks like something went wrong.';
         }
 
         if (!$this->debug) {
-            return redirect('/login');
-            flash()->overlay($title, 'Whoops');
-
+            return <<<EOF
+                <div class="container">
+                    <h1>$title</h1>
+                </div>
+EOF;
         }
 
         $content = '';
