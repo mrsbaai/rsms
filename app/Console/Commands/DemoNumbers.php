@@ -105,7 +105,7 @@ class DemoNumbers extends Command
                         $data['email'] = $email;
                         //send an email to subscriber
                         //Mail::to($email)->queue(new newdemonumbers($data));
-                        echo  $data['email'] . "inside 1 <br/>";
+                        echo  $data['email'] . "<br/>";
                         
 
                     }
