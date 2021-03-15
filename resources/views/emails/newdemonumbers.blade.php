@@ -1,5 +1,5 @@
 @component('mail::message')
-# Hello!
+Hello!
 
 I just updated the demo numbers. Please visit Receive-SMS.com to be the first to use them.
 
