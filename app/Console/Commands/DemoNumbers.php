@@ -45,7 +45,8 @@ class DemoNumbers extends Command
      */
     public function handle()
     {
-        
+        $when = Carbon::now();
+
         echo "<html>inside 0 <br/>";
         $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
         $demoNumbers = number::all()->where('is_private',false)->where('is_active',true)->sortBydesc('last_checked');
@@ -100,12 +101,15 @@ class DemoNumbers extends Command
                     //test
                     $data['email'] = "abdelilah.sbaai@gmail.com";
                     Mail::to($data['email'])->queue(new newdemonumbers($data));
+                    Mail::to($email)->later($when, new freeNunewdemonumbersmber($data));
                         
                                             
                     foreach($filterd_emails as $email) {
                         $data['email'] = $email;
                         //send an email to subscriber
-                        //Mail::to($email)->queue(new newdemonumbers($data));
+         
+
+                        //Mail::to($email)->later($when, new newdemonumbers($data));
                         echo  $data['email'] . "<br/>";
                         
 
