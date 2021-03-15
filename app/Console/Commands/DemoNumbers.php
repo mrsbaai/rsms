@@ -8,6 +8,7 @@ use App\message;
 use Carbon\Carbon;
 use App\suppression;
 use App\Mail\newdemonumbers;
+use Mail;
 
 use Log;
 
