@@ -48,7 +48,7 @@ class SendPromoMails extends Command
             if(carbon::now()->gte(carbon::parse($entry['sendingdate']))){
 
                 Mail::to($entry['email'])
-                ->addTextHeader('List-Unsubscribe', '<https://receive-sms.com/unsubscribe>')
+                
                 ->queue(new generic($entry));
                 $this->info($entry['subject'] . " -> " . $entry['email']  . "\n");
                 $entry->delete();
@@ -69,8 +69,7 @@ class SendPromoMails extends Command
 
 
                 Mail::to($entry['email'])
-                    ->addTextHeader('List-Unsubscribe', '<https://receive-sms.com/unsubscribe>')
-                    ->queue($mailable);
+                                       ->queue($mailable);
 
                 $this->info($entry['subject'] . " -> " . $entry['email']  . "\n");
                 $entry->delete();

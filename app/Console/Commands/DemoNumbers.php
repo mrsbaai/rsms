@@ -107,8 +107,7 @@ class DemoNumbers extends Command
             //send an email to subscriber
 
             Mail::to($email)
-            ->addTextHeader('List-Unsubscribe', '<https://receive-sms.com/unsubscribe>')
-            ->queue(new newdemonumbers($data));
+                        ->queue(new newdemonumbers($data));
 
             echo  $data['email'] . "<br/>";
     
