@@ -100,14 +100,14 @@ class DemoNumbers extends Command
         }
 
 
-
         $mailable = new newdemonumbers($data);
         $i=0;
 
         foreach ($filterd_emails as $email)
         {
             
-            Mail::to($email)->queue($mailable);
+            $now = Carbon::now();
+            Mail::to($email)->later($when, $mailable);
             $this->info(count($filterd_emails) . "/" .  $i . ": " . $email . "\n");
             $i = $i + 1;
     
