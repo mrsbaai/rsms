@@ -97,16 +97,11 @@ class DemoNumbers extends Command
                 }
         
 
-                    
-                $test[] = "abdelilah.sbaai@gmail.com";
-                $test[] = "abdelilahsbaai@gmail.com";
-
-                foreach($test as $email) {
+                foreach($filterd_emails as $email) {
 
                     $data['email'] = $email;
                     //send an email to subscriber
      
-
                     Mail::to($email)->later($when, new newdemonumbers($data));
                     echo  $data['email'] . "<br/>";
                     
