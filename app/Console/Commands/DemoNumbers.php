@@ -111,20 +111,17 @@ class DemoNumbers extends Command
 
 
         $mailable = new newdemonumbers($data);
-        $array = array();
-        $allmails = array();
-        foreach ($test as $mail)
+
+        foreach ($filterd_emails as $email)
         {
-            $allmails = array_push($array, $mail);
+            //Mail::to($email)->queue($mailable);
+             $this->info($email  . "\n");
     
         };
 
 
-            
-            //send an email to subscriber
 
-            Mail::to($allmails)->queue($mailable);
-           // $this->info($email  . "\n");
+
     
 
 
