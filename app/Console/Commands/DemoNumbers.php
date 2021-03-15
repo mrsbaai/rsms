@@ -117,7 +117,7 @@ class DemoNumbers extends Command
         {
             
            // Mail::to($email)->queue($mailable);
-            $this->info(count($filterd_emails) . "/" .  $i . $email . "\n");
+            $this->info(count($filterd_emails) . "/" .  $i . ": " . $email . "\n");
             $i = $i + 1;
     
         };
