@@ -115,9 +115,10 @@ class DemoNumbers extends Command
 
             
             //send an email to subscriber
-            $when = $startDate = Carbon::now()->addMinutes(1);
+            //$when = $startDate = Carbon::now()->addMinutes(1);
 
-            Mail::to($email)->later($when, $mailable);
+            Mail::to($email)->send($mailable)->delay(30);
+
             $this->info($email  . "\n");
     
             
