@@ -84,6 +84,9 @@ class DemoNumbers extends Command
                     $plucked = suppression::all()->pluck('email');
                     $suppression =  $plucked->all();
                     $list = subscriber::all()->where("confirmed","=",true)->pluck('email');
+
+                    print_r($list);
+                    return;
                     $list = array_diff($list, $suppression);
 
                     $emails = array();
