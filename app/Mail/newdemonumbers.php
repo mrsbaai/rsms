@@ -29,6 +29,7 @@ class newdemonumbers extends Mailable
     public function build()
     {
 
+        
         return $this->markdown('emails.newdemonumbers')
             ->subject('Fresh Demo Numbers Live!')
             ->with([
