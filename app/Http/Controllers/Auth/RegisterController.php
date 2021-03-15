@@ -103,10 +103,6 @@ class RegisterController extends Controller
             $source = null;
         }
 
-        flash()->overlay('test', 'Thanks for signing up!');
-
-        return view('auth.register');
-
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
