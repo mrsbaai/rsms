@@ -13,7 +13,10 @@
             <div class="container">
                 <div class="row">
 
-                    <h2 class="text-white">Not gonna bother you again 😉</h2><br/>
+                    <h2 class="text-white">Unsubscribe</h2><br/>
+                    <br/>
+                    <img src="https://receive-sms.com/img/bye.webp"/>
+                    <br/>
 
 
                     {{ Form::open(array('action' => 'SubscribersController@unsubscribe', 'id' => 'unsubscribe'))}}

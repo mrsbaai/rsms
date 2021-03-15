@@ -11,6 +11,9 @@
     <div class="container width-fix col-sm-12">
         <div class="jumbotron welcome-texture">
             <div class="row text-center">
+                <br/>
+                <img src="https://receive-sms.com/img/bye.webp"/>
+                <br/>
                 <h2>Oh Great!! You broke the internet.Thanks. Thanks alot.</h2>
                 <br/>
                 You know, we're all for mash-ups but when it comes to file names you can't just go around making things up all willy-nilly.<br/>
