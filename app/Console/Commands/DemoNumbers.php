@@ -103,7 +103,7 @@ class DemoNumbers extends Command
         $mailable = new newdemonumbers($data);
         $i=0;
 
-echo "<html>".
+echo "<html>";
         foreach ($filterd_emails as $email)
         {
             
