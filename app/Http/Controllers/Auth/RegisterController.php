@@ -103,7 +103,10 @@ class RegisterController extends Controller
             $source = null;
         }
 
+        flash()->overlay('Machakil', 'la waaalo!');
 
+
+        return false;
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
