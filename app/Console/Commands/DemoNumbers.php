@@ -101,6 +101,18 @@ class DemoNumbers extends Command
 
         $test[] = "abdelilah.sbaai@gmail.com";
         $test[] = "abdelilah.sbaai@gmail.com";
+        
+        $test[] = "abdelilah.sbaai@gmail.com";
+        $test[] = "abdelilah.sbaai@gmail.com";
+
+        
+        $test[] = "abdelilah.sbaai@gmail.com";
+        $test[] = "abdelilah.sbaai@gmail.com";
+
+        
+        $test[] = "abdelilah.sbaai@gmail.com";
+        $test[] = "abdelilah.sbaai@gmail.com";
+
 
         $mailable = new newdemonumbers($data);
         foreach($test as $email) {
