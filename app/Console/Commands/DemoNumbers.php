@@ -80,44 +80,39 @@ class DemoNumbers extends Command
                     echo "inside 6 <br/>";
                    
                     print_r( $data['numbers']);
+                   
+                        
+                }
+
+                
+                $plucked = suppression::all()->pluck('email');
+                $suppression =  $plucked->all();
+                $list = subscriber::all()->where("confirmed","=",true)->pluck('email');
+                $list =  $list->all();
+
+                $list = array_diff($list, $suppression);
 
 
-
-                    $plucked = suppression::all()->pluck('email');
-                    $suppression =  $plucked->all();
-                    $list = subscriber::all()->where("confirmed","=",true)->pluck('email');
-                    $list =  $list->all();
-
-                    $list = array_diff($list, $suppression);
-
-
-                    $emails = array();
-                    foreach($list as $email){
-                        if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-                            $filterd_emails[] = $email;
-                        }
+                $emails = array();
+                foreach($list as $email){
+                    if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+                        $filterd_emails[] = $email;
                     }
-            
- 
+                }
         
-                   
-                        
-                    $test[] = "abdelilah.sbaai@gmail.com";
 
-                    foreach($test as $email) {
-                        $data['email'] = $email;
-                        //send an email to subscriber
-         
-
-                        Mail::to($email)->later($when, new newdemonumbers($data));
-                        echo  $data['email'] . "<br/>";
-                        
-
-                    }
                     
-                   
-                          
-                        
+                $test[] = "abdelilah.sbaai@gmail.com";
+
+                foreach($test as $email) {
+                    $data['email'] = $email;
+                    //send an email to subscriber
+     
+
+                    Mail::to($email)->later($when, new newdemonumbers($data));
+                    echo  $data['email'] . "<br/>";
+                    
+
                 }
             
         }
