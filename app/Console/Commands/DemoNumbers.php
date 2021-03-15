@@ -88,8 +88,7 @@ class DemoNumbers extends Command
 
                     $list = array_diff($list, $suppression);
 
-                    print_r($list);
-                    return;
+
                     $emails = array();
                     foreach($list as $email){
                         if(filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -102,10 +101,11 @@ class DemoNumbers extends Command
                     Mail::to($data['email'])->queue(new newdemonumbers($data));
                         
                                             
-                    foreach($emails as $email) {
+                    foreach($filterd_emails as $email) {
                         $data['email'] = $email;
                         //send an email to subscriber
                         //Mail::to($email)->queue(new newdemonumbers($data));
+                        echo  $data['email'] . "inside 1 <br/>";
                         
 
                     }
