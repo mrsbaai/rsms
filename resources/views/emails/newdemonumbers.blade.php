@@ -1,7 +1,7 @@
 @component('mail::message')
 Hello!
 
-I just updated the demo numbers. Please visit Receive-SMS.com to be the first to use them.
+We just updated the demo numbers. Please visit Receive-SMS.com to be the first to use them.
 
 @component('mail::button', ['url' => 'http://receive-sms.com'])
 Receive-SMS.com
