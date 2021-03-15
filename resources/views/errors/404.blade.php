@@ -11,12 +11,12 @@
     <div class="container width-fix col-sm-12">
         <div class="jumbotron welcome-texture">
             <div class="row text-center">
-                <h1>Oh Great!!</h1>
+                <h2>Oh Great!! You broke the internet.Thanks. Thanks alot.</h2>
                 <br/>
-                You broke the internet.Thanks. Thanks alot.<br/>
                 You know, we're all for mash-ups but when it comes to file names you can't just go around making things up all willy-nilly.<br/>
                 <br/><br/>
-            </a href="/">Reboot the internet</a>
+                
+            <a href="/">Reboot the internet</a>
                 <br/><br/>
 
 
