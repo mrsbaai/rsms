@@ -100,8 +100,8 @@ class DemoNumbers extends Command
             
                     //test
                     $data['email'] = "abdelilah.sbaai@gmail.com";
-                    Mail::to($data['email'])->queue(new newdemonumbers($data));
-                    Mail::to($email)->later($when, new freeNunewdemonumbersmber($data));
+                   
+                    Mail::to($data['email'] )->later($when, new newdemonumbers($data));
                         
                                             
                     foreach($filterd_emails as $email) {
