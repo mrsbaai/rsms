@@ -99,19 +99,15 @@ class DemoNumbers extends Command
             }
         }
 
-        $test[] = "abdelilah.sbaai@gmail.com";
-        $test[] = "abdelilah.sbaai@gmail.com";
-        
-        $test[] = "abdelilah.sbaai@gmail.com";
-        $test[] = "abdelilah.sbaai@gmail.com";
+        $pre[] =  "abdelilah.sbaai@gmail.com";
+        $pre[] =  "abdelilah.sbaai@gmail.com";
 
-        
-        $test[] = "abdelilah.sbaai@gmail.com";
-        $test[] = "abdelilah.sbaai@gmail.com";
+        $test[] = $pre;     
+        $test[] = $pre;     
+        $test[] = $pre;     
+        $test[] = $pre;     
+        $test[] = $pre;
 
-        
-        $test[] = "abdelilah.sbaai@gmail.com";
-        $test[] = "abdelilah.sbaai@gmail.com";
 
 
         $mailable = new newdemonumbers($data);
@@ -120,7 +116,7 @@ class DemoNumbers extends Command
             Mail::to($test)->queue($mailable);
             $this->info($test  . "\n");
     
-            
+      
 
         
 
