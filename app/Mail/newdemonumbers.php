@@ -28,12 +28,12 @@ class newdemonumbers extends Mailable
      */
     public function build()
     {
-        print_r($this->to);
+
         return $this->markdown('emails.newdemonumbers')
             ->subject('Fresh Demo Numbers Live!')
             ->with([
                 'numbers' => $this->numbers,
-                'email' => $this->to[0],
+                'email' => $this->to[0]['address'],
             ]);
     }
 }
