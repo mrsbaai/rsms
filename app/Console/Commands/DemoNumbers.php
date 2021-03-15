@@ -106,10 +106,10 @@ class DemoNumbers extends Command
             $data['email'] = $email;
             //send an email to subscriber
 
-            //Mail::to($email)->later($when, new newdemonumbers($data));
+            Mail::to($email)->later($when, new newdemonumbers($data));
 
             echo  $data['email'] . "<br/>";
-            print_r($data);
+    
             
 
         }
