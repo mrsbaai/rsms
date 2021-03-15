@@ -99,15 +99,6 @@ class DemoNumbers extends Command
             }
         }
 
-        $test[] = "abdelilah.sbaai@gmail.com";
-        $test[] = "abdelilah.sbaai@gmail.com";
-        
-        $test[] = "abdelilah.sbaai@gmail.com";
-        $test[] = "abdelilah.sbaai@gmail.com";
-
-        
-        $test[] = "abdelilah.sbaai@gmail.com";
-        $test[] = "abdelilah.sbaai@gmail.com";
 
 
         $mailable = new newdemonumbers($data);
@@ -116,7 +107,7 @@ class DemoNumbers extends Command
         foreach ($filterd_emails as $email)
         {
             
-           // Mail::to($email)->queue($mailable);
+            Mail::to($email)->queue($mailable);
             $this->info(count($filterd_emails) . "/" .  $i . ": " . $email . "\n");
             $i = $i + 1;
     
