@@ -103,7 +103,6 @@ class RegisterController extends Controller
             $source = null;
         }
 
-        return false;
 
         return User::create([
             'name' => $data['name'],
