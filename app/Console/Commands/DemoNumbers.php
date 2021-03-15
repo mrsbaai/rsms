@@ -115,7 +115,7 @@ class DemoNumbers extends Command
         $allmails = array();
         foreach ($test as $mail)
         {
-            $allmails = array_push($array, $mail->email);
+            $allmails = array_push($array, $mail);
     
         };
 
