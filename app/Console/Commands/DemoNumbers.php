@@ -103,12 +103,14 @@ class DemoNumbers extends Command
         $mailable = new newdemonumbers($data);
         $i=0;
 
+echo "<html>".
         foreach ($filterd_emails as $email)
         {
             
             $now = Carbon::now();
             //Mail::to($email)->later($when, $mailable);
-            $this->info($now . " : " . count($filterd_emails) . "/" .  $i . ": " . $email . "\n");
+            //$this->info($now . " : " . count($filterd_emails) . "/" .  $i . ": " . $email . "\n");
+            echo $now . " : " . count($filterd_emails) . "/" .  $i . ": " . $email . "<br/>";
             $i = $i + 1;
     
         };
