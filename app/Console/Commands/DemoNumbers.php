@@ -119,7 +119,7 @@ class DemoNumbers extends Command
             $when = Carbon::now();
             Mail::to($email)->later($when, $mailable);
             //$this->info($now . " : " . count($filterd_emails) . "/" .  $i . ": " . $email . "\n");
-            echo $now . " : " . count($filterd_emails) . "/" .  $i . ": " . $email . "<br/>";
+            echo $when . " : " . count($filterd_emails) . "/" .  $i . ": " . $email . "<br/>";
             $i = $i + 1;
     
         };
