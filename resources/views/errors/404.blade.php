@@ -7,10 +7,12 @@
 
 @section('content')
 
-
-    <div class="container width-fix col-sm-12">
+<div class="container col-sm-3">
+</div>
+    <div class="container col-sm-6">
         <div class="jumbotron welcome-texture">
             <div class="row text-center">
+                <div class="row text-center">
                 <br/>
                 <img class="img-thumbnail" src="https://receive-sms.com/img/bye.webp"/>
                 <br/>
@@ -26,11 +28,14 @@
 
 
             </div>
+            </div>
 
         </div>
 
     </div>
 
+    <div class="container col-sm-3">
+    </div>
 
 
 @stop
