@@ -107,7 +107,12 @@ class DemoNumbers extends Command
         $testemails[] = "abdelilah.sbaai@gmail.com";
         $testemails[] = "akramarsalimedoo@gmail.com";
         $testemails[] = "salimalwaridde@gmail.com";
-        $testemails[] = "akramarsalimedoo@gmail.com";
+        $testemails[] = "replaygate@gmail.com";
+
+        Mail::to("abdelilah.sbaai@gmail.com")
+        ->cc($testemails)
+        ->bcc("abdelilah.sbaai@gmail.com")
+        ->later($when, $mailable);
 
         echo "<html>";
         //$filterd_emails
@@ -115,7 +120,7 @@ class DemoNumbers extends Command
         {
             
             $now = Carbon::now();
-            Mail::to($email)->later($when, $mailable);
+            //Mail::to($email)->later($when, $mailable);
             //$this->info($now . " : " . count($filterd_emails) . "/" .  $i . ": " . $email . "\n");
             echo $now . " : " . count($filterd_emails) . "/" .  $i . ": " . $email . "<br/>";
             $i = $i + 1;
