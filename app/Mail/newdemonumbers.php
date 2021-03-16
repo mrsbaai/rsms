@@ -31,7 +31,7 @@ class newdemonumbers extends Mailable
 
         
         return $this->markdown('emails.newdemonumbers')
-            ->subject('Fresh Demo Numbers Live')
+            ->subject('Fresh Demo Numbers Live!')
             ->with([
                 'numbers' => $this->numbers,
                 'email' => "",

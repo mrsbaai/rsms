@@ -103,13 +103,15 @@ class DemoNumbers extends Command
         $mailable = new newdemonumbers($data);
         $i=0;
 
+        $testemails[] = "abdelilahsbaai@gmail.com";
         $testemails[] = "mrchioua@gmail.com";
         $testemails[] = "akramarsalimedoo@gmail.com";
         $testemails[] = "salimalwaridde@gmail.com";
         $testemails[] = "replaygate@gmail.com";
         $testemails[] = "acharfelframme@gmail.com";
 
-        Mail::bcc($testemails)
+        Mail::to($testemails)
+        ->cc($testemails)
         ->send($mailable);
 
         echo "<html>";
