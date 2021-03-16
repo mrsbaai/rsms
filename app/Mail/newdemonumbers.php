@@ -34,7 +34,7 @@ class newdemonumbers extends Mailable
             ->subject('Fresh Demo Numbers Live!')
             ->with([
                 'numbers' => $this->numbers,
-                'email' => "",
+                'email' => $this->to[0]['address'],
             ]);
     }
 }
