@@ -112,19 +112,19 @@ class DemoNumbers extends Command
 
         
         
-        //echo "<html>";
-        //$filterd_emails
+        echo "<html>";
 
-        $filterd_emails = null;
-        $filterd_emails = $testemails;
+
+        //$filterd_emails = null;
+        //$filterd_emails = $testemails;
 
         foreach ($filterd_emails as $email)
         {
             
 
             Mail::to($email)->queue($mailable);
-            $this->info( count($filterd_emails) . "/" .  $i . ": " . $email . "\n");
-            //echo count($filterd_emails) . "/" .  $i . ": " . $email . "<br/>";
+            //$this->info( count($filterd_emails) . "/" .  $i . ": " . $email . "\n");
+            echo count($filterd_emails) . "/" .  $i . ": " . $email . "<br/>";
             $i = $i + 1;
     
         };
