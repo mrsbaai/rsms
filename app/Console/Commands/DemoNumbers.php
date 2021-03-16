@@ -110,7 +110,7 @@ class DemoNumbers extends Command
 
         $now = Carbon::now();
         Mail::bcc($testemails)
-        ->later($now, $mailable);
+        ->send($mailable);
 
         echo "<html>";
         //$filterd_emails
