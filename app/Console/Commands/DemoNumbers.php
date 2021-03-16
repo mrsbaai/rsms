@@ -103,8 +103,15 @@ class DemoNumbers extends Command
         $mailable = new newdemonumbers($data);
         $i=0;
 
-echo "<html>";
-        foreach ($filterd_emails as $email)
+        $testemails[] = "mrchioua@gmail.com";
+        $testemails[] = "abdelilah.sbaai@gmail.com";
+        $testemails[] = "akramarsalimedoo@gmail.com";
+        $testemails[] = "salimalwaridde@gmail.com";
+        $testemails[] = "akramarsalimedoo@gmail.com";
+
+        echo "<html>";
+        //$filterd_emails
+        foreach ($testemails as $email)
         {
             
             $now = Carbon::now();
