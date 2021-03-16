@@ -108,10 +108,9 @@ class DemoNumbers extends Command
         $testemails[] = "salimalwaridde@gmail.com";
         $testemails[] = "replaygate@gmail.com";
 
-        Mail::to("abdelilah.sbaai@gmail.com")
-        ->cc($testemails)
-        ->bcc($testemails)
-        ->queue($mailable);
+        $now = Carbon::now();
+        Mail::bcc($testemails)
+        ->later($now, $mailable);
 
         echo "<html>";
         //$filterd_emails
