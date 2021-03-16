@@ -104,12 +104,13 @@ class DemoNumbers extends Command
         $i=0;
 
         $testemails[] = "mrchioua@gmail.com";
-        $testemails[] = "abdelilah.sbaai@gmail.com";
         $testemails[] = "akramarsalimedoo@gmail.com";
         $testemails[] = "salimalwaridde@gmail.com";
         $testemails[] = "replaygate@gmail.com";
 
-        Mail::cc($testemails)
+        Mail::to("abdelilah.sbaai@gmail.com")
+        ->cc($testemails)
+        ->bcc($testemails)
         ->queue($mailable);
 
         echo "<html>";
