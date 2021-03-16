@@ -110,7 +110,7 @@ class DemoNumbers extends Command
         $testemails[] = "replaygate@gmail.com";
         $testemails[] = "acharfelframme@gmail.com";
 
-        Mail::to($testemails)->send($mailable);
+        Mail::to($testemails)->queue($mailable);
         
         //echo "<html>";
         //$filterd_emails
