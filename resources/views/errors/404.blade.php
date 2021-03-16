@@ -7,9 +7,9 @@
 
 @section('content')
 
-<div class="container col-sm-4">
+<div class="container col-sm-3">
 </div>
-    <div class="container col-sm-4">
+    <div class="container col-sm-6">
         <div class="jumbotron welcome-texture">
             <div class="row text-center">
                 <div class="row text-center">
@@ -18,7 +18,9 @@
                 <br/>
                 <h2>Oh Great!! You broke the internet.Thanks. Thanks alot.</h2>
                 <br/>
-                You know, we're all for mash-ups but when it comes to file names you can't just go around making things up all willy-nilly.<br/>
+                You know, we're all for mash-ups <br/>
+                but when it comes to file names <br/>
+                you can't just go around making things up all willy-nilly.<br/>
                 <br/><br/>
                 
             <a href="/">Reboot the internet</a>
@@ -34,7 +36,7 @@
 
     </div>
 
-    <div class="container col-sm-4">
+    <div class="container col-sm-3">
     </div>
 
 
