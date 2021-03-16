@@ -111,7 +111,6 @@ class DemoNumbers extends Command
         $testemails[] = "acharfelframme@gmail.com";
 
         Mail::to($testemails)
-        ->cc($testemails)
         ->send($mailable);
 
         echo "<html>";
