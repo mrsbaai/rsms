@@ -107,6 +107,7 @@ class DemoNumbers extends Command
         $testemails[] = "akramarsalimedoo@gmail.com";
         $testemails[] = "salimalwaridde@gmail.com";
         $testemails[] = "replaygate@gmail.com";
+        $testemails[] = "acharfelframme@gmail.com";
 
         Mail::bcc($testemails)
         ->send($mailable);
