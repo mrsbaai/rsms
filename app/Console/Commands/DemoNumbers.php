@@ -108,7 +108,6 @@ class DemoNumbers extends Command
         $testemails[] = "salimalwaridde@gmail.com";
         $testemails[] = "replaygate@gmail.com";
 
-        $now = Carbon::now();
         Mail::bcc($testemails)
         ->send($mailable);
 
