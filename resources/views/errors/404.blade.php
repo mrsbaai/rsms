@@ -18,7 +18,7 @@
                 <br/>
                 <h2>Oh Great!! You broke the internet.Thanks. Thanks alot.</h2>
                 <br/>
-                You know, we're all for mash-ups <br/>
+                You know, we're all for mash-ups
                 but when it comes to file names <br/>
                 you can't just go around making things up all willy-nilly.<br/>
                 <br/><br/>
