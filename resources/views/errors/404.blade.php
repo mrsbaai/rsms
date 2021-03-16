@@ -7,9 +7,9 @@
 
 @section('content')
 
-<div class="container col-sm-3">
+<div class="container col-sm-4">
 </div>
-    <div class="container col-sm-6">
+    <div class="container col-sm-4">
         <div class="jumbotron welcome-texture">
             <div class="row text-center">
                 <div class="row text-center">
@@ -34,7 +34,7 @@
 
     </div>
 
-    <div class="container col-sm-3">
+    <div class="container col-sm-4">
     </div>
 
 
