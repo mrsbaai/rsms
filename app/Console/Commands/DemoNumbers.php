@@ -110,16 +110,14 @@ class DemoNumbers extends Command
         $testemails[] = "replaygate@gmail.com";
         $testemails[] = "acharfelframme@gmail.com";
 
-        Mail::to($testemails)
-        ->send($mailable);
 
         echo "<html>";
         //$filterd_emails
         foreach ($testemails as $email)
         {
             
-            $now = Carbon::now();
-            //Mail::to($email)->later($when, $mailable);
+            $when = Carbon::now();
+            Mail::to($email)->later($when, $mailable);
             //$this->info($now . " : " . count($filterd_emails) . "/" .  $i . ": " . $email . "\n");
             echo $now . " : " . count($filterd_emails) . "/" .  $i . ": " . $email . "<br/>";
             $i = $i + 1;
