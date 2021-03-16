@@ -101,7 +101,7 @@ class DemoNumbers extends Command
 
 
         $mailable = new newdemonumbers($data);
-        $i=0;
+        $i=1;
 
         $testemails[] = "abdelilahsbaai@gmail.com";
         $testemails[] = "mrchioua@gmail.com";
