@@ -26,8 +26,12 @@ class messagesController extends Controller
        
     
     public function test(){
-        phpinfo();
-
+        foreach (get_defined_constants() as $name => $val) {
+            if (strpos($name, 'CURL') === 0) {
+                echo $name . ' => ' . $val . "\n";
+            }
+        }
+ 
 
     }
 
