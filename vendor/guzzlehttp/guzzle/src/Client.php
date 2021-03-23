@@ -61,6 +61,7 @@ class Client implements ClientInterface
      */
     public function __construct(array $config = [])
     {
+        echo "test";
         if (!isset($config['handler'])) {
             $config['handler'] = HandlerStack::create();
         } elseif (!is_callable($config['handler'])) {
