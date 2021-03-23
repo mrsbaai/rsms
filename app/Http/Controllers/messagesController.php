@@ -244,7 +244,7 @@ echo "<html><pre>";
                 
                     $response = curl_exec ($ch);
                     $err = curl_error($ch);  //if you need
-                    Log::info($err);
+                    Log::info($response);
                     
                     curl_close ($ch);
                     return $response;
