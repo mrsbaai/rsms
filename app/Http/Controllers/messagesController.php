@@ -80,6 +80,7 @@ echo "<html><pre>";
     }
 
     public function logMessage($from, $to, $text){
+        Log::info("Received: $text to: $to");
         
         $time = Carbon::now();
 
@@ -100,7 +101,7 @@ echo "<html><pre>";
             if ($this->strpos_arr($text, $this->SmsForTest()) === false){
                 // check if not spam
                 
-                //if ($this->isSpam($from,$to,$text) == false){
+                if ($this->isSpam($from,$to,$text) == false){
                     //Log::info("$from, $to, $text");
                     $message = new message();
                     $message->message = $text;
@@ -111,7 +112,7 @@ echo "<html><pre>";
                     $message->save();
 
                     $this->sendCallback($from,$to,$text);
-                //}
+                }
             }else{
                 Log::info("Received: $text to: $to");
             }
