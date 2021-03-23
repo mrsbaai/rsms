@@ -26,7 +26,7 @@ class messagesController extends Controller
        
     
     public function test(){
-      
+        return "test";
         
         
         $url = "https://bulk-sms.com/test/blabla";
