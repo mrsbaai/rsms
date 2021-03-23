@@ -80,7 +80,7 @@ echo "<html><pre>";
     }
 
     public function logMessage($from, $to, $text){
-        Log::info("Received: $text to: $to");
+        //Log::info("Received: $text to: $to");
         
         $time = Carbon::now();
 
@@ -232,7 +232,8 @@ echo "<html><pre>";
                 $to = $number["number"];
 
                 if ($number["email"] == "bulk-pva"){
-                    $url = "https://bulk-pva.com/log/$from/$to/$text";
+                    $url = "http://bulk-pva.com/log/$from/$to/$text";
+                    Log::info("$from, $to, $text");
         
         
                 
