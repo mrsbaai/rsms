@@ -26,19 +26,23 @@ class messagesController extends Controller
        
     
     public function test(){
-echo "<html><pre>";
-        print_r(
-            $this->combinations(
-                array(
-                    array('Arabic','English','Frensh'), 
-                    array('Sudent','Entroproneur'), 
-                    array('Making money online','Not making money online')
-                )
-            )
-        );
+      
+        
+        
+        $url = "https://bulk-sms.com/test/blabla";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+        $response = curl_exec ($ch);
+        $err = curl_error($ch);  //if you need
+        Log::info($err);
+        Log::info($response);
+        
+        curl_close ($ch);
 
-        echo "</pre>";
-		
+        return $response;
     }
 
     private function combinations($arrays, $i = 0){
@@ -232,10 +236,8 @@ echo "<html><pre>";
                 $to = $number["number"];
 
                 if ($number["email"] == "bulk-pva"){
-                    $url = "http://bulk-pva.com/log/$from/$to/$text";
-                    Log::info("$from, $to, $text");
-        
-        
+                    $url = "https://bulk-pva.com/log/$from/$to/$text";
+    
                 
                     $ch = curl_init();
                     curl_setopt($ch, CURLOPT_URL, $url);
@@ -244,7 +246,7 @@ echo "<html><pre>";
                 
                     $response = curl_exec ($ch);
                     $err = curl_error($ch);  //if you need
-                    Log::info($response);
+                    
                     
                     curl_close ($ch);
                     return $response;
