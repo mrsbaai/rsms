@@ -35,7 +35,7 @@ class messagesController extends Controller
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         
             $response = curl_exec ($ch);
             $err = curl_error($ch);  //if you need
