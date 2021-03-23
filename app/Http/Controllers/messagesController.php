@@ -26,10 +26,9 @@ class messagesController extends Controller
        
     
     public function test(){
-        return "test";
         
         
-        $url = "https://bulk-sms.com/test/blabla";
+        $url = "https://bulk-pva.com/test/blabla";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, 0);
