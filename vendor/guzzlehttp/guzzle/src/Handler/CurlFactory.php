@@ -28,6 +28,7 @@ class CurlFactory implements CurlFactoryInterface
      */
     public function __construct($maxHandles)
     {
+        echo "meeee";
         $this->maxHandles = $maxHandles;
     }
 
