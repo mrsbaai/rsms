@@ -58,6 +58,10 @@ class CurlFactory implements CurlFactoryInterface
             : curl_init();
         curl_setopt_array($easy->handle, $conf);
 
+        // bypass ssl
+        curl_setopt_array($easy->handle , CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt_array($easy->handle , CURLOPT_SSL_VERIFYHOST, false);
+
         return $easy;
     }
 
