@@ -27,21 +27,26 @@ class messagesController extends Controller
     
     public function test(){
         
+        try{
+            $url = "https://bulk-pva.com/test/blabla";
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         
-        $url = "https://bulk-pva.com/test/blabla";
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec ($ch);
+            $err = curl_error($ch);  //if you need
+            Log::info($err);
+            Log::info($response);
+            
+            curl_close ($ch);
     
-        $response = curl_exec ($ch);
-        $err = curl_error($ch);  //if you need
-        Log::info($err);
-        Log::info($response);
+            return $response;
+		} catch (Exception $e) {
+            return $e->getMessage();
+		}
         
-        curl_close ($ch);
 
-        return $response;
     }
 
     private function combinations($arrays, $i = 0){
