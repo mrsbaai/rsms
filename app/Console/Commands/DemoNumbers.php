@@ -69,6 +69,8 @@ class DemoNumbers extends Command
                     $numbers = number::all()->where('is_private',false)->where('is_active',true);
                     $data['numbers'] = array();
                     foreach ($numbers as $number) {
+                        echo $number;
+
                         $number = number::where('id', '=', $number['id'])->first();
                         $addedNumber = array($number['number'],$number['country'],"International");          
                         array_push($data['numbers'],$addedNumber);
