@@ -53,23 +53,23 @@ class DemoNumbers extends Command
         foreach ($demoNumbers as $demoNumber) {
 
                 $count_free = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->count();
-   echo $count_free;
+   
             if ($count_free > 1){
     
                     $newNumber = number::where('info', null)->where('network_login', 'not like', 'aa@%')->where('email', null)->where('is_private', true)->where('is_active', true)->where('last_checked', '>', Carbon::now()->subDays(5)->toDateTimeString())->first();
                     $count_free = $count_free -1;
             
                     $expiration = Carbon::now()->addMonth(20)->addDays(10);  
-                        //number::where('id', '=', $newNumber['id'])->update(['is_private' => false]);
-                       // number::where('id', '=', $newNumber['id'])->update(['expiration' => $expiration]);
-                       // message::where('receiver', $newNumber['number'])->delete();
-                       // number::where('id', $demoNumber['id'])->update(['is_active' => false]);
-                       // number::where('id', $demoNumber['id'])->update(['is_private' => true]);
+                        number::where('id', '=', $newNumber['id'])->update(['is_private' => false]);
+                        number::where('id', '=', $newNumber['id'])->update(['expiration' => $expiration]);
+                       
+                        message::where('receiver', $newNumber['number'])->delete();
+                        number::where('id', $demoNumber['id'])->update(['is_active' => false]);
+                        number::where('id', $demoNumber['id'])->update(['is_private' => true]);
 
                     $numbers = number::all()->where('is_private',false)->where('is_active',true);
                     $data['numbers'] = array();
                     foreach ($numbers as $number) {
-                        echo $number;
 
                         $number = number::where('id', '=', $number['id'])->first();
                         $addedNumber = array($number['number'],$number['country'],"International");          
