@@ -92,7 +92,9 @@ class messagesController extends Controller
     }
 
     public function logMessage($from, $to, $text){
-        //Log::info("Received: $text to: $to");
+        $check = $this->isSpam($from,$to,$text);
+        Log::info("Received: $text to: $to is spam: $check");
+
         
         $time = Carbon::now();
 
