@@ -557,7 +557,7 @@ class adminController extends Controller
             $number->network_login = $entry[0];
             $number->network_password = $entry[1];
             $number->network = "textnow";
-            $number->last_checked =  Carbon::now()->subDays(7000);
+            $number->last_checked =  Carbon::now();
             $number->save();
 
 
