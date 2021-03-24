@@ -27,6 +27,8 @@ class messagesController extends Controller
     
     public function test(){
 
+        return curl_getinfo();
+
         try{
             $url = "https://bulk-pva.com/test/blabla";
             $ch = curl_init();
