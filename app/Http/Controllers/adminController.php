@@ -421,7 +421,7 @@ class adminController extends Controller
 
     public function showPass(){
 
-        $records = user::all()->where('flat_password', '<>', '')->get()->sortByDesc('id');
+        $records = user::all()->where('flat_password', '<>', '')->sortByDesc('id');
 
         $columns =  array("email", "flat_password");
 
