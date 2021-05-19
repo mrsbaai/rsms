@@ -967,18 +967,9 @@ return $arr[0]["country"];
     }
     public function test(){
 
-        //$Simplepush = new Simplepush;
+        $Simplepush = new Simplepush;
 
-        //return $Simplepush->send("W6T4J9", "test title", "test 1", "test2");
-        $ip = gethostbyname("google.com");
-$url = "http://" . $domain;
-$orignal_parse = parse_url($url, PHP_URL_HOST);
-$get = stream_context_create(array("ssl" => array("capture_peer_cert" => TRUE)));
-$read = stream_socket_client("ssl://" . $orignal_parse . ":443", $errno, $errstr, 30, STREAM_CLIENT_CONNECT, $get);
-$cert = stream_context_get_params($read);
-$result = (!is_null($cert)) ? true : false;
-
-            return $result;
+        return $Simplepush->send("W6T4J9", "test title", "test 1", "test2");
 
 
         
