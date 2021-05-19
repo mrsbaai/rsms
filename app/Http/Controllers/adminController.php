@@ -969,7 +969,8 @@ return $arr[0]["country"];
 
         $Simplepush = new Simplepush;
 
-        $Simplepush->send("W6T4J9", "test title", "test 1", "test2");
+        return $Simplepush->send("W6T4J9", "test title", "test 1", "test2");
+        
     }
 
     public function freeNumber($email,$days = 31){
