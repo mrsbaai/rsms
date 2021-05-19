@@ -671,7 +671,7 @@ class PaymentController extends Controller
         if ($verified) {
             Log::info("verified");
             Log::info($_POST["txn_type"]);
-           return;
+    
 
 			$payedAmount = $originalAmount = $code = $transactionType = $transactionStatus = $userEmail = $buyerEmail = $accountId = $paymentSystem = $txn_id = "";
 			
