@@ -665,8 +665,8 @@ class PaymentController extends Controller
        
         
 
-        $verified = $ipn->verifyIPN();
-     return;
+        //$verified = $ipn->verifyIPN();
+   
        
 
         //if ($verified) {
