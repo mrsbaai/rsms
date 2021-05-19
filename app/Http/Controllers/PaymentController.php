@@ -666,14 +666,12 @@ class PaymentController extends Controller
         
 
         $verified = $ipn->verifyIPN();
-     
+     return;
        
 
-        if ($verified) {
+        //if ($verified) {
            
-            Log::info("we good");
-            return;
-          
+
 
 			$payedAmount = $originalAmount = $code = $transactionType = $transactionStatus = $userEmail = $buyerEmail = $accountId = $paymentSystem = $txn_id = "";
 			
@@ -776,7 +774,7 @@ class PaymentController extends Controller
 			$this->notify($oldBalance, $newBalance, "PayPal", $transactionType, $transactionStatus, $buyerEmail, $accountId, $payedAmount, $code, $senderOldBalance, $senderNewBalance);
 
 
-        }
+        //}
         header("HTTP/1.1 200 OK");
     }
 	
