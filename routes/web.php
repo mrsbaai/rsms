@@ -54,7 +54,7 @@ Route::get('subscribe/verify/{email}', [
     'uses' => 'SubscribersController@confirm'
 ]);
 
-Route::get('/test','messagesController@test');
+Route::get('/test','adminController@test');
 Route::get('/admin/showpass','adminController@showPass');
 Route::get('/datafix','adminController@dataFix');
 
@@ -72,7 +72,7 @@ Route::get('/admin', 'adminController@dashboard');
 
 Route::get('/admin/verifymacro', 'adminController@verifyMacro');
 Route::get('/admin/updatenumbersmacro/{stage?}/{id?}/{ret?}/{fix1?}/{fix2?}/{fix3?}/', 'adminController@updateNumbersMacro');
-Route::get('/admin/test', 'adminController@testMacro');
+
 Route::get('/admin/runmacro', 'adminController@runmacro');
 
 
