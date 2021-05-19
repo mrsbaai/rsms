@@ -672,6 +672,7 @@ class PaymentController extends Controller
         if ($verified) {
            
             Log::info("we good");
+            return;
           
 
 			$payedAmount = $originalAmount = $code = $transactionType = $transactionStatus = $userEmail = $buyerEmail = $accountId = $paymentSystem = $txn_id = "";
