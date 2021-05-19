@@ -969,7 +969,8 @@ return $arr[0]["country"];
 
         $Simplepush = new Simplepush;
 
-        return $Simplepush->send("W6T4J9", "test title", "test 1", "test2");
+        $Simplepush->send("W6T4J9", "test title", "test 1", "test2");
+        return "dd";
 
 
         
