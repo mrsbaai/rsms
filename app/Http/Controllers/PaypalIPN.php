@@ -125,10 +125,12 @@ class PaypalIPN extends Controller
         }
         curl_close($ch);
         // Check if PayPal verifies the IPN data, and if so, return true.
+        Log::info($res);
         if ($res == self::VALID) {
             return true;
         } else {
-            echo $res;
+
+
             return false;
         }
     }
