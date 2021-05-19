@@ -95,6 +95,7 @@ class PaypalIPN extends Controller
             }
             $req .= "&$key=$value";
         }
+        Log::info($req);
         // Post the data back to PayPal, using curl. Throw exceptions if errors occur.
         $ch = curl_init($this->getPaypalUri());
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
@@ -125,7 +126,7 @@ class PaypalIPN extends Controller
         }
         curl_close($ch);
         // Check if PayPal verifies the IPN data, and if so, return true.
-        Log::info($res);
+       
         if ($res == self::VALID) {
             return true;
         } else {
