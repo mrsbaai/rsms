@@ -970,17 +970,8 @@ return $arr[0]["country"];
         //$Simplepush = new Simplepush;
 
         //return $Simplepush->send("W6T4J9", "test title", "test 1", "test2");
-        $contextOptions = [
-            'ssl' => [
-            'verify_peer' => true,
-            'cafile' => '/path/to/cafile.pem',
-            'CN_match' => 'example.com',
-            ]
-            ];
-            $context = stream_context_create($contextOptions);
-            
-            $data = file_get_contents('https://example.com/file.ext', false, $context);
-            return $data;
+
+            return file_get_contents("https://www.google.com/recaptcha/api/siteverify");
 
 
         
