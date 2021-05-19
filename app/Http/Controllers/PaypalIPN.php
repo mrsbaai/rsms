@@ -128,6 +128,7 @@ class PaypalIPN extends Controller
         if ($res == self::VALID) {
             return true;
         } else {
+            echo $res;
             return false;
         }
     }
