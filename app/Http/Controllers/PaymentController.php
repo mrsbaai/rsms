@@ -662,13 +662,15 @@ class PaymentController extends Controller
     public function paypalIPN(){
 
         $ipn = new PaypalIPN();
- 
+        Log::info("inside ipn");
         
 
         $verified = $ipn->verifyIPN();
      
 
         if ($verified) {
+            Log::info("verified");
+            Log::info($_POST["txn_type"]);
            
 
 			$payedAmount = $originalAmount = $code = $transactionType = $transactionStatus = $userEmail = $buyerEmail = $accountId = $paymentSystem = $txn_id = "";
