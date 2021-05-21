@@ -972,8 +972,7 @@ return $arr[0]["country"];
         //$Simplepush->send("W6T4J9", "test title", "test 1", "test2");
         //return "dd";
 
-        
-        return $this->sendtest("this is a test","","","","","","","","","","","","","","","","this is a test");
+        Mail::raw('Hello World!', function($msg) {$msg->to('abdelilah.sbaai@gmail.com')->subject('Test Email'); });
 
         
     }
