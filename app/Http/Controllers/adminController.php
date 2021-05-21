@@ -973,7 +973,7 @@ return $arr[0]["country"];
         //return "dd";
 
         
-        return $this->sendtest("this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test");
+        return $this->sendtest("this is a test","","","","","","","","","","","","","","","","this is a test");
 
         
     }
