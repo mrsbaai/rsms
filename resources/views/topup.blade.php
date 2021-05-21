@@ -96,7 +96,7 @@
 
                             <select  class="form-control" id="amount" name="amount" onchange="formChange()">
                                 <option value="0" selected disabled>Amount?</option>
-                                <option value="0.5">$0.5</option>
+                                <option value="0.1">$0.1</option>
                                 <option value="50">$50</option>
                                 <option value="100">$100</option>
                                 <option value="200">$200</option>
