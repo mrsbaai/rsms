@@ -663,13 +663,13 @@ class PaymentController extends Controller
 
         $ipn = new PaypalIPN();
        
-        
+        Log::info("inside paypalIPN");
 
-        //$verified = $ipn->verifyIPN();
+        $verified = $ipn->verifyIPN();
    
        
 
-        //if ($verified) {
+        if ($verified) {
            
 
 
@@ -774,7 +774,7 @@ class PaymentController extends Controller
 			$this->notify($oldBalance, $newBalance, "PayPal", $transactionType, $transactionStatus, $buyerEmail, $accountId, $payedAmount, $code, $senderOldBalance, $senderNewBalance);
 
 
-        //}
+        }
         header("HTTP/1.1 200 OK");
     }
 	
