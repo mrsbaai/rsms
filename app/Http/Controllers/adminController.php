@@ -972,7 +972,9 @@ return $arr[0]["country"];
         //$Simplepush->send("W6T4J9", "test title", "test 1", "test2");
         //return "dd";
 
-        Mail::raw('Hello World!', function($msg) {$msg->to('abdelilah.sbaai@gmail.com')->subject('Test Email'); });
+        //Mail::raw('Hello World!', function($msg) {$msg->to('abdelilah.sbaai@gmail.com')->subject('Test Email'); });
+
+        return file_get_contents("https://domain.tld/script.php");
 
         
     }
