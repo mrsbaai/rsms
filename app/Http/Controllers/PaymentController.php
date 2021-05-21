@@ -670,7 +670,13 @@ class PaymentController extends Controller
        
 
         if ($verified) {
+
+            Log::info("verified");
+
+            return  header("HTTP/1.1 200 OK");;
            
+
+            
 
 
 			$payedAmount = $originalAmount = $code = $transactionType = $transactionStatus = $userEmail = $buyerEmail = $accountId = $paymentSystem = $txn_id = "";
