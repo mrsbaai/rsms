@@ -967,11 +967,13 @@ return $arr[0]["country"];
     }
     public function test(){
 
-        $Simplepush = new Simplepush;
+        //$Simplepush = new Simplepush;
 
-        $Simplepush->send("W6T4J9", "test title", "test 1", "test2");
-        return "dd";
+        //$Simplepush->send("W6T4J9", "test title", "test 1", "test2");
+        //return "dd";
 
+        
+        return $this->sendtest("this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test","this is a test");
 
         
     }
