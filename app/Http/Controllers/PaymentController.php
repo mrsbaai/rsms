@@ -964,7 +964,7 @@ class PaymentController extends Controller
 			$title = $title . " $type";
 		}
         $Simplepush = new Simplepush;
-        $Simplepush->send("W6T4J9", $title, $content, $status);
+        return $Simplepush->send("W6T4J9", $title, $content, $status);
 
     }
 
