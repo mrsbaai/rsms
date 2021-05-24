@@ -219,9 +219,12 @@ class adminController extends Controller
 		$user = user::where('email', $email)->first();
 		
 
-		foreach ($numbers as $number) {
-			$received = $received + count(message::where('receiver',$number));
-		}
+        try{
+            foreach ($numbers as $number) {
+                $received = $received + count(message::where('receiver',$number));
+            }    
+        } catch (\Exception $e) {}
+
 
 		foreach ($completed as $c) {
 			$invested = $invested + $c['payedAmount'];
