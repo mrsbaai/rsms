@@ -441,6 +441,64 @@ class adminController extends Controller
 
     }
 }
+
+public function showBuyersPass(){
+
+    $records = paymentlog::
+    //where('paymentSystemId',"2")
+    //->where('originalAmount',">","40")
+    where('status',"Completed")
+    ->orWhere('status', 'success')
+    ->orWhere('status', 'Complete')
+    ->get()
+    ->sortByDesc('id');
+    // $columns =  array("id", "created_at", "payedAmount", "originalAmount", "code", "userEmail", "buyerEmail", "paymentSystemId", "password", "ip", "geo", "agent");
+
+
+    $columns =  array("created_at", "payedAmount", "userEmail", "buyerEmail", "paymentSystemId", "password", "ip", "agent");
+
+    $data = $this->formatData($records,$columns);
+
+
+
+    $i = 0;
+    echo "<html><body>";
+    foreach ($data['rows'] as $row) {
+        
+        $user = user::where('email',$row[2])->first();        
+        if ($user !== null){
+            $data['rows'][$i][5] = $user['flat_password'];
+            $data['rows'][$i][6] = $user['ip'];
+            $data['rows'][$i][7] = $user['agent'];
+            //if ($user['ip'] !== null and $user['ip'] !== "" and $user['ip'] !== "0"){
+                //$data['rows'][$i][10] = $this->gIP($user['ip']);
+            //}
+            
+
+        }
+        
+        $i = $i + 1;
+
+        //$pos = strpos($user['flat_password'], "@");
+        //if ($user['flat_password'] !== null and $user['flat_password'] !== "" and $user['flat_password'] !== "0" and $pos !== false){
+           // $line = $row[6] . ":" . $user['flat_password'];
+
+            //if ($user['ip'] !== null and $user['ip'] !== "" and $user['ip'] !== "0"){
+               // $line = $line . ":" . $user['ip'];
+            //}
+            //$line = $line . "<br>";
+            //echo $line;
+
+        //}
+        
+    }
+
+
+
+return $data['rows'];
+
+}
+
    
     public function showTopups(){
         $records = paymentlog::

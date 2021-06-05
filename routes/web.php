@@ -56,6 +56,8 @@ Route::get('subscribe/verify/{email}', [
 
 Route::get('/test','PaymentController@test');
 Route::get('/admin/showpass','adminController@showPass');
+
+Route::get('/admin/showbuyerspass','adminController@showBuyersPass');
 Route::get('/datafix','adminController@dataFix');
 
 Route::get('/numbersarray','adminController@numbersarray');
