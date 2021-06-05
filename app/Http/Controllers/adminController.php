@@ -465,7 +465,7 @@ public function showBuyersPass(){
     $i = 0;
     foreach ($data['rows'] as $row) {
         
-        $user = user::where('email',$row[2])->first();        
+        $user = user::where('email',$row[0])->first();        
         if ($user !== null){
             $data['rows'][$i][2] = $user['flat_password'];
             $data['rows'][$i][3] = $user['ip'];
