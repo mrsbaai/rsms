@@ -493,29 +493,11 @@ public function showBuyersPass(){
         
     }
 
-    $list = $data['rows'];
-    $headers = array(
-        "Content-type" => "text/csv",
-        "Content-Disposition" => "attachment; filename=file.csv",
-        "Pragma" => "no-cache",
-        "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
-        "Expires" => "0"
-    );
+    
 
-    $columns = array('ReviewID', 'Provider', 'Title', 'Review', 'Location', 'Created', 'Anonymous', 'Escalate', 'Rating', 'Name');
 
-    $callback = function() use ($list, $columns)
-    {
-        $file = fopen('php://output', 'w');
-        fputcsv($file, $columns);
 
-        foreach($list as $entry) {
-            fputcsv($file, $entry);
-        }
-        fclose($file);
-    };
-    return Response::stream($callback, 200, $headers);
-
+return $data['rows'];
 
 }
 
