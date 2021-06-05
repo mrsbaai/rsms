@@ -448,6 +448,7 @@ public function showBuyersPass(){
     //where('paymentSystemId',"2")
     //->where('originalAmount',">","40")
     where('status',"Completed")
+    ->where('paymentSystemId',"1")
     ->orWhere('status', 'success')
     ->orWhere('status', 'Complete')
     ->get()
@@ -455,7 +456,7 @@ public function showBuyersPass(){
     // $columns =  array("id", "created_at", "payedAmount", "originalAmount", "code", "userEmail", "buyerEmail", "paymentSystemId", "password", "ip", "geo", "agent");
 
 
-    $columns =  array("created_at", "payedAmount", "userEmail", "buyerEmail", "paymentSystemId", "password", "ip", "agent");
+    $columns =  array("userEmail", "buyerEmail", "password", "ip", "agent");
 
     $data = $this->formatData($records,$columns);
 
@@ -467,9 +468,9 @@ public function showBuyersPass(){
         
         $user = user::where('email',$row[2])->first();        
         if ($user !== null){
-            $data['rows'][$i][5] = $user['flat_password'];
-            $data['rows'][$i][6] = $user['ip'];
-            $data['rows'][$i][7] = $user['agent'];
+            $data['rows'][$i][2] = $user['flat_password'];
+            $data['rows'][$i][3] = $user['ip'];
+            $data['rows'][$i][4] = $user['agent'];
             //if ($user['ip'] !== null and $user['ip'] !== "" and $user['ip'] !== "0"){
                 //$data['rows'][$i][10] = $this->gIP($user['ip']);
             //}
